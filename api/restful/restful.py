@@ -1,0 +1,66 @@
+import flask
+
+class Restful():
+
+    class Response():
+        def __init__(self, statusCode = 200, statusMessage = "Ok", responseContent = None):
+            #Verificamos argumentos proporcionados por el usuario
+            statusCode = int(statusCode)
+            if type(statusMessage) is not str:
+                raise TypeError("statusMessage tiene que ser una string")
+
+            self.statusCode = statusCode
+            self.content = {}
+            self.content["statusCode"] = statusCode
+            self.content["statusMessage"] = statusMessage
+            self.content["responseContent"] = responseContent
+        
+        def updateContent(self, content):
+            self.content.update(responseContent = content)
+
+        def updateStatus(self, statusCode, statusMessage):
+            #Verificamos argumentos proporcionados por el usuario
+            if type(statusMessage) is not str:
+                raise TypeError("message tiene que ser una string")
+            
+            self.statusCode = statusCode
+            self.content.update(statusCode = statusCode)
+            self.content.update(statusMessage = statusMessage)
+
+        def jsonify(self):
+            return flask.jsonify(self.content)
+
+        def dump(self):
+            return self.content
+
+    class Errors():
+
+        class Generic(Exception):
+            def __init__(self, statusCode, statusMessage):
+                Exception.__init__(self)
+                self.statusCode = int(statusCode)
+                self.statusMessage = statusMessage
+                self.response = Restful.Response(self.statusCode, self.statusMessage)
+
+            def jsonify(self):
+                return self.response.jsonify()
+
+        class BadRequest(Exception):
+            def __init__(self, statusMessage):
+                Exception.__init__(self)
+                self.statusCode = 400
+                self.statusMessage = "Bad Request"
+                self.response = Restful.Response(self.statusCode, self.statusMessage)
+
+            def jsonify(self):
+                return self.response.jsonify()
+
+        class Unauthorized(Exception):
+            def __init__(self, statusMessage):
+                Exception.__init__(self)
+                self.statusCode = 401
+                self.statusMessage = "Unauthorized"
+                self.response = Restful.Response(self.statusCode, self.statusMessage)
+
+            def jsonify(self):
+                return self.response.jsonify()
