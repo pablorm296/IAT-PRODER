@@ -1,5 +1,7 @@
 import flask
 
+#Este módulo contiene la clase Restful, la cual contiene un conjunto de clases y métodos que hacen más fácil la respuesta del servidor
+
 class Restful():
 
     class Response():
