@@ -1,0 +1,66 @@
+@media only screen and (max-width: 1100px) {
+    #message {text-align: center;}
+}
+
+#gridContainer {
+    display: grid;
+    margin: 5%;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 50% 50%;
+    justify-items: center;
+}
+
+.messageContainer {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    text-align: center;
+}
+
+.noJsMsg {
+    color: #BA4652;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18pt;
+}
+
+.okBtn {
+    width: 100%;
+    color: #2ecc71;
+    border: 2px #2ecc71 solid;
+
+    &:hover, &:focus {
+        color: #fff;
+        background-color: #2ecc71;
+    }
+
+    &:active {
+        color: #fff;
+        background-color: #1D8047;
+        border: 2px #1D8047 solid;
+    }
+}
+
+
+.noBtn {
+    width: 100%;
+    color: #e74c3c;
+    border: 2px #e74c3c solid;
+
+    &:hover, &:focus {
+        color: #fff;
+        background-color: #e74c3c;
+    }
+    
+    &:active {
+        color: #fff;
+        background-color: #802B21;
+        border: 2px #802B21 solid;
+    }
+}

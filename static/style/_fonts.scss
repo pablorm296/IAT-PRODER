@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+@font-face {
+    font-family: "KC";
+    src: url('./fonts/keepCalm.ttf');
+}
+
+$bodyFont: 'Montserrat', sans-serif;
+$headerFont: "KC", sans-serif;
+$baseFontSize: 14pt;
+$headingScale: 4;

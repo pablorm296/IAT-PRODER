@@ -1,74 +1,85 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @font-face {
-    font-family: KC;
-    src: url('./fonts/keepCalm.ttf');
-}
-
+  font-family: "KC";
+  src: url("./fonts/keepCalm.ttf"); }
 body {
-    color: #3b3e44;
-    margin: 0pt;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14pt;
-    line-height: 21pt;
-}
+  color: #3b3e44;
+  margin: 0pt;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14pt;
+  line-height: 21pt; }
 
-h1, h2, h3 {
-    font-family: KC, sans-serif;
-    font-weight: normal;
-}
+h1 {
+  font-size: baseFontSize20;
+  font-family: "KC", sans-serif;
+  font-weight: normal; }
+
+h2 {
+  font-size: baseFontSize16;
+  font-family: "KC", sans-serif;
+  font-weight: normal; }
+
+h3 {
+  font-size: baseFontSize12;
+  font-family: "KC", sans-serif;
+  font-weight: normal; }
+
+h4 {
+  font-size: baseFontSize8;
+  font-family: "KC", sans-serif;
+  font-weight: normal; }
+
+h5 {
+  font-size: baseFontSize4;
+  font-family: "KC", sans-serif;
+  font-weight: normal; }
+
+h6 {
+  font-size: baseFontSize0;
+  font-family: "KC", sans-serif;
+  font-weight: normal; }
 
 button {
-    display: inline-block;
-    cursor: pointer;
-    margin: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    padding: 10px;
-    font-size: 13pt;
-    transition: .5s;
-    background-color: white;
-    word-wrap: normal;
-    -webkit-transition: .3s;
-    -moz-transition: .3s;
-    -o-transition: .3s;
-}
+  display: inline-block;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 13pt;
+  transition: .5s;
+  background-color: white;
+  word-wrap: normal;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s; }
 
 #page {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
 
 #content {
-    flex: 1;
-}
+  flex: 1; }
 
 #footer {
-    padding: 2.5% 5%;
-    font-size: 10pt;
-    color: white;
-    background-color: #719cf7;
-    line-height: 12pt;
-}
-
-#footer .logos img {
+  padding: 2.5% 5%;
+  font-size: 10pt;
+  color: white;
+  background-color: #719cf7;
+  line-height: 12pt; }
+  #footer #projectLogo {
+    margin-bottom: 20px; }
+  #footer .logos img {
     display: block;
     margin: 5px auto;
     max-width: 150px;
     min-width: 0;
-    width: auto;
-}
-
-#footer .text {
+    width: auto; }
+  #footer .text {
     margin: 10pt 0 0 0;
-    text-align: center;
-}
+    text-align: center; }
+    #footer .text p {
+      margin: 2pt; }
 
-#footer .text p {
-    margin: 2pt;
-}
-
-#footer #projectLogo {
-    margin-bottom: 20px;
-}
+/*# sourceMappingURL=main.css.map */
