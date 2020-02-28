@@ -3,34 +3,21 @@ class iatAPI {
     constructor(host, basePath) {
         this.host = "https://pabloreyes.com.mx/";
         this.alias = "api/versions/1/"
-        this.routeBank = {
-            POST_newUser: {
-                route: "users/new"
-            }
-        };
         this.endPoints = {
             POST_newUser: function () {
                 $.ajax({
                     type: "POST",
-                    url: this.getRoute("POST_newUser"),
+                    url: "https://pabloreyes.com.mx/api/versions/1/users/new",
                     data: JSON.stringify({
-                        X_VALIDATOR: "FRT0Zx5s0O"
+                        "X_VALIDATOR": "FRT0Zx5s0O"
                     }),
+                    contentType: 'application/json',
                     dataType: "json",
                     success: function (response) {
-                        console.log("Test");
+                        console.log("test");
                     }
                 });
             }
         };
-    }
-    // Función para obtener la ruta de un endpoint
-    getRoute(endPointName) {
-        const route = this.host + this.alias + this.routeBank[endPointName]["route"];
-        if (route == null) {
-            throw "The endpoint does not exists!";
-        } else {
-            return route;
-        }
     }
 }
