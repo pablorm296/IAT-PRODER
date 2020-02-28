@@ -9,7 +9,7 @@ import uuid
 #Flask CORS Solution
 from flask_cors import CORS
 #Custom packages
-from restful import Restful, ErrorHandlers # pylint: disable-msg=E0611
+from restful.restfulResources import Restful, ErrorHandlers # pylint: disable=import-error
 
 class API:
     class Users(FlaskView):
