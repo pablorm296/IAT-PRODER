@@ -84,4 +84,4 @@ API.Users.register(app, route_base = "/versions/1/users")
 
 #Configuramos __name__ == __main__
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0')
+    app.run(host = '0.0.0.0', ssl_context = ('/etc/letsencrypt/live/pabloreyes.com.mx/fullchain.pem', '/etc/letsencrypt/live/pabloreyes.com.mx/privkey.pem'))
