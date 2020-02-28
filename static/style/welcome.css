@@ -71,13 +71,45 @@
   height: 100%;
   overflow: auto;
   background-color: black;
-  background-color: rgba(0, 0, 0, 0.4); }
+  background-color: rgba(0, 0, 0, 0.25); }
   .PopUp-content {
     background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; }
+    font-size: 12pt;
+    margin: 25% auto;
+    padding: 50px;
+    border-radius: 0.4%;
+    width: 80%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+    .PopUp-content h1 {
+      font-size: baseFontSize8;
+      font-family: "KC", sans-serif;
+      font-weight: normal;
+      color: #de6449; }
+    .PopUp-content h2 {
+      font-size: baseFontSize4;
+      font-family: "KC", sans-serif;
+      font-weight: normal;
+      color: #de6449; }
+    .PopUp-content h3 {
+      font-size: baseFontSize0;
+      font-family: "KC", sans-serif;
+      font-weight: normal;
+      color: #de6449; }
+    .PopUp-content h4 {
+      font-size: baseFontSize-4;
+      font-family: "KC", sans-serif;
+      font-weight: normal;
+      color: #de6449; }
+    .PopUp-content h5 {
+      font-size: baseFontSize-8;
+      font-family: "KC", sans-serif;
+      font-weight: normal;
+      color: #de6449; }
+    .PopUp-content h6 {
+      font-size: baseFontSize-12;
+      font-family: "KC", sans-serif;
+      font-weight: normal;
+      color: #de6449; }
     .PopUp-content .close {
       color: #aaa;
       float: right;
