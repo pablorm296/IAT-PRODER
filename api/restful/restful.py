@@ -47,6 +47,13 @@ class Restful():
             def jsonify(self):
                 return self.response.jsonify()
 
+        class InternalServerError(Exception):
+            def __init__(self, statusMessage):
+                Exception.__init__(self)
+                self.statusCode = 400
+                self.statusMessage = "Bad Request"
+                self.response = Restful.Response(self.statusCode, self.statusMessage)
+
         class BadRequest(Exception):
             def __init__(self, statusMessage):
                 Exception.__init__(self)
@@ -66,3 +73,20 @@ class Restful():
 
             def jsonify(self):
                 return self.response.jsonify()
+
+class ErrorHandlers():
+
+    @staticmethod
+    def Generic(error):
+        response = error.jsonify()
+        response.status_code = error.statusCode
+        return response
+
+class AuxMethods():
+
+    @staticmethod
+    def noCacheHeader(request):
+        request.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+        request.headers["Pragma"] = "no-cache"
+        request.headers["Expires"] = "0"
+        return request

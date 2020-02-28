@@ -9,19 +9,35 @@ import uuid
 #Flask CORS Solution
 from flask_cors import CORS
 #Custom packages
-from restful import Restful # pylint: disable-msg=E0611
+from restful import Restful, ErrorHandlers # pylint: disable-msg=E0611
 
 class API:
     class Users(FlaskView):
         # Función para registrar un nuevo usuario
-        @route('new', methods = ['GET'])
+        @route('new', methods = ['POST'])
         def new(self):
+            # Leer cuerpo de la petición
+            requestContent = flask.request.get_json(silent = True)
+
+            # Si el contenido es None
+            if requestContent is None:
+                raise Restful.Errors.BadRequest("Invalid request body!")
+
+            # Obtener origen de la request
+            requestOrigin = requestContent.get("X-VALIDATOR", "")
+            requestOriginDec = base64.b64decode(requestOrigin)
+            requestOriginTxt = requestOriginDec.decode('UTF-8')
+
+            # Verificamos origen de la request
+            if requestOriginTxt != "FRT0Zx5s0O":
+                raise Restful.Errors.BadRequest("Invalid request body! (We're watching you...)")
+
             # Leer cookie de la sesión
             sessionId = flask.request.cookies.get("appSession")
 
             # Si la cookie existe
             if sessionId is not None:
-                #Verificar que no haya un usuario registrado en la base de datos
+                #Verificar que no haya un usuario registrado con un cuestionario contestado
                 pass
 
             # Generar uuid para identificar al usuario
@@ -47,3 +63,25 @@ class API:
             responseContent = {"id": newId_str, "created": timeStamp_str, "registeredAddres": clientIp}
             response = Restful.Response(responseContent = responseContent)
             return response.jsonify()
+
+#Configuramos flask
+app = flask.Flask(__name__)
+CORS(app)
+
+#Definimos un punto para errores del servidor
+@app.errorhandler(500)
+def internalServerError(e):
+    raise Restful.Errors.InternalServerError("Well... that's embarrasing. An unexpected error was encountered in the server.")
+
+
+# Registrar errores
+app.register_error_handler(Restful.Errors.BadRequest, ErrorHandlers.Generic)
+app.register_error_handler(Restful.Errors.Unauthorized, ErrorHandlers.Generic)
+app.register_error_handler(Restful.Errors.Generic, ErrorHandlers.Generic)
+
+#Registrar clases de la API
+API.Users.register(app, route_base = "/versions/1/users")
+
+#Configuramos __name__ == __main__
+if __name__ == '__main__':
+    app.run(host = '0.0.0.0')
