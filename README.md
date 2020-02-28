@@ -4,7 +4,7 @@ Este repositorio contiene una prueba de asociaciones implícitas (IAT, por sus s
 
 ## TODO
 
-* [ ] Migrar estilos de CSS a SCSS.
+* [x] Migrar estilos de CSS a SCSS.
 * [ ] Programar página de instrucciones.
 * [ ] Programar API.
 * [ ] Programar página de bienvenida.
@@ -12,3 +12,4 @@ Este repositorio contiene una prueba de asociaciones implícitas (IAT, por sus s
   * [ ] Programar pop-up con la metodología de la prueba.
   * [ ] Programar botón de no continuar (Registrar e ¿href a Google?).
   * [ ] Botón de continuar (href a página de instrucciones)
+* [x] Configurar flask en servidor de prueba
