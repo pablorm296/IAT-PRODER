@@ -38,7 +38,9 @@ function setBtns() {
     //Botón que cierra el PopUp
     $("#PopUpClose").click(closePopUpBtn);
     //Si el usuario da click en cualquier lugar de la ventana, cerramos el PopUp
-    window.onclick = closePopUpBtn;
+    $("#PopUp").click(closePopUpBtn).children().click(function (e) {
+        return false;
+    })
 }
 
 //Cuando el documento se carga
