@@ -56,14 +56,12 @@ class iatAPI {
                     contentType: 'application/json',
                     dataType: "json",
                     success: function (data) {
-                        //Convertir en objeto
-                        dataJson = JSON.parse(data);
                         //Seleccionar objeto de interés
-                        responseContent = dataJson.responseContent;
+                        const responseContent = data.responseContent;
                         //Guardar id en una cookie
-                        userId = responseContent.id;
+                        const userId = responseContent.id;
                         if (userId) {
-                            saveCookie("appSession", userId, maxAge = 86400);
+                            saveCookie("appSession", userId, undefined, 86400);
                         } else {
                             throw "Can't parse user id";
                         }
