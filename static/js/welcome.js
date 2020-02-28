@@ -33,4 +33,6 @@ $(document).ready(function () {
     setBtns();
     //Inicializamos conector de API
     myAPI = new iatAPI()
+    //Obtenemos nuevo usuario
+    myAPI.endPoints.POST_newUser();
 });
