@@ -150,11 +150,11 @@ function setBtns() {
     const userType_d = b64DecodeUnicode(userType);
     //Asignamos acciones dependiendo del tipo de usuario
     if (userType_d === "desktop") {
-        $("#OkButton").on("click", okBtnDesktop());
-        $("#NoButton").on("click", noBtnDesktop());
+        $("#OkButton").click(okBtnDesktop);
+        $("#NoButton").click(noBtnDesktop);
     } else if (userType_d === "mobile") {
-        $("#OkButton").on("click", okBtnMobile());
-        $("#NoButton").on("click", noBtnMobile());
+        $("#OkButton").click(okBtnMobile);
+        $("#NoButton").click(noBtnMobile);
     } else {
         //Cambiamos el estilo del mensaje principal
         $("#message").toggleClass("noJsMsg");
