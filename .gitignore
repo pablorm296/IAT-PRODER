@@ -1,5 +1,5 @@
 #Ignore python env files
-src/
+/src/*
 #Ignore server configuration files
 .htaccess
 #Ignore vscode folder
