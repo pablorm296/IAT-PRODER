@@ -1,0 +1,33 @@
+@import 'fonts';
+
+@media only screen and (max-width: 1100px) {
+    #message {
+        text-align: center;
+    }
+}
+
+#gridContainer {
+    display: grid;
+    margin: 5%;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 50% 50%;
+    justify-items: center;
+}
+
+.messageContainer {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+.keyInstructions {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    text-align: center;
+
+    p {
+        margin-bottom: 20px;
+        margin-top: 20px;
+        font-weight: bold;
+        font-size: $baseFontSize + 2;
+    }
+}
