@@ -48,27 +48,27 @@ class Restful():
                 return self.response.jsonify()
 
         class InternalServerError(Exception):
-            def __init__(self, statusMessage):
+            def __init__(self, statusMessage = "Well... that's embarrasing. An unexpected error was encountered in the server."):
                 Exception.__init__(self)
-                self.statusCode = 400
-                self.statusMessage = "Bad Request"
+                self.statusCode = 500
+                self.statusMessage = statusMessage
                 self.response = Restful.Response(self.statusCode, self.statusMessage)
 
         class BadRequest(Exception):
-            def __init__(self, statusMessage):
+            def __init__(self, statusMessage = "Bad Request"):
                 Exception.__init__(self)
                 self.statusCode = 400
-                self.statusMessage = "Bad Request"
+                self.statusMessage = statusMessage
                 self.response = Restful.Response(self.statusCode, self.statusMessage)
 
             def jsonify(self):
                 return self.response.jsonify()
 
         class Unauthorized(Exception):
-            def __init__(self, statusMessage):
+            def __init__(self, statusMessage = "Unauthorized"):
                 Exception.__init__(self)
                 self.statusCode = 401
-                self.statusMessage = "Unauthorized"
+                self.statusMessage = statusMessage
                 self.response = Restful.Response(self.statusCode, self.statusMessage)
 
             def jsonify(self):
