@@ -46,6 +46,10 @@ h6 {
   font-weight: normal;
   color: #de6449; }
 
+p {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
 button {
   display: inline-block;
   cursor: pointer;
@@ -62,7 +66,7 @@ button {
   -o-transition: .3s; }
 
 .énfasis {
-  color: #407899; }
+  color: #de6449; }
 
 #page {
   display: flex;
