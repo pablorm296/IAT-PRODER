@@ -17,7 +17,7 @@ class API:
         @route('new', methods = ['POST'])
         def new(self):
             # Leer cuerpo de la petición
-            requestContent = flask.request.get_json(silent = True)
+            requestContent = flask.request.get_json(silent = True, force = True)
 
             # Si el contenido es None
             if requestContent is None:
