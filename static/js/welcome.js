@@ -20,11 +20,11 @@ function noBtn() {
 //Función para configurar botones
 function setBtns() {
     //Botón ok
-    $("#OkButton").click(okBtn());
+    $("#OkButton").on("click", okBtn());
     //Botón para mayor información
-    $("#infoButton").click(infoBtn());
+    $("#infoButton").on("click", infoBtn());
     //Botón para cancelar
-    $("#NoButton").click(noBtn());
+    $("#NoButton").on("click", noBtn());
 }
 
 //Cuando el documento se carga
