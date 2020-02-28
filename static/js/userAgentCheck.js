@@ -62,6 +62,7 @@ function okBtnDesktop() {
         }
     });
 }
+
 //Función para el botón de cancelar (desktop)
 function noBtnDesktop() {
     $.ajax({
@@ -88,6 +89,7 @@ function noBtnDesktop() {
         }
     });
 }
+
 //Función para el botón de ok (móvil)
 function okBtnMobile() {
     $.ajax({
@@ -114,6 +116,7 @@ function okBtnMobile() {
         }
     });
 }
+
 //Función para el boton de cancelar (móvil)
 function noBtnMobile() {
     $.ajax({
