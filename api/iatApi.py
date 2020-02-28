@@ -24,7 +24,7 @@ class API:
                 raise Restful.Errors.BadRequest("Invalid request body!")
 
             # Obtener origen de la request
-            requestOrigin = requestContent.get("X-VALIDATOR", "")
+            requestOrigin = requestContent.get("X_VALIDATOR", "")
             requestOriginDec = base64.b64decode(requestOrigin)
             requestOriginTxt = requestOriginDec.decode('UTF-8')
 
