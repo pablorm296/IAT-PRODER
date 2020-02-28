@@ -29,5 +29,8 @@ function setBtns() {
 
 //Cuando el documento se carga
 $(document).ready(function () {
+    //Configuramos botones
     setBtns();
+    //Inicializamos conector de API
+    myAPI = new iatAPI()
 });
