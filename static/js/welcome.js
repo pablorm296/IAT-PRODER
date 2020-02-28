@@ -4,7 +4,7 @@ function okBtn() {
     //Registrar acción en API
     //*-*-*--*-*-*-*-
     //Ir a página de instrucciones
-    window.location.href = "https://www.google.com.mx/";
+    window.location.href = "/IAT/static/src/instrucciones.php";
 }
 
 //Función para el botón de saber más
