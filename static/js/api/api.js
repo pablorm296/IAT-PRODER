@@ -9,7 +9,7 @@ class iatAPI {
                     type: "POST",
                     url: "https://pabloreyes.com.mx/api/versions/1/users/new",
                     data: JSON.stringify({
-                        "X_VALIDATOR": "FRT0Zx5s0O"
+                        "X_VALIDATOR": "RlJUMFp4NXMwTw=="
                     }),
                     contentType: 'application/json',
                     dataType: "json",
