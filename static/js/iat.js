@@ -122,11 +122,14 @@ function assignLabelsAndText(stageType, inverse) {
     //Dependiendo del tipo de bloque, llenamos distintas variables
     //Un bloque con palabras e imágenes
     if (stageType == "word&img") {
+        //Asignamos los labels
+        __left = [__wrdLabel[order], __imgLabel[order]];
+        __right = [__wrdLabel[order + (1 * modifier)], __imgLabel[order + (1 * modifier)]];
         //Cambiamos el texto
-        leftImgLabel.innerText = __imgCat[__order];
-        rightImgLabel.innerText = __imgCat[__order + (1 * modifier)];
-        leftWrdLabel.innerText = __wrdCat[__order];
-        rightWrdLabel.innerText = __wrdCat[__order + (1 * modifier)];
+        leftImgLabel.innerText = __imgCat[order];
+        rightImgLabel.innerText = __imgCat[order + (1 * modifier)];
+        leftWrdLabel.innerText = __wrdCat[order];
+        rightWrdLabel.innerText = __wrdCat[order + (1 * modifier)];
         //Mostramos los campos
         leftImgLabel.style.display = "block";
         leftOr.style.display = "block";
@@ -137,18 +140,24 @@ function assignLabelsAndText(stageType, inverse) {
 
         //Un bloque con solo palabras
     } else if (stageType == "word") {
+        //Asignamos los labels
+        __left = [__wrdLabel[order]];
+        __right = [__wrdLabel[order + (1 * modifier)]];
         //Cambiamos el texto
-        leftWrdLabel.innerText = __wrdCat[__order];
-        rightWrdLabel.innerText = __wrdCat[__order + (1 * modifier)];
+        leftWrdLabel.innerText = __wrdCat[order];
+        rightWrdLabel.innerText = __wrdCat[order + (1 * modifier)];
         //Mostramos los campos
         leftWrdLabel.style.display = "block";
         rightWrdLabel.style.display = "block";
 
         //Un bloque con solo imagenes
     } else if (stageType == "img") {
+        //Asignamos los labels
+        __left = [__imgLabel[order]];
+        __right = [__imgLabel[order + (1 * modifier)]];
         //Cambiamos el texto
-        leftImgLabel.innerText = __imgCat[__order];
-        rightImgLabel.innerText = __imgCat[__order + (1 * modifier)];
+        leftImgLabel.innerText = __imgCat[order];
+        rightImgLabel.innerText = __imgCat[order + (1 * modifier)];
         //Mostramos los campos
         leftImgLabel.style.display = "block";
         rightImgLabel.style.display = "block";
