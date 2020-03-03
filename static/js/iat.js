@@ -167,6 +167,45 @@ function assignLabelsAndText(stageType, inverse) {
     }
 }
 
+//Función para ocultar todo el texto de la página
+function hideText(which) {
+    //Definimos variables (elementos donde guardamos el texto)
+    //Texto de las columnas
+    var leftColTxt = $("#leftColTitle");
+    var rightColTxt = $("#rightColTitle");
+    var leftImgLabel = leftColTxt.children("span")[0];
+    var leftOr = leftColTxt.children("span")[1];
+    var leftWrdLabel = leftColTxt.children("span")[2];
+    var rightImgLabel = rightColTxt.children("span")[0];
+    var rightOr = rightColTxt.children("span")[1];
+    var rightWrdLabel = rightColTxt.children("span")[2];
+    //Texto en el centro
+    var roundCounter = $("#rndCount");
+    var errorMark = $("#errorMrk");
+    var errorMsg = $("#errorMsg")
+
+    //Ocultamos el texto dependiendo de lo que nos pidio el usuario
+    switch (which) {
+
+        case "columns":
+            leftImgLabel.hide();
+            rightImgLabel.hide();
+            leftOr.hide();
+            rightOr.hide();
+            leftWrdLabel.hide();
+            rightWrdLabel.hide();
+
+            break;
+
+        case "info":
+            roundCounter.hide();
+            errorMark.hide();
+            errorMsg.hide();
+            break;
+    }
+
+}
+
 //Función para mostrar instrucciones
 function showInstructions() {
     __instructions = true;
@@ -267,9 +306,13 @@ function IATloop() {
 
     //Cambiamos el texto indicando en qué ronda nos encontramos
     $("#rndCount").text(`Ronda ${__stage} de 7`);
-
+    Disculpa, Rosalía
     //Cargamos instrucciones
     showInstructions();
+    //Ocultamos el texto de las columnas
+    hideText("columns");
+    //Ocultamos el texto de información
+    hideText("info")
 }
 
 //Cuando el documento se carga
