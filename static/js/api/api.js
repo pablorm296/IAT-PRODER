@@ -67,6 +67,40 @@ class iatAPI {
                         }
                     }
                 });
+            },
+            GET_stimuli: function (stage) {
+                $.ajax({
+                    type: "GET",
+                    url: `https://pabloreyes.com.mx/api/versions/1/survey/stimuli?stage=${stage}`,
+                    dataType: "json",
+                    success: function (data) {
+                        //Seleccionar objeto de interés
+                        const responseContent = data.responseContent;
+                        placeStimuli(responseContent);
+                    }
+                });
+            },
+            GET_instructions: function (stage, order) {
+                $.ajax({
+                    type: "POST",
+                    url: "https://pabloreyes.com.mx/api/versions/1/users/new",
+                    data: JSON.stringify({
+                        "X_VALIDATOR": "RlJUMFp4NXMwTw=="
+                    }),
+                    contentType: 'application/json',
+                    dataType: "json",
+                    success: function (data) {
+                        //Seleccionar objeto de interés
+                        const responseContent = data.responseContent;
+                        //Guardar id en una cookie
+                        const userId = responseContent.id;
+                        if (userId) {
+                            saveCookie("appSession", userId, undefined, 86400);
+                        } else {
+                            throw "Can't parse user id";
+                        }
+                    }
+                });
             }
         };
     }
