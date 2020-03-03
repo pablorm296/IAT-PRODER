@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@font-face {
+  font-family: "KC";
+  src: url("./fonts/keepCalm.ttf"); }
+html {
+  min-height: 100%;
+  position: relative; }
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  margin: 0pt;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14pt;
+  line-height: 21pt;
+  height: 100%;
+  text-align: center; }
+
+h1 {
+  font-size: baseFontSize20;
+  font-family: "KC", sans-serif;
+  font-weight: normal;
+  color: #ffffff; }
+
+h2 {
+  font-size: baseFontSize16;
+  font-family: "KC", sans-serif;
+  font-weight: normal;
+  color: #ffffff; }
+
+h3 {
+  font-size: baseFontSize12;
+  font-family: "KC", sans-serif;
+  font-weight: normal;
+  color: #ffffff; }
+
+h4 {
+  font-size: baseFontSize8;
+  font-family: "KC", sans-serif;
+  font-weight: normal;
+  color: #ffffff; }
+
+h5 {
+  font-size: baseFontSize4;
+  font-family: "KC", sans-serif;
+  font-weight: normal;
+  color: #ffffff; }
+
+h6 {
+  font-size: baseFontSize0;
+  font-family: "KC", sans-serif;
+  font-weight: normal;
+  color: #ffffff; }
+
+p {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+#page {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+
+#content {
+  height: 100%; }
+
+#gridContainer {
+  display: grid;
+  margin: 5%;
+  grid-template-columns: 30% 40% 30%;
+  grid-template-rows: 20% 50% 30%;
+  justify-items: center; }
+
+.leftCol {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 20% 50% 30%;
+  grid-column: 1/2;
+  grid-row: 1/4;
+  height: 100%; }
+  .leftCol .title {
+    grid-column: 1/2;
+    grid-row: 1/2; }
+
+.rightCol {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 20% 50% 30%;
+  grid-column: 3/4;
+  grid-row: 1/4;
+  height: 100%; }
+  .rightCol .title {
+    grid-column: 1/2;
+    grid-row: 1/2; }
+
+.stimuli {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 20% 50% 30%;
+  grid-column: 2/3;
+  grid-row: 1/4;
+  height: 100%; }
+  .stimuli .holders {
+    grid-column: 1/2;
+    grid-row: 2/3; }
+  .stimuli .messages {
+    grid-column: 1/2;
+    grid-row: 3/4; }
+
+.loader {
+  border: 12px solid #f3f3f3;
+  border-top: 12px solid #de6449;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: auto; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+/*# sourceMappingURL=iat.css.map */
