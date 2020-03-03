@@ -265,6 +265,9 @@ function IATloop() {
         __order = randomInt(0, 1);
     }
 
+    //Cambiamos el texto indicando en qué ronda nos encontramos
+    $("#rndCount").text(`Ronda ${__stage} de 7`);
+
     //Cargamos instrucciones
     showInstructions();
 }
