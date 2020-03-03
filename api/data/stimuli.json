@@ -1,0 +1,186 @@
+{
+    "images": [
+        {
+            "type": "img",
+            "label": "white",
+            "content": "1"
+        },
+        {
+            "type": "img",
+            "label": "white",
+            "content": "2"
+        },
+        {
+            "type": "img",
+            "label": "white",
+            "content": "3"
+        },
+        {
+            "type": "img",
+            "label": "white",
+            "content": "4"
+        },
+        {
+            "type": "img",
+            "label": "white",
+            "content": "5"
+        },
+        {
+            "type": "img",
+            "label": "white",
+            "content": "6"
+        },
+        {
+            "type": "img",
+            "label": "white",
+            "content": "7"
+        },
+        {
+            "type": "img",
+            "label": "white",
+            "content": "8"
+        },
+        {
+            "type": "img",
+            "label": "white",
+            "content": "9"
+        },
+        {
+            "type": "img",
+            "label": "white",
+            "content": "10"
+        },
+        {
+            "type": "img",
+            "label": "dark",
+            "content": "11"
+        },
+        {
+            "type": "img",
+            "label": "dark",
+            "content": "12"
+        },
+        {
+            "type": "img",
+            "label": "dark",
+            "content": "13"
+        },
+        {
+            "type": "img",
+            "label": "dark",
+            "content": "14"
+        },
+        {
+            "type": "img",
+            "label": "dark",
+            "content": "15"
+        },
+        {
+            "type": "img",
+            "label": "dark",
+            "content": "16"
+        },
+        {
+            "type": "img",
+            "label": "dark",
+            "content": "17"
+        },
+        {
+            "type": "img",
+            "label": "dark",
+            "content": "18"
+        },
+        {
+            "type": "img",
+            "label": "dark",
+            "content": "19"
+        },
+        {
+            "type": "img",
+            "label": "dark",
+            "content": "20"
+        }
+    ],
+    "words": [
+        {
+            "type": "word",
+            "label": "good",
+            "content": "Responsable"
+        },
+        {
+            "type": "word",
+            "label": "good",
+            "content": "Competente"
+        },
+        {
+            "type": "word",
+            "label": "good",
+            "content": "Trabajador"
+        },
+        {
+            "type": "word",
+            "label": "good",
+            "content": "Constante"
+        },
+        {
+            "type": "word",
+            "label": "good",
+            "content": "Cariñoso"
+        },
+        {
+            "type": "word",
+            "label": "good",
+            "content": "Tierno"
+        },
+        {
+            "type": "word",
+            "label": "good",
+            "content": "Amoroso"
+        },
+        {
+            "type": "word",
+            "label": "good",
+            "content": "Dulce"
+        },
+        {
+            "type": "word",
+            "label": "bad",
+            "content": "Agresivo"
+        },
+        {
+            "type": "word",
+            "label": "bad",
+            "content": "Rudo"
+        },
+        {
+            "type": "word",
+            "label": "bad",
+            "content": "Problemático"
+        },
+        {
+            "type": "word",
+            "label": "bad",
+            "content": "Violento"
+        },
+        {
+            "type": "word",
+            "label": "bad",
+            "content": "Mediocre"
+        },
+        {
+            "type": "word",
+            "label": "bad",
+            "content": "Conformista"
+        },
+        {
+            "type": "word",
+            "label": "bad",
+            "content": "Mentiroso"
+        },
+        {
+            "type": "word",
+            "label": "bad",
+            "content": "Corrupto"
+        }
+    ]
+}
