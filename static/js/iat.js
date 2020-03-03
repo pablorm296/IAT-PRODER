@@ -4,13 +4,14 @@ var __trialCount;
 var __stageLength;
 var __trialStart;
 var __imgCat = ["Piel clara", "Piel oscura"];
-var __wrdCart = ["Bueno", "Malo"];
+var __wrdCat = ["Bueno", "Malo"];
 var __imgLabel = ["white", "dark"];
 var __wrdLabel = ["good", "bad"]
 var __instructions = false;
 var __left;
 var __right;
 var myAPI;
+
 //Función para generar un entero aleatorio
 function randomInt(min, max) {
     min = Math.ceil(min);
@@ -48,6 +49,7 @@ function keyHandler(e, v = false, c) {
     }
 }
 
+//Función que procesa la acción asignada a las teclas
 function keyCallBack(keyName) {
     if (__instructions) {
         if (keyName == "space") {
@@ -67,6 +69,7 @@ function keyCallBack(keyName) {
     }
 }
 
+//Función que se activa cuando el usuario responde un estímulo
 function iatAnswer(key) {
     const humanIndex = __trialCount + 1;
     const holder = `#stimHolder_${humanIndex}`;
@@ -90,215 +93,96 @@ function iatAnswer(key) {
     }
 }
 
+//Función para asignar labels a las columnas
+function assignLabelsAndText(stageType, inverse) {
+
+    //Definimos variables (elementos donde guardamos el texto)
+    var leftColTxt = $("#leftColTitle");
+    var rightColTxt = $("#rightColTitle");
+    var leftImgLabel = leftColTxt.children("span")[0];
+    var leftOr = leftColTxt.children("span")[1];
+    var leftWrdLabel = leftColTxt.children("span")[2];
+    var rightImgLabel = rightColTxt.children("span")[0];
+    var rightOr = rightColTxt.children("span")[1];
+    var rightWrdLabel = rightColTxt.children("span")[2];
+
+    //Si estamos en un bloque donde volteamos el orden de las columnas
+    var order = __order;
+    if (inverse) {
+        if (order === 0) {
+            order = 1;
+        } else if (order === 1) {
+            order = 0;
+        }
+    }
+
+    //Dependiendo del orden que se le asigno a la persona, creamos un modifcador
+    const modifier = (order === 0) ? 1 : -1;
+
+    //Dependiendo del tipo de bloque, llenamos distintas variables
+    //Un bloque con palabras e imágenes
+    if (stageType == "word&img") {
+        //Cambiamos el texto
+        leftImgLabel.innerText = __imgCat[__order];
+        rightImgLabel.innerText = __imgCat[__order + (1 * modifier)];
+        leftWrdLabel.innerText = __wrdCat[__order];
+        rightWrdLabel.innerText = __wrdCat[__order + (1 * modifier)];
+        //Mostramos los campos
+        leftImgLabel.style.display = "block";
+        leftOr.style.display = "block";
+        leftWrdLabel.style.display = "block";
+        rightImgLabel.style.display = "block";
+        rightOr.style.display = "block";
+        rightWrdLabel.style.display = "block";
+
+        //Un bloque con solo palabras
+    } else if (stageType == "word") {
+        //Cambiamos el texto
+        leftWrdLabel.innerText = __wrdCat[__order];
+        rightWrdLabel.innerText = __wrdCat[__order + (1 * modifier)];
+        //Mostramos los campos
+        leftWrdLabel.style.display = "block";
+        rightWrdLabel.style.display = "block";
+
+        //Un bloque con solo imagenes
+    } else if (stageType == "img") {
+        //Cambiamos el texto
+        leftImgLabel.innerText = __imgCat[__order];
+        rightImgLabel.innerText = __imgCat[__order + (1 * modifier)];
+        //Mostramos los campos
+        leftImgLabel.style.display = "block";
+        rightImgLabel.style.display = "block";
+
+    } else {
+        throw "Invalid stageType";
+    }
+}
+
 //Función para mostrar instrucciones
 function showInstructions() {
     __instructions = true;
     //Colocar títulos 
     switch (__stage) {
         case 1:
-            if (__order == 1) {
-                __left = [__wrdLabel[__order]];
-                __right = [__wrdLabel[__order - 1]];
-                $("#leftColTitle").children("span")[0].innerText = __wrdCart[__order];
-                $("#rightColTitle").children("span")[0].innerText = __wrdCart[__order - 1];
-
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "none";
-                $("#rightColTitle").children("span")[1].style.display = "none";
-                $("#leftColTitle").children("span")[2].style.display = "none";
-                $("#rightColTitle").children("span")[2].style.display = "none";
-            } else {
-                __left = [__wrdLabel[__order]];
-                __right = [__wrdLabel[__order + 1]];
-                $("#leftColTitle").children("span")[0].innerText = __wrdCart[__order];
-                $("#rightColTitle").children("span")[0].innerText = __wrdCart[__order + 1];
-
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "none";
-                $("#rightColTitle").children("span")[1].style.display = "none";
-                $("#leftColTitle").children("span")[2].style.display = "none";
-                $("#rightColTitle").children("span")[2].style.display = "none";
-            }
+            assignLabelsAndText("word", false);
             break;
         case 2:
-            if (__order == 1) {
-                __left = [__imgLabel[__order]];
-                __right = [__imgLabel[__order - 1]];
-                $("#leftColTitle").children("span")[0].innerText = __imgCat[__order];
-                $("#rightColTitle").children("span")[0].innerText = __imgCat[__order - 1];
-
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "none";
-                $("#rightColTitle").children("span")[1].style.display = "none";
-                $("#leftColTitle").children("span")[2].style.display = "none";
-                $("#rightColTitle").children("span")[2].style.display = "none";
-            } else {
-                __left = [__imgLabel[__order]];
-                __right = [__imgLabel[__order + 1]];
-                $("#leftColTitle").children("span")[0].innerText = __imgCat[__order];
-                $("#rightColTitle").children("span")[0].innerText = __imgCat[__order + 1];
-
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "none";
-                $("#rightColTitle").children("span")[1].style.display = "none";
-                $("#leftColTitle").children("span")[2].style.display = "none";
-                $("#rightColTitle").children("span")[2].style.display = "none";
-            }
+            assignLabelsAndText("img", false);
             break;
         case 3:
-            if (__order == 1) {
-                __left = [__imgLabel[__order], __wrdLabel[__order]];
-                __right = [__imgLabel[__order - 1], __wrdLabel[__order - 1]];
-                $("#leftColTitle").children("span")[0].innerText = __imgCat[__order];
-                $("#rightColTitle").children("span")[0].innerText = __imgCat[__order - 1];
-                $("#leftColTitle").children("span")[2].innerText = __wrdCart[__order];
-                $("#rightColTitle").children("span")[2].innerText = __wrdCart[__order - 1];
-
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "block";
-                $("#rightColTitle").children("span")[1].style.display = "block";
-                $("#leftColTitle").children("span")[2].style.display = "block";
-                $("#rightColTitle").children("span")[2].style.display = "block";
-            } else {
-                __left = [__imgLabel[__order], __wrdLabel[__order]];
-                __right = [__imgLabel[__order - 1], __wrdLabel[__order + 1]];
-                $("#leftColTitle").children("span")[0].innerText = __imgCat[__order];
-                $("#rightColTitle").children("span")[0].innerText = __imgCat[__order + 1];
-                $("#leftColTitle").children("span")[2].innerText = __wrdCart[__order];
-                $("#rightColTitle").children("span")[2].innerText = __wrdCart[__order + 1];
-
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "block";
-                $("#rightColTitle").children("span")[1].style.display = "block";
-                $("#leftColTitle").children("span")[2].style.display = "block";
-                $("#rightColTitle").children("span")[2].style.display = "block";
-            }
+            assignLabelsAndText("word&img", false);
             break;
         case 4:
-            if (__order == 1) {
-                __left = [__imgLabel[__order], __wrdLabel[__order]];
-                __right = [__imgLabel[__order - 1], __wrdLabel[__order - 1]];
-                $("#leftColTitle").children("span")[0].innerText = __imgCat[__order];
-                $("#rightColTitle").children("span")[0].innerText = __imgCat[__order - 1];
-                $("#leftColTitle").children("span")[2].innerText = __wrdCart[__order];
-                $("#rightColTitle").children("span")[2].innerText = __wrdCart[__order - 1];
-
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "block";
-                $("#rightColTitle").children("span")[1].style.display = "block";
-                $("#leftColTitle").children("span")[2].style.display = "block";
-                $("#rightColTitle").children("span")[2].style.display = "block";
-            } else {
-                __left = [__imgLabel[__order], __wrdLabel[__order]];
-                __right = [__imgLabel[__order - 1], __wrdLabel[__order + 1]];
-                $("#leftColTitle").children("span")[0].innerText = __imgCat[__order];
-                $("#rightColTitle").children("span")[0].innerText = __imgCat[__order + 1];
-                $("#leftColTitle").children("span")[2].innerText = __wrdCart[__order];
-                $("#rightColTitle").children("span")[2].innerText = __wrdCart[__order + 1];
-
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "block";
-                $("#rightColTitle").children("span")[1].style.display = "block";
-                $("#leftColTitle").children("span")[2].style.display = "block";
-                $("#rightColTitle").children("span")[2].style.display = "block";
-            }
+            assignLabelsAndText("word&img", false);
             break;
         case 5:
-            if (__order == 1) {
-                __right = [__wrdLabel[__order]];
-                __left = [__wrdLabel[__order - 1]];
-                $("#rightColTitle").children("span")[0].innerText = __wrdCart[__order];
-                $("#leftColTitle").children("span")[0].innerText = __wrdCart[__order - 1];
-
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[1].style.display = "none";
-                $("#leftColTitle").children("span")[1].style.display = "none";
-                $("#rightColTitle").children("span")[2].style.display = "none";
-                $("#leftColTitle").children("span")[2].style.display = "none";
-            } else {
-                __right = [__wrdLabel[__order]];
-                __left = [__wrdLabel[__order + 1]];
-                $("#rightColTitle").children("span")[0].innerText = __wrdCart[__order];
-                $("#leftColTitle").children("span")[0].innerText = __wrdCart[__order + 1];
-
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[1].style.display = "none";
-                $("#leftColTitle").children("span")[1].style.display = "none";
-                $("#rightColTitle").children("span")[2].style.display = "none";
-                $("#leftColTitle").children("span")[2].style.display = "none";
-            }
+            assignLabelsAndText("word", true);
             break;
         case 6:
-            if (__order == 1) {
-                __right = [__imgLabel[__order], __wrdLabel[__order]];
-                __left = [__imgLabel[__order - 1], __wrdLabel[__order - 1]];
-                $("#rightColTitle").children("span")[0].innerText = __imgCat[__order];
-                $("#leftColTitle").children("span")[0].innerText = __imgCat[__order - 1];
-                $("#rightColTitle").children("span")[2].innerText = __wrdCart[__order];
-                $("#leftColTitle").children("span")[2].innerText = __wrdCart[__order - 1];
-
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[1].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "block";
-                $("#rightColTitle").children("span")[2].style.display = "block";
-                $("#leftColTitle").children("span")[2].style.display = "block";
-            } else {
-                __right = [__imgLabel[__order], __wrdLabel[__order]];
-                __left = [__imgLabel[__order - 1], __wrdLabel[__order + 1]];
-                $("#rightColTitle").children("span")[0].innerText = __imgCat[__order];
-                $("#leftColTitle").children("span")[0].innerText = __imgCat[__order + 1];
-                $("#rightColTitle").children("span")[2].innerText = __wrdCart[__order];
-                $("#leftColTitle").children("span")[2].innerText = __wrdCart[__order + 1];
-
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[1].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "block";
-                $("#rightColTitle").children("span")[2].style.display = "block";
-                $("#leftColTitle").children("span")[2].style.display = "block";
-            }
+            assignLabelsAndText("word&img", true);
             break;
         case 7:
-            if (__order == 1) {
-                __right = [__imgLabel[__order], __wrdLabel[__order]];
-                __left = [__imgLabel[__order - 1], __wrdLabel[__order - 1]];
-                $("#rightColTitle").children("span")[0].innerText = __imgCat[__order];
-                $("#leftColTitle").children("span")[0].innerText = __imgCat[__order - 1];
-                $("#rightColTitle").children("span")[2].innerText = __wrdCart[__order];
-                $("#leftColTitle").children("span")[2].innerText = __wrdCart[__order - 1];
-
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[1].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "block";
-                $("#rightColTitle").children("span")[2].style.display = "block";
-                $("#leftColTitle").children("span")[2].style.display = "block";
-            } else {
-                __right = [__imgLabel[__order], __wrdLabel[__order]];
-                __left = [__imgLabel[__order - 1], __wrdLabel[__order + 1]];
-                $("#rightColTitle").children("span")[0].innerText = __imgCat[__order];
-                $("#leftColTitle").children("span")[0].innerText = __imgCat[__order + 1];
-                $("#rightColTitle").children("span")[2].innerText = __wrdCart[__order];
-                $("#leftColTitle").children("span")[2].innerText = __wrdCart[__order + 1];
-
-                $("#rightColTitle").children("span")[0].style.display = "block";
-                $("#leftColTitle").children("span")[0].style.display = "block";
-                $("#rightColTitle").children("span")[1].style.display = "block";
-                $("#leftColTitle").children("span")[1].style.display = "block";
-                $("#rightColTitle").children("span")[2].style.display = "block";
-                $("#leftColTitle").children("span")[2].style.display = "block";
-            }
+            assignLabelsAndText("word&img", true);
             break;
     }
 }
