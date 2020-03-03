@@ -1,5 +1,7 @@
 #Ignore python env files
 /src/*
+#Ignore ssh auth keys
+/ssh/*
 #Ignore server configuration files
 .htaccess
 #Ignore vscode folder
