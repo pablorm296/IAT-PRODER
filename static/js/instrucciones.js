@@ -38,6 +38,7 @@ function keyCallBack(keyName) {
 //Cuando el documento se carga
 $(document).ready(function () {
     $(document).keypress(function (e) {
+        e.preventDefault();
         keyHandler(e, false, keyCallBack);
     }); 
 });
