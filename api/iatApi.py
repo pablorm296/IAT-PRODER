@@ -101,13 +101,8 @@ class API:
                 finalList = trainWords + mergedList
 
             elif stage == 5:
-                trainWords = random.sample(stimuli_words, 4)
-                wordList = random.sample(stimuli_words, 8)
-                imageList = random.sample(stimuli_images, 8)
-                mergedList = [None] * ( len(wordList) + len(imageList) )
-                mergedList[::2] = wordList
-                mergedList[1::2] = imageList
-                finalList = trainWords + mergedList
+                wordList = random.sample(stimuli_words, 16)
+                finalList = wordList
 
             elif stage >= 6:
                 trainWords = random.sample(stimuli_words, 4)
