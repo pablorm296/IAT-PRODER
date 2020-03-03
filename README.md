@@ -5,11 +5,12 @@ Este repositorio contiene una prueba de asociaciones implícitas (IAT, por sus s
 ## TODO
 
 * [x] Migrar estilos de CSS a SCSS.
-* [ ] Programar página de instrucciones.
-* [ ] Programar API.
-* [ ] Programar página de bienvenida.
-  * [ ] Programar request de id (registrar entrada del usuario).
-  * [ ] Programar pop-up con la metodología de la prueba.
-  * [ ] Programar botón de no continuar (Registrar e ¿href a Google?).
-  * [ ] Botón de continuar (href a página de instrucciones)
+* [x] Programar página de bienvenida.
+  * [x] Programar request de id (registrar entrada del usuario).
+  * [x] Programar pop-up con la metodología de la prueba.
+  * [x] Programar botón de no continuar (Registrar e ¿href a Google?).
+  * [x] Botón de continuar (href a página de instrucciones)
 * [x] Configurar flask en servidor de prueba
+* [x] Programar página de instrucciones.
+* [ ] Programar página principal de bloques
+* [ ] Programar API.
