@@ -306,7 +306,6 @@ function IATloop() {
 
     //Cambiamos el texto indicando en qué ronda nos encontramos
     $("#rndCount").text(`Ronda ${__stage} de 7`);
-    Disculpa, Rosalía
     //Cargamos instrucciones
     showInstructions();
     //Ocultamos el texto de las columnas
