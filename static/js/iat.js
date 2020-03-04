@@ -78,6 +78,7 @@ function iatAnswer(key) {
     if (key == "e") {
         if (__left.includes(currentLabel)) {
             const ellapsed = getLatency();
+            saveTrial(ellapsed);
             console.log(`correcto (${ellapsed} ms)`);
             hideText("info");
             __trialCount += 1;
@@ -89,6 +90,7 @@ function iatAnswer(key) {
     } else {
         if (__right.includes(currentLabel)) {
             const ellapsed = getLatency();
+            saveTrial(ellapsed);
             console.log(`correcto (${ellapsed} ms)`);
             hideText("info");
             __trialCount += 1;
