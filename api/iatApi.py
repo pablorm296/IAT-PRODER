@@ -7,10 +7,31 @@ import base64
 import datetime
 import uuid
 import random
+import pymongo
+
 #Flask CORS Solution
 from flask_cors import CORS
 #Custom packages
 from restful.restfulResources import Restful, ErrorHandlers # pylint: disable=import-error
+
+class DBconnection(object):
+    def __init__(self, db, collection):
+        # Verificamos argumentos proporcionados por el usuario
+        if not isinstance(db, str) or not isinstance(collection, str):
+            raise ValueError("db and collection must be a str object")
+
+        # Abrimos nuevo cliente de pymongo
+        self.client = pymongo.MongoClient()
+
+        # Abrimos conexión a db y colección especificada por el usuario
+        self.db = self.client[db]
+        self.collection = self.db[collection]
+
+    def __enter__(self):
+        return self.collection
+
+    def __exit__(self, exc_type, exc_value, exc_traceback):
+        self.client.close() 
 
 class API:
     class Users(FlaskView):
@@ -23,30 +44,33 @@ class API:
             # Si la cookie existe
             if sessionId is not None:
                 #Verificar que no haya un usuario registrado con un cuestionario contestado
-                pass
+                with DBconnection("iat_proder", "completed") as db:
+                    if db.find_one({"id": sessionId}) is not None:
+                        raise Restful.Errors.Generic(409, "Can't participate more than once in a day!")
 
             # Generar uuid para identificar al usuario
             newId = uuid.uuid4()
-            # Generar uuid para identificar la sesión
-            newSession = uuid.uuid4()
 
             # Convertir uuid en string
             newId_str = str(newId)
-            newSession_str = str(newSession)
 
             # Obtener ip del visitante
-            clientIp = flask.request.remote_addr
+            clientIp = flask.request.headers.get("X-Forwarded-For")
 
             # Obtener fecha y hora de registro
             timeStamp = datetime.datetime.now()
             # Representación en str de la fecha y hora del registro
             timeStamp_str = timeStamp.strftime("%Y-%m-%d, %H:%M:%S")
 
-            # Registrar usuario en la base de datos 
+            # Objeto de usuario
+            newUser = {"id": newId_str, "created": timeStamp_str, "registeredAddres": clientIp}
+
+            # Registrar usuario en la base de datos
+            with DBconnection("iat_proder", "visitors") as db:
+                db.insert_one(newUser)
 
             # Responder con el nuevo usuario
-            responseContent = {"id": newId_str, "created": timeStamp_str, "registeredAddres": clientIp}
-            response = Restful.Response(responseContent = responseContent)
+            response = Restful.Response(responseContent = {"id": newId_str, "created": timeStamp_str})
             return response.jsonify()
 
     class IAT(FlaskView):
@@ -104,7 +128,15 @@ class API:
         # Función para registrar los resultados del iat
         @route('results', methods = ['POST'])
         def postResults(self):
-            pass
+            # Verificar que el mimeType sea json
+            if not flask.request.is_json():
+                raise Restful.Errors.BadRequest("Invalid request mimeType!")
+            # Obtener el json de la request
+            requestContent = flask.request.get_json(force = False, silent = True)
+            # Si no se pudo obtener un json
+            if requestContent is None:
+                raise Restful.Errors.BadRequest("Invalid request body!")
+
 
 #Configuramos flask
 app = flask.Flask(__name__)
