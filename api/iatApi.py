@@ -135,8 +135,9 @@ class API:
             return response.jsonify()
 
         # Función para registrar los resultados del iat
-        @route('results', methods = ['POST'])
-        def postResults(self):
+        @route('result/<page>', methods = ['POST'])
+        def postResults(self, page):
+
             # Verificar que el mimeType sea json
             if not flask.request.is_json:
                 raise Restful.Errors.BadRequest("Invalid request mimeType!")
@@ -145,6 +146,58 @@ class API:
             # Si no se pudo obtener un json
             if requestContent is None:
                 raise Restful.Errors.BadRequest("Invalid request body!")
+
+            # Leer cookie de la sesión
+            sessionId = flask.request.cookies.get("appSession")
+
+            # Si la cookie no existe
+            if sessionId is None:
+                raise Restful.Errors.BadRequest("There are missing cookies in the request!")
+
+            if page == "iat":
+                
+                # Obtenemos la lista de los resultados
+                results = requestContent.get("results")
+
+                # Guardamos los resultados
+                with DBconnection("iat_proder", "users") as db:
+                    db.update_one({
+                        "id": sessionId
+                    },
+                    {
+                        "$set": {
+                            "results": results
+                        }
+                    })
+
+                # Regresamos resultado
+                response = Restful.Response(responseContent = results)
+                return response.jsonify()
+
+            elif page == "consent":
+
+                # Obtenemos el consentimiento del usuario
+                consentResult = requestContent.get("consent")
+
+                # Buscamos la id entre los visitantes, si no está, mandar error
+                with DBconnection("iat_proder", "visitors") as db:
+                    userDoc = db.find_one({"id": sessionId})
+                    if userDoc is None:
+                        raise Restful.Errors.BadRequest("There are missing cookies in the request!")
+
+                # Agregamos al visitante a la lista de usuarios y guardamos lo que eligió en el consentimiento
+                with DBconnection("iat_proder", "users") as db:
+                    # Borramos id para evitar conflictos
+                    del userDoc["_id"]
+                    # Guaramos consentimiento
+                    userDoc["consent"] = consentResult
+                    db.insert_one(userDoc) 
+
+                # Regresamos resultado
+                del userDoc["_id"]
+                response = Restful.Response(responseContent = userDoc)
+                return response.jsonify()
+            
 
 
 #Configuramos flask
