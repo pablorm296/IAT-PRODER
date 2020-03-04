@@ -15,6 +15,7 @@ body {
     line-height: $baseFontSize * 1.5;
     height: 100%;
     text-align: center;
+    overflow: hidden;
 }
 
 //Encabezados
@@ -38,6 +39,7 @@ p {
     bottom: 0;
     left: 0;
     right: 0;
+    height: 100vh;
 }
 
 #content {
@@ -52,6 +54,20 @@ p {
     justify-items: center;
 }
 
+#errorMrk {
+    font-size: 60pt;
+    font-weight: bold;
+    color: red;
+    margin: 40px 0;
+}
+
+#errorMsg {
+    font-size: 18pt;
+    font-weight: bold;
+    color: red;
+    margin: 40px 0;
+}
+
 .leftCol {
     display: grid;
     grid-template-columns: 100%;
@@ -59,11 +75,22 @@ p {
     grid-column: 1/2;
     grid-row: 1/4;
     height: 100%;
+}
 
-    .title {
-        grid-column: 1/2;
-        grid-row: 1/2;
-    }
+.txt {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    font-size: 22pt;
+    font-weight: bold;
+}
+
+.wrd {
+    color: #66FF66;
+}
+
+.or {
+    margin: 20px 0px;
+    font-weight: normal;
 }
 
 .rightCol {
@@ -73,27 +100,36 @@ p {
     grid-column: 3/4;
     grid-row: 1/4;
     height: 100%;
+}
 
-    .title {
-        grid-column: 1/2;
-        grid-row: 1/2;
-    }
+.stimHolder {
+    height: 200px;
 }
 
 .stimuli {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 20% 50% 30%;
+    grid-template-rows: 40vh 20vh;
     grid-column: 2/3;
     grid-row: 1/4;
-    height: 100%;
+    justify-items: stretch;
+    align-items: stretch;
+    margin-top: 50%;
+
+    .instructions {
+    }
+
     .holders {
         grid-column: 1/2;
-        grid-row: 2/3;
+        grid-row: 1/2;
+        font-size: 18pt;
+        font-weight: bold;
+        font-family: $headerFont;
     }
+
     .messages {
         grid-column: 1/2;
-        grid-row: 3/4;
+        grid-row: 2/3;
     }
 }
 
@@ -106,8 +142,13 @@ p {
     animation: spin 1s linear infinite;
     margin: auto;
 }
-  
+
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

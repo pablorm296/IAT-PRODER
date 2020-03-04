@@ -14,7 +14,8 @@ body {
   font-size: 14pt;
   line-height: 21pt;
   height: 100%;
-  text-align: center; }
+  text-align: center;
+  overflow: hidden; }
 
 h1 {
   font-size: baseFontSize20;
@@ -61,7 +62,8 @@ p {
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0; }
+  right: 0;
+  height: 100vh; }
 
 #content {
   height: 100%; }
@@ -73,6 +75,18 @@ p {
   grid-template-rows: 20% 50% 30%;
   justify-items: center; }
 
+#errorMrk {
+  font-size: 60pt;
+  font-weight: bold;
+  color: red;
+  margin: 40px 0; }
+
+#errorMsg {
+  font-size: 18pt;
+  font-weight: bold;
+  color: red;
+  margin: 40px 0; }
+
 .leftCol {
   display: grid;
   grid-template-columns: 100%;
@@ -80,9 +94,19 @@ p {
   grid-column: 1/2;
   grid-row: 1/4;
   height: 100%; }
-  .leftCol .title {
-    grid-column: 1/2;
-    grid-row: 1/2; }
+
+.txt {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  font-size: 22pt;
+  font-weight: bold; }
+
+.wrd {
+  color: #66FF66; }
+
+.or {
+  margin: 20px 0px;
+  font-weight: normal; }
 
 .rightCol {
   display: grid;
@@ -91,23 +115,28 @@ p {
   grid-column: 3/4;
   grid-row: 1/4;
   height: 100%; }
-  .rightCol .title {
-    grid-column: 1/2;
-    grid-row: 1/2; }
+
+.stimHolder {
+  height: 200px; }
 
 .stimuli {
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 20% 50% 30%;
+  grid-template-rows: 40vh 20vh;
   grid-column: 2/3;
   grid-row: 1/4;
-  height: 100%; }
+  justify-items: stretch;
+  align-items: stretch;
+  margin-top: 50%; }
   .stimuli .holders {
     grid-column: 1/2;
-    grid-row: 2/3; }
+    grid-row: 1/2;
+    font-size: 18pt;
+    font-weight: bold;
+    font-family: "KC", sans-serif; }
   .stimuli .messages {
     grid-column: 1/2;
-    grid-row: 3/4; }
+    grid-row: 2/3; }
 
 .loader {
   border: 12px solid #f3f3f3;
