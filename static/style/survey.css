@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@font-face {
+  font-family: "KC";
+  src: url("./fonts/keepCalm.ttf"); }
+@media only screen and (max-width: 1100px) {
+  #message {
+    text-align: center; } }
+#gridContainer {
+  display: grid;
+  margin: 5%;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-rows: 20% 50% 20%;
+  justify-items: center; }
+
+.messageContainer {
+  grid-column: 2/3;
+  grid-row: 1/2; }
+
+.questionsContainer {
+  grid-column: 2/3;
+  grid-row: 2/3; }
+  .questionsContainer p {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 14pt; }
+  .questionsContainer .input_label {
+    display: block;
+    margin-bottom: 5px; }
+  .questionsContainer .spacer_small {
+    margin: 15px 0; }
+  .questionsContainer table {
+    margin: auto; }
+  .questionsContainer table, .questionsContainer th, .questionsContainer td {
+    border: 1px solid #909090;
+    border-collapse: collapse; }
+  .questionsContainer th, .questionsContainer td {
+    width: 200px; }
+  .questionsContainer td._1 {
+    background-color: #654d3e; }
+  .questionsContainer td._2 {
+    background-color: #775741; }
+  .questionsContainer td._3 {
+    background-color: #876249; }
+  .questionsContainer td._4 {
+    background-color: #946c51; }
+  .questionsContainer td._5 {
+    background-color: #a0765a; }
+  .questionsContainer td._6 {
+    background-color: #a87f64; }
+  .questionsContainer td._7 {
+    background-color: #b1886c; }
+  .questionsContainer td._8 {
+    background-color: #b69279; }
+  .questionsContainer td._9 {
+    background-color: #be9d86; }
+  .questionsContainer td._10 {
+    background-color: #c5a691; }
+  .questionsContainer td._11 {
+    background-color: #c8ac99; }
+  .questionsContainer th {
+    background-color: #8e6e97;
+    color: white;
+    font-weight: bold; }
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  grid-column: 2/3;
+  grid-row: 3/4;
+  text-align: center; }
+
+.okBtn {
+  width: 100%;
+  color: #2ecc71;
+  border: 2px #2ecc71 solid; }
+  .okBtn:hover, .okBtn:focus {
+    color: #fff;
+    background-color: #2ecc71; }
+  .okBtn:active {
+    color: #fff;
+    background-color: #1D8047;
+    border: 2px #1D8047 solid; }
+
+input[type=tel] {
+  text-align: center;
+  -webkit-appearance: none;
+  font-family: 'Raleway';
+  font-size: 14px;
+  padding: 10px;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 2px solid #592c5f;
+  transition: all 1s ease-in-out; }
+
+input[type=tel]:focus, input[type=tel]:hover {
+  outline: none;
+  -webkit-appearance: none;
+  background: #592c5f;
+  color: white; }
+
+select {
+  background: white;
+  text-align: center;
+  -webkit-appearance: none;
+  font-family: 'Raleway';
+  font-size: 14px;
+  padding: 10px;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 2px solid #592c5f;
+  transition: all 1s ease-in-out; }
+
+select:focus, select:hover {
+  background: #592c5f;
+  color: white;
+  outline: none;
+  -webkit-appearance: none; }
+
+select:active {
+  background: #592c5f;
+  color: white;
+  outline: none;
+  -webkit-appearance: none; }
+
+/*# sourceMappingURL=survey.css.map */
