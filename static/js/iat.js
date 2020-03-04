@@ -349,7 +349,9 @@ function IATloop() {
             results: __results,
             order: __order
         }
+
         //Enviamos los resultados al servidor
+        myAPI.endPoints.POST_results(finalResults);
 
         //Salir a la encuesta
     } else if (__stage == 1) {
