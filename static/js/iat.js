@@ -10,6 +10,7 @@ var __wrdLabel = ["good", "bad"]
 var __instructions = false;
 var __left;
 var __right;
+var __results = {};
 var myAPI;
 
 //Función para generar un entero aleatorio
@@ -76,7 +77,8 @@ function iatAnswer(key) {
     const currentLabel = $(holder).attr("label");
     if (key == "e") {
         if (__left.includes(currentLabel)) {
-            console.log("correcto");
+            const ellapsed = getLatency();
+            console.log(`correcto (${ellapsed} ms)`);
             hideText("info");
             __trialCount += 1;
             playIAT();
@@ -86,7 +88,8 @@ function iatAnswer(key) {
         }
     } else {
         if (__right.includes(currentLabel)) {
-            console.log("correcto");
+            const ellapsed = getLatency();
+            console.log(`correcto (${ellapsed} ms)`);
             hideText("info");
             __trialCount += 1;
             playIAT();
@@ -95,6 +98,34 @@ function iatAnswer(key) {
             showError();
         }
     }
+}
+
+//Función para registrar la latencia
+function getLatency() {
+    const Now = new Date();
+    const diff = Math.abs(Now - __trialStart);
+    return diff;
+}
+
+//Función para guardar los resultados
+function saveTrial(latency) {
+    //Obtener el stage en el que estamos (en índice 0)
+    const stage = __stage - 1;
+    //Obtenemos el tipo de estímulo y su contenido
+    const humanIndex = __trialCount + 1;
+    const holder = `#stimHolder_${humanIndex}`;
+    const stimLabel = $(holder).attr("label");
+    const stimType = $(holder).attr("type");
+    const stimValue = $(holder).attr("val");
+    //Creamos un objeto con la información del estímulo
+    const stimObj = {
+        latency: latency,
+        type: stimType,
+        label: stimLabel,
+        value: stimValue
+    };
+    //Lo agregamos
+    __results[`round_${__stage}`].push(stimObj);
 }
 
 //Función que se activa cuando el usuario comete un error
@@ -267,14 +298,14 @@ function placeStimuli(stimuliArray) {
         if (stimuliType == "img") {
             // Contenido del estímulo
             $(holder).html(`<img src='../imgs/stimuli/${stimuliContent}.jpg'>`);
-            // Categoría del estímulo
-            $(holder).attr("label", stimuliLabel);
         } else {
             // Contenido del estímulo
             $(holder).html(stimuliContent);
-            // Categoría del estímulo
-            $(holder).attr("label", stimuliLabel);
         }
+        // Agregamos información del estímulo (categoría, tipo y contenido)
+        $(holder).attr("label", stimuliLabel);
+        $(holder).attr("type", stimuliType);
+        $(holder).attr("val", stimuliContent);
         //Cuando las imágenes ya se cargaron
         $('.stimuli').imagesLoaded(function () {
             //Ocultar el spiner
@@ -317,6 +348,10 @@ function IATloop() {
         __order = randomInt(0, 1);
     }
 
+    // Guardar el stage en el objeto de resultados
+    var stageObj = [];
+    __results[`round_${__stage}`] = stageObj;
+
     //Cambiamos el texto indicando en qué ronda nos encontramos
     $("#rndCount").text(`Ronda ${__stage} de 7`);
     //Ocultamos el texto de las columnas
@@ -342,6 +377,6 @@ $(document).ready(function () {
     //Desactivar acciones por default en teclas y asignar el keyHandler
     $(document).keypress(function (e) {
         e.preventDefault();
-        keyHandler(e, true, keyCallBack);
+        keyHandler(e, false, keyCallBack);
     });
 });
