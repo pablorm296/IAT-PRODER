@@ -152,5 +152,9 @@ p {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+.instructions {
+  color: white;
+  font-size: 18pt;
+  text-align: center; }
 
 /*# sourceMappingURL=iat.css.map */
