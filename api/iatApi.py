@@ -65,7 +65,7 @@ class API:
             response = Restful.Response(responseContent = responseContent)
             return response.jsonify()
 
-    class Survey(FlaskView):
+    class IAT(FlaskView):
         # Función para registrar un nuevo usuario
         @route('stimuli', methods = ['GET'])
         def getStimuli(self):
@@ -134,7 +134,7 @@ app.register_error_handler(Restful.Errors.Generic, ErrorHandlers.Generic)
 
 #Registrar clases de la API
 API.Users.register(app, route_base = "/versions/1/users")
-API.Survey.register(app, route_base = "/versions/1/survey")
+API.IAT.register(app, route_base = "/versions/1/iat")
 
 #Configuramos __name__ == __main__
 if __name__ == '__main__':
