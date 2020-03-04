@@ -54,6 +54,9 @@ class Restful():
                 self.statusMessage = statusMessage
                 self.response = Restful.Response(self.statusCode, self.statusMessage)
 
+            def jsonify(self):
+                return self.response.jsonify()
+
         class BadRequest(Exception):
             def __init__(self, statusMessage = "Bad Request"):
                 Exception.__init__(self)
