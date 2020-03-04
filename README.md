@@ -13,4 +13,10 @@ Este repositorio contiene una prueba de asociaciones implícitas (IAT, por sus s
 * [x] Configurar flask en servidor de prueba
 * [x] Programar página de instrucciones.
 * [ ] Programar página principal de bloques
+  * [ ] Método para enviar resultados
+* [ ] Página con encuesta
 * [ ] Programar API.
+  * [ ] Renombrar Survey a IAT, y retomar Survey para página con encuesta
+  * [ ] POST > Users > New
+  * [ ] GET > IAT > Stimuli
+  * [ ] POST > IAT > Results
