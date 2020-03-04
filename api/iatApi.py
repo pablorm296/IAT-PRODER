@@ -79,7 +79,16 @@ class API:
         def getStimuli(self):
             # Obtenemos etapa de la prueba
             stage = flask.request.args.get('stage')
-            stage = int(stage)
+
+            # Si no enviaron etapa mandar error
+            if stage is None:
+                raise Restful.Errors.BadRequest("There are missing parameters in the request!")
+            
+            # Si sí hay stage, intentar convertilo en un número entero
+            try:
+                stage = int(stage)
+            except:
+                raise Restful.Errors.BadRequest("Invalid parameter type!")
 
             # Cargamos diccionario de estímulos
             with open("/var/www/pabloreyes/IAT/api/data/stimuli.json", encoding = 'utf-8') as stimuliFile:
@@ -129,7 +138,7 @@ class API:
         @route('results', methods = ['POST'])
         def postResults(self):
             # Verificar que el mimeType sea json
-            if not flask.request.is_json():
+            if not flask.request.is_json:
                 raise Restful.Errors.BadRequest("Invalid request mimeType!")
             # Obtener el json de la request
             requestContent = flask.request.get_json(force = False, silent = True)
@@ -145,7 +154,10 @@ CORS(app)
 #Definimos un punto para errores del servidor
 @app.errorhandler(500)
 def internalServerError(e):
-    raise Restful.Errors.InternalServerError("Well... that's embarrasing. An unexpected error was encountered in the server.")
+    error = Restful.Errors.InternalServerError("Well... that's embarrasing. An unexpected error was encountered in the server.")
+    response = error.jsonify()
+    response.status_code = error.statusCode
+    return response
 
 
 # Registrar errores
