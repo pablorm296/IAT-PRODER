@@ -344,7 +344,14 @@ function IATloop() {
     $("#loader").hide();
     // Verificar en qué stage estamos
     if (__stage > 7) {
-        //Salir
+        //Creamos un objeto con los resultados finales
+        const finalResults = {
+            results: __results,
+            order: __order
+        }
+        //Enviamos los resultados al servidor
+
+        //Salir a la encuesta
     } else if (__stage == 1) {
         //Determinar orden
         __order = randomInt(0, 1);
