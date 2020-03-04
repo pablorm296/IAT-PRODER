@@ -46,13 +46,10 @@ class iatAPI {
         this.host = "https://pabloreyes.com.mx/";
         this.alias = "api/versions/1/"
         this.endPoints = {
-            POST_newUser: function () {
+            POST_newVisitor: function () {
                 $.ajax({
                     type: "POST",
                     url: "https://pabloreyes.com.mx/api/versions/1/users/new",
-                    data: JSON.stringify({
-                        "X_VALIDATOR": "RlJUMFp4NXMwTw=="
-                    }),
                     contentType: 'application/json',
                     dataType: "json",
                     success: function (data) {
@@ -65,6 +62,34 @@ class iatAPI {
                         } else {
                             throw "Can't parse user id";
                         }
+                    }
+                });
+            },
+            POST_newUser: function (consent) {
+                //Definimos un objeto con el consent del usuario
+                const payload = {consent: consent};
+                $.ajax({
+                    type: "POST",
+                    url: "https://pabloreyes.com.mx/api/versions/1/iat/result/consent",
+                    contentType: 'application/json',
+                    dataType: "json",
+                    data: JSON.stringify(payload),
+                    success: function (data) {
+                        //Seleccionar objeto de interés
+                        console.log(data);
+                    }
+                });
+            },
+            POST_results: function (payload) {
+                $.ajax({
+                    type: "POST",
+                    url: "https://pabloreyes.com.mx/api/versions/1/iat/result/iat",
+                    contentType: 'application/json',
+                    dataType: "json",
+                    data: JSON.stringify(payload),
+                    success: function (data) {
+                        //Seleccionar objeto de interés
+                        console.log(data);
                     }
                 });
             },
