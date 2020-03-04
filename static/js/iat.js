@@ -11,6 +11,7 @@ var __instructions = false;
 var __left;
 var __right;
 var __results = {};
+var __errorCnt = 0;
 var myAPI;
 
 //Función para generar un entero aleatorio
@@ -56,6 +57,7 @@ function keyCallBack(keyName) {
         if (keyName == "space") {
             myAPI.endPoints.GET_stimuli(__stage);
             __instructions = false;
+            $("#instructions").hide()
         }
     } else {
         if (keyName == "space") {
@@ -85,6 +87,7 @@ function iatAnswer(key) {
             playIAT();
         } else {
             console.log("incorrecto");
+            __errorCnt += 1;
             showError();
         }
     } else {
@@ -97,6 +100,7 @@ function iatAnswer(key) {
             playIAT();
         } else {
             console.log("incorrecto");
+            __errorCnt += 1;
             showError();
         }
     }
@@ -119,12 +123,14 @@ function saveTrial(latency) {
     const stimLabel = $(holder).attr("label");
     const stimType = $(holder).attr("type");
     const stimValue = $(holder).attr("val");
+    const error = __errorCnt;
     //Creamos un objeto con la información del estímulo
     const stimObj = {
         latency: latency,
         type: stimType,
         label: stimLabel,
-        value: stimValue
+        value: stimValue,
+        error: error
     };
     //Lo agregamos
     __results[`round_${__stage}`].push(stimObj);
@@ -165,16 +171,17 @@ function assignLabelsAndText(stageType, inverse) {
 
     //Dependiendo del orden que se le asigno a la persona, creamos un modifcador
     const modifier = (order === 0) ? 1 : -1;
+    const modifier_imgs = (__order === 0) ? 1 : -1;
 
     //Dependiendo del tipo de bloque, llenamos distintas variables
     //Un bloque con palabras e imágenes
     if (stageType == "word&img") {
         //Asignamos los labels
-        __left = [__wrdLabel[order], __imgLabel[order]];
-        __right = [__wrdLabel[order + (1 * modifier)], __imgLabel[order + (1 * modifier)]];
+        __left = [__wrdLabel[order], __imgLabel[__order]];
+        __right = [__wrdLabel[order + (1 * modifier)], __imgLabel[__order + (1 * modifier_imgs)]];
         //Cambiamos el texto
-        leftImgLabel.innerText = __imgCat[order];
-        rightImgLabel.innerText = __imgCat[order + (1 * modifier)];
+        leftImgLabel.innerText = __imgCat[__order];
+        rightImgLabel.innerText = __imgCat[__order + (1 * modifier_imgs)];
         leftWrdLabel.innerText = __wrdCat[order];
         rightWrdLabel.innerText = __wrdCat[order + (1 * modifier)];
         //Mostramos los campos
@@ -200,11 +207,11 @@ function assignLabelsAndText(stageType, inverse) {
         //Un bloque con solo imagenes
     } else if (stageType == "img") {
         //Asignamos los labels
-        __left = [__imgLabel[order]];
-        __right = [__imgLabel[order + (1 * modifier)]];
+        __left = [__imgLabel[__order]];
+        __right = [__imgLabel[__order + (1 * modifier_imgs)]];
         //Cambiamos el texto
-        leftImgLabel.innerText = __imgCat[order];
-        rightImgLabel.innerText = __imgCat[order + (1 * modifier)];
+        leftImgLabel.innerText = __imgCat[__order];
+        rightImgLabel.innerText = __imgCat[__order + (1 * modifier_imgs)];
         //Mostramos los campos
         leftImgLabel.style.display = "block";
         rightImgLabel.style.display = "block";
@@ -256,6 +263,8 @@ function hideText(which) {
 //Función para mostrar instrucciones
 function showInstructions() {
     __instructions = true;
+    //Colocar instrucciones
+    $("#instructions").text("Presiona la barra espaciadora para comenzar")
     //Colocar títulos 
     switch (__stage) {
         case 1:
@@ -332,6 +341,8 @@ function playIAT() {
         $(`#stimHolder_${humanIndex}`).show();
         //Iniciar conteo
         __trialStart = new Date();
+        //Reiniciar cuenta de errores
+        __errorCnt = 0;
     } else {
         $(`#stimHolder_${humanIndex - 1}`).hide();
         __stage += 1;
@@ -352,6 +363,8 @@ function IATloop() {
 
         //Enviamos los resultados al servidor
         myAPI.endPoints.POST_results(finalResults);
+        //Vamos a la página de la encuesta
+        window.location.href = "/IAT/static/src/survey.php";
 
         //Salir a la encuesta
     } else if (__stage == 1) {
