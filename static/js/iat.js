@@ -77,28 +77,42 @@ function iatAnswer(key) {
     if (key == "e") {
         if (__left.includes(currentLabel)) {
             console.log("correcto");
+            hideText("info");
             __trialCount += 1;
             playIAT();
         } else {
             console.log("incorrecto");
+            showError();
         }
     } else {
         if (__right.includes(currentLabel)) {
             console.log("correcto");
+            hideText("info");
             __trialCount += 1;
             playIAT();
         } else {
             console.log("incorrecto");
+            showError();
         }
     }
+}
+
+//Función que se activa cuando el usuario comete un error
+function showError() {
+    //Elementos donde se encuentra nuestro texto
+    var errorMark = $("#errorMrk");
+    var errorMsg = $("#errorMsg")
+    //Los mostramos
+    errorMark.show();
+    errorMsg.show();
 }
 
 //Función para asignar labels a las columnas
 function assignLabelsAndText(stageType, inverse) {
 
     //Definimos variables (elementos donde guardamos el texto)
-    var leftColTxt = $("#leftColTitle");
-    var rightColTxt = $("#rightColTitle");
+    var leftColTxt = $("#leftColTxt");
+    var rightColTxt = $("#rightColTxt");
     var leftImgLabel = leftColTxt.children("span")[0];
     var leftOr = leftColTxt.children("span")[1];
     var leftWrdLabel = leftColTxt.children("span")[2];
@@ -171,8 +185,8 @@ function assignLabelsAndText(stageType, inverse) {
 function hideText(which) {
     //Definimos variables (elementos donde guardamos el texto)
     //Texto de las columnas
-    var leftColTxt = $("#leftColTitle");
-    var rightColTxt = $("#rightColTitle");
+    var leftColTxt = $("#leftColTxt");
+    var rightColTxt = $("#rightColTxt");
     var leftImgLabel = leftColTxt.children("span")[0];
     var leftOr = leftColTxt.children("span")[1];
     var leftWrdLabel = leftColTxt.children("span")[2];
@@ -188,12 +202,12 @@ function hideText(which) {
     switch (which) {
 
         case "columns":
-            leftImgLabel.hide();
-            rightImgLabel.hide();
-            leftOr.hide();
-            rightOr.hide();
-            leftWrdLabel.hide();
-            rightWrdLabel.hide();
+            leftImgLabel.style.display = "none";
+            rightImgLabel.style.display = "none";
+            leftOr.style.display = "none";
+            rightOr.style.display = "none";
+            leftWrdLabel.style.display = "none";
+            rightWrdLabel.style.display = "none";
 
             break;
 
@@ -247,7 +261,6 @@ function placeStimuli(stimuliArray) {
         const stimuliType = stimuli.type;
         const stimuliLabel = stimuli.label;
         const stimuliContent = stimuli.content;
-        console.log(holder);
         //Ocultamos el holder
         $(holder).hide();
         //Imagen o palabra?
@@ -306,17 +319,27 @@ function IATloop() {
 
     //Cambiamos el texto indicando en qué ronda nos encontramos
     $("#rndCount").text(`Ronda ${__stage} de 7`);
-    //Cargamos instrucciones
-    showInstructions();
     //Ocultamos el texto de las columnas
     hideText("columns");
     //Ocultamos el texto de información
     hideText("info")
+    //Cargamos instrucciones
+    showInstructions();
 }
 
 //Cuando el documento se carga
 $(document).ready(function () {
+    //Verificar ancho y alto de la página
+    const h = $(window).height();
+    const w = $(window).width();
+    if (w < 480 || h < 830) {
+        //alert("La resolución de tu dispositivo es muy pequeña para realizar esta prueba. Por favor, ajusta la resolución y recarga la página");
+    }
+    //Ir al inicio de la página
+    $('html,body').scrollTop(0);
+    //Iniciar IAT
     IATloop();
+    //Desactivar acciones por default en teclas y asignar el keyHandler
     $(document).keypress(function (e) {
         e.preventDefault();
         keyHandler(e, true, keyCallBack);
