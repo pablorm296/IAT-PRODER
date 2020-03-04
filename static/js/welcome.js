@@ -2,7 +2,7 @@
 //Función para el botón de ok
 function okBtn() {
     //Registrar acción en API
-    //*-*-*--*-*-*-*-
+    myAPI.endPoints.POST_newUser("ok");
     //Ir a página de instrucciones
     window.location.href = "/IAT/static/src/instrucciones.php";
 }
@@ -16,7 +16,7 @@ function infoBtn() {
 //Función para el botón de cancelar
 function noBtn() {
     //Registrar acción en API
-    //*-*-*--*-*-*-*-
+    myAPI.endPoints.POST_newUser("declined");
     //Ir a Google
     window.location.href = "https://www.google.com.mx/";
 }
@@ -50,5 +50,5 @@ $(document).ready(function () {
     //Inicializamos conector de API
     myAPI = new iatAPI()
     //Obtenemos nuevo usuario
-    myAPI.endPoints.POST_newUser();
+    myAPI.endPoints.POST_newVisitor();
 });
