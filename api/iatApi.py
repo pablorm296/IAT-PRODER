@@ -8,6 +8,7 @@ import datetime
 import uuid
 import random
 import pymongo
+import pandas as pd
 
 #Flask CORS Solution
 from flask_cors import CORS
@@ -39,7 +40,7 @@ class API:
         @route('new', methods = ['POST'])
         def new(self):
             # Leer cookie de la sesión
-            sessionId = flask.request.cookies.get("appSession")
+            sessionId = flask.request.cookies.get("appSession", None)
 
             # Si la cookie existe
             if sessionId is not None:
@@ -55,7 +56,7 @@ class API:
             newId_str = str(newId)
 
             # Obtener ip del visitante
-            clientIp = flask.request.headers.get("X-Forwarded-For")
+            clientIp = flask.request.headers.get("X-Forwarded-For", None)
 
             # Obtener fecha y hora de registro
             timeStamp = datetime.datetime.now()
@@ -78,7 +79,7 @@ class API:
         @route('stimuli', methods = ['GET'])
         def getStimuli(self):
             # Obtenemos etapa de la prueba
-            stage = flask.request.args.get('stage')
+            stage = flask.request.args.get('stage', None)
 
             # Si no enviaron etapa mandar error
             if stage is None:
@@ -134,6 +135,100 @@ class API:
             response = Restful.Response(responseContent = responseContent)
             return response.jsonify()
 
+        # Función para obtener los resultados del IAT
+        @route('result/iat', methods = ['GET'])
+        def getIatResults(self):
+            # Leer cookie de la sesión
+            sessionId = flask.request.cookies.get("appSession", None)
+
+            # Si la cookie no existe
+            if sessionId is None:
+                raise Restful.Errors.BadRequest("There are missing cookies in the request!")
+
+            # Obtenemos el usuario desde la base
+            with DBconnection("iat_proder", "users") as db:
+                userDoc = db.find_one({"id": sessionId})
+                if userDoc is None:
+                    raise Restful.Errors.BadRequest("There are not users registred with that id!") 
+
+            # Verificamos que el usuario tenga un campo de resultados
+            userResults = userDoc.get("results", None)
+
+            # Si el usuario no tiene campo de resultados
+            if userResults is None:
+                raise Restful.Errors.BadRequest("The user has not any registerred results!")
+
+            responseContent = dict()
+
+            # Obtenemos los resultados de las rondas 3, 4, 6 y 7
+            roundResults_3 = userResults.get("round_3", None)
+            roundResults_4 = userResults.get("round_4", None)
+            roundResults_6 = userResults.get("round_6", None)
+            roundResults_7 = userResults.get("round_7", None)
+
+            # Los convertirmos en pandas data framae
+            roundResults_3_df = pd.DataFrame(roundResults_3)
+            roundResults_4_df = pd.DataFrame(roundResults_4)
+            roundResults_6_df = pd.DataFrame(roundResults_6)
+            roundResults_7_df = pd.DataFrame(roundResults_7)
+            # Creamos una lista con todos los data frame
+            roundResults_list = list()
+            roundResults_list.append(roundResults_3_df)
+            roundResults_list.append(roundResults_4_df)
+            roundResults_list.append(roundResults_6_df)
+            roundResults_list.append(roundResults_7_df)
+            # Creamos un df con todos los data frame
+            roundResults_pooled = pd.concat([roundResults_3_df, roundResults_4_df, roundResults_6_df, roundResults_7_df], ignore_index = True)
+
+            # Creamos una variable para guardar el número total de trials
+            nRow = len(roundResults_pooled.index)
+
+            # Verificar que no más del 10% de las filas tengan 10%
+            nRow_foo = roundResults_pooled[roundResults_pooled["latency"] < 300].shape[0]
+            # if (nRow_foo / nRow) > 0.1 :
+            #     responseContent = {"code": "e.1"}
+            #     response = Restful.Response(responseContent = responseContent)
+            #     return response.jsonify()
+
+            # Por cada bloque, calculamos la media
+            meanBloques = dict()
+            for stageNum in range(0, 4):
+                df_foo = roundResults_list[stageNum]
+                df_foo = df_foo[df_foo["error"] == 0]
+                latency_foo = df_foo["latency"]
+                mean = latency_foo.mean()
+                meanBloques["bloque_{0}".format(stageNum)] = mean
+
+            # Para los bloques que tienen error, remplazamos por media + 600
+            for stageNum in range(0, 4):
+                df_foo = roundResults_list[stageNum]
+                mean = meanBloques["bloque_{0}".format(stageNum)]
+                df_foo.loc[df_foo["error"] > 0] = mean + 600
+                roundResults_list[stageNum] = df_foo
+
+            # Por cada bloque, calculamos la media
+            newMeanBloques = dict()
+            for stageNum in range(0, 4):
+                df_foo = roundResults_list[stageNum]
+                latency_foo = df_foo["latency"]
+                mean = latency_foo.mean()
+                newMeanBloques["bloque_{0}".format(stageNum)] = mean
+
+            # Calculamos la desviación estandar (3 y 6; 4 y 7)
+            SD1 = pd.concat([roundResults_list[0]["latency"], roundResults_list[2]["latency"]], ignore_index = True).std()
+            SD2 = pd.concat([roundResults_list[1]["latency"], roundResults_list[3]["latency"]], ignore_index = True).std()
+
+            # Calculamos el efecto IAT
+            Q1 = (newMeanBloques["bloque_0"] - newMeanBloques["bloque_2"]) / SD1
+            Q2 = (newMeanBloques["bloque_1"] - newMeanBloques["bloque_3"]) / SD2
+
+            IAT = (Q1 + Q2) / 2
+
+            responseContent = {"code": "s", "iat": IAT}
+
+            response = Restful.Response(responseContent = responseContent)
+            return response.jsonify()
+
         # Función para registrar los resultados del iat
         @route('result/<page>', methods = ['POST'])
         def postResults(self, page):
@@ -148,7 +243,7 @@ class API:
                 raise Restful.Errors.BadRequest("Invalid request body!")
 
             # Leer cookie de la sesión
-            sessionId = flask.request.cookies.get("appSession")
+            sessionId = flask.request.cookies.get("appSession", None)
 
             # Si la cookie no existe
             if sessionId is None:
@@ -177,13 +272,13 @@ class API:
             elif page == "consent":
 
                 # Obtenemos el consentimiento del usuario
-                consentResult = requestContent.get("consent")
+                consentResult = requestContent.get("consent", None)
 
                 # Buscamos la id entre los visitantes, si no está, mandar error
                 with DBconnection("iat_proder", "visitors") as db:
                     userDoc = db.find_one({"id": sessionId})
                     if userDoc is None:
-                        raise Restful.Errors.BadRequest("There are missing cookies in the request!")
+                        raise Restful.Errors.BadRequest("There are not users registred with that id!") 
 
                 # Agregamos al visitante a la lista de usuarios y guardamos lo que eligió en el consentimiento
                 with DBconnection("iat_proder", "users") as db:
@@ -198,7 +293,6 @@ class API:
                 response = Restful.Response(responseContent = userDoc)
                 return response.jsonify()
             
-
 
 #Configuramos flask
 app = flask.Flask(__name__)
