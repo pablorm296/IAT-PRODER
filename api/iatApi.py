@@ -17,22 +17,6 @@ class API:
         # Función para registrar un nuevo usuario
         @route('new', methods = ['POST'])
         def new(self):
-            # Leer cuerpo de la petición
-            requestContent = flask.request.get_json(silent = True, force = True)
-
-            # Si el contenido es None
-            if requestContent is None:
-                raise Restful.Errors.BadRequest("Invalid request body!")
-
-            # Obtener origen de la request
-            requestOrigin = requestContent.get("X_VALIDATOR", "")
-            requestOriginDec = base64.b64decode(requestOrigin)
-            requestOriginTxt = requestOriginDec.decode('UTF-8')
-
-            # Verificamos origen de la request
-            if requestOriginTxt != "FRT0Zx5s0O":
-                raise Restful.Errors.BadRequest("Invalid request body! (We're watching you...)")
-
             # Leer cookie de la sesión
             sessionId = flask.request.cookies.get("appSession")
 
@@ -66,7 +50,7 @@ class API:
             return response.jsonify()
 
     class IAT(FlaskView):
-        # Función para registrar un nuevo usuario
+        # Función para obtener un registro aleatorio de estímulos (dependiendo de la étapa del iat)
         @route('stimuli', methods = ['GET'])
         def getStimuli(self):
             # Obtenemos etapa de la prueba
@@ -116,6 +100,11 @@ class API:
             responseContent = finalList
             response = Restful.Response(responseContent = responseContent)
             return response.jsonify()
+
+        # Función para registrar los resultados del iat
+        @route('results', methods = ['POST'])
+        def postResults(self):
+            pass
 
 #Configuramos flask
 app = flask.Flask(__name__)
