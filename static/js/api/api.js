@@ -71,7 +71,7 @@ class iatAPI {
             GET_stimuli: function (stage) {
                 $.ajax({
                     type: "GET",
-                    url: `https://pabloreyes.com.mx/api/versions/1/survey/stimuli?stage=${stage}`,
+                    url: `https://pabloreyes.com.mx/api/versions/1/iat/stimuli?stage=${stage}`,
                     dataType: "json",
                     success: function (data) {
                         //Seleccionar objeto de interés
