@@ -46,11 +46,12 @@
         margin: 0px 5px;
         font-size: $baseFontSize - 2;
         color: #808080;
+    }
 
-        &_error {
-            color: rgb(116, 19, 40);
-            font-weight: bold;
-        }
+    .required_mark_error {
+        @extend .required_mark;
+        color: rgb(116, 19, 40);
+        font-weight: bold;
     }
 
     .spacer_small {
@@ -184,7 +185,7 @@ input[type=tel] {
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #592c5f;
+    border-bottom: 2px solid #791e94;
     transition: all 1s ease-in-out;
     margin-bottom: 10px;
     background: #f7f7f7;
@@ -208,7 +209,7 @@ select {
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #592c5f;
+    border-bottom: 2px solid #791e94;
     transition: all 1s ease-in-out;
     margin-bottom: 10px;
     width: 600px;

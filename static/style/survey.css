@@ -31,13 +31,13 @@
     font-size: 12pt;
     color: #666;
     line-height: 12pt; }
-  .questionsContainer .required_mark {
+  .questionsContainer .required_mark, .questionsContainer .required_mark_error {
     margin: 0px 5px;
     font-size: 12pt;
     color: #808080; }
-    .questionsContainer .required_mark_error {
-      color: #741328;
-      font-weight: bold; }
+  .questionsContainer .required_mark_error {
+    color: #741328;
+    font-weight: bold; }
   .questionsContainer .spacer_small {
     margin: 15px 0; }
   .questionsContainer .table_skin {
@@ -122,7 +122,7 @@ input[type=tel] {
   padding: 10px;
   border: none;
   border-radius: 0px;
-  border-bottom: 2px solid #592c5f;
+  border-bottom: 2px solid #791e94;
   transition: all 1s ease-in-out;
   margin-bottom: 10px;
   background: #f7f7f7;
@@ -144,7 +144,7 @@ select {
   padding: 10px;
   border: none;
   border-radius: 0px;
-  border-bottom: 2px solid #592c5f;
+  border-bottom: 2px solid #791e94;
   transition: all 1s ease-in-out;
   margin-bottom: 10px;
   width: 600px; }
