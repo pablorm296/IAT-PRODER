@@ -32,7 +32,7 @@
 
     .input_label {
         display: block;
-        margin-bottom: 5px;
+        margin: 15px 0;
     }
 
     .spacer_small {
@@ -41,6 +41,7 @@
 
     table {
         margin: auto;
+        text-align: center;
     }
 
     table, th, td {
@@ -54,6 +55,8 @@
     }
 
     td {
+        color: whitesmoke;
+
         &.skin_1 {
             background-color: rgb(101, 77, 62);
         } 
@@ -130,6 +133,7 @@ input[type=tel] {
     border-radius: 0px;
     border-bottom: 2px solid #592c5f;
     transition: all 1s ease-in-out;
+    margin-bottom: 10px;
 }
 
 input[type=tel]:focus, input[type=tel]:hover  {
@@ -150,6 +154,7 @@ select {
     border-radius: 0px;
     border-bottom: 2px solid #592c5f;
     transition: all 1s ease-in-out;
+    margin-bottom: 10px;
 }
 
 select:focus, select:hover {
