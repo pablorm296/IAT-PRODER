@@ -6,3 +6,5 @@
 .htaccess
 #Ignore vscode folder
 .vscode/
+#Ignorar compilaciones sass
+*.css.map
