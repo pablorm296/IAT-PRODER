@@ -19,12 +19,12 @@
 .questionsContainer {
   grid-column: 2/3;
   grid-row: 2/3; }
-  .questionsContainer .input_label {
+  .questionsContainer .input_label, .questionsContainer .input_label_error {
     display: block;
     margin: 15px 0; }
-    .questionsContainer .input_label_error {
-      color: #741328;
-      font-weight: bold; }
+  .questionsContainer .input_label_error {
+    color: #c03352;
+    font-weight: bold; }
   .questionsContainer .input_instructions {
     display: block;
     margin: 15px 0;

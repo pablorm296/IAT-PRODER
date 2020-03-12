@@ -26,11 +26,12 @@
     .input_label {
         display: block;
         margin: 15px 0;
+    }
 
-        &_error {
-            color: rgb(116, 19, 40);
-            font-weight: bold;
-        }
+    .input_label_error {
+        @extend .input_label;
+        color: rgb(192, 51, 82);
+        font-weight: bold;
     }
 
     .input_instructions {
