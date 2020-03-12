@@ -5,22 +5,46 @@
         <div id="content">
             <div id="gridContainer">
                 <div class="item messageContainer">
-                    <div class="main_results"></div>
-                    <div class="questions">
+                    <div class="results">
                         <h1>Tus resultados</h1>
                         <div class="main_results">
-                            <p>La Prueba de Asociaciones Implíticas sugiere que usted tiene</p>
+                            <p>La Prueba de Asociaciones Implíticas sugiere que usted tiene <span class="result"
+                                    id="result_preference_size">[tamaño de preferencia]</span>
+                                preferencia por <span class="result" id="result_preference_target">[target de la
+                                    preferencia]</span>.</p>
                         </div>
+                        <p>Concretamente, tu puntaje fue de <span class="result" id="result_iat_score">0.0</span>.</p>
+                        <h3>Más información sobre tu desempeño</h3>
                         <div class="stats">
-                            <table>
-                                <tr></tr>
+                            <table class="table_stats">
+                                <tr>
+                                    <td class="stat">Tiempo promedio de respuesta:</td>
+                                    <td id="stat_mean_latency"></td>
+                                </tr>
+                                <tr>
+                                    <td class="stat">Respuesta más rápida:</td>
+                                    <td id="stat_min_latency"></td>
+                                </tr>
+                                <tr>
+                                    <td class="stat">Respuesta más lenta:</td>
+                                    <td id="stat_min_latency"></td>
+                                </tr>
+                                <tr>
+                                    <td class="stat">Número de errores:</td>
+                                    <td id="stat_min_latency"></td>
+                                </tr>
                             </table>
                         </div>
-                        <span class="input_label">Una vez leídos tus resultados, nos gustaría conocer tu opinión. Específicamente, nos interesa saber 
-                            <span class="énfasis">cuál de estos factores crees que influyó en tu desempeño durante la prueba.</span>
+                    </div>
+                    <div class="questions">
+                        <span class="input_label">Una vez leídos tus resultados, nos gustaría conocer tu opinión.
+                            Específicamente, nos interesa saber
+                            <span class="énfasis">cuál de estos factores crees que influyó en tu desempeño durante la
+                                prueba.</span>
                         </span>
                         <span class="input_instructions">
-                            Lee las cinco oraciones y marca, en la escala que va del 1 al 5, qué tan de acuerdo estás con que el factor descrito influyó tus resultados.
+                            Lee las cinco oraciones y marca, en la escala que va del 1 al 5, qué tan de acuerdo estás
+                            con que el factor descrito influyó en tus resultados.
                         </span>
                         <table class="table_questions">
                             <tr>
@@ -40,7 +64,8 @@
                                 <td class="option"><input type="radio" name="srvy_table_quest_1" value="5"></td>
                             </tr>
                             <tr>
-                                <td>Mi familiaridad con un grupo (personas de piel morena o personas de piel blanca)</td>
+                                <td>Mi familiaridad con un grupo (personas de piel morena o personas de piel blanca)
+                                </td>
                                 <td class="option"><input type="radio" name="srvy_table_quest_2" value="1"></td>
                                 <td class="option"><input type="radio" name="srvy_table_quest_2" value="2"></td>
                                 <td class="option"><input type="radio" name="srvy_table_quest_2" value="3"></td>
