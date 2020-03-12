@@ -153,18 +153,32 @@ class API:
 
             # Verificamos que el usuario tenga un campo de resultados
             userResults = userDoc.get("results", None)
-
             # Si el usuario no tiene campo de resultados
             if userResults is None:
-                raise Restful.Errors.BadRequest("The user has not any registerred results!")
+                raise Restful.Errors.BadRequest("The user has not any registered results!")
+
+             # Verificamos que el usuario tenga un campo de orden
+            userOrder = userDoc.get("order", None)
+            # Si el usuario no tiene campo de orden
+            if userOrder is None:
+                raise Restful.Errors.BadRequest("The user has not any registered results!")
 
             responseContent = dict()
 
             # Obtenemos los resultados de las rondas 3, 4, 6 y 7
-            roundResults_3 = userResults.get("round_3", None)
-            roundResults_4 = userResults.get("round_4", None)
-            roundResults_6 = userResults.get("round_6", None)
-            roundResults_7 = userResults.get("round_7", None)
+            # Dependiendo del orden en el que le tocó al usuario
+            # Personas de piel clara = bueno
+            if userOrder == 0:
+                roundResults_3 = userResults.get("round_3", None)
+                roundResults_4 = userResults.get("round_4", None)
+                roundResults_6 = userResults.get("round_6", None)
+                roundResults_7 = userResults.get("round_7", None)
+            # Personas de piel oscura = bueno
+            elif userOrder == 1:
+                roundResults_3 = userResults.get("round_6", None)
+                roundResults_4 = userResults.get("round_7", None)
+                roundResults_6 = userResults.get("round_3", None)
+                roundResults_7 = userResults.get("round_4", None)
 
             # Los convertirmos en pandas data framae
             roundResults_3_df = pd.DataFrame(roundResults_3)
@@ -177,6 +191,13 @@ class API:
             roundResults_list.append(roundResults_4_df)
             roundResults_list.append(roundResults_6_df)
             roundResults_list.append(roundResults_7_df)
+           
+            # Eliminamos las respuestas que hayan tardado más de 10'000 milisegundos
+            for stageNum in range(0, 4):
+                df_foo = roundResults_list[stageNum]
+                df_foo = df_foo[df_foo["latency"] < 10000]
+                roundResults_list[stageNum] = df_foo
+
             # Creamos un df con todos los data frame
             roundResults_pooled = pd.concat([roundResults_3_df, roundResults_4_df, roundResults_6_df, roundResults_7_df], ignore_index = True)
 
@@ -185,10 +206,10 @@ class API:
 
             # Verificar que no más del 10% de las filas tengan 10%
             nRow_foo = roundResults_pooled[roundResults_pooled["latency"] < 300].shape[0]
-            # if (nRow_foo / nRow) > 0.1 :
-            #     responseContent = {"code": "e.1"}
-            #     response = Restful.Response(responseContent = responseContent)
-            #     return response.jsonify()
+            if (nRow_foo / nRow) > 0.1 :
+                responseContent = {"code": "e.1"}
+                response = Restful.Response(responseContent = responseContent)
+                return response.jsonify()
 
             # Por cada bloque, calculamos la media
             meanBloques = dict()
@@ -224,7 +245,26 @@ class API:
 
             IAT = (Q1 + Q2) / 2
 
-            responseContent = {"code": "s", "iat": IAT}
+            # Obtenemos respuesta más rápida
+            fastestLatency = roundResults_pooled["latency"].min()
+
+            # Obtenemos respuesta más lenta
+            slowesttLatency = roundResults_pooled["latency"].max()
+
+            # Obtenemos respuesta media
+            meanLatency = roundResults_pooled["latency"].mean()
+
+            # Obtenemos número de errores
+            totalErrors = roundResults_pooled["error"].sum()
+
+            # Convertimos en tipos que entiende python
+            fastestLatency = int(fastestLatency)
+            slowesttLatency = int(slowesttLatency)
+            meanLatency = float(meanLatency)
+            totalErrors = int(totalErrors)
+
+            responseContent = {"code": "s", "iatScore": IAT, "fastestLatency": fastestLatency,
+            "slowesttLatency": slowesttLatency, "meanLatency": meanLatency, "totalErrors": totalErrors}
 
             response = Restful.Response(responseContent = responseContent)
             return response.jsonify()
@@ -253,6 +293,8 @@ class API:
                 
                 # Obtenemos la lista de los resultados
                 results = requestContent.get("results")
+                # Obtenemos el orden que le tocó al usuario
+                order = requestContent.get("order")
 
                 # Guardamos los resultados
                 with DBconnection("iat_proder", "users") as db:
@@ -261,7 +303,8 @@ class API:
                     },
                     {
                         "$set": {
-                            "results": results
+                            "results": results,
+                            "order": order
                         }
                     })
 
