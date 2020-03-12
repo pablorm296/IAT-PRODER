@@ -37,7 +37,8 @@
     border-collapse: collapse; }
   .questionsContainer th, .questionsContainer td {
     width: 200px;
-    font-weight: bold; }
+    font-weight: bold;
+    padding: 5px; }
   .questionsContainer td {
     color: whitesmoke; }
     .questionsContainer td.skin_1 {
