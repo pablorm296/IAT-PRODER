@@ -4,7 +4,9 @@ var __trialCount;
 var __stageLength;
 var __trialStart;
 var __imgCat = ["Piel clara", "Piel oscura"];
+var __imgCatInstructions = ["piel clara", "piel oscura"];
 var __wrdCat = ["Bueno", "Malo"];
+var __wrdCatInstructions = ["palabras buenas", "palabras malas"];
 var __imgLabel = ["white", "dark"];
 var __wrdLabel = ["good", "bad"]
 var __instructions = false;
@@ -57,11 +59,14 @@ function keyCallBack(keyName) {
         if (keyName == "space") {
             myAPI.endPoints.GET_stimuli(__stage);
             __instructions = false;
-            $("#instructions").hide()
+            //Ocultamos instrucciones e indicación de proceder
+            $("#space_bar").hide();
+            $("#instructions").hide();
+            $("#rndCount").hide();
         }
     } else {
         if (keyName == "space") {
-            return false
+            return false;
         }
         if (keyName == "e") {
             iatAnswer(keyName);
@@ -176,6 +181,8 @@ function assignLabelsAndText(stageType, inverse) {
     //Dependiendo del tipo de bloque, llenamos distintas variables
     //Un bloque con palabras e imágenes
     if (stageType == "word&img") {
+        //Creamos texto de instrucciones
+        const instructionsText = `En este bloque tendrás que clasificar palabras e imágenes.<br>La columna izquierda corresponde a personas de ${__imgCatInstructions[__order]} y palabras ${__wrdCatInstructions[order]}, mientras que la columna derecha corresponde a personas ${__imgCatInstructions[__order + (1 * modifier_imgs)]} y palabras ${__wrdCatInstructions[order + (1 * modifier)]}. Recuerda que tienes que usar las <span>teclas "E" e "I"</span> para asignar la palabra o imagen a la columna correspondiente.`;
         //Asignamos los labels
         __left = [__wrdLabel[order], __imgLabel[__order]];
         __right = [__wrdLabel[order + (1 * modifier)], __imgLabel[__order + (1 * modifier_imgs)]];
@@ -191,9 +198,12 @@ function assignLabelsAndText(stageType, inverse) {
         rightImgLabel.style.display = "block";
         rightOr.style.display = "block";
         rightWrdLabel.style.display = "block";
-
+        //Cambiamos el texto de las instrucciones
+        $("#instructions").html(instructionsText);
         //Un bloque con solo palabras
     } else if (stageType == "word") {
+        //Creamos texto de instrucciones
+        const instructionsText = `En este bloque tendrás que clasificar palabras.<br>La columna izquierda corresponde a palabras ${__wrdCatInstructions[order]}, mientras que la columna derecha corresponde a palabras ${__wrdCatInstructions[order + (1 * modifier)]}. Recuerda que tienes que usar <span>teclas "E" e "I"</span> para asignar la palabra a la columna correspondiente.`;
         //Asignamos los labels
         __left = [__wrdLabel[order]];
         __right = [__wrdLabel[order + (1 * modifier)]];
@@ -203,9 +213,12 @@ function assignLabelsAndText(stageType, inverse) {
         //Mostramos los campos
         leftWrdLabel.style.display = "block";
         rightWrdLabel.style.display = "block";
-
+        //Cambiamos el texto de las instrucciones
+        $("#instructions").html(instructionsText);
         //Un bloque con solo imagenes
     } else if (stageType == "img") {
+        //Creamos texto de instrucciones
+        const instructionsText = `En este bloque tendrás que clasificar imágenes.<br>La columna izquierda corresponde a personas de ${__imgCatInstructions[__order]}, mientras que la columna derecha corresponde a personas ${__imgCatInstructions[__order + (1 * modifier_imgs)]}. Recuerda que tienes que usar <span>teclas "E" e "I"</span> para asignar la imagen a la columna correspondiente.`;
         //Asignamos los labels
         __left = [__imgLabel[__order]];
         __right = [__imgLabel[__order + (1 * modifier_imgs)]];
@@ -215,7 +228,8 @@ function assignLabelsAndText(stageType, inverse) {
         //Mostramos los campos
         leftImgLabel.style.display = "block";
         rightImgLabel.style.display = "block";
-
+        //Cambiamos el texto de las instrucciones
+        $("#instructions").html(instructionsText);
     } else {
         throw "Invalid stageType";
     }
@@ -263,8 +277,8 @@ function hideText(which) {
 //Función para mostrar instrucciones
 function showInstructions() {
     __instructions = true;
-    //Colocar instrucciones
-    $("#instructions").text("Presiona la barra espaciadora para comenzar")
+    //Colocar instrucción de barra espaciadora
+    $("#space_bar").text("Presiona la barra espaciadora para comenzar")
     //Colocar títulos 
     switch (__stage) {
         case 1:
@@ -281,6 +295,8 @@ function showInstructions() {
             break;
         case 5:
             assignLabelsAndText("word", true);
+            //Cambiamos el texto de las instrucciones
+            $("#instructions").append("<br><span>¡Ojo! el orden de las categorías (columnas) cambió de posición.</span>");
             break;
         case 6:
             assignLabelsAndText("word&img", true);
@@ -289,6 +305,10 @@ function showInstructions() {
             assignLabelsAndText("word&img", true);
             break;
     }
+    //Mostrar contador de rondas, instrucciones e indicación de proceder
+    $("#space_bar").show();
+    $("#instructions").show();
+    $("#rndCount").show();
 }
 
 //Función para colocalr estímulos
