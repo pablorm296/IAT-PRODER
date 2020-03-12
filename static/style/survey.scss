@@ -50,56 +50,47 @@
 
     th, td {
         width: 200px;
+        font-weight: bold;
     }
 
-    td._1 {
-        background-color: rgb(101, 77, 62);
+    td {
+        &.skin_1 {
+            background-color: rgb(101, 77, 62);
+        } 
+        &.skin_2 {
+            background-color: rgb(119, 87, 65);
+        } 
+        &.skin_3 {
+            background-color: rgb(135, 98, 73);
+        } 
+        &.skin_4 {
+            background-color: rgb(148, 108, 81);
+        } 
+        &.skin_5 {
+            background-color: rgb(160, 118, 90);
+        } 
+        &.skin_6 {
+            background-color: rgb(168, 127, 100);
+        } 
+        &.skin_7 {
+            background-color: rgb(177, 136, 108);
+        } 
+        &.skin_8 {
+            background-color: rgb(182, 146, 121);
+        } 
+        &.skin_9 {
+            background-color: rgb(190, 157, 134);
+        } 
+        &.skin_10 {
+            background-color: rgb(197, 166, 145);
+        } 
+        &.skin_11 {
+            background-color: rgb(200, 172, 153);
+        } 
     }
-
-    td._2 {
-        background-color: rgb(119, 87, 65);
-    }
-
-    td._3 {
-        background-color: rgb(135, 98, 73);
-    }
-
-    td._4 {
-        background-color: rgb(148, 108, 81);
-    }
-
-    td._5 {
-        background-color: rgb(160, 118, 90);
-    }
-
-    td._6 {
-        background-color: rgb(168, 127, 100);
-    }
-
-    td._7 {
-        background-color: rgb(177, 136, 108);
-    }
-
-    td._8 {
-        background-color: rgb(182, 146, 121);
-    }
-
-    td._9 {
-        background-color: rgb(190, 157, 134);
-    }
-
-    td._10 {
-        background-color: rgb(197, 166, 145);
-    }
-
-    td._11 {
-        background-color: rgb(200, 172, 153);
-    }
-
     th {
         background-color: #8e6e97;
         color: white;
-        font-weight: bold;
     }
 }
 
