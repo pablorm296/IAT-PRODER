@@ -7,26 +7,27 @@
                 <div class="item messageContainer">
                     <h1>Antes de que te vayas...</h1>
                     <p>
-                        Por favor, ayúdanos contestando las siguientes preguntas. Nos servirán para interpretar mejor
-                        los resultados de esta prueba. <span class="énfasis">Toma en cuenta que <b>no</b> te pediremos
-                            datos personales</span>.
+                        Por favor, ayúdanos contestando las siguientes preguntas. Nos servirán para calibrar mejor
+                        tus resultados en la prueba. <span class="énfasis">Las preguntas marcadas con un asterisco son obligatorias para poder continuar.</span>.
                     </p>
                     <p>
                         Una vez contestado este cuestionario de salida, podrás ver tus resultados de la prueba.
                     </p>
                 </div>
                 <div class="item questionsContainer">
-                    <span class="input_label">Edad:</span>
+                    <span class="input_label">Edad<span id="srvy_age_label_rm" class="required_mark">*</span></span>
                     <input type="tel" name="" id="">
                     <br class="spacer_small">
-                    <span class="input_label">¿Cuál fue tu género registrado al nacer?:</span>
+                    <span class="input_label">¿Cuál es tu género?<span id="srvy_sex_label_rm" class="required_mark">*</span></span>
                     <select name="" id="">
                         <option value="NONE" selected></option>
-                        <option value="">Masculino</option>
-                        <option value="">Femenino</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Femenino</option>
+                        <option value="88">Otro</option>
+                        <option value="99">Prefiero no decir</option>
                     </select>
                     <br class="spacer_small">
-                    <span class="input_label">¿Cuál de estas opciones describe mejor tu ocupación?:</span>
+                    <span class="input_label">¿Cuál de estas opciones describe mejor tu ocupación?</span>
                     <select name="" id="" style="width: 600px;">
                         <option value="NONE" selected></option>
                         <option value="1">No trabajo</option>
@@ -46,9 +47,11 @@
                         <option value="99">Prefiero no decir</option>
                     </select>
                     <br class="spacer_small">
-                    <span class="input_label">¿En qué país naciste?:</span>
+                    <span class="input_label">¿En qué país naciste?</span>
                     <select name="" id="" style="width: 600px;">
-                        <option value="NONE" selected></option>
+                        <option value="00" selected></option>
+                        <option value="MX">México</option>
+                        <option value="99">Prefiero no decir</option>
                         <option value="AF">Afganistán</option>
                         <option value="AL">Albania</option>
                         <option value="DE">Alemania</option>
@@ -285,16 +288,11 @@
                         <option value="ZW">Zimbabue</option>
                     </select>
                     <br class="spacer_small">
-                    <span class="input_label">¿Con qué mano escribes?:</span>
+                    <span class="input_label">¿En qué estado de la República mexicana vives?<span id="srvy_state_label_rm" class="required_mark">*</span></span>
                     <select name="" id="" style="width: 600px;">
                         <option value="NONE" selected></option>
-                        <option value="1">Izquierda</option>
-                        <option value="2">Derecha</option>
-                    </select>
-                    <br class="spacer_small">
-                    <span class="input_label">¿En qué estado de la república mexicana vives?:</span>
-                    <select name="" id="" style="width: 600px;">
-                        <option value="NONE" selected></option>
+                        <option value="99">Prefiero no decir</option>
+                        <option value="88">No vivo en México</option>
                         <option value="AGS">Aguascalientes</option>
                         <option value="BCN">Baja California</option>
                         <option value="BCS">Baja California Sur</option>
@@ -329,15 +327,22 @@
                         <option value="ZAC">Zacatecas</option>
                     </select>
                     <br class="spacer_small">
-                    <span class="input_label">¿Cuál es el código postal del area donde vives?:</span>
+                    <span class="input_label">¿Cuál es el código postal del area donde vives?</span>
                     <input type="tel" name="" id="">
                     <br class="spacer_small">
                     <span class="input_label">¿Ya habías contestado alguna prueba de asociaciones implícitas (IAT)
-                        anteriormente?:</span>
+                        anteriormente?<span id="srvy_iat_label_rm" class="required_mark">*</span></span>
                     <select name="" id="" style="width: 600px;">
                         <option value="NONE" selected></option>
                         <option value="1">Sí</option>
                         <option value="2">No</option>
+                    </select>
+                    <br class="spacer_small">
+                    <span class="input_label">¿Con qué mano escribes?<span id="srvy_hand_label_rm" class="required_mark">*</span></span>
+                    <select name="" id="" style="width: 600px;">
+                        <option value="NONE" selected></option>
+                        <option value="1">Izquierda</option>
+                        <option value="2">Derecha</option>
                     </select>
                     <br class="spacer_small">
                     <p>Por favor, coloca el dorso de tu mano en el monitor de tu computadora y compara el tono de tu
@@ -349,48 +354,48 @@
                             <th></th>
                         </tr>
                         <tr>
-                            <td class="_1">1</td>
-                            <td><input type="radio" name="gender" value="male"> <br></td>
+                            <td class="skin_1">1</td>
+                            <td><input type="radio" name="skin_color" value="1"> <br></td>
                         </tr>
                         <tr>
-                            <td class="_2">2</td>
-                            <td><input type="radio" name="gender" value="male"> <br></td>
+                            <td class="skin_2">2</td>
+                            <td><input type="radio" name="skin_color" value="2"> <br></td>
                         </tr>
                         <tr>
-                            <td class="_3">3</td>
-                            <td><input type="radio" name="gender" value="male"> <br></td>
+                            <td class="skin_3">3</td>
+                            <td><input type="radio" name="skin_color" value="3"> <br></td>
                         </tr>
                         <tr>
-                            <td class="_4">4</td>
-                            <td ><input type="radio" name="gender" value="male"> <br></td>
+                            <td class="skin_4">4</td>
+                            <td ><input type="radio" name="skin_color" value="4"> <br></td>
                         </tr>
                         <tr>
-                            <td class="_5">5</td>
-                            <td><input type="radio" name="gender" value="male"> <br></td>
+                            <td class="skin_5">5</td>
+                            <td><input type="radio" name="skin_color" value="5"> <br></td>
                         </tr>
                         <tr>
-                            <td class="_6">6</td>
-                            <td><input type="radio" name="gender" value="male"> <br></td>
+                            <td class="skin_6">6</td>
+                            <td><input type="radio" name="skin_color" value="6"> <br></td>
                         </tr>
                         <tr>
-                            <td class="_7">7</td>
-                            <td><input type="radio" name="gender" value="male"> <br></td>
+                            <td class="skin_7">7</td>
+                            <td><input type="radio" name="skin_color" value="7"> <br></td>
                         </tr>
                         <tr>
-                            <td class="_8">8</td>
-                            <td><input type="radio" name="gender" value="male"> <br></td>
+                            <td class="skin_8">8</td>
+                            <td><input type="radio" name="skin_color" value="8"> <br></td>
                         </tr>
                         <tr>
-                            <td class="_9">9</td>
-                            <td><input type="radio" name="gender" value="male"> <br></td>
+                            <td class="skin_9">9</td>
+                            <td><input type="radio" name="skin_color" value="9"> <br></td>
                         </tr>
                         <tr>
-                            <td class="_10">10</td>
-                            <td><input type="radio" name="gender" value="male"> <br></td>
+                            <td class="skin_10">10</td>
+                            <td><input type="radio" name="skin_color" value="10"> <br></td>
                         </tr>
                         <tr>
-                            <td class="_11">11</td>
-                            <td><input type="radio" name="gender" value="male"><br></td>
+                            <td class="skin_11">11</td>
+                            <td><input type="radio" name="skin_color" value="11"><br></td>
                         </tr>
                     </table>
                 </div>
