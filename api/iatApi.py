@@ -262,12 +262,18 @@ class API:
             slowestLatency = int(slowesttLatency)
             meanLatency = float(meanLatency)
             totalErrors = int(totalErrors)
+            # Redondeamos a 4 decimales
+            meanLatency = round(meanLatency, 3)
+            IAT = round(IAT, 3)
 
             responseContent = {"code": "s", "iatScore": IAT, "fastestLatency": fastestLatency,
             "slowestLatency": slowestLatency, "meanLatency": meanLatency, "totalErrors": totalErrors}
 
             response = Restful.Response(responseContent = responseContent)
-            return response.jsonify()
+            response = response.jsonify()
+            # Desabilitamos el cache
+            response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+            return response
 
         # Función para registrar los resultados del iat
         @route('result/<page>', methods = ['POST'])
