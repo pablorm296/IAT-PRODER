@@ -88,43 +88,46 @@
 input[type=tel] {
   text-align: center;
   -webkit-appearance: none;
-  font-family: 'Raleway';
-  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
   padding: 10px;
   border: none;
   border-radius: 0px;
   border-bottom: 2px solid #592c5f;
   transition: all 1s ease-in-out;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  background: #f7f7f7;
+  width: 200px; }
 
 input[type=tel]:focus, input[type=tel]:hover {
   outline: none;
   -webkit-appearance: none;
-  background: #592c5f;
-  color: white; }
+  background: #b29eb4;
+  color: #ffffff; }
 
 select {
-  background: white;
+  background: #f7f7f7;
   text-align: center;
   -webkit-appearance: none;
-  font-family: 'Raleway';
-  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
   padding: 10px;
   border: none;
   border-radius: 0px;
   border-bottom: 2px solid #592c5f;
   transition: all 1s ease-in-out;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  width: 600px; }
 
 select:focus, select:hover {
-  background: #592c5f;
-  color: white;
+  background: #b29eb4;
+  color: #ffffff;
   outline: none;
   -webkit-appearance: none; }
 
 select:active {
-  background: #592c5f;
-  color: white;
+  background: #b29eb4;
+  color: #ffffff;
   outline: none;
   -webkit-appearance: none; }
 
