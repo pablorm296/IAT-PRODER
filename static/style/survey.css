@@ -19,11 +19,6 @@
 .questionsContainer {
   grid-column: 2/3;
   grid-row: 2/3; }
-  .questionsContainer p {
-    margin-bottom: 20px;
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 14pt; }
   .questionsContainer .input_label {
     display: block;
     margin: 15px 0; }
