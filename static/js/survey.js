@@ -5,12 +5,14 @@ function checkInput(params) {
     const idArrays = ["srvy_age", "srvy_sex", "srvy_lab", "srvy_contry", "srvy_state", "srvy_zip", "srvy_iat", "srvy_hand"];
     //Lista de inputs
     var elemArray = [];
+    //Creamos un contador de errores
+    var emptyFields = 0;
     //Iteramos por cada elemento
     for (let index = 0; index < idArrays.length; index++) {
         //Obtenemos el id del lemento
         const idString = idArrays[index];
         //Guardamos el elemento en el array
-        elemArray.push($(idString));   
+        elemArray.push($(`#${idString}`));   
     }
     //Verificamos que los inputs obligatorios están llenos
     for (let index = 0; index < compulsoryIndex.length; index++) {
@@ -22,13 +24,21 @@ function checkInput(params) {
         const idStr = idArrays[j];
         //Si está vacío o es none, mandamos error
         const elementValue = element.val();
-        if (elementValue === "" || elementValue === "NONE") {
-            alert("Por favor, contesta todas las preguntas obligatorias (marcadas con un asterisco). Hemos marcado en rojo las que olvidaste");
+
+        if (elementValue == "" || elementValue == "NONE") {
+            //Agregamos uno a los campos vacíos
+            emptyFields += 1;
             //Cambiamos el estilo de la pregunta en cuestión
-            $(`${idStr}_label`).removeClass("input_label");
-            $(`${idStr}_label`).removeClass("input_label_error");
-            return false;
+            $(`#${idStr}_label`).removeClass("input_label");
+            $(`#${idStr}_label`).addClass("input_label_error");
         }
+    }
+    //Si hay más de un campo vacío, enviamos alerta
+    if (emptyFields > 0) {
+        alert("Por favor, contesta todas las preguntas obligatorias (marcadas con un asterisco). Hemos marcado en rojo las que olvidaste");
+        return false;
+    } else {
+        return true;
     }
 
 }
