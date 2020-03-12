@@ -18,12 +18,12 @@
                     <hr>
                 </div>
                 <div class="item questionsContainer">
-                    <span class="input_label">Edad<span id="srvy_age_label_rm" class="required_mark">*</span></span>
-                    <input type="tel" name="" id="srvy_age" placeholder="Edad">
+                    <span id="srvy_age_label" class="input_label">Edad<span id="srvy_age_label_rm" class="required_mark">*</span></span>
+                    <input type="tel" id="srvy_age" placeholder="Edad">
                     <br class="spacer_small">
-                    <span class="input_label">¿Cuál es tu género?<span id="srvy_sex_label_rm"
+                    <span id="srvy_sex_label" class="input_label">¿Cuál es tu género?<span id="srvy_sex_label_rm"
                             class="required_mark">*</span></span>
-                    <select name="" id="srvy_sex">
+                    <select id="srvy_sex">
                         <option value="NONE" selected></option>
                         <option value="1">Masculino</option>
                         <option value="2">Femenino</option>
@@ -32,7 +32,7 @@
                     </select>
                     <br class="spacer_small">
                     <span class="input_label">¿Cuál de estas opciones describe mejor tu ocupación?</span>
-                    <select name="" id="srvy_lab">
+                    <select id="srvy_lab">
                         <option value="NONE" selected></option>
                         <option value="1">No trabajo</option>
                         <option value="2">No trabajo, pero busco empleo</option>
@@ -52,7 +52,7 @@
                     </select>
                     <br class="spacer_small">
                     <span class="input_label">¿En qué país naciste?</span>
-                    <select name="" id="srvy_country">
+                    <select id="srvy_country">
                         <option value="00" selected></option>
                         <option value="MX">México</option>
                         <option value="99">Prefiero no decir</option>
@@ -292,9 +292,8 @@
                         <option value="ZW">Zimbabue</option>
                     </select>
                     <br class="spacer_small">
-                    <span class="input_label">¿En qué estado de la República mexicana vives?<span
-                            id="srvy_state_label_rm" class="required_mark">*</span></span>
-                    <select name="" id="srvy_state">
+                    <span class="input_label">¿En qué estado de la República mexicana vives?</span>
+                    <select id="srvy_state">
                         <option value="NONE" selected></option>
                         <option value="99">Prefiero no decir</option>
                         <option value="88">No vivo en México</option>
@@ -333,19 +332,19 @@
                     </select>
                     <br class="spacer_small">
                     <span class="input_label">¿Cuál es el código postal del area donde vives?</span>
-                    <input type="tel" name="" id="srvy_zip">
+                    <input type="tel" id="srvy_zip">
                     <br class="spacer_small">
-                    <span class="input_label">¿Ya habías contestado alguna prueba de asociaciones implícitas (IAT)
+                    <span id="srvy_iat_label" class="input_label">¿Ya habías contestado alguna prueba de asociaciones implícitas (IAT)
                         anteriormente?<span id="srvy_iat_label_rm" class="required_mark">*</span></span>
-                    <select name="" id="srvy_iat">
+                    <select id="srvy_iat">
                         <option value="NONE" selected></option>
                         <option value="1">Sí</option>
                         <option value="2">No</option>
                     </select>
                     <br class="spacer_small">
-                    <span class="input_label">¿Con qué mano escribes?<span id="srvy_hand_label_rm"
+                    <span id="srvy_hand_label" class="input_label">¿Con qué mano escribes?<span id="srvy_hand_label_rm"
                             class="required_mark">*</span></span>
-                    <select name="" id="srvy_hand" style="width: 600px;">
+                    <select id="srvy_hand" style="width: 600px;">
                         <option value="NONE" selected></option>
                         <option value="1">Izquierda</option>
                         <option value="2">Derecha</option>
