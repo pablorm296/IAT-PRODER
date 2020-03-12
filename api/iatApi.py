@@ -259,12 +259,12 @@ class API:
 
             # Convertimos en tipos que entiende python
             fastestLatency = int(fastestLatency)
-            slowesttLatency = int(slowesttLatency)
+            slowestLatency = int(slowesttLatency)
             meanLatency = float(meanLatency)
             totalErrors = int(totalErrors)
 
             responseContent = {"code": "s", "iatScore": IAT, "fastestLatency": fastestLatency,
-            "slowesttLatency": slowesttLatency, "meanLatency": meanLatency, "totalErrors": totalErrors}
+            "slowestLatency": slowestLatency, "meanLatency": meanLatency, "totalErrors": totalErrors}
 
             response = Restful.Response(responseContent = responseContent)
             return response.jsonify()
