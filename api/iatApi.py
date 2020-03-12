@@ -267,7 +267,7 @@ class API:
             IAT = round(IAT, 3)
 
             responseContent = {"code": "s", "iatScore": IAT, "fastestLatency": fastestLatency,
-            "slowestLatency": slowestLatency, "meanLatency": meanLatency, "totalErrors": totalErrors}
+            "slowestLatency": slowestLatency, "meanLatency": meanLatency, "errorCount": totalErrors}
 
             response = Restful.Response(responseContent = responseContent)
             response = response.jsonify()
