@@ -37,19 +37,39 @@
     text-align: left;
     border: 1px solid #909090;
     border-collapse: collapse;
-    font-size: $baseFontSize - 2;
+    font-size: $baseFontSize - 3;
+    line-height: $baseFontSize - 1;
 
     th,
     td {
         border: 1px solid #909090;
         border-collapse: collapse;
         width: 200px;
-        padding: 15px;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    .option {
+        text-align: center;
+        padding: 0;
     }
 
     th {
         background-color: #8e6e97;
         color: white;
+        padding: 5px;
+        text-align: center;
+        font-weight: normal;
+
+        span {
+            display: block;
+            color: #dd9585;
+            text-align: center;
+            padding-top: 5px;
+            font-weight: bold;
+        }
     }
 
 }

@@ -32,16 +32,30 @@
   text-align: left;
   border: 1px solid #909090;
   border-collapse: collapse;
-  font-size: 12pt; }
+  font-size: 11pt;
+  line-height: 13pt; }
   .table_questions th,
   .table_questions td {
     border: 1px solid #909090;
     border-collapse: collapse;
-    width: 200px;
-    padding: 15px; }
+    width: 200px; }
+  .table_questions td {
+    padding: 10px; }
+  .table_questions .option {
+    text-align: center;
+    padding: 0; }
   .table_questions th {
     background-color: #8e6e97;
-    color: white; }
+    color: white;
+    padding: 5px;
+    text-align: center;
+    font-weight: normal; }
+    .table_questions th span {
+      display: block;
+      color: #dd9585;
+      text-align: center;
+      padding-top: 5px;
+      font-weight: bold; }
 
 hr {
   margin: 20px 0;
