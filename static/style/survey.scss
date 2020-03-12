@@ -26,17 +26,26 @@
     .input_label {
         display: block;
         margin: 15px 0;
+
         &_error {
             color: rgb(116, 19, 40);
             font-weight: bold;
         }
     }
 
+    .input_instructions {
+        display: block;
+        margin: 15px 0;
+        font-size: $baseFontSize - 2;
+        color: #666;
+        line-height: $baseFontSize - 2;
+    }
 
     .required_mark {
         margin: 0px 5px;
         font-size: $baseFontSize - 2;
         color: #808080;
+
         &_error {
             color: rgb(116, 19, 40);
             font-weight: bold;
@@ -47,63 +56,75 @@
         margin: 15px 0;
     }
 
-    table {
+    table.skin {
         margin: auto;
         text-align: center;
-    }
-
-    table, th, td {
         border: 1px solid #909090;
         border-collapse: collapse;
+
+        th,
+        td {
+            border: 1px solid #909090;
+            border-collapse: collapse;
+            width: 200px;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        th {
+            background-color: #8e6e97;
+            color: white;
+        }
+
+        td {
+            color: whitesmoke;
+
+            &.skin_1 {
+                background-color: rgb(101, 77, 62);
+            }
+
+            &.skin_2 {
+                background-color: rgb(119, 87, 65);
+            }
+
+            &.skin_3 {
+                background-color: rgb(135, 98, 73);
+            }
+
+            &.skin_4 {
+                background-color: rgb(148, 108, 81);
+            }
+
+            &.skin_5 {
+                background-color: rgb(160, 118, 90);
+            }
+
+            &.skin_6 {
+                background-color: rgb(168, 127, 100);
+            }
+
+            &.skin_7 {
+                background-color: rgb(177, 136, 108);
+            }
+
+            &.skin_8 {
+                background-color: rgb(182, 146, 121);
+            }
+
+            &.skin_9 {
+                background-color: rgb(190, 157, 134);
+            }
+
+            &.skin_10 {
+                background-color: rgb(197, 166, 145);
+            }
+
+            &.skin_11 {
+                background-color: rgb(200, 172, 153);
+            }
+        }
     }
 
-    th, td {
-        width: 200px;
-        font-weight: bold;
-        padding: 5px;
-    }
-
-    td {
-        color: whitesmoke;
-
-        &.skin_1 {
-            background-color: rgb(101, 77, 62);
-        } 
-        &.skin_2 {
-            background-color: rgb(119, 87, 65);
-        } 
-        &.skin_3 {
-            background-color: rgb(135, 98, 73);
-        } 
-        &.skin_4 {
-            background-color: rgb(148, 108, 81);
-        } 
-        &.skin_5 {
-            background-color: rgb(160, 118, 90);
-        } 
-        &.skin_6 {
-            background-color: rgb(168, 127, 100);
-        } 
-        &.skin_7 {
-            background-color: rgb(177, 136, 108);
-        } 
-        &.skin_8 {
-            background-color: rgb(182, 146, 121);
-        } 
-        &.skin_9 {
-            background-color: rgb(190, 157, 134);
-        } 
-        &.skin_10 {
-            background-color: rgb(197, 166, 145);
-        } 
-        &.skin_11 {
-            background-color: rgb(200, 172, 153);
-        } 
-    }
-    th {
-        background-color: #8e6e97;
-        color: white;
-    }
 }
 
 .buttonsContainer {
@@ -133,7 +154,7 @@
 }
 
 input[type=tel] {
-    text-align: center; 
+    text-align: center;
     -webkit-appearance: none;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
@@ -147,7 +168,8 @@ input[type=tel] {
     width: 200px;
 }
 
-input[type=tel]:focus, input[type=tel]:hover  {
+input[type=tel]:focus,
+input[type=tel]:hover {
     outline: none;
     -webkit-appearance: none;
     background: #b29eb4;
@@ -156,7 +178,7 @@ input[type=tel]:focus, input[type=tel]:hover  {
 
 select {
     background: #f7f7f7;
-    text-align: center; 
+    text-align: center;
     -webkit-appearance: none;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
@@ -169,7 +191,8 @@ select {
     width: 600px;
 }
 
-select:focus, select:hover {
+select:focus,
+select:hover {
     background: #b29eb4;
     color: #ffffff;
     outline: none;
@@ -181,4 +204,16 @@ select:active {
     color: #ffffff;
     outline: none;
     -webkit-appearance: none;
+}
+
+hr {
+    margin: 20px 0;
+    border-width: 0 0 1px;
+    $color: #de6449;
+    color: $color;
+    border-image: linear-gradient(90deg,
+            rgba($color, 0),
+            rgba($color, 1) 50%,
+            rgba($color, 0) 100%) 0 0 100%;
+    border-style: solid;
 }
