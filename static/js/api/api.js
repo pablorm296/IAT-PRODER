@@ -90,8 +90,7 @@ class iatAPI {
                     data: JSON.stringify(payload),
                     async: false,
                     success: function (data) {
-                        //Seleccionar objeto de interés
-                        console.log(data);
+
                     }
                 });
             },
