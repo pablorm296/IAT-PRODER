@@ -48,7 +48,7 @@ $(document).ready(function () {
     //Configuramos botones
     setBtns();
     //Inicializamos conector de API
-    myAPI = new iatAPI()
+    myAPI = new iatAPI();
     //Obtenemos nuevo usuario
     myAPI.endPoints.POST_newVisitor();
 });
