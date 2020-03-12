@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Estilos -->
     <link rel="stylesheet" href="../style/main.css">
-    <link rel="stylesheet" href="../style/survey.css">
+    <link rel="stylesheet" href="../style/results.css">
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
