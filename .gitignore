@@ -8,3 +8,4 @@
 .vscode/
 #Ignorar compilaciones sass
 *.css.map
+*.css
