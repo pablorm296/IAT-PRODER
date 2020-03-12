@@ -27,6 +27,16 @@
   .questionsContainer .input_label {
     display: block;
     margin: 15px 0; }
+    .questionsContainer .input_label_error {
+      color: #741328;
+      font-weight: bold; }
+  .questionsContainer .required_mark {
+    margin: 0px 5px;
+    font-size: 12pt;
+    color: #808080; }
+    .questionsContainer .required_mark_error {
+      color: #741328;
+      font-weight: bold; }
   .questionsContainer .spacer_small {
     margin: 15px 0; }
   .questionsContainer table {

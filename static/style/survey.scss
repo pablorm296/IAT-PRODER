@@ -33,6 +33,21 @@
     .input_label {
         display: block;
         margin: 15px 0;
+        &_error {
+            color: rgb(116, 19, 40);
+            font-weight: bold;
+        }
+    }
+
+
+    .required_mark {
+        margin: 0px 5px;
+        font-size: $baseFontSize - 2;
+        color: #808080;
+        &_error {
+            color: rgb(116, 19, 40);
+            font-weight: bold;
+        }
     }
 
     .spacer_small {
