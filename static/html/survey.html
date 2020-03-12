@@ -5,10 +5,11 @@
         <div id="content">
             <div id="gridContainer">
                 <div class="item messageContainer">
-                    <h1>Antes de que te vayas...</h1>
+                    <h1>Ya mero terminamos...</h1>
                     <p>
-                        Por favor, ayúdanos contestando las siguientes preguntas. Nos servirán para calibrar mejor
-                        tus resultados en la prueba. <span class="énfasis">Las preguntas marcadas con un asterisco son obligatorias para poder continuar.</span>.
+                        Por favor, ayúdanos contestando las siguientes preguntas. <span class="énfasis">Tus respuestas nos servirán para calibrar
+                        tus resultados en la prueba. <b>Las preguntas marcadas con un asterisco son
+                            obligatorias para poder continuar.</b></span>.
                     </p>
                     <p>
                         Una vez contestado este cuestionario de salida, podrás ver tus resultados de la prueba.
@@ -19,7 +20,8 @@
                     <span class="input_label">Edad<span id="srvy_age_label_rm" class="required_mark">*</span></span>
                     <input type="tel" name="" id="srvy_age" placeholder="Edad">
                     <br class="spacer_small">
-                    <span class="input_label">¿Cuál es tu género?<span id="srvy_sex_label_rm" class="required_mark">*</span></span>
+                    <span class="input_label">¿Cuál es tu género?<span id="srvy_sex_label_rm"
+                            class="required_mark">*</span></span>
                     <select name="" id="srvy_sex">
                         <option value="NONE" selected></option>
                         <option value="1">Masculino</option>
@@ -289,7 +291,8 @@
                         <option value="ZW">Zimbabue</option>
                     </select>
                     <br class="spacer_small">
-                    <span class="input_label">¿En qué estado de la República mexicana vives?<span id="srvy_state_label_rm" class="required_mark">*</span></span>
+                    <span class="input_label">¿En qué estado de la República mexicana vives?<span
+                            id="srvy_state_label_rm" class="required_mark">*</span></span>
                     <select name="" id="srvy_state">
                         <option value="NONE" selected></option>
                         <option value="99">Prefiero no decir</option>
@@ -339,7 +342,8 @@
                         <option value="2">No</option>
                     </select>
                     <br class="spacer_small">
-                    <span class="input_label">¿Con qué mano escribes?<span id="srvy_hand_label_rm" class="required_mark">*</span></span>
+                    <span class="input_label">¿Con qué mano escribes?<span id="srvy_hand_label_rm"
+                            class="required_mark">*</span></span>
                     <select name="" id="srvy_hand" style="width: 600px;">
                         <option value="NONE" selected></option>
                         <option value="1">Izquierda</option>
@@ -347,59 +351,119 @@
                     </select>
                     <br class="spacer_small">
                     <hr>
-                    <p>Por favor, coloca el dorso de tu mano en el monitor de tu computadora y compara el tono de tu
+                    <span class="input_label">¿Cuál es tu tono de piel?
+                    </span>
+                    <span class="input_instructions">Por favor, coloca el dorso de tu mano en el monitor de tu
+                        computadora y
+                        compara el tono de tu
                         piel con el de la escala de colores que está aquí abajo. Marca el tono que mejor te represente.
-                    </p>
-                    <table>
+                    </span>
+                    <table class="table_skin">
                         <tr>
                             <th>Color</th>
                             <th></th>
                         </tr>
                         <tr>
                             <td class="skin_1">1</td>
-                            <td><input type="radio" name="srvy_skin_color" value="1"> <br></td>
+                            <td><input type="radio" name="srvy_skin_color_actual" value="1"> <br></td>
                         </tr>
                         <tr>
                             <td class="skin_2">2</td>
-                            <td><input type="radio" name="srvy_skin_color" value="2"> <br></td>
+                            <td><input type="radio" name="srvy_skin_color_actual" value="2"> <br></td>
                         </tr>
                         <tr>
                             <td class="skin_3">3</td>
-                            <td><input type="radio" name="srvy_skin_color" value="3"> <br></td>
+                            <td><input type="radio" name="srvy_skin_color_actual" value="3"> <br></td>
                         </tr>
                         <tr>
                             <td class="skin_4">4</td>
-                            <td ><input type="radio" name="srvy_skin_color" value="4"> <br></td>
+                            <td><input type="radio" name="srvy_skin_color_actual" value="4"> <br></td>
                         </tr>
                         <tr>
                             <td class="skin_5">5</td>
-                            <td><input type="radio" name="srvy_skin_color" value="5"> <br></td>
+                            <td><input type="radio" name="srvy_skin_color_actual" value="5"> <br></td>
                         </tr>
                         <tr>
                             <td class="skin_6">6</td>
-                            <td><input type="radio" name="srvy_skin_color" value="6"> <br></td>
+                            <td><input type="radio" name="srvy_skin_color_actual" value="6"> <br></td>
                         </tr>
                         <tr>
                             <td class="skin_7">7</td>
-                            <td><input type="radio" name="srvy_skin_color" value="7"> <br></td>
+                            <td><input type="radio" name="srvy_skin_color_actual" value="7"> <br></td>
                         </tr>
                         <tr>
                             <td class="skin_8">8</td>
-                            <td><input type="radio" name="srvy_skin_color" value="8"> <br></td>
+                            <td><input type="radio" name="srvy_skin_color_actual" value="8"> <br></td>
                         </tr>
                         <tr>
                             <td class="skin_9">9</td>
-                            <td><input type="radio" name="srvy_skin_color" value="9"> <br></td>
+                            <td><input type="radio" name="srvy_skin_color_actual" value="9"> <br></td>
                         </tr>
                         <tr>
                             <td class="skin_10">10</td>
-                            <td><input type="radio" name="srvy_skin_color" value="10"> <br></td>
+                            <td><input type="radio" name="srvy_skin_color_actual" value="10"> <br></td>
                         </tr>
                         <tr>
                             <td class="skin_11">11</td>
-                            <td><input type="radio" name="srvy_skin_color" value="11"><br></td>
+                            <td><input type="radio" name="srvy_skin_color_actual" value="11"><br></td>
                         </tr>
                     </table>
+                    <span class="input_label">¿Cuál te gustaría que fuera tu tono de piel?
+                    </span>
+                    <span class="input_instructions">
+                        Si estás conforme con tu color de piel, elige el mismo color que seleccionaste en la pregunta de arriba.
+                    </span>
+                    <table class="table_skin">
+                        <tr>
+                            <th>Color</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td class="skin_1">1</td>
+                            <td><input type="radio" name="srvy_skin_color_preferred" value="1"> <br></td>
+                        </tr>
+                        <tr>
+                            <td class="skin_2">2</td>
+                            <td><input type="radio" name="srvy_skin_color_preferred" value="2"> <br></td>
+                        </tr>
+                        <tr>
+                            <td class="skin_3">3</td>
+                            <td><input type="radio" name="srvy_skin_color_preferred" value="3"> <br></td>
+                        </tr>
+                        <tr>
+                            <td class="skin_4">4</td>
+                            <td><input type="radio" name="srvy_skin_color_preferred" value="4"> <br></td>
+                        </tr>
+                        <tr>
+                            <td class="skin_5">5</td>
+                            <td><input type="radio" name="srvy_skin_color_preferred" value="5"> <br></td>
+                        </tr>
+                        <tr>
+                            <td class="skin_6">6</td>
+                            <td><input type="radio" name="srvy_skin_color_preferred" value="6"> <br></td>
+                        </tr>
+                        <tr>
+                            <td class="skin_7">7</td>
+                            <td><input type="radio" name="srvy_skin_color_preferred" value="7"> <br></td>
+                        </tr>
+                        <tr>
+                            <td class="skin_8">8</td>
+                            <td><input type="radio" name="srvy_skin_color_preferred" value="8"> <br></td>
+                        </tr>
+                        <tr>
+                            <td class="skin_9">9</td>
+                            <td><input type="radio" name="srvy_skin_color_preferred" value="9"> <br></td>
+                        </tr>
+                        <tr>
+                            <td class="skin_10">10</td>
+                            <td><input type="radio" name="srvy_skin_color_preferred" value="10"> <br></td>
+                        </tr>
+                        <tr>
+                            <td class="skin_11">11</td>
+                            <td><input type="radio" name="srvy_skin_color_preferred" value="11"><br></td>
+                        </tr>
+                    </table>
+                    <hr>
                 </div>
                 <div class="item buttonsContainer">
                     <button id="OkButton" class="okBtn">Enviar</button>
