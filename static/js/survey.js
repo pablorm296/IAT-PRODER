@@ -1,5 +1,5 @@
 //Función para validar respuestas del usuario
-function checkInput(params) {
+function checkInput() {
     const compulsoryIndex = [0, 1, 6, 7];
     //Lista de ids
     const idArrays = ["srvy_age", "srvy_sex", "srvy_lab", "srvy_contry", "srvy_state", "srvy_zip", "srvy_iat", "srvy_hand"];
@@ -31,6 +31,11 @@ function checkInput(params) {
             //Cambiamos el estilo de la pregunta en cuestión
             $(`#${idStr}_label`).removeClass("input_label");
             $(`#${idStr}_label`).addClass("input_label_error");
+            $(`#${idStr}_label_rm`).removeClass("required_mark");
+            $(`#${idStr}_label_rm`).addClass("required_mark_error");
+        } else {
+            $(`#${idStr}_label`).removeClass("input_label_error");
+            $(`#${idStr}_label_rm`).removeClass("required_mark_error");
         }
     }
     //Si hay más de un campo vacío, enviamos alerta
@@ -38,13 +43,21 @@ function checkInput(params) {
         alert("Por favor, contesta todas las preguntas obligatorias (marcadas con un asterisco). Hemos marcado en rojo las que olvidaste");
         return false;
     } else {
+        //Enviamos resultados
+        saveResults();
         return true;
     }
 
 }
 
+function saveResults() {
+    
+}
+
 //Función para el botón de ok
 function okBtn() {
+    //Validamos y guardamos resultados
+    checkInput();
     //Ir a página de resultados
     window.location.href = "/IAT/static/src/results.php";
 }
