@@ -19,10 +19,10 @@ function loadResults() {
         //Colocamos los resultados en la página
         __iatScore = iatScore;
         $("#result_iat_score").text(iatScore);
-        $("#stat_mean_latency").text(meanLatency);
-        $("#stat_min_latency").text(fastestLatency);
-        $("#stat_max_latency").text(slowestLatency);
-        $("#stat_errors").text(errorCount);
+        $("#stat_mean_latency").text(meanLatency + " ms");
+        $("#stat_min_latency").text(fastestLatency + " ms");
+        $("#stat_max_latency").text(slowestLatency + " ms");
+        $("#stat_errors").text(errorCount + " errores");
 
         //Dependiendo de la fortaleza de los resultados
         if (iatScore <= 0.2 || iatScore >= -0.2 ) {
