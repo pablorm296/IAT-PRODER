@@ -165,6 +165,10 @@ class API:
 
             responseContent = dict()
 
+            # Abrimos el json con los resultados de las demás personas
+            with open("/var/www/pabloreyes/IAT/science/d_scores.json") as jsonFile:
+                dScores = json.load(jsonFile)
+
             # Obtenemos los resultados de las rondas 3, 4, 6 y 7
             # Dependiendo del orden en el que le tocó al usuario
             # Personas de piel clara = bueno
@@ -204,7 +208,7 @@ class API:
             # Creamos una variable para guardar el número total de trials
             nRow = len(roundResults_pooled.index)
 
-            # Verificar que no más del 10% de las filas tengan 10%
+            # Verificar que no más del 10% de los casos hayan sido muy rápidos (menos de 300 ms)
             nRow_foo = roundResults_pooled[roundResults_pooled["latency"] < 300].shape[0]
             if (nRow_foo / nRow) > 0.1 :
                 responseContent = {"code": "e.1"}
@@ -267,7 +271,8 @@ class API:
             IAT = round(IAT, 3)
 
             responseContent = {"code": "s", "iatScore": IAT, "fastestLatency": fastestLatency,
-            "slowestLatency": slowestLatency, "meanLatency": meanLatency, "errorCount": totalErrors}
+            "slowestLatency": slowestLatency, "meanLatency": meanLatency, "errorCount": totalErrors,
+            "dScores": dScores}
 
             response = Restful.Response(responseContent = responseContent)
             response = response.jsonify()
