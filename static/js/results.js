@@ -1,4 +1,5 @@
 var __iatScore;
+var __histDScore;
 
 //Función para obtener bins de los datos
 //Fuente: 
@@ -69,8 +70,12 @@ function drawPlots() {
         chart: {
             type: 'column'
         },
+        tooltip: {
+            enabled: false
+        },
         title: {
-            text: '¿Cómo se compara mi resultado con el de otros participantes?'
+            text: '¿Cómo se compara mi resultado con el de otros participantes?',
+            style: {"font-family": "KC"}
         },
         legend: {
             enabled: false
@@ -82,6 +87,17 @@ function drawPlots() {
             enabled: false
         },
         xAxis: [{
+            labels: {
+                formatter: function() {
+                    var change = {
+                        "0": '0<br>Sin preferencia',
+                        "1": '1<br>Preferencia piel blanca',
+                        "-1": '-1<br>Preferencia piel morena'
+                    };
+                    var value = change[this.value];
+                    return value !== 'undefined' ? value : this.value;
+                }
+            },
             plotLines: [{
                 color: '#FF0000', // Red
                 width: 2,
@@ -91,9 +107,8 @@ function drawPlots() {
             title: {
                 text: 'Puntaje IAT'
             },
-            alignTicks: false
+            alignTicks: true
         }],
-
         yAxis: [{
             title: {
                 text: 'Frecuencia'
@@ -102,7 +117,7 @@ function drawPlots() {
 
         series: [{
             name: 'Distribuciónde puntajes IAT',
-            data: binnedSeries
+            data: __histDScore
         }]
     });
 
@@ -126,6 +141,7 @@ function loadResults(responseContent) {
 
     //Partimos la serie de datos en bins
     const binnedSeries = binData(series);
+    __histDScore = binnedSeries;
 
     //Colocamos los resultados en la página
     __iatScore = iatScore;
@@ -136,45 +152,50 @@ function loadResults(responseContent) {
     $("#stat_errors").text(errorCount + " errores");
 
     //Dependiendo de la fortaleza de los resultados
-    if (iatScore <= 0.2 || iatScore >= -0.2) {
+    if (iatScore < 0.5 && iatScore > -0.5) {
         $("#result_preference_size").text("no tienes preferencia alguna");
         $("#result_preference_target").text("las personas de piel oscura o piel clara");
-    } else if (iatScore >= 0.5) {
-        $("#result_preference_size").text("tienes una ligera preferencia");
-        $("#result_preference_target").text("las personas de piel oscura");
-    } else if (iatScore >= 0.8) {
-        $("#result_preference_size").text("tienes una fuerte preferencia");
-        $("#result_preference_target").text("las personas de piel oscura");
-    } else if (iatScore <= -0.5) {
+    } 
+    if (iatScore >= 0.5) {
         $("#result_preference_size").text("tienes una ligera preferencia");
         $("#result_preference_target").text("las personas de piel clara");
-    } else if (iatScore <= -0.8) {
+    } 
+    if (iatScore >= 0.8) {
         $("#result_preference_size").text("tienes una fuerte preferencia");
         $("#result_preference_target").text("las personas de piel clara");
+    } 
+    if (iatScore <= -0.5) {
+        $("#result_preference_size").text("tienes una ligera preferencia");
+        $("#result_preference_target").text("las personas de piel oscura");
+    } 
+    if (iatScore <= -0.8) {
+        $("#result_preference_size").text("tienes una fuerte preferencia");
+        $("#result_preference_target").text("las personas de piel oscura");
     }
+
+    //Dibujamos los plots
+    drawPlots();
 }
 
 //Función para poner mensaje en caso de que el tiempo de respuesta sea muy corto
 function e1Handler() {
     $("#main_results").html("<p>Nos fue imposible analizar tus respuestas :( Respondiste extremadamente rápido o al azar; esto dificulta el análisis estadístico que hacemos sobre los datos. Puedes intentar hacer otra vez la prueba.</p>");
-    //Colocamos los resultados en la página
-    __iatScore = iatScore;
     $("#result_iat_score").text("No disponible");
-    $("#stat_mean_latency").text("No disponible"));
+    $("#stat_mean_latency").text("No disponible");
     $("#stat_min_latency").text("No disponible");
     $("#stat_max_latency").text("No disponible");
     $("#stat_errors").text("No disponible");
+    $("#results_content").hide();
 }
 
 function e2Handler() {
     $("#main_results").html("<p>Nos fue imposible analizar tus respuestas :( Ocurrió un error al intentar leer las cookies. ¿Usas algún bloqueador?.</p>");
-    //Colocamos los resultados en la página
-    __iatScore = iatScore;
     $("#result_iat_score").text("No disponible");
-    $("#stat_mean_latency").text("No disponible"));
+    $("#stat_mean_latency").text("No disponible");
     $("#stat_min_latency").text("No disponible");
     $("#stat_max_latency").text("No disponible");
     $("#stat_errors").text("No disponible");
+    $("#results_content").hide();
 }
 
 //Función para obtener resultados
@@ -208,5 +229,5 @@ $(document).ready(function () {
     //Inicializamos conector de API
     myAPI = new iatAPI();
     //Cargamos resultados
-    loadResults();
+    getResults();
 });
