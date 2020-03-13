@@ -152,12 +152,20 @@ function loadResults(responseContent) {
     $("#stat_errors").text(errorCount + " errores");
 
     //Dependiendo de la fortaleza de los resultados
-    if (iatScore < 0.5 && iatScore > -0.5) {
-        $("#result_preference_size").text("no tienes preferencia alguna");
+    if (iatScore < 0.2 && iatScore > -0.2) {
+        $("#result_preference_size").text("no tienes preferencia (sesgo)");
         $("#result_preference_target").text("las personas de piel oscura o piel clara");
+    }
+    if (iatScore >= 0.2) {
+        $("#result_preference_size").text("tienes una ligera preferencia (sesgo)");
+        $("#result_preference_target").text("las personas de piel clara");
+    } 
+    if (iatScore <= -0.2) {
+        $("#result_preference_size").text("tienes una ligera preferencia (sesgo)");
+        $("#result_preference_target").text("las personas de piel morena");
     } 
     if (iatScore >= 0.5) {
-        $("#result_preference_size").text("tienes una ligera preferencia");
+        $("#result_preference_size").text("tienes una moderada preferencia (sesgo)");
         $("#result_preference_target").text("las personas de piel clara");
     } 
     if (iatScore >= 0.8) {
@@ -165,7 +173,7 @@ function loadResults(responseContent) {
         $("#result_preference_target").text("las personas de piel clara");
     } 
     if (iatScore <= -0.5) {
-        $("#result_preference_size").text("tienes una ligera preferencia");
+        $("#result_preference_size").text("tienes una moderada preferencia");
         $("#result_preference_target").text("las personas de piel oscura");
     } 
     if (iatScore <= -0.8) {
@@ -189,7 +197,7 @@ function e1Handler() {
 }
 
 function e2Handler() {
-    $("#main_results").html("<p>Nos fue imposible analizar tus respuestas :( Ocurrió un error al intentar leer las cookies. ¿Usas algún bloqueador?.</p>");
+    $("#main_results").html("<p>Nos fue imposible analizar tus respuestas :( Ocurrió un error al intentar leer las cookies. ¿Usas algún bloqueador?</p>");
     $("#result_iat_score").text("No disponible");
     $("#stat_mean_latency").text("No disponible");
     $("#stat_min_latency").text("No disponible");
@@ -212,6 +220,8 @@ function getResults() {
         } else {
             loadResults(responseContent);
         }
+    }, function () {
+        e2Handler();
     });
 }
 
