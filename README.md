@@ -20,3 +20,10 @@ Este repositorio contiene una prueba de asociaciones implícitas (IAT, por sus s
   * [x] POST > Users > New
   * [x] GET > IAT > Stimuli
   * [x] POST > IAT > Results
+ 
+ Con relación a la presentación en el seminario (y otras cosas)
+ * Contextualizar los resultados del usuario; es decir, enfatizar que este no es un problema individual.
+  * Comparar los resultados del usuario con los del estudio (encuesta, privilegios).
+ * Ver qué onda con las fotografías. ¡Necesitamos más fotografías o necesitamos mejores fotografías! Hay un pequeño efecto entre el número de ejemplares y la probabilidad de que veamos feature recognition en lugar de meaning association https://faculty.washington.edu/agg/pdf/NGB2005.PSPB.pdf
+ 
+  
