@@ -219,7 +219,7 @@ function assignLabelsAndText(stageType, inverse) {
         //Un bloque con solo imagenes
     } else if (stageType == "img") {
         //Creamos texto de instrucciones
-        const instructionsText = `En este bloque tendrás que clasificar imágenes.<br>La columna izquierda corresponde a personas de ${__imgCatInstructions[__order]}, mientras que la columna derecha corresponde a personas ${__imgCatInstructions[__order + (1 * modifier_imgs)]}. Recuerda que tienes que usar <span>teclas "E" e "I"</span> para asignar la imagen a la columna correspondiente.`;
+        const instructionsText = `En este bloque tendrás que clasificar imágenes.<br>La columna izquierda corresponde a personas de ${__imgCatInstructions[__order]}, mientras que la columna derecha corresponde a personas de ${__imgCatInstructions[__order + (1 * modifier_imgs)]}. Recuerda que tienes que usar <span>teclas "E" e "I"</span> para asignar la imagen a la columna correspondiente.`;
         //Asignamos los labels
         __left = [__imgLabel[__order]];
         __right = [__imgLabel[__order + (1 * modifier_imgs)]];
