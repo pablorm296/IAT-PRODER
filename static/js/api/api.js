@@ -94,14 +94,15 @@ class iatAPI {
                     }
                 });
             },
-            GET_results: function (success) {
+            GET_results: function (success, error) {
                 $.ajax({
                     type: "GET",
                     url: "https://pabloreyes.com.mx/api/versions/1/iat/result/iat",
                     contentType: 'application/json',
                     dataType: "json",
                     async: false,
-                    success: success
+                    success: success,
+                    error: error
                 });
             },
             GET_stimuli: function (stage) {
