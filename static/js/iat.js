@@ -23,7 +23,7 @@ function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-//Función para controlar presión de teclas
+//Función para controlar presión de teclas  
 function keyHandler(e, v = false, c) {
     //Inicializamos variable para guardar código de tecla
     var keyCode;
@@ -57,6 +57,7 @@ function keyHandler(e, v = false, c) {
 function keyCallBack(keyName) {
     if (__instructions) {
         if (keyName == "space") {
+            $("#loader").show();
             myAPI.endPoints.GET_stimuli(__stage);
             __instructions = false;
             //Ocultamos instrucciones e indicación de proceder
