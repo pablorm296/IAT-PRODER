@@ -4,6 +4,11 @@
 /ssh/*
 #Ignore server configuration files
 .htaccess
+#Ignore sav, csv, r and xlsx files from science dir
+/science/*.R
+/science/*.xlsx
+/science/*.sav
+/science/*.csv
 #Ignore vscode folder
 .vscode/
 #Ignorar compilaciones sass
