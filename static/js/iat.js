@@ -58,7 +58,7 @@ function keyCallBack(keyName) {
     if (__instructions) {
         if (keyName == "space") {
             $("#loader").show();
-            myAPI.endPoints.GET_stimuli(__stage);
+            myAPI.endPoints.GET_stimuli(__stage, placeStimuli);
             __instructions = false;
             //Ocultamos instrucciones e indicación de proceder
             $("#space_bar").hide();
@@ -313,7 +313,8 @@ function showInstructions() {
 }
 
 //Función para colocalr estímulos
-function placeStimuli(stimuliArray) {
+function placeStimuli(data) {
+    const stimuliArray = data.responseContent;
     //Guardar tamaño de prueba
     __stageLength = stimuliArray.length;
     //Colocar estímulos

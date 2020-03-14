@@ -67,7 +67,9 @@ class iatAPI {
             },
             POST_newUser: function (consent) {
                 //Definimos un objeto con el consent del usuario
-                const payload = {consent: consent};
+                const payload = {
+                    consent: consent
+                };
                 $.ajax({
                     type: "POST",
                     url: "https://pabloreyes.com.mx/api/versions/1/iat/result/consent",
@@ -105,37 +107,14 @@ class iatAPI {
                     error: error
                 });
             },
-            GET_stimuli: function (stage) {
+            GET_stimuli: function (stage, success, error) {
                 $.ajax({
                     type: "GET",
                     url: `https://pabloreyes.com.mx/api/versions/1/iat/stimuli?stage=${stage}`,
                     dataType: "json",
-                    success: function (data) {
-                        //Seleccionar objeto de interés
-                        const responseContent = data.responseContent;
-                        placeStimuli(responseContent);
-                    }
-                });
-            },
-            GET_instructions: function (stage, order) {
-                $.ajax({
-                    type: "POST",
-                    url: "https://pabloreyes.com.mx/api/versions/1/users/new",
-                    contentType: 'application/json',
-                    dataType: "json",
-                    success: function (data) {
-                        //Seleccionar objeto de interés
-                        const responseContent = data.responseContent;
-                        //Guardar id en una cookie
-                        const userId = responseContent.id;
-                        if (userId) {
-                            saveCookie("appSession", userId, undefined, 86400);
-                        } else {
-                            throw "Can't parse user id";
-                        }
-                    }
+                    success: success
                 });
             }
-        };
-    }
+        }
+    };
 }
