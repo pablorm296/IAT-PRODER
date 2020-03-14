@@ -41,11 +41,10 @@ function keyCallBack(keyName) {
 //Colocar ejemplos
 function putExamples(data) {
     //Obtener catgeorías de ejemplos
-    const goodWords, badWords, whitePeople, darkPeope
-    goodWords = data.good;
-    badWords = data.bad;
-    whitePeople = data.white;
-    darkPeope = data.dark;
+    const goodWords = data.good;
+    const badWords = data.bad;
+    const whitePeople = data.white;
+    const darkPeope = data.dark;
     //Ponemos los ejemplos
     //Palabras buenas
     for (let index = 0; index < goodWords.length; index++) {
