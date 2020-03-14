@@ -22,131 +22,120 @@
 .questionsContainer {
     grid-column: 2/3;
     grid-row: 2/3;
+}
 
-    .input_label {
-        display: block;
-        margin: 15px 0;
-    }
+.input_label {
+    display: block;
+    margin: 15px 0;
+}
 
-    .input_label_error {
-        @extend .input_label;
-        color: rgb(192, 51, 82);
+.input_label_error {
+    @extend .input_label;
+    color: rgb(192, 51, 82);
+    font-weight: bold;
+}
+
+.input_instructions {
+    display: block;
+    margin: 15px 0;
+    font-size: $baseFontSize - 2;
+    color: #666;
+    line-height: $baseFontSize - 2;
+}
+
+.required_mark {
+    margin: 0px 5px;
+    font-size: $baseFontSize - 2;
+    color: #808080;
+}
+
+.required_mark_error {
+    @extend .required_mark;
+    color: rgb(116, 19, 40);
+    font-weight: bold;
+}
+
+.spacer_small {
+    margin: 15px 0;
+}
+
+.table_skin {
+    text-align: center;
+
+    th,
+    td {
+        width: 200px;
         font-weight: bold;
+        padding: 5px;
     }
 
-    .input_instructions {
-        display: block;
-        margin: 15px 0;
-        font-size: $baseFontSize - 2;
-        color: #666;
-        line-height: $baseFontSize - 2;
+    th {
+        background-color: #8e6e97;
+        color: white;
     }
 
-    .required_mark {
-        margin: 0px 5px;
-        font-size: $baseFontSize - 2;
-        color: #808080;
-    }
+    td {
+        color: whitesmoke;
 
-    .required_mark_error {
-        @extend .required_mark;
-        color: rgb(116, 19, 40);
+        &.skin_1 {
+            background-color: rgb(101, 77, 62);
+        }
+
+        &.skin_2 {
+            background-color: rgb(119, 87, 65);
+        }
+
+        &.skin_3 {
+            background-color: rgb(135, 98, 73);
+        }
+
+        &.skin_4 {
+            background-color: rgb(148, 108, 81);
+        }
+
+        &.skin_5 {
+            background-color: rgb(160, 118, 90);
+        }
+
+        &.skin_6 {
+            background-color: rgb(168, 127, 100);
+        }
+
+        &.skin_7 {
+            background-color: rgb(177, 136, 108);
+        }
+
+        &.skin_8 {
+            background-color: rgb(182, 146, 121);
+        }
+
+        &.skin_9 {
+            background-color: rgb(190, 157, 134);
+        }
+
+        &.skin_10 {
+            background-color: rgb(197, 166, 145);
+        }
+
+        &.skin_11 {
+            background-color: rgb(200, 172, 153);
+        }
+    }
+}
+
+.table_questions {
+    text-align: center;
+
+    th,
+    td {
+        width: 200px;
         font-weight: bold;
+        padding: 5px;
     }
 
-    .spacer_small {
-        margin: 15px 0;
-    }
-
-    .table_skin {
-        margin: auto;
-        text-align: center;
-        border: 1px solid #909090;
-        border-collapse: collapse;
-
-        th,
-        td {
-            border: 1px solid #909090;
-            border-collapse: collapse;
-            width: 200px;
-            font-weight: bold;
-            padding: 5px;
-        }
-
-        th {
-            background-color: #8e6e97;
-            color: white;
-        }
-
-        td {
-            color: whitesmoke;
-
-            &.skin_1 {
-                background-color: rgb(101, 77, 62);
-            }
-
-            &.skin_2 {
-                background-color: rgb(119, 87, 65);
-            }
-
-            &.skin_3 {
-                background-color: rgb(135, 98, 73);
-            }
-
-            &.skin_4 {
-                background-color: rgb(148, 108, 81);
-            }
-
-            &.skin_5 {
-                background-color: rgb(160, 118, 90);
-            }
-
-            &.skin_6 {
-                background-color: rgb(168, 127, 100);
-            }
-
-            &.skin_7 {
-                background-color: rgb(177, 136, 108);
-            }
-
-            &.skin_8 {
-                background-color: rgb(182, 146, 121);
-            }
-
-            &.skin_9 {
-                background-color: rgb(190, 157, 134);
-            }
-
-            &.skin_10 {
-                background-color: rgb(197, 166, 145);
-            }
-
-            &.skin_11 {
-                background-color: rgb(200, 172, 153);
-            }
-        }
-    }
-
-    .table_questions {
-        margin: auto;
-        text-align: center;
-        border: 1px solid #909090;
-        border-collapse: collapse;
-
-        th,
-        td {
-            border: 1px solid #909090;
-            border-collapse: collapse;
-            width: 200px;
-            font-weight: bold;
-            padding: 5px;
-        }
-
-        th {
-            background-color: #8e6e97;
-            color: white;
-        }
-
+    th {
+        background-color: #8e6e97;
+        color: white;
     }
 
 }

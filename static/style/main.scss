@@ -44,6 +44,19 @@ button {
     color: #de6449;
 }
 
+table {
+    margin: auto;
+    text-align: left;
+    border: 1px solid #909090;
+    border-collapse: collapse;
+
+    th,
+    td {
+        border: 1px solid #909090;
+        border-collapse: collapse;
+    }
+}
+
 #page {
     display: flex;
     min-height: 100vh;
