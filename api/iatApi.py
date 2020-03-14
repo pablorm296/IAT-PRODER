@@ -101,8 +101,33 @@ class API:
             stimuli_words = stimuli.get("words")
 
             # Dependiendo de la etapa
+            #La etapa 0 corresponde a los ejemplos
+            if stage == 0:
+                #Una lista de palabras buenas
+                goodWords = list(filter(lambda d: d['label'] in ['good'], stimuli_words))
+                goodWordsList = random.sample(goodWords, 4)
+
+                #Una lista de palabras malas
+                badWords = list(filter(lambda d: d['label'] in ['bad'], stimuli_words))
+                badWordsList = random.sample(badWords, 4)
+
+                #Una lista de imágenes de personas blancas
+                whitePeople = list(filter(lambda d: d['label'] in ['white'], stimuli_images))
+                whitePeopleList = random.sample(whitePeople, 4)
+
+                #Una lista de imágenes de personas morenas
+                darkPeople = list(filter(lambda d: d['label'] in ['dark'], stimuli_images))
+                darkPeopleList = random.sample(darkPeople, 4)
+
+                finalList = {
+                    "good": goodWordsList,
+                    "bad": badWordsList,
+                    "white": whitePeopleList,
+                    "dark": darkPeopleList
+                }
+
             if stage == 1:
-                wordList = random.sample(stimuli_words, 16)
+                wordList = random.choices(stimuli_words, 16)
                 finalList = wordList
 
             elif stage == 2:
@@ -111,8 +136,8 @@ class API:
 
             elif stage >= 3 and stage < 5:
                 trainWords = random.sample(stimuli_words, 4)
-                wordList = random.sample(stimuli_words, 16)
-                imageList = random.sample(stimuli_images, 16)
+                wordList = random.choices(stimuli_words, 18)
+                imageList = random.choices(stimuli_images, 18)
                 mergedList = [None] * ( len(wordList) + len(imageList) )
                 mergedList[::2] = wordList
                 mergedList[1::2] = imageList
@@ -124,8 +149,8 @@ class API:
 
             elif stage >= 6:
                 trainWords = random.sample(stimuli_words, 4)
-                wordList = random.sample(stimuli_words, 16)
-                imageList = random.sample(stimuli_images, 16)
+                wordList = random.choices(stimuli_words, 18)
+                imageList = random.choices(stimuli_images, 18)
                 mergedList = [None] * ( len(wordList) + len(imageList) )
                 mergedList[::2] = wordList
                 mergedList[1::2] = imageList
