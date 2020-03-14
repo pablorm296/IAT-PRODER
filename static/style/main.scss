@@ -15,6 +15,7 @@ body {
       font-size: baseFontSize + $headingScale * (6 - $i);
       font-family: $headerFont;
       font-weight: normal;
+      font-variant: small-caps;
       color: #de6449
     }
 }
@@ -45,7 +46,6 @@ button {
 }
 
 table {
-    margin: auto;
     text-align: left;
     border: 1px solid #909090;
     border-collapse: collapse;
