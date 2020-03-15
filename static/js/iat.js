@@ -62,6 +62,7 @@ function keyCallBack(keyName) {
             __instructions = false;
             //Ocultamos instrucciones e indicación de proceder
             $("#space_bar").hide();
+            $("#reminder").hide();
             $("#instructions").hide();
             $("#rndCount").hide();
         }
@@ -153,7 +154,7 @@ function showError() {
 }
 
 //Función para asignar labels a las columnas
-function assignLabelsAndText(stageType, inverse) {
+function assignLabelsAndText(stageType, repetition, inverse) {
 
     //Definimos variables (elementos donde guardamos el texto)
     var leftColTxt = $("#leftColTxt");
@@ -183,7 +184,7 @@ function assignLabelsAndText(stageType, inverse) {
     //Un bloque con palabras e imágenes
     if (stageType == "word&img") {
         //Creamos texto de instrucciones
-        const instructionsText = `En este bloque tendrás que clasificar palabras e imágenes.<br>La columna izquierda corresponde a personas de ${__imgCatInstructions[__order]} y palabras ${__wrdCatInstructions[order]}, mientras que la columna derecha corresponde a personas ${__imgCatInstructions[__order + (1 * modifier_imgs)]} y palabras ${__wrdCatInstructions[order + (1 * modifier)]}. Recuerda que tienes que usar las <span>teclas "E" e "I"</span> para asignar la palabra o imagen a la columna correspondiente.`;
+        const instructionsText = `<p>En este bloque tendrás que clasificar palabras e imágenes.</p><p>Las etiquetas verdes corresponden a palabras y las blancas a imágenes.</p>`;
         //Asignamos los labels
         __left = [__wrdLabel[order], __imgLabel[__order]];
         __right = [__wrdLabel[order + (1 * modifier)], __imgLabel[__order + (1 * modifier_imgs)]];
@@ -200,11 +201,17 @@ function assignLabelsAndText(stageType, inverse) {
         rightOr.style.display = "block";
         rightWrdLabel.style.display = "block";
         //Cambiamos el texto de las instrucciones
-        $("#instructions").html(instructionsText);
+        if (repetition) {
+            $("#instructions").html("<span>Este bloque es igual al anterior.</span><br>");
+            $("#instructions").append(instructionsText);
+        } else {
+            $("#instructions").html(instructionsText);
+        }
+        
         //Un bloque con solo palabras
     } else if (stageType == "word") {
         //Creamos texto de instrucciones
-        const instructionsText = `En este bloque tendrás que clasificar palabras.<br>La columna izquierda corresponde a palabras ${__wrdCatInstructions[order]}, mientras que la columna derecha corresponde a palabras ${__wrdCatInstructions[order + (1 * modifier)]}. Recuerda que tienes que usar <span>teclas "E" e "I"</span> para asignar la palabra a la columna correspondiente.`;
+        const instructionsText = `<p>En este bloque tendrás que categorizar palabras.</p><p>Palabras buenas: responsable, competente, trabajador, constante, cariñoso, tierno, amoroso, dulce.</p><p>Palabras malas: agresivo, rudo, problemático, violento, mediocre, conformista, mentiroso, corrupto.</p>`;
         //Asignamos los labels
         __left = [__wrdLabel[order]];
         __right = [__wrdLabel[order + (1 * modifier)]];
@@ -219,7 +226,7 @@ function assignLabelsAndText(stageType, inverse) {
         //Un bloque con solo imagenes
     } else if (stageType == "img") {
         //Creamos texto de instrucciones
-        const instructionsText = `En este bloque tendrás que clasificar imágenes.<br>La columna izquierda corresponde a personas de ${__imgCatInstructions[__order]}, mientras que la columna derecha corresponde a personas de ${__imgCatInstructions[__order + (1 * modifier_imgs)]}. Recuerda que tienes que usar <span>teclas "E" e "I"</span> para asignar la imagen a la columna correspondiente.`;
+        const instructionsText = `<p>En este bloque tendrás que clasificar imágenes</p>`;
         //Asignamos los labels
         __left = [__imgLabel[__order]];
         __right = [__imgLabel[__order + (1 * modifier_imgs)]];
@@ -279,7 +286,7 @@ function hideText(which) {
 function showInstructions() {
     __instructions = true;
     //Colocar instrucción de barra espaciadora
-    $("#space_bar").text("Presiona la barra espaciadora para comenzar")
+    $("#space_bar").text("Presiona la barra espaciadora para comenzar");
     //Colocar títulos 
     switch (__stage) {
         case 1:
@@ -289,25 +296,26 @@ function showInstructions() {
             assignLabelsAndText("img", false);
             break;
         case 3:
-            assignLabelsAndText("word&img", false);
+            assignLabelsAndText("word&img", false, false);
             break;
         case 4:
-            assignLabelsAndText("word&img", false);
+            assignLabelsAndText("word&img", false, false);
             break;
         case 5:
             assignLabelsAndText("word", true);
             //Cambiamos el texto de las instrucciones
-            $("#instructions").append("<br><span>¡Ojo! el orden de las categorías (columnas) cambió de posición.</span>");
+            $("#instructions").append("<br><span>¡Aviso! el orden de las categorías (columnas) cambió de posición. Practica con esta nueva configuración.</span>");
             break;
         case 6:
-            assignLabelsAndText("word&img", true);
+            assignLabelsAndText("word&img", false, true);
             break;
         case 7:
-            assignLabelsAndText("word&img", true);
+            assignLabelsAndText("word&img", false, true);
             break;
     }
     //Mostrar contador de rondas, instrucciones e indicación de proceder
     $("#space_bar").show();
+    $("#reminder").show();
     $("#instructions").show();
     $("#rndCount").show();
 }
@@ -326,6 +334,7 @@ function placeStimuli(data) {
         const stimuliLabel = stimuli.label;
         const stimuliContent = stimuli.content;
         //Ocultamos el holder
+        $(holder).removeClass("wrd");
         $(holder).hide();
         //Imagen o palabra?
         if (stimuliType == "img") {
@@ -334,6 +343,7 @@ function placeStimuli(data) {
         } else {
             // Contenido del estímulo
             $(holder).html(stimuliContent);
+            $(holder).addClass("wrd");
         }
         // Agregamos información del estímulo (categoría, tipo y contenido)
         $(holder).attr("label", stimuliLabel);
