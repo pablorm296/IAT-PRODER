@@ -40,21 +40,23 @@ function keyCallBack(keyName) {
 
 //Colocar ejemplos
 function putExamples(data) {
+    const responseContent = data.responseContent;
+
     //Obtener catgeorías de ejemplos
-    const goodWords = data.good;
-    const badWords = data.bad;
-    const whitePeople = data.white;
-    const darkPeope = data.dark;
+    const goodWords = responseContent.good;
+    const badWords = responseContent.bad;
+    const whitePeople = responseContent.white;
+    const darkPeope = responseContent.dark;
     //Ponemos los ejemplos
     //Palabras buenas
     for (let index = 0; index < goodWords.length; index++) {
         //Obtenemos la palabra
         const word = goodWords[index];
         //La agregamos a la lista de palabras
-        $("#good_examples").append(word);
+        $("#good_examples").append(word.content);
         //Si no es la última palabra
         if (index < goodWords.length - 1) {
-            $("#good_examples").append(",");
+            $("#good_examples").append(", ");
         }
     }
     //Palabras malas
@@ -62,11 +64,25 @@ function putExamples(data) {
         //Obtenemos la palabra
         const word = badWords[index];
         //La agregamos a la lista de palabras
-        $("#good_examples").append(word);
+        $("#bad_examples").append(word.content);
         //Si no es la última palabra
         if (index < badWords.length - 1) {
-            $("#good_examples").append(",");
+            $("#bad_examples").append(", ");
         }
+    }
+    //Personas de piel clara
+    for (let index = 0; index < whitePeople.length; index++) {
+        //Obtenemos la palabra
+        const img = whitePeople[index];
+        //La agregamos a la lista de personas
+        $("#white_examples").append(`<img class="example" src='../imgs/stimuli/${img.content}.jpg'>`);
+    }
+    //Personas de piel oscura
+    for (let index = 0; index < darkPeope.length; index++) {
+        //Obtenemos la palabra
+        const img = darkPeope[index];
+        //La agregamos a la lista de personas
+        $("#dark_examples").append(`<img class="example" src='../imgs/stimuli/${img.content}.jpg'>`);
     }
 }
 
