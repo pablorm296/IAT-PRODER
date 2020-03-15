@@ -13,9 +13,9 @@ body {
     font-family: $bodyFont;
     font-size: $baseFontSize;
     line-height: $baseFontSize * 1.5;
-    height: 100%;
     text-align: center;
     overflow: hidden;
+    height: 100vh;
 }
 
 //Encabezados
@@ -34,24 +34,12 @@ p {
 }
 
 #page {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100vh;
-}
-
-#content {
-    height: 100%;
-}
-
-#gridContainer {
-    display: grid;
-    margin: 5%;
-    grid-template-columns: 30% 40% 30%;
-    grid-template-rows: auto auto auto;
-    justify-items: center;
+    padding: 5% 15%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
 }
 
 #errorMrk {
@@ -68,20 +56,70 @@ p {
     margin: 40px 0;
 }
 
-.leftCol {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 20% 50% 30%;
-    grid-column: 1/2;
-    grid-row: 1/4;
+.col {
+    margin: 0 5%;
+}
+
+.left {
+    order: 0;
+    height: 100%;
+}
+
+.stimuli {
+    order: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .blank {
+        order: 0;
+        flex: 0 1 30vh;
+    }
+
+    .holders {
+        order: 1;
+        font-weight: normal;
+        font-family: $bodyFont;
+        font-size: 30pt;
+        flex: 0 1 auto;
+        margin-bottom: 50px;
+
+        .instructions {
+            font-weight: normal;
+            font-size: 17pt;
+            line-height: 17pt * 1.5;
+            span {
+                color: #9d9dff;
+            }
+        }
+
+        .space_bar {
+            font-weight: normal;
+            font-size: 20pt;
+            margin-top: 20px;
+            font-family: $headerFont;
+        }
+
+    }
+
+    .messages {
+        order: 2;
+        flex: 0 1 auto;
+    }
+}
+
+.right {
+    order: 2;
     height: 100%;
 }
 
 .txt {
     grid-column: 1/2;
     grid-row: 1/2;
-    font-size: 22pt;
+    font-size: 30pt;
     font-weight: bold;
+    line-height: 30pt * 1.5;
 }
 
 .wrd {
@@ -91,57 +129,6 @@ p {
 .or {
     margin: 20px 0px;
     font-weight: normal;
-}
-
-.rightCol {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 20% 50% 30%;
-    grid-column: 3/4;
-    grid-row: 1/4;
-    height: 100%;
-}
-
-.stimHolder {
-    height: 200px;
-}
-
-.stimuli {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 40vh 20vh;
-    grid-column: 2/3;
-    grid-row: 1/4;
-    justify-items: stretch;
-    align-items: stretch;
-    margin-top: 20%;
-
-    .holders {
-        grid-column: 1/2;
-        grid-row: 1/2;
-        font-size: 18pt;
-        font-weight: bold;
-        font-family: $headerFont;
-
-        .instructions {
-            font-weight: normal;
-            font-size: 14pt;
-            span {
-                color: #9d9dff;
-            }
-        }
-
-        .space_bar {
-            font-size: 16pt;
-            margin-top: 20px;
-        }
-
-    }
-
-    .messages {
-        grid-column: 1/2;
-        grid-row: 2/3;
-    }
 }
 
 .loader {
