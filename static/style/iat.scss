@@ -71,10 +71,11 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex: 0 0 50%;
 
     .blank {
         order: 0;
-        flex: 0 1 30vh;
+        flex: 0 1 25vh;
     }
 
     .holders {
