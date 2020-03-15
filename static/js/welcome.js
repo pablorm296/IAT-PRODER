@@ -11,7 +11,7 @@ function okBtn() {
 function infoBtn() {
     //Mostrar el PopUp
     $("#PopUp").show();
-    $('html, body').animate({ scrollTop: 0 }, 'fast');
+    $('html, body').animate({ scrollTop: 0}, 'fast');
 }
 
 //Función para el botón de cancelar
