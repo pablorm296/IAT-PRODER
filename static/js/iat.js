@@ -16,21 +16,6 @@ var __results = {};
 var __errorCnt = 0;
 var myAPI;
 
-//Función para solicitar full screen
-function openFullscreen() {
-    var elem = document.documentElement;
-    
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { /* Firefox */
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE/Edge */
-      elem.msRequestFullscreen();
-    }
-} 
-
 //Función para generar un entero aleatorio
 function randomInt(min, max) {
     min = Math.ceil(min);
