@@ -428,6 +428,9 @@ $(document).ready(function () {
     }
     //Ir al inicio de la página
     $('html,body').scrollTop(0);
+    //Maximizar
+    window.moveTo(0, 0);
+    window.resizeTo(screen.availWidth, screen.availHeight);
     //Iniciar IAT
     IATloop();
     //Desactivar acciones por default en teclas y asignar el keyHandler
