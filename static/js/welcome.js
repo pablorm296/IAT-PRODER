@@ -5,6 +5,12 @@ function okBtn() {
     myAPI.endPoints.POST_newUser("ok");
     //Ir a página de instrucciones
     window.location.href = "/IAT/static/src/instrucciones.php";
+    //Solicitar pantalla completa
+    if (screenfull.isEnabled) {
+		screenfull.request();
+	} else {
+		// Ignore or do something else
+	}
 }
 
 //Función para el botón de saber más
@@ -31,7 +37,8 @@ function closePopUpBtn() {
 //Función para configurar botones
 function setBtns() {
     //Botón ok
-    $("#OkButton").click(okBtn);
+    //$("#OkButton").click(okBtn);
+    document.getElementById("OkButton").addEventListener("click", okBtn);
     //Botón para mayor información
     $("#infoButton").click(infoBtn);
     //Botón para cancelar
