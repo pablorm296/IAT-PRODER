@@ -429,7 +429,11 @@ $(document).ready(function () {
     //Ir al inicio de la página
     $('html,body').scrollTop(0);
     //Solicitar pantalla completa
-    openFullscreen();
+    if (screenfull.isEnabled) {
+		screenfull.request();
+	} else {
+		// Ignore or do something else
+	}
     //Iniciar IAT
     IATloop();
     //Desactivar acciones por default en teclas y asignar el keyHandler
