@@ -18,6 +18,8 @@ var myAPI;
 
 //Función para solicitar full screen
 function openFullscreen() {
+    var elem = document.documentElement;
+    
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
     } else if (elem.mozRequestFullScreen) { /* Firefox */
