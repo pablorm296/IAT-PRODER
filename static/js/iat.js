@@ -154,7 +154,7 @@ function showError() {
 }
 
 //Función para asignar labels a las columnas
-function assignLabelsAndText(stageType, instructionsText, repetition, inverse) {
+function assignLabelsAndText(stageType, msg, repetition, inverse) {
 
     //Definimos variables (elementos donde guardamos el texto)
     var leftColTxt = $("#leftColTxt");
@@ -184,7 +184,7 @@ function assignLabelsAndText(stageType, instructionsText, repetition, inverse) {
     //Un bloque con palabras e imágenes
     if (stageType == "word&img") {
         //Creamos texto de instrucciones
-        const instructionsText = instructionsText;
+        const instructionsText = msg;
         //Asignamos los labels
         __left = [__wrdLabel[order], __imgLabel[__order]];
         __right = [__wrdLabel[order + (1 * modifier)], __imgLabel[__order + (1 * modifier_imgs)]];
@@ -211,7 +211,7 @@ function assignLabelsAndText(stageType, instructionsText, repetition, inverse) {
         //Un bloque con solo palabras
     } else if (stageType == "word") {
         //Creamos texto de instrucciones
-        const instructionsText = instructionsText;
+        const instructionsText = msg;
         //Asignamos los labels
         __left = [__wrdLabel[order]];
         __right = [__wrdLabel[order + (1 * modifier)]];
@@ -226,7 +226,7 @@ function assignLabelsAndText(stageType, instructionsText, repetition, inverse) {
         //Un bloque con solo imagenes
     } else if (stageType == "img") {
         //Creamos texto de instrucciones
-        const instructionsText = instructionsText;
+        const instructionsText = msg;
         //Asignamos los labels
         __left = [__imgLabel[__order]];
         __right = [__imgLabel[__order + (1 * modifier_imgs)]];
@@ -293,24 +293,24 @@ function showInstructions() {
             assignLabelsAndText("word", "<h1>Instrucciones:</h1><ul><li>Coloca tus dedos índices en las letras E y I de tu teclado.</li><li>Observa las palabras que aparecen en la parte superior de la pantalla, REPRESENTAN a las categorías que tendrás que ordenar. Las palabras o imágenes que tienes que ordenar aparecerán una por una en el centro de la pantalla.</li><li>Tu tarea será presionar la tecla E cuando la imagen o palabra pertenezca a la categoría del lado izquierdo. Cuando la palabra o la imagen pertenezca a la categoría de la derecha, presiona la tecla I.</li><li> Ojo: las imágenes o palabras sólo pertenecen a una categoría. Si cometes un error, aparecerá una X, para corregir el error presiona la tecla correcta tan rápido como puedas.</li><ul>", false);
             break;
         case 2:
-            assignLabelsAndText("img", false);
+            assignLabelsAndText("img", "", false);
             break;
         case 3:
-            assignLabelsAndText("word&img", false, false);
+            assignLabelsAndText("word&img", "", false, false);
             break;
         case 4:
-            assignLabelsAndText("word&img", false, false);
+            assignLabelsAndText("word&img", "", false, false);
             break;
         case 5:
-            assignLabelsAndText("word", true);
+            assignLabelsAndText("word", "", true);
             //Cambiamos el texto de las instrucciones
             $("#instructions").append("<br><span>¡Aviso! el orden de las categorías (columnas) cambió de posición. Practica con esta nueva configuración.</span>");
             break;
         case 6:
-            assignLabelsAndText("word&img", false, true);
+            assignLabelsAndText("word&img", "", false, true);
             break;
         case 7:
-            assignLabelsAndText("word&img", false, true);
+            assignLabelsAndText("word&img", "", false, true);
             break;
     }
     //Mostrar contador de rondas, instrucciones e indicación de proceder
