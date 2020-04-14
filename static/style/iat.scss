@@ -88,11 +88,22 @@ p {
 
         .instructions {
             font-weight: normal;
-            font-size: 17pt;
-            line-height: 17pt * 1.5;
+            font-size: 12pt;
+            line-height: 12pt * 1.5;
             span {
                 color: #9d9dff;
             }
+
+            //Encabezados
+            @for $i from 1 through 6 {
+                h#{$i} {
+                    font-size: 12 + $headingScale * (6 - $i);
+                    font-family: $headerFont;
+                    font-weight: normal;
+                    color: #ffffff;
+                }
+            }
+
         }
 
         .space_bar {
