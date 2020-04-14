@@ -16,6 +16,19 @@ var __results = {};
 var __errorCnt = 0;
 var myAPI;
 
+//Función para solicitar full screen
+function openFullscreen() {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+} 
+
 //Función para generar un entero aleatorio
 function randomInt(min, max) {
     min = Math.ceil(min);
@@ -428,6 +441,8 @@ $(document).ready(function () {
     }
     //Ir al inicio de la página
     $('html,body').scrollTop(0);
+    //Solicitar pantalla completa
+    openFullscreen();
     //Iniciar IAT
     IATloop();
     //Desactivar acciones por default en teclas y asignar el keyHandler
