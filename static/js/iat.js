@@ -72,6 +72,9 @@ function keyCallBack(keyName) {
             $("#instructions").hide();
             // Hide round count
             $("#rndCount").hide();
+            // Set blank div class
+            $("#blank").removeClass("blank");
+            $("#blank").addClass("blank_bigger");
         }
     } else {
         if (keyName == "space") {
@@ -324,6 +327,10 @@ function showInstructions() {
     $("#space_bar").show();
     $("#instructions").show();
     $("#rndCount").show();
+    //Definir tamaño del placeholder
+    // Set blank div class
+    $("#blank").removeClass("blank_bigger");
+    $("#blank").addClass("blank");
 }
 
 //Función para colocalr estímulos
