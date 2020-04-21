@@ -62,13 +62,15 @@ function keyCallBack(keyName) {
             __instructions = false;
             //Ocultamos instrucciones e indicación de proceder
             if (screenfull.isFullscreen) {
-
+                console.log("La pantalla ya está maximizada");
             } else {
                 screenfull.request();
             }
+            // Hide space bar indication
             $("#space_bar").hide();
-            $("#reminder").hide();
+            // Hide instructions 
             $("#instructions").hide();
+            // Hide round count
             $("#rndCount").hide();
         }
     } else {
@@ -320,7 +322,6 @@ function showInstructions() {
     }
     //Mostrar contador de rondas, instrucciones e indicación de proceder
     $("#space_bar").show();
-    $("#reminder").show();
     $("#instructions").show();
     $("#rndCount").show();
 }
