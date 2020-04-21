@@ -434,10 +434,13 @@ function IATloop() {
 //Cuando el documento se carga
 $(document).ready(function () {
     //Verificar ancho y alto de la página
-    const h = $(window).height();
-    const w = $(window).width();
-    if (w < 480 || h < 830) {
-        //alert("La resolución de tu dispositivo es muy pequeña para realizar esta prueba. Por favor, ajusta la resolución y recarga la página");
+    const w  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const h = window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
+    const min_h = 460;
+    const min_w = 1000;
+
+    if (w < min_w || h < min_h) {
+        alert("La resolución de tu dispositivo es muy pequeña para realizar esta prueba. Por favor, trata de hacer más grande la pantalla o ajusta la resolución y recarga la página");
     }
     //Ir al inicio de la página
     $('html,body').scrollTop(0);
