@@ -11,7 +11,7 @@
     <!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/5.0.0/screenfull.min.js" integrity="sha256-syuFHf7mRNoTlsx0tObV2rxlKzXoz4kfNuPo8f3pSiU=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-    <script src="../js/iat.min.js"></script>
+    <script src="../js/iat.js"></script>
     <script src="../js/api/api.min.js"></script>
     <!-- Título -->
     <title>Prueba de Asociaciones Implíticas | El Colegio de México</title>
