@@ -1,6 +1,6 @@
 # Prueba de Asociaciones Implícitas
 
-Este repositorio contiene una prueba de asociaciones implícitas (IAT, por sus siglas en inglés) diseñada por miembros del Proyecto de Discriminación Étnico Racial en México, adscrito a El Colegio de México, y programada por Pablo Reyes Moctezuma. 
+Este repositorio contiene una prueba de asociaciones implícitas (IAT, por sus siglas en inglés) diseñada por miembros del Proyecto de Discriminación Étnico Racial en México, adscrito a El Colegio de México, y programada por Pablo Reyes Moctezuma.
 
 ## Estructura del repositorio
 
