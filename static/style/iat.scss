@@ -14,7 +14,7 @@ body {
     font-size: $baseFontSize;
     line-height: $baseFontSize * 1.5;
     text-align: center;
-    overflow: hidden;
+    overflow: scroll;
     height: 100vh;
 }
 
@@ -57,7 +57,7 @@ p {
 }
 
 .col {
-    margin: 0 5%;
+    margin: 0;
 }
 
 .left {
@@ -80,22 +80,22 @@ p {
 
     .blank_bigger {
         order: 0;
-        flex: 0 1 25vh;
+        flex: 0 1 40vh;
     }
 
     .holders {
         order: 1;
         font-weight: normal;
         font-family: $bodyFont;
-        font-size: 30pt;
+        font-size: 4vmin;
         flex: 0 1 auto;
-        margin-bottom: 50px;
+        margin-bottom: 25px;
 
         .instructions {
-            text-align: left;
+            text-align: justify;
             font-weight: normal;
-            font-size: $baseFontSize;
-            line-height: $baseFontSize * 1.5;
+            font-size: 2.5vmin;
+            line-height: 2.5vmin * 1.5;
             margin: 0 0 10% 0;
             span {
                 color: #9d9dff;
@@ -104,7 +104,7 @@ p {
             //Encabezados
             @for $i from 1 through 6 {
                 h#{$i} {
-                    font-size: $baseFontSize + $headingScale * (4 - $i);
+                    font-size: 2.5vmin * (2.5 - $i);
                     font-family: $headerFont;
                     font-weight: normal;
                     color: #ffffff;
@@ -115,7 +115,7 @@ p {
 
         .space_bar {
             font-weight: normal;
-            font-size: 20pt;
+            font-size: 3vmin;
             font-family: $headerFont;
         }
 
@@ -123,6 +123,7 @@ p {
 
     .messages {
         order: 2;
+        font-size: 3vmin;
         flex: 0 1 auto;
     }
 }
@@ -135,9 +136,10 @@ p {
 .txt {
     grid-column: 1/2;
     grid-row: 1/2;
-    font-size: 30pt;
+    font-size: 4vmin;
     font-weight: bold;
-    line-height: 30pt * 1.5;
+    line-height: 4vmin * 1.5;
+    white-space: nowrap;
 }
 
 .wrd {
@@ -167,10 +169,4 @@ p {
     100% {
         transform: rotate(360deg);
     }
-}
-
-.instructions {
-    color: white;
-    font-size: 18pt;
-    text-align: center;
 }
