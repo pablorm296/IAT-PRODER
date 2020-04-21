@@ -21,7 +21,7 @@ body {
 //Encabezados
 @for $i from 1 through 6 {
     h#{$i} {
-        font-size: baseFontSize + $headingScale * (6 - $i);
+        font-size: $baseFontSize + $headingScale * (6 - $i);
         font-family: $headerFont;
         font-weight: normal;
         color: #ffffff;
@@ -75,7 +75,7 @@ p {
 
     .blank {
         order: 0;
-        flex: 0 1 25vh;
+        flex: 0 1 5vh;
     }
 
     .holders {
@@ -89,8 +89,9 @@ p {
         .instructions {
             text-align: left;
             font-weight: normal;
-            font-size: 12pt;
-            line-height: 12pt * 1.5;
+            font-size: $baseFontSize;
+            line-height: $baseFontSize * 1.5;
+            margin: 0 0 10% 0;
             span {
                 color: #9d9dff;
             }
@@ -98,7 +99,7 @@ p {
             //Encabezados
             @for $i from 1 through 6 {
                 h#{$i} {
-                    font-size: 12 + $headingScale * (6 - $i);
+                    font-size: $baseFontSize + $headingScale * (4 - $i);
                     font-family: $headerFont;
                     font-weight: normal;
                     color: #ffffff;
@@ -110,7 +111,6 @@ p {
         .space_bar {
             font-weight: normal;
             font-size: 20pt;
-            margin-top: 20px;
             font-family: $headerFont;
         }
 
