@@ -300,27 +300,25 @@ function showInstructions() {
     //Colocar títulos 
     switch (__stage) {
         case 1:
-            assignLabelsAndText("word", "<h1>Instrucciones:</h1><ul><li>Coloca tus dedos índices en las letras E y I de tu teclado.</li><li>Observa las palabras que aparecen en la parte superior de la pantalla, REPRESENTAN a las categorías que tendrás que ordenar. Las palabras o imágenes que tienes que ordenar aparecerán una por una en el centro de la pantalla.</li><li>Tu tarea será presionar la tecla E cuando la imagen o palabra pertenezca a la categoría del lado izquierdo. Cuando la palabra o la imagen pertenezca a la categoría de la derecha, presiona la tecla I.</li><li> Ojo: las imágenes o palabras sólo pertenecen a una categoría. Si cometes un error, aparecerá una X, para corregir el error presiona la tecla correcta tan rápido como puedas.</li><ul>", false);
+            assignLabelsAndText("img", "<h1>Instrucciones:</h1><ul><li>Coloca tus dedos índices en las letras E y I de tu teclado.</li><li>Observa las palabras que aparecen en la parte superior de la pantalla, REPRESENTAN a las categorías que tendrás que ordenar. Las palabras o imágenes que tienes que ordenar aparecerán una por una en el centro de la pantalla.</li><li>Tu tarea será presionar la tecla E cuando la imagen o palabra pertenezca a la categoría del lado izquierdo. Cuando la palabra o la imagen pertenezca a la categoría de la derecha, presiona la tecla I.</li><li> Ojo: las imágenes o palabras sólo pertenecen a una categoría. Si cometes un error, aparecerá una X, para corregir el error presiona la tecla correcta tan rápido como puedas.</li><ul>", false);
             break;
         case 2:
-            assignLabelsAndText("img", "", false);
+            assignLabelsAndText("word", "<p>En este bloque tendrás que categorizar palabras. Sin embargo, las reglas son las mismas</p><b>Palabras buenas:</b> competente, trabajador, constante, cariñoso, tierno, amoroso, dulce<p></p><p><b>Palabras malas:</b> agresivo, rudo, problemático, violento, mediocre, conformista, mentiroso, corrupto.</p>", false);
             break;
         case 3:
-            assignLabelsAndText("word&img", "", false, false);
+            assignLabelsAndText("word&img", "<p>En esta sección tendrás que ordenar imágenes y palabras.</p><p>Las etiquetas verdes corresponden a las palabras y las blancas a las imágenes.</p>", false, false);
             break;
         case 4:
-            assignLabelsAndText("word&img", "", false, false);
+            assignLabelsAndText("word&img", "<p>Ordena las mismas dos categorías de nuevo.</p>", false, false);
             break;
         case 5:
-            assignLabelsAndText("word", "", true);
-            //Cambiamos el texto de las instrucciones
-            $("#instructions").append("<br><span>¡Aviso! el orden de las categorías (columnas) cambió de posición. Practica con esta nueva configuración.</span>");
+            assignLabelsAndText("img", "<p>Aviso, ahora sólo hay dos categorías y han cambiado de posición. Practica en esta nueva configuración.</p>", true);
             break;
         case 6:
-            assignLabelsAndText("word&img", "", false, true);
+            assignLabelsAndText("word&img", "<p>Observa la parte de arriba, ahora aparecen categorías dobles nuevamente.</p><p>Usa las teclas E y I para ordenar los elementos.</p>", false, true);
             break;
         case 7:
-            assignLabelsAndText("word&img", "", false, true);
+            assignLabelsAndText("word&img", "<p>Ordena las mismas categorías de nuevo.</p>", false, true);
             break;
     }
     //Mostrar contador de rondas, instrucciones e indicación de proceder
