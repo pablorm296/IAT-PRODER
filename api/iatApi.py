@@ -127,13 +127,13 @@ class API:
                 }
 
             if stage == 1:
-                wordList = random.choices(stimuli_words, k = 16)
-                finalList = wordList
-
-            elif stage == 2:
                 imageList = random.sample(stimuli_images, 16)
                 finalList = imageList
 
+            elif stage == 2:
+                wordList = random.choices(stimuli_words, k = 16)
+                finalList = wordList
+                
             elif stage >= 3 and stage < 5:
                 trainWords = random.sample(stimuli_words, 4)
                 wordList = random.choices(stimuli_words, k = 18)
@@ -144,8 +144,8 @@ class API:
                 finalList = trainWords + mergedList
 
             elif stage == 5:
-                wordList = random.sample(stimuli_words, k = 16)
-                finalList = wordList
+                imageList = random.sample(stimuli_images, 16)
+                finalList = imageList
 
             elif stage >= 6:
                 trainWords = random.sample(stimuli_words, 4)
