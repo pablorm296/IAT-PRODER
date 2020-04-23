@@ -125,18 +125,37 @@
 
 .table_questions {
     margin: auto;
-    text-align: center;
+    font-size: $baseFontSize - 3;
+    line-height: $baseFontSize - 1;
 
     th,
     td {
         width: 200px;
-        font-weight: bold;
-        padding: 5px;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    .option {
+        text-align: center;
+        padding: 0;
     }
 
     th {
         background-color: #8e6e97;
         color: white;
+        padding: 5px;
+        text-align: center;
+        font-weight: normal;
+
+        span {
+            display: block;
+            color: #dd9585;
+            text-align: center;
+            padding-top: 5px;
+            font-weight: bold;
+        }
     }
 
 }
@@ -189,6 +208,30 @@ input[type=tel]:hover {
     background: #b29eb4;
     color: #ffffff;
 }
+
+input[type=text] {
+    text-align: center;
+    -webkit-appearance: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 2px solid #791e94;
+    transition: all 1s ease-in-out;
+    margin-bottom: 10px;
+    background: #f7f7f7;
+    width: 600px;
+}
+
+input[type=text]:focus,
+input[type=text]:hover {
+    outline: none;
+    -webkit-appearance: none;
+    background: #b29eb4;
+    color: #ffffff;
+}
+
 
 select {
     background: #f7f7f7;

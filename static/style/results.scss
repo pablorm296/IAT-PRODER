@@ -72,43 +72,6 @@
 
 }
 
-.table_questions {
-    margin: auto;
-    font-size: $baseFontSize - 3;
-    line-height: $baseFontSize - 1;
-
-    th,
-    td {
-        width: 200px;
-    }
-
-    td {
-        padding: 10px;
-    }
-
-    .option {
-        text-align: center;
-        padding: 0;
-    }
-
-    th {
-        background-color: #8e6e97;
-        color: white;
-        padding: 5px;
-        text-align: center;
-        font-weight: normal;
-
-        span {
-            display: block;
-            color: #dd9585;
-            text-align: center;
-            padding-top: 5px;
-            font-weight: bold;
-        }
-    }
-
-}
-
 hr {
     margin: 20px 0;
     border-width: 0 0 1px;
