@@ -21,4 +21,3 @@ Este repositorio contiene una prueba de asociaciones implícitas (IAT, por sus s
     7. __*index.php*__: Landing php file. Redirects to the proper PHP file in src/.
 5. __*.htaccess*__: Apache server configuration file. Not included in GitHub repo.
 6. __*api.wsgi*__: WSGI script. Configures Back-end REST API. Not included in GitHub repo.
-7. __*security*__: Symlink to server security configuration. Not included in GitHub repo. **DO NOT INCLUDE IN PRODUCTION ENV; ONLY FOR LOCAL TESTS, PLEASE**.
