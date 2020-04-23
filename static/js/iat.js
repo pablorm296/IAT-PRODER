@@ -74,6 +74,7 @@ function keyCallBack(keyName) {
             $("#rndCount").hide();
             // Set blank div class
             $("#blank").removeClass("blank");
+            $("#blank").removeClass("blank_medium");
             $("#blank").addClass("blank_bigger");
         }
     } else {
@@ -300,24 +301,52 @@ function showInstructions() {
     //Colocar títulos 
     switch (__stage) {
         case 1:
+            //Definir tamaño del placeholder
+            // Set blank div class
+            $("#blank").removeClass("blank_bigger");
+            $("#blank").addClass("blank");
             assignLabelsAndText("img", "<h1>Instrucciones:</h1><ul><li>Coloca tus dedos índices en las letras E y I de tu teclado.</li><li>Observa las palabras que aparecen en la parte superior de la pantalla, REPRESENTAN a las categorías que tendrás que ordenar. Las palabras o imágenes que tienes que ordenar aparecerán una por una en el centro de la pantalla.</li><li>Tu tarea será presionar la tecla E cuando la imagen o palabra pertenezca a la categoría del lado izquierdo. Cuando la palabra o la imagen pertenezca a la categoría de la derecha, presiona la tecla I.</li><li> Ojo: las imágenes o palabras sólo pertenecen a una categoría. Si cometes un error, aparecerá una X, para corregir el error presiona la tecla correcta tan rápido como puedas.</li><ul>", false);
             break;
         case 2:
+            //Definir tamaño del placeholder
+            // Set blank div class
+            $("#blank").removeClass("blank_bigger");
+            $("#blank").addClass("blank_medium");
             assignLabelsAndText("word", "<p>En este bloque tendrás que categorizar palabras. Sin embargo, las reglas son las mismas</p><b>Palabras buenas:</b> competente, trabajador, constante, cariñoso, tierno, amoroso, dulce<p></p><p><b>Palabras malas:</b> agresivo, rudo, problemático, violento, mediocre, conformista, mentiroso, corrupto.</p>", false);
             break;
         case 3:
+            //Definir tamaño del placeholder
+            // Set blank div class
+            $("#blank").removeClass("blank_bigger");
+            $("#blank").addClass("blank_medium");
             assignLabelsAndText("word&img", "<p>En esta sección tendrás que ordenar imágenes y palabras.</p><p>Las etiquetas verdes corresponden a las palabras y las blancas a las imágenes.</p>", false, false);
             break;
         case 4:
+            //Definir tamaño del placeholder
+            // Set blank div class
+            $("#blank").removeClass("blank_bigger");
+            $("#blank").addClass("blank_medium");
             assignLabelsAndText("word&img", "<p>Ordena las mismas dos categorías de nuevo.</p>", false, false);
             break;
         case 5:
+            //Definir tamaño del placeholder
+            // Set blank div class
+            $("#blank").removeClass("blank_bigger");
+            $("#blank").addClass("blank_medium");
             assignLabelsAndText("img", "<p>Aviso, ahora sólo hay dos categorías y han cambiado de posición. Practica en esta nueva configuración.</p>", true);
             break;
         case 6:
+            //Definir tamaño del placeholder
+            // Set blank div class
+            $("#blank").removeClass("blank_bigger");
+            $("#blank").addClass("blank_medium");
             assignLabelsAndText("word&img", "<p>Observa la parte de arriba, ahora aparecen categorías dobles nuevamente.</p><p>Usa las teclas E y I para ordenar los elementos.</p>", false, true);
             break;
         case 7:
+            //Definir tamaño del placeholder
+            // Set blank div class
+            $("#blank").removeClass("blank_bigger");
+            $("#blank").addClass("blank_medium");
             assignLabelsAndText("word&img", "<p>Ordena las mismas categorías de nuevo.</p>", false, true);
             break;
     }
@@ -325,10 +354,6 @@ function showInstructions() {
     $("#space_bar").show();
     $("#instructions").show();
     $("#rndCount").show();
-    //Definir tamaño del placeholder
-    // Set blank div class
-    $("#blank").removeClass("blank_bigger");
-    $("#blank").addClass("blank");
 }
 
 //Función para colocalr estímulos
