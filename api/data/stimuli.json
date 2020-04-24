@@ -22,83 +22,23 @@
         },
         {
             "type": "img",
-            "label": "white",
+            "label": "dark",
             "content": "5"
         },
         {
             "type": "img",
-            "label": "white",
+            "label": "dark",
             "content": "6"
         },
         {
             "type": "img",
-            "label": "white",
+            "label": "dark",
             "content": "7"
         },
         {
             "type": "img",
-            "label": "white",
+            "label": "dark",
             "content": "8"
-        },
-        {
-            "type": "img",
-            "label": "white",
-            "content": "9"
-        },
-        {
-            "type": "img",
-            "label": "white",
-            "content": "10"
-        },
-        {
-            "type": "img",
-            "label": "dark",
-            "content": "11"
-        },
-        {
-            "type": "img",
-            "label": "dark",
-            "content": "12"
-        },
-        {
-            "type": "img",
-            "label": "dark",
-            "content": "13"
-        },
-        {
-            "type": "img",
-            "label": "dark",
-            "content": "14"
-        },
-        {
-            "type": "img",
-            "label": "dark",
-            "content": "15"
-        },
-        {
-            "type": "img",
-            "label": "dark",
-            "content": "16"
-        },
-        {
-            "type": "img",
-            "label": "dark",
-            "content": "17"
-        },
-        {
-            "type": "img",
-            "label": "dark",
-            "content": "18"
-        },
-        {
-            "type": "img",
-            "label": "dark",
-            "content": "19"
-        },
-        {
-            "type": "img",
-            "label": "dark",
-            "content": "20"
         }
     ],
     "words": [
