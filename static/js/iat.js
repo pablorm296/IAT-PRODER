@@ -165,7 +165,7 @@ function showError() {
 }
 
 //Función para asignar labels a las columnas
-function assignLabelsAndText(stageType, msg, repetition, inverse) {
+function assignLabelsAndText(stageType, msg, inverse) {
 
     //Definimos variables (elementos donde guardamos el texto)
     var leftColTxt = $("#leftColTxt");
@@ -200,10 +200,10 @@ function assignLabelsAndText(stageType, msg, repetition, inverse) {
         __left = [__wrdLabel[order], __imgLabel[__order]];
         __right = [__wrdLabel[order + (1 * modifier)], __imgLabel[__order + (1 * modifier_imgs)]];
         //Cambiamos el texto
-        leftImgLabel.innerText = __imgCat[__order];
-        rightImgLabel.innerText = __imgCat[__order + (1 * modifier_imgs)];
-        leftWrdLabel.innerText = __wrdCat[order];
-        rightWrdLabel.innerText = __wrdCat[order + (1 * modifier)];
+        leftImgLabel.innerText = __imgCat[order];
+        rightImgLabel.innerText = __imgCat[order + (1 * modifier_imgs)];
+        leftWrdLabel.innerText = __wrdCat[__order];
+        rightWrdLabel.innerText = __wrdCat[__order + (1 * modifier)];
         //Mostramos los campos
         leftImgLabel.style.display = "block";
         leftOr.style.display = "block";
@@ -212,12 +212,7 @@ function assignLabelsAndText(stageType, msg, repetition, inverse) {
         rightOr.style.display = "block";
         rightWrdLabel.style.display = "block";
         //Cambiamos el texto de las instrucciones
-        if (repetition) {
-            $("#instructions").html("<span>Este bloque es igual al anterior.</span><br>");
-            $("#instructions").append(instructionsText);
-        } else {
-            $("#instructions").html(instructionsText);
-        }
+        $("#instructions").html(instructionsText);
         
         //Un bloque con solo palabras
     } else if (stageType == "word") {
@@ -319,14 +314,14 @@ function showInstructions() {
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("word&img", "<p>En esta sección tendrás que ordenar imágenes y palabras.</p><p>Las etiquetas verdes corresponden a las palabras y las blancas a las imágenes.</p>", false, false);
+            assignLabelsAndText("word&img", "<p>En esta sección tendrás que ordenar imágenes y palabras.</p><p>Las etiquetas verdes corresponden a las palabras y las blancas a las imágenes.</p>", false);
             break;
         case 4:
             //Definir tamaño del placeholder
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("word&img", "<p>Ordena las mismas dos categorías de nuevo.</p>", false, false);
+            assignLabelsAndText("word&img", "<p>Ordena las mismas dos categorías de nuevo.</p>", false);
             break;
         case 5:
             //Definir tamaño del placeholder
@@ -340,14 +335,14 @@ function showInstructions() {
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("word&img", "<p>Observa la parte de arriba, ahora aparecen categorías dobles nuevamente.</p><p>Usa las teclas E y I para ordenar los elementos.</p>", false, true);
+            assignLabelsAndText("word&img", "<p>Observa la parte de arriba, ahora aparecen categorías dobles nuevamente.</p><p>Usa las teclas E y I para ordenar los elementos.</p>", true);
             break;
         case 7:
             //Definir tamaño del placeholder
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("word&img", "<p>Ordena las mismas categorías de nuevo.</p>", false, true);
+            assignLabelsAndText("word&img", "<p>Ordena las mismas categorías de nuevo.</p>", true);
             break;
     }
     //Mostrar contador de rondas, instrucciones e indicación de proceder
