@@ -75,14 +75,14 @@ function putExamples(data) {
         //Obtenemos la palabra
         const img = whitePeople[index];
         //La agregamos a la lista de personas
-        $("#white_examples").append(`<img class="example" src='../imgs/stimuli/${img.content}.jpg'>`);
+        $("#white_examples").append(`<img class="example" src='../imgs/stimuli/${img.content}.JPG'>`);
     }
     //Personas de piel oscura
     for (let index = 0; index < darkPeope.length; index++) {
         //Obtenemos la palabra
         const img = darkPeope[index];
         //La agregamos a la lista de personas
-        $("#dark_examples").append(`<img class="example" src='../imgs/stimuli/${img.content}.jpg'>`);
+        $("#dark_examples").append(`<img class="example" src='../imgs/stimuli/${img.content}.JPG'>`);
     }
 }
 

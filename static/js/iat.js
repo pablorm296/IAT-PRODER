@@ -375,7 +375,7 @@ function placeStimuli(data) {
         //Imagen o palabra?
         if (stimuliType == "img") {
             // Contenido del estímulo
-            $(holder).html(`<img src='../imgs/stimuli/${stimuliContent}.jpg'>`);
+            $(holder).html(`<img src='../imgs/stimuli/${stimuliContent}.JPG'>`);
         } else {
             // Contenido del estímulo
             $(holder).html(stimuliContent);
