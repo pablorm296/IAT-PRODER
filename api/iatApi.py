@@ -127,7 +127,7 @@ class API:
                 }
 
             if stage == 1:
-                imageList = random.sample(stimuli_images, 16)
+                imageList = random.choices(stimuli_images, k = 16)
                 finalList = imageList
 
             elif stage == 2:
@@ -144,7 +144,7 @@ class API:
                 finalList = trainWords + mergedList
 
             elif stage == 5:
-                imageList = random.sample(stimuli_images, 16)
+                imageList = random.choices(stimuli_images, k = 16)
                 finalList = imageList
 
             elif stage >= 6:
