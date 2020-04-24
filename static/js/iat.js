@@ -188,8 +188,8 @@ function assignLabelsAndText(stageType, msg, inverse) {
     }
 
     //Dependiendo del orden que se le asigno a la persona, creamos un modifcador
-    const modifier = (order === 0) ? 1 : -1;
-    const modifier_imgs = (__order === 0) ? 1 : -1;
+    const modifier = (__order === 0) ? 1 : -1;
+    const modifier_imgs = (order === 0) ? 1 : -1;
 
     //Dependiendo del tipo de bloque, llenamos distintas variables
     //Un bloque con palabras e imágenes
@@ -197,8 +197,8 @@ function assignLabelsAndText(stageType, msg, inverse) {
         //Creamos texto de instrucciones
         const instructionsText = msg;
         //Asignamos los labels
-        __left = [__wrdLabel[order], __imgLabel[__order]];
-        __right = [__wrdLabel[order + (1 * modifier)], __imgLabel[__order + (1 * modifier_imgs)]];
+        __left = [__wrdLabel[__order], __imgLabel[order]];
+        __right = [__wrdLabel[__order + (1 * modifier)], __imgLabel[order + (1 * modifier_imgs)]];
         //Cambiamos el texto
         leftImgLabel.innerText = __imgCat[order];
         rightImgLabel.innerText = __imgCat[order + (1 * modifier_imgs)];
@@ -219,11 +219,11 @@ function assignLabelsAndText(stageType, msg, inverse) {
         //Creamos texto de instrucciones
         const instructionsText = msg;
         //Asignamos los labels
-        __left = [__wrdLabel[order]];
-        __right = [__wrdLabel[order + (1 * modifier)]];
+        __left = [__wrdLabel[__order]];
+        __right = [__wrdLabel[__order + (1 * modifier)]];
         //Cambiamos el texto
-        leftWrdLabel.innerText = __wrdCat[order];
-        rightWrdLabel.innerText = __wrdCat[order + (1 * modifier)];
+        leftWrdLabel.innerText = __wrdCat[__order];
+        rightWrdLabel.innerText = __wrdCat[__order + (1 * modifier)];
         //Mostramos los campos
         leftWrdLabel.style.display = "block";
         rightWrdLabel.style.display = "block";
@@ -234,11 +234,11 @@ function assignLabelsAndText(stageType, msg, inverse) {
         //Creamos texto de instrucciones
         const instructionsText = msg;
         //Asignamos los labels
-        __left = [__imgLabel[__order]];
-        __right = [__imgLabel[__order + (1 * modifier_imgs)]];
+        __left = [__imgLabel[order]];
+        __right = [__imgLabel[order + (1 * modifier_imgs)]];
         //Cambiamos el texto
-        leftImgLabel.innerText = __imgCat[__order];
-        rightImgLabel.innerText = __imgCat[__order + (1 * modifier_imgs)];
+        leftImgLabel.innerText = __imgCat[order];
+        rightImgLabel.innerText = __imgCat[order + (1 * modifier_imgs)];
         //Mostramos los campos
         leftImgLabel.style.display = "block";
         rightImgLabel.style.display = "block";
