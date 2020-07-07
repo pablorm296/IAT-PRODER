@@ -1,5 +1,5 @@
 #Ignore python env files
-/src/*
+/Env/*
 #Ignore ssh auth keys
 /ssh/*
 #Ignore server configuration files
