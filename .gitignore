@@ -14,3 +14,5 @@
 #Ignorar compilaciones sass
 *.css.map
 *.css
+# Ignorar compilaciones de python
+*.pyc
