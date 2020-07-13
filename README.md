@@ -4,9 +4,9 @@ This is an Implicit Association Test (IAT) designed to measure the strength of s
 
 ## Overview :mag:
 
-This IAT is based on the [Stereotype Content Model](https://en.wikipedia.org/wiki/Stereotype_content_model) (SCM), and its main objective is to measure the strength of associations between two target categories (dark-skin, white-skin) and implicit stereotypes.
+This IAT is based on the [Stereotype Content Model](https://en.wikipedia.org/wiki/Stereotype_content_model) (SCM), and its main objective is to measure the strength of associations between two target categories (dark skin, white skin) and implicit stereotypes.
 
-The back end implementation is a python application (mainly using [Flask](https://flask.palletsprojects.com/en/1.1.x/)) in charge of processing user interaction and managing sessions. It exposes a [Public REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) as the main way of communication with the front end.
+The server side implementation uses Python (mainly using [Flask](https://flask.palletsprojects.com/en/1.1.x/)), and PHP to process user interaction and manage sessions. The Python application exposes a [Public REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) as the main way of communication with the client side.
 
 **Test design:** Stephanie Posadas Narvaéz.
 
