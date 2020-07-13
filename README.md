@@ -8,15 +8,19 @@ This IAT is based on the [Stereotype Content Model](https://en.wikipedia.org/wik
 
 The server side implementation uses Python (mainly [Flask](https://flask.palletsprojects.com/en/1.1.x/)), to process user interaction, serve dynamic pages and manage sessions. It also uses MongoDB as the main storage service. The Python application exposes a [Public REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) as the main way of communication with the client side (a basic mix of plain JS, SASS, and HTML).
 
+:warning: The IAT is by default in Spanish. However, the whole repo, and the app documentation is in English. 
+
 **IAT design:** Stephanie Posadas Narvaéz.
 
 **IAT implementation:** Pablo Reyes Moctezuma.
 
 ## Deployment and Configuration Instructions :package:
 
-### Docker :whale:
+### Deploy with Docker :whale:
 
-### Native
+### Native Installation
+
+#### Configuration
 
 #### Testing & Debugging
 
