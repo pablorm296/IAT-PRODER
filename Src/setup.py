@@ -5,7 +5,7 @@ with open("../README.md") as readmeFile:
     long_description = readmeFile.read()
 
 setuptools.setup(
-    name = "IAT_PRODER",
+    name = "IAT",
     version = "0.1",
     author = "Pablo Reyes Moctezuma",
     author_email = "pablo.reyes.moctezuma@gmail.com",
@@ -14,6 +14,6 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     packages = ["IAT"],
     package_dir = {
-        "IAT": "."
+        "IAT": "IAT/"
     }
 )
