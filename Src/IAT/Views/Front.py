@@ -9,9 +9,9 @@ from flask import session
 # Read config
 # CHeck if we are in a test env
 if os.environ["FLASK_DEBUG_IAT"] == "True":
-    ConfigReader = Reader(path = "./Debug", load = "all")
+    ConfigReader = Reader(path = "./Debug", load = "app")
 else:
-    ConfigReader = Reader(path = None, load = "all")
+    ConfigReader = Reader(path = None, load = "app")
 
 CONFIG = ConfigReader.Config
 MONGO_URI = ConfigReader.Mongo_Uri
