@@ -111,17 +111,16 @@ class Reader:
     @property
     def Mongo_Uri(self):
         # If there is not any app config loaded, return none
-        if self.Config.get("app", None):
+        if self.Config.get("app", None) is None:
             warning_msg = "It seems that there is not an app config loaded"
             logger.warning(warning_msg)
             return None
         else:
             #Make Mongo_Uri
-            uri = "mongodb://{0}:{1}@{2}:{3}/{4}".format(
+            uri = "mongodb://{0}:{1}@{2}:{3}".format(
                 self.Config["app"]["mongo_user"],
                 self.Config["app"]["mongo_password"],
                 self.Config["app"]["mongo_host"],
                 self.Config["app"]["mongo_port"],
-                self.Config["app"]["mongo_db_name"]
             )
             return uri
