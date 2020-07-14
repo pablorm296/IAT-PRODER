@@ -5,31 +5,22 @@ db = db.getSiblingDB("admin");
 db.auth("root", "wMvHrycPA5kTE9Px8YzE")
 
 // Create main DataBase
-db = db.getSiblingDB("DataInt_Auth");   
+db = db.getSiblingDB("IAT_PRODER");   
 
-// Create main administrator
+// Create IAT administrator
 db.createUser({
-    user: "DataInt_Auth_Admin",
+    user: "iat_admin",
     pwd: "DKpkFmQsrm5MNswqdfvd",
     roles: [
-        { role: "dbOwner", db: "DataInt_Auth" }
+        { role: "dbOwner", db: "IAT_PRODER" }
     ]
 });
 
-// Create API reader/writer
+// Create IAT reader/writer
 db.createUser({
-    user: "DataInt_Auth_API",
+    user: "iat_app",
     pwd: "xbkhWj43PaG43rb96uQT",
     roles: [
-        { role: "readWrite", db: "DataInt_Auth"},
-    ]
-});
-
-// Create Python reader/writer
-db.createUser({
-    user: "DataInt_Auth_Python",
-    pwd: "tqhzvUCP4WAmHM39B64e",
-    roles: [
-        { role: "readWrite", db: "DataInt_Auth"},
+        { role: "readWrite", db: "IAT_PRODER"},
     ]
 });
