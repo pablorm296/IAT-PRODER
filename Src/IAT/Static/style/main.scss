@@ -1,0 +1,100 @@
+@import 'fonts';
+
+//Cuerpo
+body {
+    color: #3b3e44;
+    margin: 0pt;
+    font-family: $bodyFont;
+    font-size: $baseFontSize;
+    line-height: $baseFontSize * 1.5;
+}
+
+//Encabezados
+@for $i from 1 through 6 {
+    h#{$i} {
+      font-size: baseFontSize + $headingScale * (6 - $i);
+      font-family: $headerFont;
+      font-weight: normal;
+      font-variant: small-caps;
+      color: #de6449
+    }
+}
+
+p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    display: inline-block;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 13pt;
+    transition: .5s;
+    background-color: white;
+    word-wrap: normal;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+}
+
+.énfasis {
+    color: #de6449;
+}
+
+table {
+    text-align: left;
+    border: 1px solid #909090;
+    border-collapse: collapse;
+
+    th,
+    td {
+        border: 1px solid #909090;
+        border-collapse: collapse;
+    }
+}
+
+#page {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+#content {
+    flex: 1;
+}
+
+#footer {
+    text-align: center !important;
+    padding: 2.5% 5%;
+    font-size: 10pt;
+    color: white;
+    background-color: #791e94;
+    line-height: 12pt;
+
+    #projectLogo {
+        margin-bottom: 20px;
+    }
+
+    .logos img {
+        display: block;
+        margin: 5px auto;
+        max-width: 150px;
+        min-width: 0;
+        width: auto;
+    }
+
+    .text {
+        margin: 10pt 0 0 0;
+        text-align: center;
+
+        p {
+            margin: 2pt;
+        }
+
+    }
+
+}
