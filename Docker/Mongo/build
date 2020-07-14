@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Build docker
-sudo docker build -t dataint/mongo:test .
+sudo docker build -t iat/mongo:test .
