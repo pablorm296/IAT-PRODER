@@ -1,9 +1,14 @@
 from flask import Flask
+import os
 
 from IAT.Config import Reader
 from IAT.Views import Front
 
-def create_app(debug = True):
+def create_app(debug = None):
+    # Are we in a debug env
+    if os.environ["FLASK_DEBUG_IAT"] == "True" and debug is None:
+        debug = True
+
     # Read configuration
     if debug:
         myConfigReader = Reader(path = "Debug", load = "app")
