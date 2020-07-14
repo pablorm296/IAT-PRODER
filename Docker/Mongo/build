@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Build docker
+sudo docker build -t dataint/mongo:test .
