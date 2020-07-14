@@ -1,7 +1,7 @@
 import setuptools
 
 # Load README
-with open("README.md") as readmeFile:
+with open("../README.md") as readmeFile:
     long_description = readmeFile.read()
 
 setuptools.setup(
