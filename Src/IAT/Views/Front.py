@@ -32,11 +32,11 @@ def landing():
 @Front.route("/welcome", methods = ["GET"])
 def welcome():
     # Check if session has user_id field
-    if session.get("user_id", None):
+    if session.get("user_id", None) is None:
         # If not, then create a new user_id
         session["user_id"] = uuid.uuid1().hex
         # Render welcome
-        return flask.render_template("welcome.html.jinja")
+        return flask.render_template("welcome.html")
     # If there is a user_id in the session cookie
     else:
         # Open new DB connection
@@ -53,8 +53,8 @@ def welcome():
 
         # If there is not a registered user, or if the user has not completed the test, then render instructions
         if searchResults is None or searchResults["completed"] == False:
-            return flask.render_template("welcome.html.jinja")
+            return flask.render_template("welcome.html")
         else:
-            return flask.render_template("sorry.html.jinja")
+            return flask.render_template("sorry.html")
 
 
