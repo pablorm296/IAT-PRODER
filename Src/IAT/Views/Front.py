@@ -21,7 +21,7 @@ Front = Blueprint('front', __name__, static_folder = "Static", template_folder =
 
 @Front.route("/", methods = ["GET"])
 def landing():
-    """Landing view.
+    """Landing View.
 
     Although not implemented yet, this view is intended to check user device. If it's a mobile device, user will be redirected to the mobile version of the test. If not, it will be redirected to the desktop version.
 
@@ -31,6 +31,11 @@ def landing():
 
 @Front.route("/welcome", methods = ["GET"])
 def welcome():
+    """Welcome View
+
+    When a `GET` request is received, this view will get the `user_id` from the session cookie and check if the user has already completed the test. If the user has already completed the test, a message will be rendered stating that he or she can only participate in one test. However, if the user is new or has not completed a test, the main welcome message will be rendered.
+
+    """
     # Check if session has user_id field
     if session.get("user_id", None) is None:
         # If not, then create a new user_id
