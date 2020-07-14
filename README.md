@@ -10,6 +10,12 @@ The server side implementation uses Python (mainly [Flask](https://flask.pallets
 
 :warning: The IAT is by default in Spanish. However, all documentation is in English, in order to ease maintainability and overall reproducibility. 
 
+### Customization
+
+Although this app is not intended to be a distributable package for implementing any kind of IAT, you can still easily change some of the test's contents.
+
+There are two JSON config files: `stimuli.config.json`, and `text.config.json`. By modifying their contents, you can define new stimuli (words & images) to be tested, or you can change the test's instructions. If you feel comfortable writing HTML and CSS, you can also easily modify the app templates.
+
 **IAT design:** Stephanie Posadas Narvaéz.
 
 **IAT implementation:** Pablo Reyes Moctezuma.
