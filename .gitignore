@@ -13,3 +13,5 @@
 .vscode/
 # Ignorar compilaciones de python
 *.pyc
+# Ignore pip local install
+*.egg-info
