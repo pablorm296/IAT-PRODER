@@ -27,7 +27,7 @@ def landing():
 
     """
     # TODO: Check for mobile devices. For now, only desktop versions
-    flask.redirect("welcome", 302)
+    return flask.redirect("welcome", 302)
 
 @Front.route("/welcome", methods = ["GET"])
 def welcome():
@@ -40,9 +40,10 @@ def welcome():
     # If there is a user_id in the session cookie
     else:
         # Open new DB connection
+        print(MONGO_URI)
         MongoConnection = pymongo.MongoClient(MONGO_URI)
         MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
-        UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collections"]]
+        UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
 
         # Search user id
         user_id = session.get("user_id")
