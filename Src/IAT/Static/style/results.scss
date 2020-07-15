@@ -19,6 +19,14 @@
     grid-row: 1/2;
 }
 
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    text-align: center;
+}
+
 .input_label {
     display: block;
     margin: 15px 0;
