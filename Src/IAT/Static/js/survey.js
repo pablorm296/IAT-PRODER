@@ -57,9 +57,10 @@ function saveResults() {
 //Función para el botón de ok
 function okBtn() {
     //Validamos y guardamos resultados
-    checkInput();
-    //Ir a página de resultados
-    window.location.href = "/IAT/static/src/results.php";
+    if (checkInput()) {
+         //Ir a página de resultados
+        window.location.href = "/IAT/static/src/results.php";
+    }
 }
 
 //Función para configurar botones
