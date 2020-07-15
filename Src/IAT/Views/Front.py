@@ -67,7 +67,8 @@ def welcome():
                 "remote_address": request.remote_addr,
                 "last_seen": datetime.datetime.utcnow(),
                 "hits": 1,
-                "completed": False
+                "completed": False,
+                "last_view": "welcome"
             }
         )
 
@@ -95,9 +96,9 @@ def welcome():
         searchResults = UsersCollection.find_one(
             {"user_id": user_id}
         )
-
-        # If there is not a registered user, or if the user has not completed the test, then render main welcome message
-        if searchResults is None or searchResults["completed"] == False:
+        
+        # if the user has not completed the test, then render main welcome message
+        if searchResults["completed"] == False or searchResults is None:
             # Try to update user access info
             updateResults = UsersCollection.update_one(
                 {"user_id": user_id},
@@ -120,6 +121,11 @@ def welcome():
 
 @Front.route("/instructions", methods = ["GET"])
 def instructions():
+    """[summary]
+
+    Returns:
+        [type]: [description]
+    """
     # Check referer
     referer = request.headers.get("Referer", None)
     # If there's not a referer header, go to root
@@ -133,7 +139,35 @@ def instructions():
         logger.warning("Request from {0} attempted to directly access instructions with an invalid referer ('{1}')".format(request.remote_addr, referer))
         return flask.redirect("/", 302)
 
+    # Check session
+    if session.get("user_id", None) is None:
+        logger.warning("Request from {0} attempted to directly access instructions without session cookie".format(request.remote_addr))
+        return flask.redirect("/", 302)
+
+    # Update user view
+    # Open new DB connection
+    MongoConnection = pymongo.MongoClient(MONGO_URI)
+    MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
+    UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
+
+    # Update user
+    user_id = session.get("user_id")
+    # Try to update user access info
+    updateResults = UsersCollection.update_one(
+        {"user_id": user_id},
+        {
+            "$set": {
+                "last_seen": datetime.datetime.utcnow(),
+                "last_view": "instructions"
+            }
+        }
+    )
+
+    # Close connection
+    MongoConnection.close()
+
     # Render instructions template
+    # We're going to randomly shuffle each word and image list
     response_env = {
         "good_words": random.sample(list(filter(lambda d: d['label'] in ['good'], STIMULI_WORDS)), k = 8),
         "bad_words": random.sample(list(filter(lambda d: d['label'] in ['bad'], STIMULI_WORDS)), k = 8),
