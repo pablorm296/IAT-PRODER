@@ -11,6 +11,13 @@
 <!-- JS -->
 <script src="Static/js/api/api.min.js"></script>
 <script src="Static/js/results.min.js"></script>
+<!-- Results (from Flask) -->
+{% autoescape off %}
+<script>
+    const __ResultsDataString = '{{ resultData }}';
+    const __ResultsData = JSON.parse(__ResultsDataString);
+</script>
+{% endautoescape %}
 {% endblock %}
 {% block title %} Resultados {% endblock %}
 {% block body %}
