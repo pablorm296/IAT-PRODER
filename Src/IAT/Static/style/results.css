@@ -36,7 +36,8 @@
 
 .result {
   color: #de6449;
-  font-weight: bold; }
+  font-weight: bold;
+  text-align: justify; }
 
 .table_stats {
   margin: auto;
