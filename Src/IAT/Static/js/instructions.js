@@ -34,7 +34,7 @@ function keyHandler(e, v = false, c) {
 //Función callback para las teclas
 function keyCallBack(keyName) {
     if (keyName == "space") {
-        window.location.href = "/IAT/static/src/iat.php";
+        window.location.href = "/iat";
     }
 }
 
