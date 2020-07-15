@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block head %}
+<!-- Estilos -->
+<link rel="stylesheet" href="Static/style/main.css">
+<link rel="stylesheet" href="Static/style/welcome.css">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- JS -->
+<script src="Static/js/bye.min.js"></script>
+{% endblock %}
+{% block title %} Bienvenido {% endblock %}
+{% block body %}
+<div id="page">
+    <div id="content">
+        <div id="gridContainer">
+            <div class="item messageContainer">
+                <h1>¡Muchas gracias por participar!</h1>
+                <p>
+                    Es importante recordarte que en tus resultados, las preferencias respecto al tono de la piel no sólo
+                    reflejan tus estereotipos implícitos, sino que además se observan esquemas cognitivos complejos
+                    sobre lo que significa ser una persona de piel clara o una persona de piel morena para el contexto
+                    social en el cual te encuentras inmerso. Si tus resultados reflejan algún tipo de preferencia hacia
+                    personas de clara, no significa que seas racista, pero sísi eres más propenso a validar actos
+                    discriminatorios cuando te encuentres en situaciones que requieran de una respuesta rápida.
+                    Afortunadamente, los estereotipos implícitos pueden hacerse conscientes por medio de la información,
+                    por eso te invitamos a que conozcas el Proyecto de Discriminación Étnico-racial completo.
+                </p>
+            </div>
+            <div class="item buttonsContainer">
+                <button id="InfoButton" class="infoButton">Llévame allí</button>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="logos">
+            <img id="projectLogo" src="Static/imgs/theme/logo_disc_white.png" alt="Logo PRODER (Blanco)">
+            <img id="colmexLogo" src="Static/imgs/theme/logo_colmex_white.svg"
+                alt="Logo del Colegio de México (Blanco)">
+        </div>
+        <div class="text">
+            <p>
+                Todos los derechos reservados. Proyecto sobre Discriminación Étnico-Racial en México, El Colegio de
+                México
+                A.C. © 2020
+            </p>
+            <p>
+                Carretera Picacho Ajusco 20, Col. Ampliación Fuentes del Pedregal, C.P. 14110, Tlalpan, Ciudad de
+                México
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
