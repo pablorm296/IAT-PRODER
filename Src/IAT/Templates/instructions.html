@@ -27,9 +27,9 @@
                         <td id="good_examples">
                             {% for word in good_words %}
                                 {% if loop.last %}
-                                    {{ word }}
+                                    {{ word.content }}
                                 {% else %}
-                                    {{ word }},
+                                    {{ word.content }},
                                 {% endif %}
                             {% endfor %}
                         </td>
@@ -37,11 +37,11 @@
                     <tr>
                         <td class="cat">Palabras malas</td>
                         <td id="bad_examples">
-                            {% for word in good_words %}
+                            {% for word in bad_words %}
                                 {% if loop.last %}
-                                    {{ word }}
+                                    {{ word.content }}
                                 {% else %}
-                                    {{ word }},
+                                    {{ word.content }},
                                 {% endif %}
                             {% endfor %}
                         </td>
@@ -70,8 +70,8 @@
     </div>
     <div id="footer">
         <div class="logos">
-            <img id="projectLogo" src="../imgs/theme/logo_disc_white.png" alt="Logo PRODER (Blanco)">
-            <img id="colmexLogo" src="../imgs/theme/logo_colmex_white.svg" alt="Logo del Colegio de México (Blanco)">
+            <img id="projectLogo" src="Static/imgs/theme/logo_disc_white.png" alt="Logo PRODER (Blanco)">
+            <img id="colmexLogo" src="Static/imgs/theme/logo_colmex_white.svg" alt="Logo del Colegio de México (Blanco)">
         </div>
         <div class="text">
             <p>
