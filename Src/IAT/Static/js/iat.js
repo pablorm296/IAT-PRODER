@@ -353,7 +353,7 @@ function showInstructions() {
 
 //Función para colocalr estímulos
 function placeStimuli(data) {
-    const stimuliArray = data.responseContent;
+    const stimuliArray = data.data.stimuli;
     //Guardar tamaño de prueba
     __stageLength = stimuliArray.length;
     //Colocar estímulos
