@@ -73,6 +73,24 @@
 
 }
 
+.infoButton {
+    width: 100%;
+    color: #719cf7;
+    border: 2px #719cf7 solid;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background-color: #719cf7;
+    }
+
+    &:active {
+        color: #fff;
+        background-color: #265fd9;
+        border: 2px #265fd9 solid;
+    }
+}
+
 hr {
     margin: 20px 0;
     border-width: 0 0 1px;
