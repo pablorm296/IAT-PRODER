@@ -4,7 +4,7 @@ import os
 import flask
 
 from IAT.Config import Reader
-from IAT.Views import Front
+from IAT.Views import Front, Api
 
 def create_app(debug = None):
     # Are we in a debug env
@@ -30,6 +30,7 @@ def create_app(debug = None):
         
     # Register blueprints
     app.register_blueprint(Front)
+    app.register_blueprint(Api)
 
     # Set session cookie expiration
     @app.before_request
