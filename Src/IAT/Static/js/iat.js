@@ -427,7 +427,7 @@ function IATloop() {
         //Enviamos los resultados al servidor
         myAPI.endPoints.POST_results(finalResults);
         //Vamos a la página de la encuesta
-        window.location.href = "/IAT/static/src/survey.php";
+        window.location.href = "/survey";
 
         //Salir a la encuesta
     } else if (__stage == 1) {
