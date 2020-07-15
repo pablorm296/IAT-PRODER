@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block head %}
+<!-- Estilos -->
+<link rel="stylesheet" href="Static/style/main.css">
+<link rel="stylesheet" href="Static/style/results.css">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<!-- JS -->
+<script src="Static/js/api/api.min.js"></script>
+<script src="Static/js/results.min.js"></script>
+{% endblock %}
+{% block title %} Resultados {% endblock %}
+{% block body %}
+<div id="page">
+    <div id="content">
+        <div id="gridContainer">
+            <div class="item messageContainer">
+                <div class="results">
+                    <h1>Tus resultados</h1>
+                    <div id="main_results" class="main_results">
+                        <p>La Prueba de Asociaciones Implíticas sugiere que <span class="result"
+                                id="result_preference_size">[tamaño de preferencia]</span>
+                            por <span class="result" id="result_preference_target">[target de la
+                                preferencia]</span>.</p>
+                    </div>
+                    <div id="results_content">
+                        <div id="resultHist" class="mainHist"></div>
+                        <p>Concretamente, tu puntaje fue de <span class="result" id="result_iat_score">0.0</span>.
+                            Entre
+                            más se acerque a 2.0, mayor es tu sesgo en favor de las personas de piel clara, y
+                            mientras
+                            más se
+                            acerque a -2.0, mayor es tu preferencia hacia las personas de piel morena. Sin embargo,
+                            si
+                            tu puntaje está muy cerca de 0 (cero), significa que no tienes una preferencia implícita
+                            real hacia uno u otro grupo.</p>
+                        <p>
+                            En la gráfica de arriba podrás ver un <a target="_blank" rel="noopener noreferrer"
+                                href="https://es.wikipedia.org/wiki/Histograma">histograma</a> con los puntajes de
+                            otros participantes. Hemos marcado con una línea roja tu puntuación para que puedas
+                            darte una idea de cómo se compara tu resultado con el de otras personas.
+                        </p>
+                        <p>
+                            <span class="énfasis">Recuerda que esta prueba busca capturar y medir estereotipos
+                                sociales</span> en torno a ciertos
+                            caracteres étnico-raciales (en este caso, el color de piel) y los resultados no siempre
+                            reflejan tus preferencias o creencias personales.
+                        </p>
+                        <h3>Más información sobre tu desempeño</h3>
+                        <div class="stats">
+                            <table class="table_stats">
+                                <tr>
+                                    <td class="stat">Tiempo promedio de respuesta:</td>
+                                    <td id="stat_mean_latency"></td>
+                                </tr>
+                                <tr>
+                                    <td class="stat">Respuesta más rápida:</td>
+                                    <td id="stat_min_latency"></td>
+                                </tr>
+                                <tr>
+                                    <td class="stat">Respuesta más lenta:</td>
+                                    <td id="stat_max_latency"></td>
+                                </tr>
+                                <tr>
+                                    <td class="stat">Número de errores:</td>
+                                    <td id="stat_errors"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="questions">
+
+                </div>
+                <div class="more_info"></div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="logos">
+            <img id="projectLogo" src="Static/imgs/theme/logo_disc_white.png" alt="Logo PRODER (Blanco)">
+            <img id="colmexLogo" src="Static/imgs/theme/logo_colmex_white.svg" alt="Logo del Colegio de México (Blanco)">
+        </div>
+        <div class="text">
+            <p>
+                Todos los derechos reservados. Proyecto sobre Discriminación Étnico-Racial en México, El Colegio de
+                México
+                A.C. © 2020
+            </p>
+            <p>
+                Carretera Picacho Ajusco 20, Col. Ampliación Fuentes del Pedregal, C.P. 14110, Tlalpan, Ciudad de
+                México
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
