@@ -14,7 +14,7 @@ class Reader:
 
         Args:
             path (str, optional): Additional paths to look for configuration files. Defaults to ".".
-            load (str, optional): Which configuration file should the reader load? If "all", it'll load all configuration files (app, stimuli, and text). Defaults to "all".
+            load (str, optional): Which configuration file should the reader load? If "all", it'll load all configuration files (app, and stimuli). Defaults to "all".
 
         Raises:
             ValueError: If `load` argument is set to an invalid option.
@@ -24,8 +24,8 @@ class Reader:
         """
         # Check load argument (lower it)
         load = load.lower()
-        if load not in ["all", "stimuli", "app", "text"]:
-            error_msg = "You can either set load to 'all' or to a config file name ('stimuli','app','text')"
+        if load not in ["all", "stimuli", "app"]:
+            error_msg = "You can either set load to 'all' or to a config file name ('stimuli','app')"
             logger.error(error_msg)
             raise ValueError(error_msg)
         # Define paths
@@ -67,7 +67,7 @@ class Reader:
                         # Read
                         parsed = json.load(file)
                         # Get config file name
-                        keyName = re.findall(r"app|stimuli|text", tmp_target)
+                        keyName = re.findall(r"app|stimuli", tmp_target)
                         # Check regex match
                         if len(keyName) != 1:
                             error_msg = "Something went wrong while evaluating the config file name"
