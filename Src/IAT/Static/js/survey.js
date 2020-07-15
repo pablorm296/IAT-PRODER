@@ -59,7 +59,7 @@ function okBtn() {
     //Validamos y guardamos resultados
     if (checkInput()) {
          //Ir a página de resultados
-        window.location.href = "/IAT/static/src/results.php";
+        window.location.href = "/results";
     }
 }
 
