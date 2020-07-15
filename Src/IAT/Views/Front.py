@@ -448,3 +448,7 @@ def results():
     }
 
     return flask.render_template("results.html", **responseEnv)
+
+@Front.route("/bye", methods = ["GET"])
+def bye():
+    return flask.render_template("bye.html")
