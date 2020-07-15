@@ -12,7 +12,7 @@ from flask import request
 
 from IAT.Config import Reader
 
-# COnfigure logger
+# Configure logger
 logger = logging.getLogger(__name__)
 
 # Read config
@@ -177,4 +177,46 @@ def instructions():
         "dark_people": random.sample(list(filter(lambda d: d['label'] in ['dark'], STIMULI_IMAGES)), k = 4)
     }
     return flask.render_template("instructions.html", **response_env)
+
+@Front.route("/iat", methods = ["GET"])
+def iat():
+    # Check referer
+    referer = request.headers.get("Referer", None)
+    # If there's not a referer header, go to root
+    if referer is None:
+        logger.warning("Request from {0} attempted to directly access IAT without referer".format(request.remote_addr))
+        return flask.redirect("/", 302)
+    
+    # Check referer
+    matchResult = re.findall(r"\/instructions", referer)
+    if len(matchResult) < 1:
+        logger.warning("Request from {0} attempted to directly access IAT with an invalid referer ('{1}')".format(request.remote_addr, referer))
+        return flask.redirect("/", 302)
+
+    # Check session
+    if session.get("user_id", None) is None:
+        logger.warning("Request from {0} attempted to directly access IAT without session cookie".format(request.remote_addr))
+        return flask.redirect("/", 302)
+    
+    # Update user view
+    # Open new DB connection
+    MongoConnection = pymongo.MongoClient(MONGO_URI)
+    MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
+    UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
+
+    # Update user
+    user_id = session.get("user_id")
+    # Try to update user access info
+    updateResults = UsersCollection.update_one(
+        {"user_id": user_id},
+        {
+            "$set": {
+                "last_seen": datetime.datetime.utcnow(),
+                "last_view": "iat"
+            }
+        }
+    )
+
+    # Close connection
+    MongoConnection.close()
 
