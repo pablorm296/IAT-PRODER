@@ -75,7 +75,7 @@ function drawPlots() {
         },
         title: {
             text: '¿Cómo se compara mi resultado con el de otros participantes?',
-            style: {"font-family": "KC"}
+            style: { "font-family": "KC" }
         },
         legend: {
             enabled: false
@@ -88,7 +88,7 @@ function drawPlots() {
         },
         xAxis: [{
             labels: {
-                formatter: function() {
+                formatter: function () {
                     var change = {
                         "0": '0<br>Sin preferencia',
                         "1": '1<br>Preferencia piel blanca',
@@ -159,23 +159,23 @@ function loadResults(responseContent) {
     if (iatScore >= 0.2) {
         $("#result_preference_size").text("tienes una ligera preferencia (sesgo)");
         $("#result_preference_target").text("las personas de piel clara");
-    } 
+    }
     if (iatScore <= -0.2) {
         $("#result_preference_size").text("tienes una ligera preferencia (sesgo)");
         $("#result_preference_target").text("las personas de piel morena");
-    } 
+    }
     if (iatScore >= 0.5) {
         $("#result_preference_size").text("tienes una moderada preferencia (sesgo)");
         $("#result_preference_target").text("las personas de piel clara");
-    } 
+    }
     if (iatScore >= 0.8) {
         $("#result_preference_size").text("tienes una fuerte preferencia");
         $("#result_preference_target").text("las personas de piel clara");
-    } 
+    }
     if (iatScore <= -0.5) {
         $("#result_preference_size").text("tienes una moderada preferencia");
         $("#result_preference_target").text("las personas de piel oscura");
-    } 
+    }
     if (iatScore <= -0.8) {
         $("#result_preference_size").text("tienes una fuerte preferencia");
         $("#result_preference_target").text("las personas de piel oscura");
@@ -187,7 +187,7 @@ function loadResults(responseContent) {
 
 //Función para poner mensaje en caso de que el tiempo de respuesta sea muy corto
 function e1Handler() {
-    $("#main_results").html("<p>Nos fue imposible analizar tus respuestas :( Respondiste extremadamente rápido o al azar; esto dificulta el análisis estadístico que hacemos sobre los datos. Puedes intentar hacer otra vez la prueba.</p>");
+    $("#main_results").html("<p>Nos fue imposible analizar tus respuestas :( Respondiste extremadamente rápido o al azar; esto dificulta el análisis estadístico que hacemos sobre los datos.</p>");
     $("#result_iat_score").text("No disponible");
     $("#stat_mean_latency").text("No disponible");
     $("#stat_min_latency").text("No disponible");
@@ -208,21 +208,17 @@ function e2Handler() {
 
 //Función para obtener resultados
 function getResults() {
-    myAPI.endPoints.GET_results(function (data) {
-        //Seleccionar objeto de interés
-        const responseContent = data.responseContent;
-        //Extraemos variables de interés
-        const statusCode = responseContent.code;
-        //Si el servidor respondió con un error
-        //Error por respuestas aleatorias
-        if (statusCode == "e.1") {
-            e1Handler();
-        } else {
-            loadResults(responseContent);
-        }
-    }, function () {
-        e2Handler();
-    });
+    //Seleccionar objeto de interés
+    const responseContent = __ResultsData;
+    //Extraemos variables de interés
+    const statusCode = __ResultsData.code;
+    //Si el servidor respondió con un error
+    //Error por respuestas aleatorias
+    if (statusCode == "e.1") {
+        e1Handler();
+    } else {
+        loadResults(responseContent);
+    }
 }
 
 //Función para configurar botones
@@ -236,8 +232,6 @@ function setBtns() {
 $(document).ready(function () {
     //Configuramos botones
     setBtns();
-    //Inicializamos conector de API
-    myAPI = new iatAPI();
     //Cargamos resultados
     getResults();
 });
