@@ -52,7 +52,7 @@ function binData(data) {
 
 //Función para el botón de ok
 function okBtn() {
-
+    window.location.href = "/bye"
 }
 
 //Función para dibujar el histograma
@@ -224,7 +224,7 @@ function getResults() {
 //Función para configurar botones
 function setBtns() {
     //Botón ok
-    $("#OkButton").click(okBtn);
+    $("#InfoButton").click(okBtn);
     //Botón para mayor información
 }
 
