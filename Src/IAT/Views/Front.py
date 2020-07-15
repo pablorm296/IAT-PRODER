@@ -6,6 +6,8 @@ import logging
 import os
 import re
 import random
+import json
+import pandas as pd
 from flask import Blueprint
 from flask import session
 from flask import request
@@ -257,7 +259,7 @@ def survey():
         {
             "$set": {
                 "last_seen": datetime.datetime.utcnow(),
-                "last_view": "iat"
+                "last_view": "survey"
             }
         }
     )
@@ -267,3 +269,182 @@ def survey():
 
     # Render survey template
     return flask.render_template("survey.html")
+
+@Front.route("/results", methods = ["GET"])
+def results():
+    # Check referer
+    referer = request.headers.get("Referer", None)
+    # If there's not a referer header, go to root
+    if referer is None:
+        logger.warning("Request from {0} attempted to directly access results without referer".format(request.remote_addr))
+        return flask.redirect("/", 302)
+    
+    # Check referer
+    matchResult = re.findall(r"\/survey", referer)
+    if len(matchResult) < 1:
+        logger.warning("Request from {0} attempted to directly access results with an invalid referer ('{1}')".format(request.remote_addr, referer))
+        return flask.redirect("/", 302)
+
+    # Check session
+    if session.get("user_id", None) is None:
+        logger.warning("Request from {0} attempted to directly access results without session cookie".format(request.remote_addr))
+        return flask.redirect("/", 302)
+    
+    # Update user view
+    # Open new DB connection
+    MongoConnection = pymongo.MongoClient(MONGO_URI)
+    MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
+    UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
+    ResultsCollection = MongoDB[CONFIG["app"]["mongo_results_collection"]]
+
+    # Update user
+    user_id = session.get("user_id")
+
+    # Try to update user access info
+    updateResults = UsersCollection.update_one(
+        {"user_id": user_id},
+        {
+            "$set": {
+                "last_seen": datetime.datetime.utcnow(),
+                "last_view": "results",
+                "completed": True
+            }
+        }
+    )
+
+    # Read user results
+    readResults = ResultsCollection.find_one(
+        {"user_id": user_id}
+    )
+
+    # Check if there's at least one user with results
+    if readResults is None:
+        logger.warning("Request from {0} attempted to render results, but user is not registered in results database".format(request.remote_addr))
+        return flask.redirect("/", 302)
+
+    # Load results
+    userResults = readResults["results"]
+    userOrder = readResults["order"]
+
+    # Close connection
+    MongoConnection.close()
+
+    # Define response dict in avance
+    responseEnv = dict()
+
+    # Abrimos el json con los resultados de las demás personas
+    with open("Data/d_scores.json") as jsonFile:
+        dScores = json.load(jsonFile)
+
+    # Obtenemos los resultados de las rondas 3, 4, 6 y 7
+    # Dependiendo del orden en el que le tocó al usuario
+    # Personas de piel clara = bueno
+    if userOrder == 0:
+        roundResults_3 = userResults.get("round_3", None)
+        roundResults_4 = userResults.get("round_4", None)
+        roundResults_6 = userResults.get("round_6", None)
+        roundResults_7 = userResults.get("round_7", None)
+    # Personas de piel oscura = bueno
+    elif userOrder == 1:
+        roundResults_3 = userResults.get("round_6", None)
+        roundResults_4 = userResults.get("round_7", None)
+        roundResults_6 = userResults.get("round_3", None)
+        roundResults_7 = userResults.get("round_4", None)
+
+    # Los convertirmos en pandas data framae
+    roundResults_3_df = pd.DataFrame(roundResults_3)
+    roundResults_4_df = pd.DataFrame(roundResults_4)
+    roundResults_6_df = pd.DataFrame(roundResults_6)
+    roundResults_7_df = pd.DataFrame(roundResults_7)
+    # Creamos una lista con todos los data frame
+    roundResults_list = list()
+    roundResults_list.append(roundResults_3_df)
+    roundResults_list.append(roundResults_4_df)
+    roundResults_list.append(roundResults_6_df)
+    roundResults_list.append(roundResults_7_df)
+    
+    # Eliminamos las respuestas que hayan tardado más de 10'000 milisegundos
+    for stageNum in range(0, 4):
+        df_foo = roundResults_list[stageNum]
+        df_foo = df_foo[df_foo["latency"] < 10000]
+        roundResults_list[stageNum] = df_foo
+
+    # Creamos un df con todos los data frame
+    roundResults_pooled = pd.concat([roundResults_3_df, roundResults_4_df, roundResults_6_df, roundResults_7_df], ignore_index = True)
+
+    # Creamos una variable para guardar el número total de trials
+    nRow = len(roundResults_pooled.index)
+
+    # Verificar que no más del 10% de los casos hayan sido muy rápidos (menos de 300 ms)
+    nRow_foo = roundResults_pooled[roundResults_pooled["latency"] < 300].shape[0]
+    if (nRow_foo / nRow) > 0.1 :
+        resultData = {"code": "e.1"}
+        responseEnv = {
+            "resultData": json.dumps(resultData)
+        }
+        return flask.render_template("results.html", **responseEnv)
+
+    # Por cada bloque, calculamos la media
+    meanBloques = dict()
+    for stageNum in range(0, 4):
+        df_foo = roundResults_list[stageNum]
+        df_foo = df_foo[df_foo["error"] == 0]
+        latency_foo = df_foo["latency"]
+        mean = latency_foo.mean()
+        meanBloques["bloque_{0}".format(stageNum)] = mean
+
+    # Para los bloques que tienen error, remplazamos por media + 600
+    for stageNum in range(0, 4):
+        df_foo = roundResults_list[stageNum]
+        mean = meanBloques["bloque_{0}".format(stageNum)]
+        df_foo.loc[df_foo["error"] > 0] = mean + 600
+        roundResults_list[stageNum] = df_foo
+
+    # Por cada bloque, calculamos la media
+    newMeanBloques = dict()
+    for stageNum in range(0, 4):
+        df_foo = roundResults_list[stageNum]
+        latency_foo = df_foo["latency"]
+        mean = latency_foo.mean()
+        newMeanBloques["bloque_{0}".format(stageNum)] = mean
+
+    # Calculamos la desviación estandar (3 y 6; 4 y 7)
+    SD1 = pd.concat([roundResults_list[0]["latency"], roundResults_list[2]["latency"]], ignore_index = True).std()
+    SD2 = pd.concat([roundResults_list[1]["latency"], roundResults_list[3]["latency"]], ignore_index = True).std()
+
+    # Calculamos el efecto IAT
+    Q1 = (newMeanBloques["bloque_0"] - newMeanBloques["bloque_2"]) / SD1
+    Q2 = (newMeanBloques["bloque_1"] - newMeanBloques["bloque_3"]) / SD2
+
+    IAT = (Q1 + Q2) / 2
+
+    # Obtenemos respuesta más rápida
+    fastestLatency = roundResults_pooled["latency"].min()
+
+    # Obtenemos respuesta más lenta
+    slowesttLatency = roundResults_pooled["latency"].max()
+
+    # Obtenemos respuesta media
+    meanLatency = roundResults_pooled["latency"].mean()
+
+    # Obtenemos número de errores
+    totalErrors = roundResults_pooled["error"].sum()
+
+    # Convertimos en tipos que entiende python
+    fastestLatency = int(fastestLatency)
+    slowestLatency = int(slowesttLatency)
+    meanLatency = float(meanLatency)
+    totalErrors = int(totalErrors)
+    # Redondeamos a 4 decimales
+    meanLatency = round(meanLatency, 3)
+    IAT = round(IAT, 3)
+
+    resultData = {"code": "s", "iatScore": IAT, "fastestLatency": fastestLatency,
+    "slowestLatency": slowestLatency, "meanLatency": meanLatency, "errorCount": totalErrors,
+    "dScores": dScores}
+
+    responseEnv = {
+        "resultData": json.dumps(resultData)
+    }
+
+    return flask.render_template("results.html", **responseEnv)
