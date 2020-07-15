@@ -17,9 +17,9 @@ logger = logging.getLogger(__name__)
 # Read config
 # CHeck if we are in a test env
 if os.environ["FLASK_DEBUG_IAT"] == "True":
-    ConfigReader = Reader(path = "./Debug", load = "app")
+    ConfigReader = Reader(path = "./Debug", load = "all")
 else:
-    ConfigReader = Reader(path = None, load = "app")
+    ConfigReader = Reader(path = None, load = "all")
 
 # Define global config variables
 CONFIG = ConfigReader.Config
