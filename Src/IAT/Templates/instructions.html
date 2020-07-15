@@ -24,7 +24,7 @@
                     </tr>
                     <tr>
                         <td class="cat">Palabras buenas</td>
-                        <td id="good_examples">
+                        <td>
                             {% for word in good_words %}
                                 {% if loop.last %}
                                     {{ word.content }}
@@ -36,7 +36,7 @@
                     </tr>
                     <tr>
                         <td class="cat">Palabras malas</td>
-                        <td id="bad_examples">
+                        <td>
                             {% for word in bad_words %}
                                 {% if loop.last %}
                                     {{ word.content }}
@@ -48,11 +48,19 @@
                     </tr>
                     <tr>
                         <td class="cat">Personas de piel clara</td>
-                        <td id="white_examples"></td>
+                        <td>
+                            {% for img in white_people %}
+                                <img class="example" src="Static/imgs/stimuli/{{ img.content }}.JPG">
+                            {% endfor %}
+                        </td>
                     </tr>
                     <tr>
                         <td class="cat">Personas de piel oscura</td>
-                        <td id="dark_examples"></td>
+                        <td>
+                            {% for img in dark_people %}
+                                <img class="example" src="Static/imgs/stimuli/{{ img.content }}.JPG">
+                            {% endfor %}
+                        </td>
                     </tr>
                 </table>
                 <p>
