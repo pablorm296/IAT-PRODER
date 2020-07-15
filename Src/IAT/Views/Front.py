@@ -5,6 +5,7 @@ import datetime
 import logging
 import os
 import re
+import random
 from flask import Blueprint
 from flask import session
 from flask import request
@@ -24,6 +25,8 @@ else:
 # Define global config variables
 CONFIG = ConfigReader.Config
 MONGO_URI = ConfigReader.Mongo_Uri
+STIMULI_WORDS = CONFIG["stimuli"]["words"]
+STIMULI_IMAGES = CONFIG["stimuli"]["images"]
 
 # Define front-end (client-side) blueprint
 Front = Blueprint('front', __name__, static_folder = "Static", template_folder = "Templates", url_prefix = "/")
@@ -129,4 +132,13 @@ def instructions():
     if len(matchResult) < 1:
         logger.warning("Request from {0} attempted to directly access instructions with an invalid referer ('{1}')".format(request.remote_addr, referer))
         return flask.redirect("/", 302)
+
+    # Render instructions template
+    response_env = {
+        "good_words": random.sample(list(filter(lambda d: d['label'] in ['good'], STIMULI_WORDS)), k = 8),
+        "bad_words": random.sample(list(filter(lambda d: d['label'] in ['bad'], STIMULI_WORDS)), k = 8),
+        "white_people": random.sample(list(filter(lambda d: d['label'] in ['white'], STIMULI_IMAGES)), k = 4),
+        "dark_people": random.sample(list(filter(lambda d: d['label'] in ['dark'], STIMULI_IMAGES)), k = 4)
+    }
+    return flask.render_template("instructions.html", **response_env)
 
