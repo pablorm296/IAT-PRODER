@@ -109,6 +109,60 @@ def getStimuli():
     newResponse = ApiResponse(responseData)
     return newResponse.response
 
+@Api.route("/result", methods = ["POST"])
+def postResults():
+    # Try to get json content
+    jsonPayload = flask.request.get_json()
+    if jsonPayload is None:
+        raise BadRequest("It seems that you're sending me some unexpected data format!")
+
+    # Check json payload content
+    if jsonPayload.get("results", None) is None or jsonPayload.get("order", None) is None:
+        raise BadRequest("That is an invalid json payload!")
+
+    # Check session
+    if session.get("user_id", None) is None:
+        raise ApiException("There is not a valid session cookie in this request!")
+
+    # Update user view
+    # Open new DB connection
+    MongoConnection = pymongo.MongoClient(MONGO_URI)
+    MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
+    UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
+    ResultsCollection = MongoDB[CONFIG["app"]["mongo_results_collection"]]
+
+    # Update user
+    user_id = session.get("user_id")
+    # Try to update user access info
+    updateResults = UsersCollection.update_one(
+        {"user_id": user_id},
+        {
+            "$set": {
+                "last_seen": datetime.datetime.utcnow(),
+                "last_view": "iat_final"
+            }
+        }
+    )
+    # Try to insert user results
+    insertResults = ResultsCollection.insert_one(
+        {
+            "user_id": user_id,
+            "results_inserted": datetime.datetime.utcnow(),
+            "results": jsonPayload.get("results"),
+            "order": jsonPayload.get("order")
+        }
+    )
+    # Check update and insert operations
+    if updateResults.modified_count < 1 or insertResults.acknowledged == False:
+        raise ApiException("Something went wrong while updating the user info or inserting his/her results!")
+
+    # Close pymongo connection
+    MongoConnection.close()
+
+    # Send Response
+    newResponse = ApiResponse("Ok!")
+    return newResponse.response
+
 @Api.errorhandler(ApiException)
 def ApiErrorHanlder(e):
     errorResponse = ApiResponse({}, e.status_code, True, str(e))
