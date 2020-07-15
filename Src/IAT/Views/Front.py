@@ -4,6 +4,7 @@ import pymongo
 import datetime
 import logging
 import os
+import re
 from flask import Blueprint
 from flask import session
 from flask import request
@@ -114,4 +115,18 @@ def welcome():
         else:
             return flask.render_template("sorry.html")
 
-@Front.route()
+@Front.route("/instructions", methods = ["GET"])
+def instructions():
+    # Check referer
+    referer = request.headers.get("Referer", None)
+    # If there's not a referer header, go to root
+    if referer is None:
+        logger.warning("Request from {0} attempted to directly access instructions without referer".format(request.remote_addr))
+        return flask.redirect("/", 302)
+    
+    # Check referer
+    matchResult = re.findall(r"\/welcome", referer)
+    if len(matchResult) < 1:
+        logger.warning("Request from {0} attempted to directly access instructions with an invalid referer ('{1}')".format(request.remote_addr, referer))
+        return flask.redirect("/", 302)
+
