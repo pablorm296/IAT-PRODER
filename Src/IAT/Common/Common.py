@@ -16,27 +16,6 @@ class ApiException(Exception):
         else:
             return 'The Api encountered an error. No further details were given'
 
-class InvalidCredentials(ApiException):
-
-    status_code = 401
-
-    def __str__(self):
-        if self.message:
-            return 'IAT-PRODER API Client Side Error (HTTP Unauthorized): {0}'.format(self.message)
-        else:
-            return 'Client side error: Bad Credentials. User attempted to use an invalid username or password. No further details were given'
-
-class InvalidToken(ApiException):
-
-    status_code = 401
-
-    def __str__(self):
-        if self.message:
-            return 'IAT-PRODER API Client Side Error (HTTP Unauthorized): {0}'.format(self.message)
-        else:
-            return 'Client side error: Bad Token. User attempted to use an invalid token. No further details were given'
-
-
 class BadRequest(ApiException):
 
     status_code = 400
