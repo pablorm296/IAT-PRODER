@@ -1,49 +1,41 @@
 
-//Función para el botón de ok
+// Ok button function
 function okBtn() {
-    //Ir a página de instrucciones
+    // Go to instructions page
     window.location.href = "/instructions";
 }
 
-//Función para el botón de saber más
+// More info button
 function infoBtn() {
-    //Mostrar el PopUp
+    // Show PopUp and go to top
     $("#PopUp").show();
     $('html, body').animate({ scrollTop: 0}, 'fast');
 }
 
-//Función para el botón de cancelar
+// Cancel button
 function noBtn() {
-    //Registrar acción en API
-    myAPI.endPoints.POST_newUser("declined");
-    //Ir a Google
-    window.location.href = "https://www.google.com.mx/";
+    // Go to project page
+    window.location.href = "https://discriminacion.colmex.mx/";
 }
 
-//Función para el botón de cerrar popup
+// Close PopUp button
 function closePopUpBtn() {
-    //Cerrar el PopUp
     $("#PopUp").hide();
 }
 
-//Función para configurar botones
+// Set Buttons actions
 function setBtns() {
-    //Botón ok
     $("#OkButton").click(okBtn);
-    //Botón para mayor información
-    $("#infoButton").click(infoBtn);
-    //Botón para cancelar
+    $("#InfoButton").click(infoBtn);
     $("#NoButton").click(noBtn);
-    //Botón que cierra el PopUp
     $("#PopUpClose").click(closePopUpBtn);
-    //Si el usuario da click en cualquier lugar de la ventana, cerramos el PopUp
+    // When click outside the PopUp, close it
     $("#PopUp").click(closePopUpBtn).children().click(function (e) {
         return false;
     })
 }
 
-//Cuando el documento se carga
+// When document loads, set buttons action
 $(document).ready(function () {
-    //Configuramos botones
     setBtns();
 });
