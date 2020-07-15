@@ -1,12 +1,11 @@
 class iatAPI {
     //Constructor de API
     constructor() {
-        this.alias = "api/"
         this.endPoints = {
             POST_results: function (payload) {
                 $.ajax({
                     type: "POST",
-                    url: `${this.alias}/result`,
+                    url: "api/result",
                     contentType: 'application/json',
                     dataType: "json",
                     data: JSON.stringify(payload),
@@ -16,7 +15,7 @@ class iatAPI {
             GET_results: function (success, error) {
                 $.ajax({
                     type: "GET",
-                    url: `${this.alias}/result`,
+                    url: "api/result",
                     contentType: 'application/json',
                     dataType: "json",
                     async: false,
@@ -27,7 +26,7 @@ class iatAPI {
             GET_stimuli: function (stage, success, error) {
                 $.ajax({
                     type: "GET",
-                    url: `${this.alias}/stimuli`,
+                    url: "api/stimuli",
                     dataType: "json",
                     success: success
                 });
