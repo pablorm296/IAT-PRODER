@@ -1,10 +1,17 @@
 import flask
 import uuid
 import pymongo
+import datetime
+import logging
 import os
-from IAT.Config import Reader
 from flask import Blueprint
 from flask import session
+from flask import request
+
+from IAT.Config import Reader
+
+# COnfigure logger
+logger = logging.getLogger(__name__)
 
 # Read config
 # CHeck if we are in a test env
@@ -13,6 +20,7 @@ if os.environ["FLASK_DEBUG_IAT"] == "True":
 else:
     ConfigReader = Reader(path = None, load = "app")
 
+# Define global config variables
 CONFIG = ConfigReader.Config
 MONGO_URI = ConfigReader.Mongo_Uri
 
@@ -40,12 +48,40 @@ def welcome():
     if session.get("user_id", None) is None:
         # If not, then create a new user_id
         session["user_id"] = uuid.uuid1().hex
+        # Register user in database
+        # Open new DB connection
+        MongoConnection = pymongo.MongoClient(MONGO_URI)
+        MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
+        UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
+
+        # insert new user id
+        user_id = session.get("user_id")
+        insertResults = UsersCollection.insert_one(
+            {
+                "user_id": user_id,
+                "created": datetime.datetime.utcnow(),
+                "remote_address": request.remote_addr,
+                "last_seen": datetime.datetime.utcnow(),
+                "hits": 1,
+                "completed": False
+            }
+        )
+
+        # Check insert result
+        if not insertResults.acknowledged:
+            error_msg = "Something went wrong when creating a new user. "
+            logger.error(error_msg)
+            raise Exception(error_msg)
+        
+        # Close mongo connection
+        MongoConnection.close()
+        
         # Render welcome
         return flask.render_template("welcome.html")
+
     # If there is a user_id in the session cookie
     else:
         # Open new DB connection
-        print(MONGO_URI)
         MongoConnection = pymongo.MongoClient(MONGO_URI)
         MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
         UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
@@ -56,10 +92,26 @@ def welcome():
             {"user_id": user_id}
         )
 
-        # If there is not a registered user, or if the user has not completed the test, then render instructions
+        # If there is not a registered user, or if the user has not completed the test, then render main welcome message
         if searchResults is None or searchResults["completed"] == False:
+            # Try to update user access info
+            updateResults = UsersCollection.update_one(
+                {"user_id": user_id},
+                {
+                    "$set": {
+                        "last_seen": datetime.datetime.utcnow()
+                    },
+                    "$inc": {
+                        "hits": 1
+                    }
+                }
+            )
+
+            # Close connection
+            MongoConnection.close()
+
             return flask.render_template("welcome.html")
         else:
             return flask.render_template("sorry.html")
 
-
+@Front.route()
