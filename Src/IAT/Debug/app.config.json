@@ -1,10 +1,1 @@
-{
-    "secret_key": "*G-KaPdSgVkYp3s6v9y/B?E(H+MbQeTh",
-    "mongo_host": "localhost",
-    "mongo_port": 27017,
-    "mongo_db_name": "IAT_PRODER",
-    "mongo_users_collection": "Users",
-    "mongo_results_collection": "Results",
-    "mongo_user": "iat_app",
-    "mongo_password": "/A?D(G+KbPeShVkYp3s6v9y$B&E)H@"
-}
+../../../Config/app.config.json
