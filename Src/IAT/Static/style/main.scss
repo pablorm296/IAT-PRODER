@@ -1,6 +1,5 @@
 @import 'fonts';
 
-//Cuerpo
 body {
     color: #3b3e44;
     margin: 0pt;
@@ -9,7 +8,6 @@ body {
     line-height: $baseFontSize * 1.5;
 }
 
-//Encabezados
 @for $i from 1 through 6 {
     h#{$i} {
       font-size: baseFontSize + $headingScale * (6 - $i);

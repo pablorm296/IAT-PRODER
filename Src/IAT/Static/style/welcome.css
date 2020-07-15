@@ -1,6 +1,6 @@
 @media only screen and (max-width: 1100px) {
-  #message {
-    text-align: center; } }
+  #message {text-align: center; } 
+}
 #gridContainer {
   display: grid;
   margin: 5%;
