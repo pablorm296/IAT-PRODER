@@ -26,7 +26,7 @@ class iatAPI {
             GET_stimuli: function (stage, success, error) {
                 $.ajax({
                     type: "GET",
-                    url: "api/stimuli",
+                    url: `api/stimuli?stage=${stage}`,
                     dataType: "json",
                     success: success
                 });
