@@ -30,7 +30,7 @@ class Reader:
             raise ValueError(error_msg)
         # Define paths
         self.__paths = ["/etc/Iat"]
-        self.__names = ["app.config.json", "stimuli.config.json", "text.config.json"]
+        self.__names = ["app.config.json", "stimuli.config.json"]
         # Define contents
         self.Config = dict()
 
@@ -76,7 +76,7 @@ class Reader:
                         else:
                             keyName = keyName[0]
                         # Update config dict
-                        self.Config.update(keyName = parsed)
+                        self.Config[keyName] = parsed
                         logger.debug("{0} loaded successfully".format(tmp_target))
 
             else:
@@ -103,7 +103,7 @@ class Reader:
                     logger.debug("{0} loaded successfully".format(tmp_target))
 
         # Check if config files could be loaded
-        if self.Config.get("app", None) is None and self.Config.get("stimuli", None) is None and self.Config.get("text", None) is None:
+        if self.Config.get("app", None) is None and self.Config.get("stimuli", None) is None:
             error_msg = "It seems that no configuration file could be loaded. Please make sure all config files are properly installed in /etc/Iat"
             logger.error(error_msg)
             raise Exception(error_msg)
