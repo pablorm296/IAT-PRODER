@@ -31,7 +31,7 @@ def create_app(debug = None):
     # Register blueprints
     app.register_blueprint(Front)
 
-    # Set session cokie expiration
+    # Set session cookie expiration
     @app.before_request
     def make_session_permanent():
         flask.session.permanent = True
