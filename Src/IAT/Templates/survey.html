@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block head %}
 <!-- Estilos -->
-<link rel="stylesheet" href="../style/main.css">
-<link rel="stylesheet" href="../style/survey.css">
+<link rel="stylesheet" href="Static/style/main.css">
+<link rel="stylesheet" href="Static/style/survey.css">
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- JS -->
-<script src="Script/js/api/api.min.js"></script>
-<script src="Script/js/survey.min.js"></script>
+<script src="Static/js/api/api.min.js"></script>
+<script src="Static/js/survey.min.js"></script>
 {% endblock %}
 {% block title %} Encuesta de Salida {% endblock %}
 {% block body %}
@@ -17,21 +17,18 @@
             <div class="item messageContainer">
                 <h1>Ya casi terminamos...</h1>
                 <p>
-                    Por favor, ayúdanos contestando las siguientes preguntas. <span class="énfasis">Tus respuestas
-                        nos servirán para calibrar
-                        tus resultados en la prueba. <b>Las preguntas marcadas con un asterisco son
-                            obligatorias para poder continuar.</b></span>.
-                </p>
-                <p>
-                    Una vez contestado este cuestionario de salida, podrás ver tus resultados de la prueba.
+                    Por favor, ayúdanos contestando las siguientes preguntas, tus respuestas nos servirán para calibrar
+                    tus resultados en la prueba. Las preguntas marcadas con un asterisco son obligatorias para poder
+                    continuar.
                 </p>
                 <hr>
             </div>
             <div class="item questionsContainer">
-                <span id="srvy_age_label" class="input_label">¿Cuántos años cumplidos tienes?<span id="srvy_age_label_rm" class="required_mark">*</span></span>
+                <span id="srvy_age_label" class="input_label">¿Cuántos años cumplidos tienes?<span
+                        id="srvy_age_label_rm" class="required_mark">*</span></span>
                 <input type="tel" id="srvy_age">
                 <br class="spacer_small">
-                <span id="srvy_sex_label" class="input_label">¿Te consideras?<span id="srvy_sex_label_rm"
+                <span id="srvy_sex_label" class="input_label">¿Eres?<span id="srvy_sex_label_rm"
                         class="required_mark">*</span></span>
                 <select id="srvy_sex">
                     <option value="NONE" selected></option>
@@ -354,7 +351,7 @@
                     <option value="ZAC">Zacatecas</option>
                 </select>
                 <br class="spacer_small">
-                <span class="input_label">¿Cuál es el código postal del area donde vives?</span>
+                <span class="input_label">¿Cuál es el código postal del área donde vives?</span>
                 <input type="tel" id="srvy_zip">
                 <span class="input_label">¿En qué colonia vives?</span>
                 <input type="text" id="srvy_col">
@@ -377,7 +374,8 @@
                     <option value="4">Blanca</option>
                 </select>
                 <br class="spacer_small">
-                <span id="srvy_iat_label" class="input_label">¿Ya habías contestado alguna prueba de asociaciones implícitas (IAT)
+                <span id="srvy_iat_label" class="input_label">¿Ya habías contestado alguna prueba de asociaciones
+                    implícitas (IAT)
                     anteriormente?<span id="srvy_iat_label_rm" class="required_mark">*</span></span>
                 <select id="srvy_iat">
                     <option value="NONE" selected></option>
@@ -453,7 +451,8 @@
     <div id="footer">
         <div class="logos">
             <img id="projectLogo" src="Static/imgs/theme/logo_disc_white.png" alt="Logo PRODER (Blanco)">
-            <img id="colmexLogo" src="Static/imgs/theme/logo_colmex_white.svg" alt="Logo del Colegio de México (Blanco)">
+            <img id="colmexLogo" src="Static/imgs/theme/logo_colmex_white.svg"
+                alt="Logo del Colegio de México (Blanco)">
         </div>
         <div class="text">
             <p>
