@@ -18,7 +18,7 @@ from IAT.Config import Reader
 logger = logging.getLogger(__name__)
 
 # Read config
-# CHeck if we are in a test env
+# Check if we are in a test env
 if os.environ["FLASK_DEBUG_IAT"] == "True":
     ConfigReader = Reader(path = "./Debug", load = "all")
 else:
