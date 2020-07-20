@@ -33,6 +33,34 @@ STIMULI_IMAGES = CONFIG["stimuli"]["images"]
 # Define front-end (client-side) blueprint
 Front = Blueprint('front', __name__, static_folder = "Static", template_folder = "Templates", url_prefix = "/")
 
+# Function that checks the user referer
+def checkReferer(referer: str, requestHeaders):
+    # Check referer
+    requestReferer = request.headers.get("Referer", None)
+    # If there's not a referer header, go to root
+    if requestReferer is None:
+        logger.warning("Request from {0} attempted to directly access instructions without referer".format(request.remote_addr))
+        return False
+    
+    # Check referer
+    matchResult = re.findall(r"\/{0}".format(referer), requestReferer)
+    if len(matchResult) < 1:
+        logger.warning("Request from {0} attempted to directly access instructions with an invalid referer ('{1}')".format(request.remote_addr, requestReferer))
+        return False
+
+    # If we arrived up to this point, return True
+    return True
+
+# Function that checks session info
+def checkSession(session):
+    # Check user id in session cookie
+    if session.get("user_id", None) is None:
+        logger.warning("Request from {0} attempted to directly access IAT without session cookie".format(request.remote_addr))
+        return False
+    
+    # If we arrived up to this point, return True 
+    return True
+
 @Front.route("/", methods = ["GET"])
 def landing():
     """Landing View.
@@ -130,24 +158,11 @@ def instructions():
     If the request contains an invalid referer or session cookie, the user will be redirected to the root (`/`) of the application.
 
     """
-    # Check referer
-    referer = request.headers.get("Referer", None)
-    # If there's not a referer header, go to root
-    if referer is None:
-        logger.warning("Request from {0} attempted to directly access instructions without referer".format(request.remote_addr))
+
+    # Check referer and session
+    if not checkReferer("welcome", request.headers) or not checkSession(session):
         return flask.redirect("/", 302)
     
-    # Check referer
-    matchResult = re.findall(r"\/welcome", referer)
-    if len(matchResult) < 1:
-        logger.warning("Request from {0} attempted to directly access instructions with an invalid referer ('{1}')".format(request.remote_addr, referer))
-        return flask.redirect("/", 302)
-
-    # Check session
-    if session.get("user_id", None) is None:
-        logger.warning("Request from {0} attempted to directly access instructions without session cookie".format(request.remote_addr))
-        return flask.redirect("/", 302)
-
     # Update user view
     # Open new DB connection
     MongoConnection = pymongo.MongoClient(MONGO_URI)
@@ -182,22 +197,9 @@ def instructions():
 
 @Front.route("/iat", methods = ["GET"])
 def iat():
-    # Check referer
-    referer = request.headers.get("Referer", None)
-    # If there's not a referer header, go to root
-    if referer is None:
-        logger.warning("Request from {0} attempted to directly access IAT without referer".format(request.remote_addr))
-        return flask.redirect("/", 302)
-    
-    # Check referer
-    matchResult = re.findall(r"\/instructions", referer)
-    if len(matchResult) < 1:
-        logger.warning("Request from {0} attempted to directly access IAT with an invalid referer ('{1}')".format(request.remote_addr, referer))
-        return flask.redirect("/", 302)
 
-    # Check session
-    if session.get("user_id", None) is None:
-        logger.warning("Request from {0} attempted to directly access IAT without session cookie".format(request.remote_addr))
+    # Check referer and session
+    if not checkReferer("instructions", request.headers) or not checkSession(session):
         return flask.redirect("/", 302)
     
     # Update user view
@@ -227,24 +229,11 @@ def iat():
 
 @Front.route("/survey", methods = ["GET"])
 def survey():
-    # Check referer
-    referer = request.headers.get("Referer", None)
-    # If there's not a referer header, go to root
-    if referer is None:
-        logger.warning("Request from {0} attempted to directly access survey without referer".format(request.remote_addr))
-        return flask.redirect("/", 302)
-    
-    # Check referer
-    matchResult = re.findall(r"\/iat", referer)
-    if len(matchResult) < 1:
-        logger.warning("Request from {0} attempted to directly access survey with an invalid referer ('{1}')".format(request.remote_addr, referer))
+
+    # Check referer and session
+    if not checkReferer("iat", request.headers) or not checkSession(session):
         return flask.redirect("/", 302)
 
-    # Check session
-    if session.get("user_id", None) is None:
-        logger.warning("Request from {0} attempted to directly access survey without session cookie".format(request.remote_addr))
-        return flask.redirect("/", 302)
-    
     # Update user view
     # Open new DB connection
     MongoConnection = pymongo.MongoClient(MONGO_URI)
