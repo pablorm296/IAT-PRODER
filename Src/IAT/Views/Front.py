@@ -1,6 +1,5 @@
 import flask
 import uuid
-import pymongo
 import datetime
 import logging
 import os
@@ -8,11 +7,12 @@ import re
 import random
 import json
 import pandas as pd
-from flask import Blueprint
-from flask import session
-from flask import request
+from flask import Blueprint, session, request
 
+# Imports from package
 from IAT.Config import Reader
+from IAT.Common.DB import MongoConnector, DBShortcuts
+from IAT.Common.Exceptions import FrontEndException
 
 # Configure logger
 logger = logging.getLogger(__name__)
@@ -29,6 +29,10 @@ CONFIG = ConfigReader.Config
 MONGO_URI = ConfigReader.Mongo_Uri
 STIMULI_WORDS = CONFIG["stimuli"]["words"]
 STIMULI_IMAGES = CONFIG["stimuli"]["images"]
+MONGO_DB = CONFIG["app"]["mongo_db_name"]
+MONGO_USERS_COLLECTION = CONFIG["app"]["mongo_users_collection"]
+MONGO_RESULTS_COLLECTION = CONFIG["app"]["mongo_results_collection"] 
+MONGO_COUNTER_COLLECTION = CONFIG["app"]["mongo_counter_collection"]
 
 # Define front-end (client-side) blueprint
 Front = Blueprint('front', __name__, static_folder = "Static", template_folder = "Templates", url_prefix = "/")
@@ -84,13 +88,11 @@ def welcome():
         session["user_id"] = uuid.uuid1().hex
         # Register user in database
         # Open new DB connection
-        MongoConnection = pymongo.MongoClient(MONGO_URI)
-        MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
-        UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
+        MongoConnection = MongoConnector(MONGO_DB, MONGO_USERS_COLLECTION, MONGO_URI)
 
         # insert new user id
         user_id = session.get("user_id")
-        insertResults = UsersCollection.insert_one(
+        insertResults = MongoConnection.collection.insert_one(
             {
                 "user_id": user_id,
                 "created": datetime.datetime.utcnow(),
@@ -104,9 +106,9 @@ def welcome():
 
         # Check insert result
         if not insertResults.acknowledged:
-            error_msg = "Something went wrong when creating a new user. "
+            error_msg = "Something went wrong while registering a new user in the database. The insert operation was not acknowledged."
             logger.error(error_msg)
-            raise Exception(error_msg)
+            raise FrontEndException(error_msg)
         
         # Close mongo connection
         MongoConnection.close()
@@ -117,36 +119,26 @@ def welcome():
     # If there is a user_id in the session cookie
     else:
         # Open new DB connection
-        MongoConnection = pymongo.MongoClient(MONGO_URI)
-        MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
-        UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
+        MongoConnection = MongoConnector(MONGO_DB, MONGO_USERS_COLLECTION, MONGO_URI)
 
         # Search user id
         user_id = session.get("user_id")
-        searchResults = UsersCollection.find_one(
+        searchResults = MongoConnection.collection.find_one(
             {"user_id": user_id}
         )
-        
+
+        # Close connection
+        MongoConnection.close()
+                
         # if the user has not completed the test, then render main welcome message
         if searchResults["completed"] == False or searchResults is None:
             # Try to update user access info
-            updateResults = UsersCollection.update_one(
-                {"user_id": user_id},
-                {
-                    "$set": {
-                        "last_seen": datetime.datetime.utcnow()
-                    },
-                    "$inc": {
-                        "hits": 1
-                    }
-                }
-            )
+            DBShortcuts.updateLastUserView("welcome", searchResults["user_id"])
 
-            # Close connection
-            MongoConnection.close()
-
+            # Render welcome page
             return flask.render_template("welcome.html")
         else:
+            # Render message saying that the user already answered the test
             return flask.render_template("sorry.html")
 
 @Front.route("/instructions", methods = ["GET"])
@@ -158,32 +150,22 @@ def instructions():
     If the request contains an invalid referer or session cookie, the user will be redirected to the root (`/`) of the application.
 
     """
-
+    
     # Check referer and session
     if not checkReferer("welcome", request.headers) or not checkSession(session):
         return flask.redirect("/", 302)
     
-    # Update user view
-    # Open new DB connection
-    MongoConnection = pymongo.MongoClient(MONGO_URI)
-    MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
-    UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
-
-    # Update user
+    # Get user_id
     user_id = session.get("user_id")
-    # Try to update user access info
-    updateResults = UsersCollection.update_one(
-        {"user_id": user_id},
-        {
-            "$set": {
-                "last_seen": datetime.datetime.utcnow(),
-                "last_view": "instructions"
-            }
-        }
-    )
 
-    # Close connection
-    MongoConnection.close()
+    # Try to update user access info
+    updated = DBShortcuts.updateLastUserView("instructions", user_id)
+    
+    # Check if the user was successfully updated
+    if not updated:
+        error_msg = "Something went wrong while registering the user action. The database couldn't update the document."
+        logger.error(error_msg)
+        raise FrontEndException(error_msg)
 
     # Render instructions template
     # We're going to randomly shuffle each word and image list
@@ -201,28 +183,18 @@ def iat():
     # Check referer and session
     if not checkReferer("instructions", request.headers) or not checkSession(session):
         return flask.redirect("/", 302)
-    
-    # Update user view
-    # Open new DB connection
-    MongoConnection = pymongo.MongoClient(MONGO_URI)
-    MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
-    UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
 
-    # Update user
+    # Get user_id
     user_id = session.get("user_id")
+    
     # Try to update user access info
-    updateResults = UsersCollection.update_one(
-        {"user_id": user_id},
-        {
-            "$set": {
-                "last_seen": datetime.datetime.utcnow(),
-                "last_view": "iat"
-            }
-        }
-    )
+    updated = DBShortcuts.updateLastUserView("iat", user_id)
 
-    # Close connection
-    MongoConnection.close()
+    # Check if the user was successfully updated
+    if not updated:
+        error_msg = "Something went wrong while registering the user action. The database couldn't update the document."
+        logger.error(error_msg)
+        raise FrontEndException(error_msg)
 
     # Render main iat template
     return flask.render_template("iat.html")
@@ -234,75 +206,43 @@ def survey():
     if not checkReferer("iat", request.headers) or not checkSession(session):
         return flask.redirect("/", 302)
 
-    # Update user view
-    # Open new DB connection
-    MongoConnection = pymongo.MongoClient(MONGO_URI)
-    MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
-    UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
-
-    # Update user
+    # Get user_id
     user_id = session.get("user_id")
+    
     # Try to update user access info
-    updateResults = UsersCollection.update_one(
-        {"user_id": user_id},
-        {
-            "$set": {
-                "last_seen": datetime.datetime.utcnow(),
-                "last_view": "survey"
-            }
-        }
-    )
+    updated = DBShortcuts.updateLastUserView("survey", user_id)
 
-    # Close connection
-    MongoConnection.close()
+    # Check if the user was successfully updated
+    if not updated:
+        error_msg = "Something went wrong while registering the user action. The database couldn't update the document."
+        logger.error(error_msg)
+        raise FrontEndException(error_msg)
 
     # Render survey template
     return flask.render_template("survey.html")
 
 @Front.route("/results", methods = ["GET"])
 def results():
-    # Check referer
-    referer = request.headers.get("Referer", None)
-    # If there's not a referer header, go to root
-    if referer is None:
-        logger.warning("Request from {0} attempted to directly access results without referer".format(request.remote_addr))
+
+    # Check referer and session
+    if not checkReferer("survey", request.headers) or not checkSession(session):
         return flask.redirect("/", 302)
     
-    # Check referer
-    matchResult = re.findall(r"\/survey", referer)
-    if len(matchResult) < 1:
-        logger.warning("Request from {0} attempted to directly access results with an invalid referer ('{1}')".format(request.remote_addr, referer))
-        return flask.redirect("/", 302)
-
-    # Check session
-    if session.get("user_id", None) is None:
-        logger.warning("Request from {0} attempted to directly access results without session cookie".format(request.remote_addr))
-        return flask.redirect("/", 302)
-    
-    # Update user view
-    # Open new DB connection
-    MongoConnection = pymongo.MongoClient(MONGO_URI)
-    MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
-    UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
-    ResultsCollection = MongoDB[CONFIG["app"]["mongo_results_collection"]]
-
-    # Update user
+    # Get user_id
     user_id = session.get("user_id")
-
+    
     # Try to update user access info
-    updateResults = UsersCollection.update_one(
-        {"user_id": user_id},
-        {
-            "$set": {
-                "last_seen": datetime.datetime.utcnow(),
-                "last_view": "results",
-                "completed": True
-            }
-        }
-    )
+    updated = DBShortcuts.updateLastUserView("survey", user_id)
+
+    # Check if the user was successfully updated
+    if not updated:
+        error_msg = "Something went wrong while registering the user action. The database couldn't update the document."
+        logger.error(error_msg)
+        raise FrontEndException(error_msg)
 
     # Read user results
-    readResults = ResultsCollection.find_one(
+    MongoConnection = MongoConnector(MONGO_DB, MONGO_RESULTS_COLLECTION, MONGO_URI)
+    readResults = MongoConnection.collection.find_one(
         {"user_id": user_id}
     )
 
@@ -318,126 +258,182 @@ def results():
     # Close connection
     MongoConnection.close()
 
-    # Define response dict in avance
+    # Define response dict in advance
     responseEnv = dict()
 
-    # Abrimos el json con los resultados de las demás personas
-    with open("Data/d_scores.json") as jsonFile:
-        dScores = json.load(jsonFile)
+    # Check number of results
+    MongoConnection = MongoConnector(MONGO_DB, MONGO_COUNTER_COLLECTION, MONGO_URI)
+    readResults = MongoConnection.collection.find_one(
+        {"counter_name": "n_results"}
+    )
 
-    # Obtenemos los resultados de las rondas 3, 4, 6 y 7
-    # Dependiendo del orden en el que le tocó al usuario
-    # Personas de piel clara = bueno
+    # Check if mongo did find the document containing the number of results
+    if readResults is None:
+        error_msg = "Something went wrong while looking for the results counter."
+        logger.error(error_msg)
+        raise FrontEndException(error_msg)
+
+    # Check number of results
+    # If we still have less than 41 results, then we use Harvard's results
+    if readResults["counter_value"] < 41:
+        # Open json file with Harvard results
+        try:
+            with open("Data/d_scores.json") as jsonFile:
+                dScores = json.load(jsonFile)
+        except Exception:
+            error_msg = "Something went wrong while loading other users' results."
+            logger.error(error_msg)
+            raise FrontEndException(error_msg)
+    # Else, just load our own dScores
+    else:
+        dScores = readResults["scoresArray"]
+
+    # Get round latency results. Depending on user order (1 or 0, randomly assigned), we flip round results order
+    # If round is 0
     if userOrder == 0:
         roundResults_3 = userResults.get("round_3", None)
         roundResults_4 = userResults.get("round_4", None)
         roundResults_6 = userResults.get("round_6", None)
         roundResults_7 = userResults.get("round_7", None)
-    # Personas de piel oscura = bueno
+    # If round is 1
     elif userOrder == 1:
         roundResults_3 = userResults.get("round_6", None)
         roundResults_4 = userResults.get("round_7", None)
         roundResults_6 = userResults.get("round_3", None)
         roundResults_7 = userResults.get("round_4", None)
 
-    # Los convertirmos en pandas data framae
+    # Coerce each round result into a dataFrame (pandas library)
     roundResults_3_df = pd.DataFrame(roundResults_3)
     roundResults_4_df = pd.DataFrame(roundResults_4)
     roundResults_6_df = pd.DataFrame(roundResults_6)
     roundResults_7_df = pd.DataFrame(roundResults_7)
-    # Creamos una lista con todos los data frame
+    # Create a list containing the dataframes
     roundResults_list = list()
     roundResults_list.append(roundResults_3_df)
     roundResults_list.append(roundResults_4_df)
     roundResults_list.append(roundResults_6_df)
     roundResults_list.append(roundResults_7_df)
     
-    # Eliminamos las respuestas que hayan tardado más de 10'000 milisegundos
+    # Remove answers where latency > 10 000 ms
     for stageNum in range(0, 4):
         df_foo = roundResults_list[stageNum]
         df_foo = df_foo[df_foo["latency"] < 10000]
         roundResults_list[stageNum] = df_foo
 
-    # Creamos un df con todos los data frame
+    # Create a dataframe with the pooled latencies from rounds 3, 4, 6, and 7
     roundResults_pooled = pd.concat([roundResults_3_df, roundResults_4_df, roundResults_6_df, roundResults_7_df], ignore_index = True)
 
-    # Creamos una variable para guardar el número total de trials
+    # Count the total number of trials in the pooled dataframe
+    # We can't just use the total number of trials, because we removed some of them (the ones with latency > 10 000 ms)
     nRow = len(roundResults_pooled.index)
 
-    # Verificar que no más del 10% de los casos hayan sido muy rápidos (menos de 300 ms)
-    nRow_foo = roundResults_pooled[roundResults_pooled["latency"] < 300].shape[0]
-    if (nRow_foo / nRow) > 0.1 :
+    # Check that no more than 10% of the pooled latency results were under 300 ms
+    nRow_lessThan300 = roundResults_pooled[roundResults_pooled["latency"] < 300].shape[0]
+    if (nRow_lessThan300 / nRow) > 0.1 :
+        # If more than 10% of the results, send error code e.1 (Results were random and we can't analyze them)
         resultData = {"code": "e.1"}
         responseEnv = {
             "resultData": json.dumps(resultData)
         }
         return flask.render_template("results.html", **responseEnv)
 
-    # Por cada bloque, calculamos la media
-    meanBloques = dict()
+    # For each stage, compute latency mean.
+    stageMeans = dict()
     for stageNum in range(0, 4):
-        df_foo = roundResults_list[stageNum]
-        df_foo = df_foo[df_foo["error"] == 0]
-        latency_foo = df_foo["latency"]
-        mean = latency_foo.mean()
-        meanBloques["bloque_{0}".format(stageNum)] = mean
+        stageDataFrame = roundResults_list[stageNum]
+        # Only consider trials where user made 0 mistakes
+        stageDataFrame = stageDataFrame[stageDataFrame["error"] == 0]
+        stageLatencies = stageDataFrame["latency"]
+        latencyMean = stageLatencies.mean()
+        stageMeans["stage_{0}".format(stageNum)] = latencyMean
 
-    # Para los bloques que tienen error, remplazamos por media + 600
+    # Now, consider only trials where user made a mistake. In those cases, replace latency with stage mean + 600
     for stageNum in range(0, 4):
-        df_foo = roundResults_list[stageNum]
-        mean = meanBloques["bloque_{0}".format(stageNum)]
-        df_foo.loc[df_foo["error"] > 0] = mean + 600
-        roundResults_list[stageNum] = df_foo
+        stageDataFrame = roundResults_list[stageNum]
+        latencyMean = stageMeans["stage_{0}".format(stageNum)]
+        # Replace trials where errors > 0 with the stage mean
+        stageDataFrame.loc[stageDataFrame["error"] > 0] = latencyMean + 600
+        roundResults_list[stageNum] = stageDataFrame
 
-    # Por cada bloque, calculamos la media
-    newMeanBloques = dict()
+    # For each stage, compute the "new mean" (considering the cases where latency was replaced with mean+600)
+    newStageMeans = dict()
     for stageNum in range(0, 4):
-        df_foo = roundResults_list[stageNum]
-        latency_foo = df_foo["latency"]
-        mean = latency_foo.mean()
-        newMeanBloques["bloque_{0}".format(stageNum)] = mean
+        stageDataFrame = roundResults_list[stageNum]
+        stageLatencies = df_foo["latency"]
+        latencyMean = stageLatencies.mean()
+        newStageMeans["stage_{0}".format(stageNum)] = latencyMean
 
-    # Calculamos la desviación estandar (3 y 6; 4 y 7)
+    # Compute standard deviations
+    # One standard deviations for stage group 1 (stages 3 and 6)
+    # One standard deviations for stage group 2 (stages 4 and 7)
     SD1 = pd.concat([roundResults_list[0]["latency"], roundResults_list[2]["latency"]], ignore_index = True).std()
     SD2 = pd.concat([roundResults_list[1]["latency"], roundResults_list[3]["latency"]], ignore_index = True).std()
 
-    # Calculamos el efecto IAT
-    Q1 = (newMeanBloques["bloque_0"] - newMeanBloques["bloque_2"]) / SD1
-    Q2 = (newMeanBloques["bloque_1"] - newMeanBloques["bloque_3"]) / SD2
+    # Compute "IAT effect"
+    Q1 = (newStageMeans["stage_0"] - newStageMeans["stage_2"]) / SD1
+    Q2 = (newStageMeans["stage_1"] - newStageMeans["stage_3"]) / SD2
 
-    IAT = (Q1 + Q2) / 2
+    IAT = (Q1 + Q2) / 2 # This is why our "IAT effect" can only range from -2 to 2!!
 
-    # Obtenemos respuesta más rápida
+    # Add IAT effect (dScore) to array of dScores
+    MongoConnection = MongoConnector(MONGO_DB, MONGO_COUNTER_COLLECTION, MONGO_URI)
+    updateResults = MongoConnection.collection.update_one(
+        {"counter_name": "n_results"},
+        {
+            "$inc": {
+                "counter_value": 1
+            },
+            "$push": {
+                "scoresArray": IAT
+            }
+        }
+    )
+
+    # Check update operation
+    if updateResults.modified_count < 1:
+        error_msg = "Something went wrong while updating the results array."
+        logger.error(error_msg)
+        raise FrontEndException(error_msg)
+
+    # Get fastest latency
     fastestLatency = roundResults_pooled["latency"].min()
 
-    # Obtenemos respuesta más lenta
-    slowesttLatency = roundResults_pooled["latency"].max()
+    # Get slowest latency
+    slowestLatency = roundResults_pooled["latency"].max()
 
-    # Obtenemos respuesta media
+    # Get mean pooled latency
     meanLatency = roundResults_pooled["latency"].mean()
 
-    # Obtenemos número de errores
+    # Get total number of errors
     totalErrors = roundResults_pooled["error"].sum()
 
-    # Convertimos en tipos que entiende python
+    # Coerce data types
     fastestLatency = int(fastestLatency)
-    slowestLatency = int(slowesttLatency)
+    slowestLatency = int(slowestLatency)
     meanLatency = float(meanLatency)
     totalErrors = int(totalErrors)
-    # Redondeamos a 4 decimales
+    # Round to 4 decimal places
     meanLatency = round(meanLatency, 3)
     IAT = round(IAT, 3)
 
+    # Prepare results data
     resultData = {"code": "s", "iatScore": IAT, "fastestLatency": fastestLatency,
     "slowestLatency": slowestLatency, "meanLatency": meanLatency, "errorCount": totalErrors,
     "dScores": dScores}
 
+    # Put data in response env
     responseEnv = {
         "resultData": json.dumps(resultData)
     }
 
+    # Render
     return flask.render_template("results.html", **responseEnv)
 
 @Front.route("/bye", methods = ["GET"])
 def bye():
+
+    # Check referer and session
+    if not checkReferer("instructions", request.headers) or not checkSession(session):
+        return flask.redirect("/", 302)
+
     return flask.render_template("bye.html")
