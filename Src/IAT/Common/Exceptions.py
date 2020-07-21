@@ -1,4 +1,3 @@
-
 # Exceptions
 class ApiException(Exception):
 
@@ -25,3 +24,19 @@ class BadRequest(ApiException):
             return 'IAT-PRODER API Client Side Error (HTTP Bad Request): {0}'.format(self.message)
         else:
             return 'Client side error: Bad Request. No further details were given'
+
+class FrontEndException(Exception):
+     
+    status_code = 500
+
+    def __init__(self, *args):
+        if args:
+            self.message = args[0]
+        else:
+            self.message = None
+
+    def __str__(self):
+        if self.message:
+            return 'IAT-PRODER front end exception: {0}'.format(self.message)
+        else:
+            return 'The app encountered an error. No further details were given'
