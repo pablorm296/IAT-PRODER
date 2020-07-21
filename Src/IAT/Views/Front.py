@@ -438,12 +438,13 @@ def bye():
 
     return flask.render_template("bye.html")
 
-@Front.route("/test/error", methods = ["GET"])
+@Front.route("/errorTest", methods = ["GET"])
 def testError():
 
     raise FrontEndException("User requested a test error page. Everything is fine :)")
 
 @Front.errorhandler(FrontEndException)
+@Front.errorhandler(500)
 def serverErrorHanlder(e):
     # Define response env
     responseEnv = {
