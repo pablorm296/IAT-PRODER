@@ -433,7 +433,7 @@ def results():
 def bye():
 
     # Check referer and session
-    if not checkReferer("instructions", request.headers) or not checkSession(session):
+    if not checkReferer("results", request.headers) or not checkSession(session):
         return flask.redirect("/", 302)
 
     return flask.render_template("bye.html")
