@@ -303,7 +303,7 @@ def results():
             raise FrontEndException(error_msg)
     # Else, just load our own dScores
     else:
-        dScores = readResults["scoresArray"]
+        dScores = readResults["scores_array"]
 
     # Get round latency results. Depending on user order (1 or 0, randomly assigned), we flip round results order
     # If round is 0
@@ -401,7 +401,7 @@ def results():
                 "counter_value": 1
             },
             "$push": {
-                "scoresArray": IAT
+                "scores_array": IAT
             }
         }
     )
