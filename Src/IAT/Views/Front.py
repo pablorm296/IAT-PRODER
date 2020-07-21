@@ -126,18 +126,35 @@ def welcome():
         searchResults = MongoConnection.collection.find_one(
             {"user_id": user_id}
         )
-
-        # Close connection
-        MongoConnection.close()
                 
-        # if the user has not completed the test, then render main welcome message
-        if searchResults["completed"] == False or searchResults is None:
-            # Try to update user access info
-            DBShortcuts.updateLastUserView("welcome", searchResults["user_id"])
-
+        # If we can't find that userid, then we register it int he database
+        if searchResults is None:
+            # insert new user id
+            user_id = session.get("user_id")
+            insertResults = MongoConnection.collection.insert_one(
+                {
+                    "user_id": user_id,
+                    "created": datetime.datetime.utcnow(),
+                    "remote_address": request.remote_addr,
+                    "last_seen": datetime.datetime.utcnow(),
+                    "hits": 1,
+                    "completed": False,
+                    "last_view": "welcome"
+                }
+            )
             # Render welcome page
             return flask.render_template("welcome.html")
-        else:
+        # if the user has not completed the test, then render main welcome message
+        elif searchResults["completed"] == False:
+            # Close connection
+            MongoConnection.close()
+            # Try to update user access info
+            DBShortcuts.updateLastUserView("welcome", searchResults["user_id"])
+            # Render welcome page
+            return flask.render_template("welcome.html")
+        elif searchResults["completed"]:
+            # Close connection
+            MongoConnection.close()
             # Render message saying that the user already answered the test
             return flask.render_template("sorry.html")
 
@@ -445,7 +462,7 @@ def testError():
 
 @Front.errorhandler(FrontEndException)
 @Front.errorhandler(500)
-def serverErrorHanlder(e):
+def serverErrorHandler(e):
     # Define response env
     responseEnv = {
         "errorMsg": str(e)
