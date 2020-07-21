@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block head %}
+<!-- Estilos -->
+<link rel="stylesheet" href="Static/style/main.css">
+<link rel="stylesheet" href="Static/style/error.css">
+{% endblock %}
+{% block title %} Bienvenido {% endblock %}
+{% block body %}
+<div id="page">
+    <div id="content">
+        <div id="gridContainer">
+            <div class="item messageContainer">
+                <img class="error_animation" src="Static/imgs/theme/error.gif" alt="Error">
+                <h1>¡Ups!</h1>
+                <p>
+                    Esto no debería estar pasando. El servidor encontró un error y detuvo la ejecución de la aplicación.
+                    Por favor, reporta este error al administrador.
+                </p>
+                <p>
+                    Detalles del error:
+                </p>
+                <p class="error_details">
+                    {{ errorMsg }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="logos">
+            <img id="projectLogo" src="Static/imgs/theme/logo_disc_white.png" alt="Logo PRODER (Blanco)">
+            <img id="colmexLogo" src="Static/imgs/theme/logo_colmex_white.svg"
+                alt="Logo del Colegio de México (Blanco)">
+        </div>
+        <div class="text">
+            <p>
+                Todos los derechos reservados. Proyecto sobre Discriminación Étnico-Racial en México, El Colegio de
+                México
+                A.C. © 2020
+            </p>
+            <p>
+                Carretera Picacho Ajusco 20, Col. Ampliación Fuentes del Pedregal, C.P. 14110, Tlalpan, Ciudad de
+                México
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
