@@ -38,12 +38,10 @@ class MongoConnector:
         self.MongoClient = pymongo.MongoClient(mongoUri)
         # Set target DB
         self.__targetDB = targetDB
-        self.__setattr__(self, targetDB, self.MongoClient[targetDB])
-        self.db = self.__getattribute__(targetDB)
+        self.db = self.MongoClient[targetDB]
         # Set target Collection
         self.__targetCollection = targetCollection
-        self.__setattr__(self, targetCollection, self.MongoClient[targetDB][targetCollection])
-        self.collection = self.__getattribute__(targetCollection)
+        self.collection = self.MongoClient[targetDB][targetCollection]
 
     def close(self):
 
@@ -52,8 +50,6 @@ class MongoConnector:
         self.MongoClient = None
 
         # Set to none the target DB and target collection
-        self.__setattr__(self, self.__targetDB, None)
-        self.__setattr__(self, self.__targetCollection, None)
         self.db = None
         self.collection = None
 
