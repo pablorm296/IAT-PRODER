@@ -13,12 +13,13 @@ from flask import request
 from IAT.Config import Reader
 from IAT.RestfulTools import Response as ApiResponse
 from IAT.Common.Exceptions import ApiException, BadRequest
+from IAT.Common.DB import MongoConnector, DBShortcuts
 
 # Configure logger
 logger = logging.getLogger(__name__)
 
 # Read config
-# CHeck if we are in a test env
+# Check if we are in a test env
 if os.environ["FLASK_DEBUG_IAT"] == "True":
     ConfigReader = Reader(path = "./Debug", load = "all")
 else:
@@ -29,6 +30,10 @@ CONFIG = ConfigReader.Config
 MONGO_URI = ConfigReader.Mongo_Uri
 STIMULI_WORDS = CONFIG["stimuli"]["words"]
 STIMULI_IMAGES = CONFIG["stimuli"]["images"]
+MONGO_DB = CONFIG["app"]["mongo_db_name"]
+MONGO_USERS_COLLECTION = CONFIG["app"]["mongo_users_collection"]
+MONGO_RESULTS_COLLECTION = CONFIG["app"]["mongo_results_collection"] 
+MONGO_COUNTER_COLLECTION = CONFIG["app"]["mongo_counter_collection"]
 
 # Define API blueprint
 Api = Blueprint('api', __name__, static_folder = "Static", template_folder = "Templates", url_prefix = "/api")
@@ -101,7 +106,7 @@ def getStimuli():
         # Concatenate train words with merged list
         finalList = trainWords + mergedList
     else:
-        raise BadRequest("Well... I'm not prepared to handle an 8 stages IAT!")
+        raise BadRequest("Well... I don't know what are you expecting me to send in that stage!")
 
     # Define response data
     responseData = {"stimuli": finalList}
@@ -124,27 +129,13 @@ def postResults():
     if session.get("user_id", None) is None:
         raise ApiException("There is not a valid session cookie in this request!")
 
-    # Update user view
-    # Open new DB connection
-    MongoConnection = pymongo.MongoClient(MONGO_URI)
-    MongoDB = MongoConnection[CONFIG["app"]["mongo_db_name"]]
-    UsersCollection = MongoDB[CONFIG["app"]["mongo_users_collection"]]
-    ResultsCollection = MongoDB[CONFIG["app"]["mongo_results_collection"]]
-
-    # Update user
-    user_id = session.get("user_id")
     # Try to update user access info
-    updateResults = UsersCollection.update_one(
-        {"user_id": user_id},
-        {
-            "$set": {
-                "last_seen": datetime.datetime.utcnow(),
-                "last_view": "iat_final"
-            }
-        }
-    )
+    user_id = session.get("user_id")
+    DBShortcuts.updateLastUserView("iat_final", user_id)
+
     # Try to insert user results
-    insertResults = ResultsCollection.insert_one(
+    MongoConnection = MongoConnector(MONGO_DB, MONGO_RESULTS_COLLECTION, MONGO_URI)
+    insertResults = MongoConnection.collection.insert_one(
         {
             "user_id": user_id,
             "results_inserted": datetime.datetime.utcnow(),
@@ -152,8 +143,8 @@ def postResults():
             "order": jsonPayload.get("order")
         }
     )
-    # Check update and insert operations
-    if updateResults.modified_count < 1 or insertResults.acknowledged == False:
+    # Check insert operations
+    if not insertResults.acknowledged:
         raise ApiException("Something went wrong while updating the user info or inserting his/her results!")
 
     # Close pymongo connection
