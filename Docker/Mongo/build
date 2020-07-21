@@ -1,4 +1,7 @@
 #!/bin/bash
 
+# Read root_secret passwor
+ROOT_SECRET=$(head -n 1 config/root_secret)
+
 # Build docker
-sudo docker build -t iat/mongo:test .
+sudo docker build -t iat/mongo:test --build-arg root_secret=$ROOT_SECRET .
