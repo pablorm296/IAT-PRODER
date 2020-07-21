@@ -442,3 +442,12 @@ def bye():
 def testError():
 
     raise FrontEndException("User requested a test error page. Everything is fine :)")
+
+@Front.errorhandler(FrontEndException)
+def serverErrorHanlder(e):
+    # Define response env
+    responseEnv = {
+        "errorMsg": str(e)
+    }
+    # Render error page
+    return flask.render_template("error.html", **responseEnv)
