@@ -32,6 +32,12 @@ def create_app(debug = None):
     app.register_blueprint(Front)
     app.register_blueprint(Api)
 
+    # Register not found error handler
+    @app.errorhandler(404)
+    def notFoundErrorHandler(e):
+        # Render error page
+        return flask.render_template("404.html")
+
     # Set session cookie expiration
     @app.before_request
     def make_session_permanent():

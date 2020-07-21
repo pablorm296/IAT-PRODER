@@ -469,3 +469,8 @@ def serverErrorHandler(e):
     }
     # Render error page
     return flask.render_template("error.html", **responseEnv)
+
+@Front.errorhandler(404)
+def notFoundErrorHandler(e):
+    # Render error page
+    return flask.render_template("404.html")
