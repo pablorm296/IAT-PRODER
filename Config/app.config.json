@@ -5,6 +5,7 @@
     "mongo_db_name": "IAT_PRODER",
     "mongo_users_collection": "Users",
     "mongo_results_collection": "Results",
+    "mongo_counter_collection": "Counter",
     "mongo_user": "iat_app",
     "mongo_password": "xbkhWj43PaG43rb96uQT"
 }
