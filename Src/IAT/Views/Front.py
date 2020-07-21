@@ -437,3 +437,8 @@ def bye():
         return flask.redirect("/", 302)
 
     return flask.render_template("bye.html")
+
+@Front.route("/test/error", methods = ["GET"])
+def testError():
+
+    raise FrontEndException("User requested a test error page. Everything is fine :)")
