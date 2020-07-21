@@ -12,7 +12,7 @@ from flask import request
 
 from IAT.Config import Reader
 from IAT.RestfulTools import Response as ApiResponse
-from IAT.Common import ApiException, BadRequest
+from IAT.Common.Exceptions import ApiException, BadRequest
 
 # Configure logger
 logger = logging.getLogger(__name__)
