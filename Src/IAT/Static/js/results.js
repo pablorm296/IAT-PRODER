@@ -91,8 +91,8 @@ function drawPlots() {
                 formatter: function () {
                     var change = {
                         "0": '0<br>Sin preferencia',
-                        "1": '1<br>Preferencia piel blanca',
-                        "-1": '-1<br>Preferencia piel morena'
+                        "1": '1<br>Preferencia por piel blanca',
+                        "-1": '-1<br>Preferencia por piel morena'
                     };
                     var value = change[this.value];
                     return value !== 'undefined' ? value : this.value;
