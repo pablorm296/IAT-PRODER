@@ -40,8 +40,15 @@ function checkInput() {
     }
     // Verificamos reCaptcha
     if (grecaptcha.getResponse() == "") {
-        $("#srvy_captcha_rm").removeClass("input_label");
-        $("#srvy_captcha_rm").addClass("input_label_error");
+        $("#srvy_captcha_label").removeClass("input_label");
+        $("#srvy_captcha_label").addClass("input_label_error");
+        $("#srvy_captcha_label_rm").removeClass("required_mark");
+        $("#srvy_captcha_label_rm").addClass("required_mark_error");
+    } else {
+        $("#srvy_captcha_label").removeClass("input_label_error");
+        $("#srvy_captcha_label").addClass("input_label");
+        $("#srvy_captcha_label_rm").removeClass("required_mark_error");
+        $("#srvy_captcha_label_rm").addClass("required_mark");
     }
     //Si hay más de un campo vacío, enviamos alerta
     if (emptyFields > 0) {
