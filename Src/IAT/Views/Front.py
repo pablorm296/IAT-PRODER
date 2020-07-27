@@ -238,7 +238,10 @@ def survey():
         raise FrontEndException(error_msg)
 
     # Render survey template
-    return flask.render_template("survey.html")
+    response_env = {
+        "reCaptcha_public": RECAPTCHA_PUBLIC
+    }
+    return flask.render_template("survey.html", **response_env)
 
 @Front.route("/results", methods = ["GET"])
 def results():
