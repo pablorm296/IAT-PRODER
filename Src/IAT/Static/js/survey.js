@@ -63,7 +63,7 @@ function checkInput() {
 }
 
 function saveResults() {
-    
+    // Get edad
 }
 
 //Función para el botón de ok
@@ -79,13 +79,34 @@ function okBtn() {
 function setBtns() {
     //Botón ok
     $("#OkButton").click(okBtn);
-    //Botón para mayor información
+}
+
+// Function that configures input checks
+function setChecks() {
+    // Bind to age on change
+    $("#srvy_age").change(numericCheck);
+}
+
+// Numeric input check
+function numericCheck(value) {
+    // Regex that checks if input has somethong that is not a digit
+    var re = new RegExp(/\D/);
+    var match = re.exec(value);
+    // Check match
+    if (match !== null) {
+        // remove all non numerics
+        var user_input = this.value;
+        user_input = user_input.replace(re, "");
+        this.value = user_input;
+        return true;
+    }
+    return true;
 }
 
 //Cuando el documento se carga
 $(document).ready(function () {
-    //Configuramos botones
+    // Set buttons
     setBtns();
-    //Inicializamos conector de API
+    // Init API connector
     myAPI = new iatAPI()
 });
