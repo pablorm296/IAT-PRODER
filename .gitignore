@@ -15,3 +15,7 @@
 *.pyc
 # Ignore pip local install
 *.egg-info
+# Ignore actual configuration files (only keep samples)
+app.config.json
+db_secrets
+root_secret
