@@ -9,7 +9,6 @@ class iatAPI {
                     contentType: 'application/json',
                     dataType: "json",
                     data: JSON.stringify(payload),
-                    async: false,
                     error: function() {alert("An unexpected error occurred when updating the test results! Please contact server admin"); window.location.href = "discriminacion.colmex.mx/";}
                 });
             },
@@ -19,7 +18,6 @@ class iatAPI {
                     url: "api/result",
                     contentType: 'application/json',
                     dataType: "json",
-                    async: false,
                     success: success,
                     error: function() {alert("An unexpected error occurred when getting the test results! Please contact server admin"); window.location.href = "discriminacion.colmex.mx/";}
                 });
