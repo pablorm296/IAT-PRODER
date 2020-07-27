@@ -38,6 +38,11 @@ function checkInput() {
             $(`#${idStr}_label_rm`).removeClass("required_mark_error");
         }
     }
+    // Verificamos reCaptcha
+    if (grecaptcha.getResponse() == "") {
+        $("#srvy_captcha_rm").removeClass("input_label");
+        $("#srvy_captcha_rm").addClass("input_label_error");
+    }
     //Si hay más de un campo vacío, enviamos alerta
     if (emptyFields > 0) {
         alert("Por favor, contesta todas las preguntas obligatorias (marcadas con un asterisco). Hemos marcado en rojo las que olvidaste");
