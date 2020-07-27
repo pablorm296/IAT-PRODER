@@ -33,6 +33,8 @@ MONGO_DB = CONFIG["app"]["mongo_db_name"]
 MONGO_USERS_COLLECTION = CONFIG["app"]["mongo_users_collection"]
 MONGO_RESULTS_COLLECTION = CONFIG["app"]["mongo_results_collection"] 
 MONGO_COUNTER_COLLECTION = CONFIG["app"]["mongo_counter_collection"]
+RECAPTCHA_PUBLIC = CONFIG["app"]["google_reCaptcha_public"]
+RECAPTCHA_PRIVATE = CONFIG["app"]["google_reCaptcha_private"]
 
 # Define front-end (client-side) blueprint
 Front = Blueprint('front', __name__, static_folder = "Static", template_folder = "Templates", url_prefix = "/")
