@@ -81,32 +81,66 @@ function setBtns() {
     $("#OkButton").click(okBtn);
 }
 
+// Function that allows only numeric inputs
+function onlyNumeric() {
+    //Get element id
+    const idName = this.id;
+    // Regex that checks if input has somethong that is not a digit
+    const current_value = $(`#${idName}`).val();
+    const re = new RegExp(/(\D+)/gi);
+    const match = re.exec(current_value);
+    // Check match
+    if (match != null) {
+        // remove user input
+        $(`#${idName}`).val("");
+        // Put error message
+        $(`#${idName}_wi`).text("¡Sólo se admiten valores numéricos!");
+        $(`#${idName}_wi`).show();
+    } else {
+        // Hide error message
+        $(`#${idName}_wi`).text("");
+        $(`#${idName}_wi`).hide();
+    }
+}
+
+// Function that cleans text input
+function onlyGoodCharacters() {
+    //Get element id
+    const idName = this.id;
+    // Regex that checks if input has somethong that is not a digit
+    const current_value = $(`#${idName}`).val();
+    const re = new RegExp(/[\{\}\*\_\$\%\<\>\#\|\&\?\!\¡\¿\[\]]+/gi);
+    const match = re.exec(current_value);
+    // Check match
+    if (match != null) {
+        // remove user input
+        $(`#${idName}`).val("");
+        // Put error message
+        $(`#${idName}_wi`).text("¡Ingresaste uno o más caracteres inválidos!");
+        $(`#${idName}_wi`).show();
+    } else {
+        // Hide error message
+        $(`#${idName}_wi`).text("");
+        $(`#${idName}_wi`).hide();
+    }
+}
+
 // Function that configures input checks
 function setChecks() {
     // Bind to age on change
-    $("#srvy_age").change(numericCheck);
-}
-
-// Numeric input check
-function numericCheck(value) {
-    // Regex that checks if input has somethong that is not a digit
-    var re = new RegExp(/\D/);
-    var match = re.exec(value);
-    // Check match
-    if (match !== null) {
-        // remove all non numerics
-        var user_input = this.value;
-        user_input = user_input.replace(re, "");
-        this.value = user_input;
-        return true;
-    }
-    return true;
+    $("#srvy_age").on('change', onlyNumeric);
+    // Bind to zip code on change
+    $("#srvy_zip").on('change', onlyNumeric);
+    // Bind to colonia
+    $("#srvy_col").on('change', onlyGoodCharacters);
 }
 
 //Cuando el documento se carga
 $(document).ready(function () {
     // Set buttons
     setBtns();
+    // Set input checks
+    setChecks();
     // Init API connector
     myAPI = new iatAPI()
 });
