@@ -9,7 +9,17 @@ class iatAPI {
                     contentType: 'application/json',
                     dataType: "json",
                     data: JSON.stringify(payload),
-                    error: function() {alert("An unexpected error occurred when updating the test results! Please contact server admin"); window.location.href = "discriminacion.colmex.mx/";}
+                    error: function() {alert("An unexpected error occurred when posting the test results! Please contact server admin"); window.location.href = "discriminacion.colmex.mx/";}
+                });
+            },
+            POST_survey: function (payload) {
+                $.ajax({
+                    type: "POST",
+                    url: "api/survey",
+                    contentType: 'application/json',
+                    dataType: "json",
+                    data: JSON.stringify(payload),
+                    error: function() {alert("An unexpected error occurred when posting the survey results! Please contact server admin"); window.location.href = "discriminacion.colmex.mx/";}
                 });
             },
             GET_results: function (success) {
