@@ -10,6 +10,7 @@ from flask import Blueprint
 from flask import session
 from flask import request
 
+# Package imports
 from IAT.Config import Reader
 from IAT.RestfulTools import Response as ApiResponse
 from IAT.Common.Exceptions import ApiException, BadRequest
@@ -34,6 +35,8 @@ MONGO_DB = CONFIG["app"]["mongo_db_name"]
 MONGO_USERS_COLLECTION = CONFIG["app"]["mongo_users_collection"]
 MONGO_RESULTS_COLLECTION = CONFIG["app"]["mongo_results_collection"] 
 MONGO_COUNTER_COLLECTION = CONFIG["app"]["mongo_counter_collection"]
+RECAPTCHA_PUBLIC = CONFIG["app"]["google_reCaptcha_public"]
+RECAPTCHA_PRIVATE = CONFIG["app"]["google_reCaptcha_private"]
 
 # Define API blueprint
 Api = Blueprint('api', __name__, static_folder = "Static", template_folder = "Templates", url_prefix = "/api")
@@ -153,6 +156,21 @@ def postResults():
     # Send Response
     newResponse = ApiResponse("Ok!")
     return newResponse.response
+
+@Api.route("/survey", methods = ["POST"])
+def postSurvey():
+    # Try to get json content
+    jsonPayload = flask.request.get_json()
+    if jsonPayload is None:
+        raise BadRequest("It seems that you're sending me some unexpected data format!")
+
+    # Check json payload content
+    if jsonPayload.get("results", None) is None or jsonPayload.get("order", None) is None:
+        raise BadRequest("That is an invalid json payload!")
+
+    # Check session
+    if session.get("user_id", None) is None:
+        raise ApiException("There is not a valid session cookie in this request!")
 
 @Api.errorhandler(ApiException)
 def ApiErrorHanlder(e):
