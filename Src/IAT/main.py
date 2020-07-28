@@ -44,6 +44,8 @@ def create_app(debug = None):
         flask.session.permanent = True
         app.permanent_session_lifetime = timedelta(days = 365)
 
-    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+    # If debug, disable cache (faster debugging)
+    if debug:
+        app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     
     return app
