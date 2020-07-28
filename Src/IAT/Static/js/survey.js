@@ -57,8 +57,6 @@ function checkInput() {
         alert("Por favor, contesta todas las preguntas obligatorias (marcadas con un asterisco). Hemos marcado en rojo las que olvidaste");
         return false;
     } else {
-        //Enviamos resultados
-        saveResults();
         return true;
     }
 
