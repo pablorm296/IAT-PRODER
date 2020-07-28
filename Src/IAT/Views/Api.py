@@ -6,6 +6,9 @@ import logging
 import os
 import re
 import random
+import requests
+import base64
+
 from flask import Blueprint
 from flask import session
 from flask import request
@@ -164,13 +167,38 @@ def postSurvey():
     if jsonPayload is None:
         raise BadRequest("It seems that you're sending me some unexpected data format!")
 
-    # Check json payload content
-    if jsonPayload.get("results", None) is None or jsonPayload.get("order", None) is None:
-        raise BadRequest("That is an invalid json payload!")
-
     # Check session
     if session.get("user_id", None) is None:
         raise ApiException("There is not a valid session cookie in this request!")
+
+    # Before anything, let's check the Captcha
+    # Get captcha response
+    googleCapthca = jsonPayload.get("g", None)
+    if googleCapthca is None or googleCapthca == "":
+        raise ApiException("Well, if you don't send a valid reCaptcha, I'll think you're a robot!")
+
+    # Decode captcha
+    googleCapthca_b64_round1 = base64.b64decode(googleCapthca)
+    googleCapthca_b64_round2 = base64.b64decode(googleCapthca_b64_round1)
+
+    # Ask Google if we have a valid captcha
+    logger.info("Enviando request a Google...")
+    response = requests.post("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}".format(RECAPTCHA_PRIVATE, googleCapthca_b64_round2))
+
+    # Parse response as JSON
+    try:
+        responseAsJson = response.json()
+    except Exception:
+        raise ApiException("This is embarrasing. I could not ask Google if you're indeed a human!")
+    
+    # Is the user a human?
+    human = responseAsJson.get("success", None)
+
+    if human is None or not human:
+        raise ApiException("Get out of here, you filthy robot!")
+
+    newResponse = ApiResponse("Ok!")
+    return newResponse.response 
 
 @Api.errorhandler(ApiException)
 def ApiErrorHanlder(e):
