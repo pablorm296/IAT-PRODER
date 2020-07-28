@@ -9,7 +9,7 @@ import json
 import pandas as pd
 from flask import Blueprint, session, request
 
-# Imports from package
+# Package imports
 from IAT.Config import Reader
 from IAT.Common.DB import MongoConnector, DBShortcuts
 from IAT.Common.Exceptions import FrontEndException
@@ -37,7 +37,7 @@ RECAPTCHA_PUBLIC = CONFIG["app"]["google_reCaptcha_public"]
 RECAPTCHA_PRIVATE = CONFIG["app"]["google_reCaptcha_private"]
 
 # Define front-end (client-side) blueprint
-Front = Blueprint('front', __name__, static_folder = "Static", template_folder = "Templates", url_prefix = "/")
+Front = Blueprint('front', __name__, static_folder = "Static", static_url_path = "/Static", template_folder = "Templates", url_prefix = "/")
 
 # Function that checks the user referer
 def checkReferer(referer: str, requestHeaders):
@@ -473,9 +473,9 @@ def serverErrorHandler(e):
         "errorMsg": str(e)
     }
     # Render error page
-    return flask.render_template("error.html", **responseEnv)
+    return flask.render_template("error.html", **responseEnv), 500
 
 @Front.errorhandler(404)
 def notFoundErrorHandler(e):
     # Render error page
-    return flask.render_template("404.html")
+    return flask.render_template("404.html"), 404
