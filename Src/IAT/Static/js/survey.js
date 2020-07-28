@@ -152,15 +152,17 @@ function saveResults() {
     answers["g"] = gResponse;
     // Post answers
     console.log(answers);
-    myAPI.endPoints.POST_survey(answers);
+    myAPI.endPoints.POST_survey(answers, function () {
+        window.location.href = "/results";
+    });
 }
 
 //Función para el botón de ok
 function okBtn() {
-    //Validamos y guardamos resultados
+    //Validamos
     if (checkInput()) {
-         //Ir a página de resultados
-        window.location.href = "/results";
+        // Emviamos respuesas
+        saveResults();
     }
 }
 
