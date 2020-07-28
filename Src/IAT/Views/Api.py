@@ -49,7 +49,7 @@ def hello_world():
     newResponse = ApiResponse("Hello World! (This means that the API is up and running)")
     return newResponse.response
 
-@Api.route("/stimuli", methods = ["GET"])
+@Api.route("/iat/stimuli", methods = ["GET"])
 def getStimuli():
     # Get test stage
     stage = flask.request.args.get('stage', None)
