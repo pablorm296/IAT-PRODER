@@ -12,13 +12,14 @@ class iatAPI {
                     error: function() {alert("An unexpected error occurred when posting the test results! Please contact server admin"); window.location.href = "discriminacion.colmex.mx/";}
                 });
             },
-            POST_survey: function (payload) {
+            POST_survey: function (payload, success) {
                 $.ajax({
                     type: "POST",
                     url: "api/survey",
                     contentType: 'application/json',
                     dataType: "json",
                     data: JSON.stringify(payload),
+                    success: success,
                     error: function() {alert("An unexpected error occurred when posting the survey results! Please contact server admin"); window.location.href = "discriminacion.colmex.mx/";}
                 });
             },
