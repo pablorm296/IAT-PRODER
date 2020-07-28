@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block head %}
 <!-- Estilos -->
-<link rel="stylesheet" href="Static/style/main.css">
-<link rel="stylesheet" href="Static/style/error.css">
+<link rel="stylesheet" href="{{url_for('front.static', filename='style/main.css')}}">
+<link rel="stylesheet" href="{{url_for('front.static', filename='style/error.css')}}">
 {% endblock %}
 {% block title %} Bienvenido {% endblock %}
 {% block body %}
@@ -10,7 +10,7 @@
     <div id="content">
         <div id="gridContainer">
             <div class="item messageContainer">
-                <img class="error_animation" src="Static/imgs/theme/notFound.gif" alt="Error">
+                <img class="error_animation" src="{{url_for('front.static', filename='imgs/theme/notFound.gif')}}" alt="Error">
                 <h1>¡Ups!</h1>
                 <p>
                     Parece que la página que estás buscando no existe o fue movida de lugar.
@@ -20,8 +20,8 @@
     </div>
     <div id="footer">
         <div class="logos">
-            <img id="projectLogo" src="Static/imgs/theme/logo_disc_white.png" alt="Logo PRODER (Blanco)">
-            <img id="colmexLogo" src="Static/imgs/theme/logo_colmex_white.svg"
+            <img id="projectLogo" src="{{url_for('front.static', filename='imgs/theme/logo_disc.png')}}"" alt="Logo PRODER (Blanco)">
+            <img id="colmexLogo" src="{{url_for('front.static', filename='imgs/theme/logo_colmex_white.svg')}}""
                 alt="Logo del Colegio de México (Blanco)">
         </div>
         <div class="text">
