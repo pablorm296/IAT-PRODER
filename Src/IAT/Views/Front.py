@@ -396,6 +396,7 @@ def results():
     Q2 = (newStageMeans["stage_1"] - newStageMeans["stage_3"]) / SD2
 
     IAT = (Q1 + Q2) / 2 # This is why our "IAT effect" can only range from -2 to 2!!
+    logger.debug(IAT)
 
     # Add IAT effect (dScore) to array of dScores
     MongoConnection = MongoConnector(MONGO_DB, MONGO_COUNTER_COLLECTION, MONGO_URI)
