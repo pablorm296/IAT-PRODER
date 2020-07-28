@@ -2,6 +2,7 @@ from flask import Flask
 from datetime import timedelta
 import os
 import flask
+import logging
 
 from IAT.Config import Reader
 from IAT.Views import Front, Api
@@ -47,5 +48,9 @@ def create_app(debug = None):
     # If debug, disable cache (faster debugging)
     if debug:
         app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
+    # If debug, set logger debug
+    if debug:
+        logging.basicConfig(level=logging.DEBUG)
     
     return app
