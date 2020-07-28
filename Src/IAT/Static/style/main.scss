@@ -21,10 +21,11 @@ body {
 p {
     margin-top: 10px;
     margin-bottom: 10px;
-    .sangría-francesa {
-        padding-left: 22px;
-        text-indent: -22px;
-    }
+}
+
+p.sangría-francesa {
+    padding-left: 22px;
+    text-indent: -22px;
 }
 
 button {
