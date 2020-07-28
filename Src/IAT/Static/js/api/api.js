@@ -9,7 +9,8 @@ class iatAPI {
                     contentType: 'application/json',
                     dataType: "json",
                     data: JSON.stringify(payload),
-                    error: function() {alert("An unexpected error occurred when posting the test results! Please contact server admin"); window.location.href = "discriminacion.colmex.mx/";}
+                    async: false,
+                    error: function() {alert("An unexpected error occurred when posting the test results! Please contact server admin"); window.location.href = "https://www.discriminacion.colmex.mx/";}
                 });
             },
             POST_survey: function (payload, success) {
@@ -20,7 +21,7 @@ class iatAPI {
                     dataType: "json",
                     data: JSON.stringify(payload),
                     success: success,
-                    error: function() {alert("An unexpected error occurred when posting the survey results! Please contact server admin"); window.location.href = "discriminacion.colmex.mx/";}
+                    error: function() {alert("An unexpected error occurred when posting the survey results! Please contact server admin"); window.location.href = "https://www.discriminacion.colmex.mx/";}
                 });
             },
             GET_results: function (success) {
@@ -30,7 +31,7 @@ class iatAPI {
                     contentType: 'application/json',
                     dataType: "json",
                     success: success,
-                    error: function() {alert("An unexpected error occurred when getting the test results! Please contact server admin"); window.location.href = "discriminacion.colmex.mx/";}
+                    error: function() {alert("An unexpected error occurred when getting the test results! Please contact server admin"); window.location.href = "https://www.discriminacion.colmex.mx/";}
                 });
             },
             GET_stimuli: function (stage, success) {
@@ -39,7 +40,7 @@ class iatAPI {
                     url: `api/stimuli?stage=${stage}`,
                     dataType: "json",
                     success: success,
-                    error: function() {alert("An unexpected error occurred when getting the test stimuli! Please contact server admin"); window.location.href = "discriminacion.colmex.mx/";}
+                    error: function() {alert("An unexpected error occurred when getting the test stimuli! Please contact server admin"); window.location.href = "https://www.discriminacion.colmex.mx/";}
                 });
             }
         }
