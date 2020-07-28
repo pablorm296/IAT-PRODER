@@ -146,9 +146,15 @@ function saveResults() {
     var gResponse = grecaptcha.getResponse();
     gResponse = btoa(gResponse);
     gResponse = btoa(gResponse);
+    // Check google capthca
+    if (gResponse === "") {
+        alert("Parece que estás intentando saltarte la verificación de reCaptcha. Si no es así, reporta este error al administrador");
+        throw {name: "spoofedValueError", message: "Empty reCaptcha. Please, stop using dev console to change user input values."};
+    }
     answers["g"] = gResponse;
     // Post answers
-    myAPI.endpoints.POST_survey(answers);
+    console.log(answers);
+    myAPI.endPoints.POST_survey(answers);
 }
 
 //Función para el botón de ok
