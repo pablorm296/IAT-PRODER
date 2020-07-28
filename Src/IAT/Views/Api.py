@@ -181,6 +181,9 @@ def postSurvey():
     googleCapthca_b64_round1 = base64.b64decode(googleCapthca)
     googleCapthca_b64_round2 = base64.b64decode(googleCapthca_b64_round1)
 
+    # Final captcha
+    googleCapthcaFinal = googleCapthca_b64_round2.decode("utf-8")
+
     # Ask Google if we have a valid captcha
     logger.info("Enviando request a Google...")
     response = requests.post("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}".format(RECAPTCHA_PRIVATE, googleCapthca_b64_round2))
