@@ -27,7 +27,7 @@ class iatAPI {
             GET_results: function (success) {
                 $.ajax({
                     type: "GET",
-                    url: "api/result",
+                    url: "api/iat/results",
                     contentType: 'application/json',
                     dataType: "json",
                     success: success,

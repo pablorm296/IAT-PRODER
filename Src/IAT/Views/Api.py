@@ -120,8 +120,8 @@ def getStimuli():
     newResponse = ApiResponse(responseData)
     return newResponse.response
 
-@Api.route("/result", methods = ["POST"])
-def postResults():
+@Api.route("/iat/results", methods = ["POST"])
+def postIatResults():
     # Try to get json content
     jsonPayload = flask.request.get_json()
     if jsonPayload is None:
@@ -178,7 +178,7 @@ def postSurvey():
         raise ApiException("Well, if you don't send a valid reCaptcha, I'll think you're a robot!")
 
     # Ask Google if we have a valid captcha
-    logger.info("Enviando request a Google...")
+    logger.info("Validating captcha with Google service...")
     response = requests.post("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}".format(RECAPTCHA_PRIVATE, googleCapthca))
 
     # Parse response as JSON
