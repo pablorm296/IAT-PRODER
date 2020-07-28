@@ -177,16 +177,9 @@ def postSurvey():
     if googleCapthca is None or googleCapthca == "":
         raise ApiException("Well, if you don't send a valid reCaptcha, I'll think you're a robot!")
 
-    # Decode captcha
-    googleCapthca_b64_round1 = base64.b64decode(googleCapthca)
-    googleCapthca_b64_round2 = base64.b64decode(googleCapthca_b64_round1)
-
-    # Final captcha
-    googleCapthcaFinal = googleCapthca_b64_round2.decode("utf-8")
-
     # Ask Google if we have a valid captcha
     logger.info("Enviando request a Google...")
-    response = requests.post("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}".format(RECAPTCHA_PRIVATE, googleCapthca_b64_round2))
+    response = requests.post("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}".format(RECAPTCHA_PRIVATE, googleCapthca))
 
     # Parse response as JSON
     try:

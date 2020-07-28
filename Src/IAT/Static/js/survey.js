@@ -143,9 +143,7 @@ function saveResults() {
         }
     }
     // Get google captcha
-    var gResponse = grecaptcha.getResponse();
-    gResponse = btoa(gResponse);
-    gResponse = btoa(gResponse);
+    const gResponse = grecaptcha.getResponse();
     // Check google capthca
     if (gResponse === "") {
         alert("Parece que estás intentando saltarte la verificación de reCaptcha. Si no es así, reporta este error al administrador");
