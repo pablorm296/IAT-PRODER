@@ -64,7 +64,7 @@ class DBShortcuts:
             {"user_id": user_id},
             {
                 "$set": {
-                    "last_seen": datetime.datetime.utcnow(),
+                    "last_timestamp": datetime.datetime.utcnow(),
                     "last_view": view
                 },
                 "$inc": {

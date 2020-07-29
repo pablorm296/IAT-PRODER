@@ -99,7 +99,7 @@ def welcome():
                 "user_id": user_id,
                 "created": datetime.datetime.utcnow(),
                 "remote_address": request.remote_addr,
-                "last_seen": datetime.datetime.utcnow(),
+                "last_timestamp": datetime.datetime.utcnow(),
                 "hits": 1,
                 "completed": False,
                 "last_view": "welcome"
@@ -138,7 +138,7 @@ def welcome():
                     "user_id": user_id,
                     "created": datetime.datetime.utcnow(),
                     "remote_address": request.remote_addr,
-                    "last_seen": datetime.datetime.utcnow(),
+                    "last_timestamp": datetime.datetime.utcnow(),
                     "hits": 1,
                     "completed": False,
                     "last_view": "welcome"
