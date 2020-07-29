@@ -9,5 +9,7 @@
     "mongo_user": "iat_app",
     "mongo_password": "xxxx",
     "google_reCaptcha_public": "Go to your reCaptcha admin console",
-    "google_reCaptcha_private": "Go to your reCaptcha admin console"
+    "google_reCaptcha_private": "Go to your reCaptcha admin console",
+    "admin_user": "administrador",
+    "admin_password": "xxxx"
 }
