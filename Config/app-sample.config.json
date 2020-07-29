@@ -6,6 +6,7 @@
     "mongo_users_collection": "Users",
     "mongo_results_collection": "Results",
     "mongo_counter_collection": "Counter",
+    "mongo_survey_collection": "Survey",
     "mongo_user": "iat_app",
     "mongo_password": "xxxx",
     "google_reCaptcha_public": "Go to your reCaptcha admin console",
