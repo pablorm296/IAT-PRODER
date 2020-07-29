@@ -11,9 +11,9 @@ class ApiException(Exception):
 
     def __str__(self):
         if self.message:
-            return 'IAT-PRODER API Exception: {0}'.format(self.message)
+            return 'IAT-PRODER API exception: {0}'.format(self.message)
         else:
-            return 'The Api encountered an error. No further details were given'
+            return 'IAT-PRODER API exception: The API encountered an error. No further details were given.'
 
 class BadRequest(ApiException):
 
@@ -21,9 +21,29 @@ class BadRequest(ApiException):
 
     def __str__(self):
         if self.message:
-            return 'IAT-PRODER API Client Side Error (HTTP Bad Request): {0}'.format(self.message)
+            return 'IAT-PRODER API client side error (HTTP Bad Request): {0}'.format(self.message)
         else:
-            return 'Client side error: Bad Request. No further details were given'
+            return 'IAT-PRODER API client side error: Bad Request. No further details were given.'
+
+class Unauthorized(ApiException):
+
+    status_code = 401
+
+    def __str__(self):
+        if self.message:
+            return 'IAT-PRODER API client side error (HTTP Unauthorized): {0}'.format(self.message)
+        else:
+            return 'IAT-PRODER API client side error: Unauthorized. No further details were given.'
+
+class Forbidden(ApiException):
+
+    status_code = 403
+
+    def __str__(self):
+        if self.message:
+            return 'IAT-PRODER API client side error (HTTP Forbidden): {0}'.format(self.message)
+        else:
+            return 'IAT-PRODER API client side error: Forbidden. No further details were given.'
 
 class FrontEndException(Exception):
      
@@ -39,4 +59,4 @@ class FrontEndException(Exception):
         if self.message:
             return 'IAT-PRODER front end exception: {0}'.format(self.message)
         else:
-            return 'The app encountered an error. No further details were given'
+            return 'The app encountered an error. No further details were given.'
