@@ -465,6 +465,16 @@ def testError():
 
     raise FrontEndException("User requested a test error page. Everything is fine :)")
 
+@Front.route("/errorCustom", methods = ["GET"])
+def customError():
+
+    # Check message
+    msg = request.args.get("msg", None)
+    if msg is None or msg == "":
+        raise FrontEndException()
+
+    raise FrontEndException(msg)
+
 @Front.errorhandler(FrontEndException)
 @Front.errorhandler(500)
 def serverErrorHandler(e):
