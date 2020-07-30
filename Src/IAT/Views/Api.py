@@ -150,7 +150,7 @@ def getResults(collection = None):
         pass
 
     # Write document
-    with open("Tmp/{0}.csv".format(fileName)) as csvFile:
+    with open("Tmp/{0}.csv".format(fileName), "w") as csvFile:
         # Get fieldnames from first item. This is not very fail proof, since the first element can be "incomplete"
         # To prevent errors, a DB drop must be executed before running this app commit
         fieldNames = list(targetCollection[0].keys())
