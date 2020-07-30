@@ -377,7 +377,7 @@ def ApiErrorHandler(e):
     return errorResponse.response
 
 # Define error handler for general server error
-@Api.errorhandler(ApiException)
+@Api.errorhandler(500)
 def InternalServerErrorHandler(e):
     errorResponse = ApiResponse({}, 500, True, str(e))
     return errorResponse.response
