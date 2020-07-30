@@ -370,7 +370,14 @@ def postSurvey():
     newResponse = ApiResponse("Ok!")
     return newResponse.response 
 
+# Define error handler for ApiException class
 @Api.errorhandler(ApiException)
-def ApiErrorHanlder(e):
+def ApiErrorHandler(e):
     errorResponse = ApiResponse({}, e.status_code, True, str(e))
+    return errorResponse.response
+
+# Define error handler for general server error
+@Api.errorhandler(ApiException)
+def InternalServerErrorHandler(e):
+    errorResponse = ApiResponse({}, 500, True, str(e))
     return errorResponse.response
