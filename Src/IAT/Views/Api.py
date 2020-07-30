@@ -58,14 +58,11 @@ def parseBasicAuthorization(authHeader:str):
         raise BadRequest("Unexpected authorization type")
 
     # Decode second part
-    logger.debug(split)
     credentials = base64.b64decode(split[1]).decode('utf-8')
     
     # Split decoded credentials
-    logger.debug(credentials)
-    credentials = split[1].split(":")
+    credentials = credentials.split(":")
 
-    logger.debug(credentials)
     if len(credentials) != 2:
         raise BadRequest("Unexpected credentials format")
 
