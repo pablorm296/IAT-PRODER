@@ -397,25 +397,42 @@ def results():
 
     IAT = (Q1 + Q2) / 2 # This is why our "IAT effect" can only range from -2 to 2!!
 
-    # Add IAT effect (dScore) to array of dScores
+    # First, check if the user is not registered in the array of scores
     MongoConnection = MongoConnector(MONGO_DB, MONGO_COUNTER_COLLECTION, MONGO_URI)
-    updateResults = MongoConnection.collection.update_one(
-        {"counter_name": "n_results"},
-        {
-            "$inc": {
-                "counter_value": 1
-            },
-            "$push": {
-                "scores_array": IAT
-            }
-        }
-    )
 
-    # Check update operation
-    if updateResults.modified_count < 1:
-        error_msg = "Something went wrong while updating the results array."
-        logger.error(error_msg)
-        raise FrontEndException(error_msg)
+    searchResults = MongoConnection.collection.count_documents({
+        "scores_array.user_id": user_id
+    })
+
+    if searchResults < 1:
+        # Add IAT effect (dScore) to array of dScores
+        updateResults = MongoConnection.collection.update_one(
+            {"counter_name": "n_results"},
+            {
+                "$inc": {
+                    "counter_value": 1
+                },
+                "$push": {
+                    # This is an array where we store user id, together with his/her score
+                    "scores_array": {
+                        "user_id": user_id,
+                        "score": IAT
+                    }
+                }
+            }
+        )
+
+        # Check update operation
+        if updateResults.modified_count < 1:
+            error_msg = "Something went wrong while updating the results array."
+            logger.error(error_msg)
+            raise FrontEndException(error_msg)
+
+    else:
+        logger.warning("User {0} from {1} tried to re submit survey answers.".format(user_id, request.remote_addr))
+
+    # Close DB connection
+    MongoConnection.close()
 
     # Get fastest latency
     fastestLatency = roundResults_pooled["latency"].min()
