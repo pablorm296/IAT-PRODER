@@ -23,36 +23,6 @@ function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-//Función para controlar presión de teclas  
-function keyHandler(e, v = false, c) {
-    //Inicializamos variable para guardar código de tecla
-    var keyCode;
-
-    //IE y otros exploradores
-    if (window.event) { // IE                    
-        keyCode = e.keyCode;
-    } else if (e.which) { // Netscape/Firefox/Opera                   
-        keyCode = e.which;
-    }
-
-    //Obtenemos tecla apretada
-    var keyName = String.fromCharCode(keyCode);
-    //En caso de barra espaciadora
-    if (keyName === " ") {
-        keyName = "space";
-    }
-    //Enviamos a log
-    if (v) {
-        console.log("Key pressed:" + keyName);
-    }
-    //Si hay callback
-    if (c) {
-        c(keyName);
-    } else {
-        return keyName;
-    }
-}
-
 //Función que procesa la acción asignada a las teclas
 function keyCallBack(keyName) {
     if (__instructions) {
@@ -451,22 +421,8 @@ function IATloop() {
 
 //Cuando el documento se carga
 $(document).ready(function () {
-    //Verificar ancho y alto de la página
-    const w  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    const h = window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
-    const min_h = 460;
-    const min_w = 1000;
-
-    if (w < min_w || h < min_h) {
-        alert("La resolución de tu dispositivo es muy pequeña para realizar esta prueba. Por favor, trata de hacer más grande la pantalla o ajusta la resolución y recarga la página");
-    }
     //Ir al inicio de la página
     $('html,body').scrollTop(0);
     //Iniciar IAT
     IATloop();
-    //Desactivar acciones por default en teclas y asignar el keyHandler
-    $(document).keypress(function (e) {
-        e.preventDefault();
-        keyHandler(e, false, keyCallBack);
-    });
 });
