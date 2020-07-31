@@ -31,6 +31,17 @@ function keyCallBack(keyName) {
     }
 }
 
+// Ok button function
+function okBtn() {
+    // Go to instructions page
+    window.location.href = "/iat";
+}
+
+// Set Buttons actions
+function setBtns() {
+    $("#OkButton").click(okBtn);
+}
+
 // When document is loaded
 $(document).ready(function () {
     // Assign keyHandler to key press event
