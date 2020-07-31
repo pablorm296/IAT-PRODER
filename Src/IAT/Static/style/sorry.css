@@ -3,7 +3,7 @@
     text-align: center; } }
 #gridContainer {
   display: grid;
-  margin: 5%;
+  margin: 5% 0%;
   grid-template-columns: 20% 60% 20%;
   grid-template-rows: auto auto;
   justify-items: center; }
