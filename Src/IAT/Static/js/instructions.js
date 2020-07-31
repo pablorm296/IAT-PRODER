@@ -48,6 +48,8 @@ function setBtns() {
 
 // When document is loaded
 $(document).ready(function () {
+    // Set buttons
+    setBtns();
     // Assign keyHandler to key press event
     $(document).keypress(function (e) {
         e.preventDefault();
