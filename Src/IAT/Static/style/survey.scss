@@ -9,7 +9,7 @@
 #gridContainer {
     display: grid;
     margin: 5%;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 15% 70% 15%;
     grid-template-rows: auto auto auto;
     justify-items: center;
 }
@@ -57,70 +57,6 @@
 
 .spacer_small {
     margin: 15px 0;
-}
-
-.table_skin {
-    text-align: center;
-
-    th,
-    td {
-        width: 200px;
-        font-weight: bold;
-        padding: 5px;
-    }
-
-    th {
-        background-color: #8e6e97;
-        color: white;
-    }
-
-    td {
-        color: whitesmoke;
-
-        &.skin_1 {
-            background-color: rgb(101, 77, 62);
-        }
-
-        &.skin_2 {
-            background-color: rgb(119, 87, 65);
-        }
-
-        &.skin_3 {
-            background-color: rgb(135, 98, 73);
-        }
-
-        &.skin_4 {
-            background-color: rgb(148, 108, 81);
-        }
-
-        &.skin_5 {
-            background-color: rgb(160, 118, 90);
-        }
-
-        &.skin_6 {
-            background-color: rgb(168, 127, 100);
-        }
-
-        &.skin_7 {
-            background-color: rgb(177, 136, 108);
-        }
-
-        &.skin_8 {
-            background-color: rgb(182, 146, 121);
-        }
-
-        &.skin_9 {
-            background-color: rgb(190, 157, 134);
-        }
-
-        &.skin_10 {
-            background-color: rgb(197, 166, 145);
-        }
-
-        &.skin_11 {
-            background-color: rgb(200, 172, 153);
-        }
-    }
 }
 
 .wrong_input {

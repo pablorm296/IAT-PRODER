@@ -8,7 +8,7 @@
 #gridContainer {
   display: grid;
   margin: 5%;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 15% 70% 15%;
   grid-template-rows: auto auto auto;
   justify-items: center; }
 
@@ -46,41 +46,6 @@
 
 .spacer_small {
   margin: 15px 0; }
-
-.table_skin {
-  text-align: center; }
-  .table_skin th,
-  .table_skin td {
-    width: 200px;
-    font-weight: bold;
-    padding: 5px; }
-  .table_skin th {
-    background-color: #8e6e97;
-    color: white; }
-  .table_skin td {
-    color: whitesmoke; }
-    .table_skin td.skin_1 {
-      background-color: #654d3e; }
-    .table_skin td.skin_2 {
-      background-color: #775741; }
-    .table_skin td.skin_3 {
-      background-color: #876249; }
-    .table_skin td.skin_4 {
-      background-color: #946c51; }
-    .table_skin td.skin_5 {
-      background-color: #a0765a; }
-    .table_skin td.skin_6 {
-      background-color: #a87f64; }
-    .table_skin td.skin_7 {
-      background-color: #b1886c; }
-    .table_skin td.skin_8 {
-      background-color: #b69279; }
-    .table_skin td.skin_9 {
-      background-color: #be9d86; }
-    .table_skin td.skin_10 {
-      background-color: #c5a691; }
-    .table_skin td.skin_11 {
-      background-color: #c8ac99; }
 
 .wrong_input {
   background-color: #c03352;
