@@ -39,7 +39,11 @@ function okBtn() {
 
 // Set Buttons actions
 function setBtns() {
-    $("#OkButton").click(okBtn);
+    // Only if OkButton exists (mobile version)
+    if ($("#mydiv").length > 0){
+        // Ok button action
+        $("#OkButton").click(okBtn);
+    }
 }
 
 // When document is loaded
