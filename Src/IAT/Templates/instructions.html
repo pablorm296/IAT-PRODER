@@ -74,11 +74,11 @@
             
             {# Conditional message for mobile devices #}
             {% if session["mobile"] %}
-                <div class="item buttonsContainer"></div>
+                <div class="item buttonsContainer">
                     <button id="OkButton" class="okBtn">Comenzar prueba</button>
                 </div>
             {% else %}
-                <div class="item keyInstructions"></div>
+                <div class="item keyInstructions">
                     <p>Cuando estés listo/a, presiona la <span>barra espaciadora</span> para continuar.</p>
                 </div>
             {% endif %}
