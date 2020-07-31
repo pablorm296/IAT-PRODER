@@ -284,6 +284,22 @@ def results():
     # Close connection
     MongoConnection.close()
 
+    # Set completed status to true
+    MongoConnection = MongoConnector(MONGO_DB, MONGO_USERS_COLLECTION, MONGO_URI)
+    updateResults = MongoConnection.collection.update_one(
+        {"user_id": user_id},
+        {
+            "$set": {
+                "completed": True
+            }
+        }
+    )
+
+    if updateResults.modified_count < 1:
+        error_msg = "Something went wrong while setting the 'completed' status. The database couldn't update the document."
+        logger.error(error_msg)
+        raise FrontEndException(error_msg)
+
     # Define response dict in advance
     responseEnv = dict()
 
