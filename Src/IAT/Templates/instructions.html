@@ -71,9 +71,18 @@
                     <li>Es importante que no te distraigas.</li>
                 </ul>
             </div>
-            <div class="item keyInstructions">
-                <p>Cuando estés listo/a, presiona la <span>barra espaciadora</span> para continuar.</p>
-            </div>
+            
+            {# Conditional message for mobile devices #}
+            {% if session["mobile"] %}
+                <div class="item buttonsContainer"></div>
+                    <button id="OkButton" class="okBtn">Comenzar prueba</button>
+                </div>
+            {% else %}
+                <div class="item keyInstructions"></div>
+                    <p>Cuando estés listo/a, presiona la <span>barra espaciadora</span> para continuar.</p>
+                </div>
+            {% endif %}
+        
         </div>
     </div>
     <div id="footer">

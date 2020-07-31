@@ -1,14 +1,28 @@
 {% extends "base.html" %}
 {% block head %}
 <!-- Estilos -->
-<link rel="stylesheet" href="Static/style/iat.css">
+
+{# Conditional iat style sheet #}
+{% if session["mobile"] %}
+    <link rel="stylesheet" href="Static/style/iat-mobile.css">
+{% else %}
+    <link rel="stylesheet" href="Static/style/iat.css">
+{% endif %}
+
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/5.0.0/screenfull.min.js" integrity="sha256-syuFHf7mRNoTlsx0tObV2rxlKzXoz4kfNuPo8f3pSiU=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-<script src="Static/js/iat.js"></script>
 <script src="Static/js/api/api.min.js"></script>
+
+{# Conditional iat js script #}
+{% if session["mobile"] %}
+    <script src="Static/js/iat-mobile.min.js"></script>
+{% else %}
+    <script src="Static/js/iat.min.js"></script>
+{% endif %}
+
 {% endblock %}
 {% block title %} Ejercicio {% endblock %}
 {% block body %}
