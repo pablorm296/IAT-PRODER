@@ -42,6 +42,25 @@ img.example {
     color: white;
     padding: 5px; }
 
+.okBtn {
+  width: 100%;
+  color: #2ecc71;
+  border: 2px #2ecc71 solid; }
+  .okBtn:hover, .okBtn:focus {
+    color: #fff;
+    background-color: #2ecc71; }
+  .okBtn:active {
+    color: #fff;
+    background-color: #1D8047;
+    border: 2px #1D8047 solid; }
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  grid-column: 2/3;
+  grid-row: 2/3;
+  text-align: center; }
+
 .keyInstructions {
   grid-column: 2/3;
   grid-row: 2/3;
