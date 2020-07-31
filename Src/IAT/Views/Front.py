@@ -67,41 +67,6 @@ def checkSession(session):
     # If we arrived up to this point, return True 
     return True
 
-# Function that registers a new user
-def registerNewUser(session):
-
-    # Create a new user_id
-    session["user_id"] = uuid.uuid1().hex
-
-    # Register user in database
-    # Open new DB connection
-    MongoConnection = MongoConnector(MONGO_DB, MONGO_USERS_COLLECTION, MONGO_URI)
-
-    # insert new user id
-    user_id = session.get("user_id")
-
-    insertResults = MongoConnection.collection.insert_one(
-        {
-            "user_id": user_id,
-            "created": datetime.datetime.utcnow(),
-            "remote_address": request.remote_addr,
-            "last_timestamp": datetime.datetime.utcnow(),
-            "hits": 1,
-            "completed": False,
-            "last_view": "welcome",
-            "mobile": session["mobile"]
-        }
-    )
-
-    # Check insert result
-    if not insertResults.acknowledged:
-        error_msg = "Something went wrong while registering a new user in the database. The insert operation was not acknowledged."
-        logger.error(error_msg)
-        raise FrontEndException(error_msg)
-    
-    # Close mongo connection
-    MongoConnection.close()
-
 @Front.route("/", methods = ["GET"])
 def landing():
 
@@ -132,7 +97,7 @@ def welcome():
     if session.get("user_id", None) is None:
         
         # Register user
-        registerNewUser(session)
+        DBShortcuts.registerNewUser(session, request)
         
         # Render welcome
         return flask.render_template("welcome.html")
@@ -152,7 +117,7 @@ def welcome():
         if searchResults is None:
             
             # Register user
-            registerNewUser(session)
+            DBShortcuts.registerNewUser(session, request)
 
             # Render welcome page
             return flask.render_template("welcome.html")
