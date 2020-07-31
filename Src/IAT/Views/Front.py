@@ -173,13 +173,6 @@ def welcome():
 
 @Front.route("/instructions", methods = ["GET"])
 def instructions():
-    """Instructions View
-
-    When a `GET` request is received, this view will display some general instructions and examples for the IAT.
-
-    If the request contains an invalid referer or session cookie, the user will be redirected to the root (`/`) of the application.
-
-    """
     
     # Check referer and session
     if not checkReferer("welcome", request.headers) or not checkSession(session):
