@@ -67,53 +67,72 @@ def checkSession(session):
     # If we arrived up to this point, return True 
     return True
 
+# Function that registers a new user
+def registerNewUser(session):
+
+    # Create a new user_id
+    session["user_id"] = uuid.uuid1().hex
+
+    # Register user in database
+    # Open new DB connection
+    MongoConnection = MongoConnector(MONGO_DB, MONGO_USERS_COLLECTION, MONGO_URI)
+
+    # insert new user id
+    user_id = session.get("user_id")
+
+    insertResults = MongoConnection.collection.insert_one(
+        {
+            "user_id": user_id,
+            "created": datetime.datetime.utcnow(),
+            "remote_address": request.remote_addr,
+            "last_timestamp": datetime.datetime.utcnow(),
+            "hits": 1,
+            "completed": False,
+            "last_view": "welcome",
+            "mobile": session["mobile"]
+        }
+    )
+
+    # Check insert result
+    if not insertResults.acknowledged:
+        error_msg = "Something went wrong while registering a new user in the database. The insert operation was not acknowledged."
+        logger.error(error_msg)
+        raise FrontEndException(error_msg)
+    
+    # Close mongo connection
+    MongoConnection.close()
+
 @Front.route("/", methods = ["GET"])
 def landing():
-    """Landing View.
 
-    Although not implemented yet, this view is intended to check user device. If it's a mobile device, user will be redirected to the mobile version of the test. If not, it will be redirected to the desktop version.
-
-    """
-    # TODO: Check for mobile devices. For now, only desktop versions
     return flask.redirect("welcome", 302)
 
 @Front.route("/welcome", methods = ["GET"])
 def welcome():
-    """Welcome View
 
-    When a `GET` request is received, this view will get the `user_id` from the session cookie and check if the user has already completed the test. If the user has already completed the test, a message will be rendered stating that he or she can only participate in one test. However, if the user is new or has not completed a test, the main welcome message will be rendered.
+    # First, check if we're dealing with a mobile-device user
+    mobileUserRegex = r"Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Kindle|NetFront|Silk-Accelerated|(hpw|web)OS|Fennec|Minimo|Opera M(obi|ini)|Blazer|Dolfin|Dolphin|Skyfire|Zune"
+    userAgent = request.headers.get("User-Agent", None)
 
-    """
+    # If no user agent or empty
+    if userAgent is None or userAgent == "":
+        raise FrontEndException("Although a valid HTTP request was received, the User-Agent header is missing!")
+
+    # Check if user agent matches mobile
+    mobileUserAgentMatch = re.search(mobileUserRegex, userAgent)
+
+    # If match failed, then user is not mobile
+    if mobileUserAgentMatch is not None:
+        # Set mobile parameter in session accordingly
+        session["mobile"] = True
+    else:
+        session["mobile"] = False
+
     # Check if session has user_id field
     if session.get("user_id", None) is None:
-        # If not, then create a new user_id
-        session["user_id"] = uuid.uuid1().hex
-        # Register user in database
-        # Open new DB connection
-        MongoConnection = MongoConnector(MONGO_DB, MONGO_USERS_COLLECTION, MONGO_URI)
-
-        # insert new user id
-        user_id = session.get("user_id")
-        insertResults = MongoConnection.collection.insert_one(
-            {
-                "user_id": user_id,
-                "created": datetime.datetime.utcnow(),
-                "remote_address": request.remote_addr,
-                "last_timestamp": datetime.datetime.utcnow(),
-                "hits": 1,
-                "completed": False,
-                "last_view": "welcome"
-            }
-        )
-
-        # Check insert result
-        if not insertResults.acknowledged:
-            error_msg = "Something went wrong while registering a new user in the database. The insert operation was not acknowledged."
-            logger.error(error_msg)
-            raise FrontEndException(error_msg)
         
-        # Close mongo connection
-        MongoConnection.close()
+        # Register user
+        registerNewUser(session)
         
         # Render welcome
         return flask.render_template("welcome.html")
@@ -131,21 +150,13 @@ def welcome():
                 
         # If we can't find that userid, then we register it int he database
         if searchResults is None:
-            # insert new user id
-            user_id = session.get("user_id")
-            insertResults = MongoConnection.collection.insert_one(
-                {
-                    "user_id": user_id,
-                    "created": datetime.datetime.utcnow(),
-                    "remote_address": request.remote_addr,
-                    "last_timestamp": datetime.datetime.utcnow(),
-                    "hits": 1,
-                    "completed": False,
-                    "last_view": "welcome"
-                }
-            )
+            
+            # Register user
+            registerNewUser(session)
+
             # Render welcome page
             return flask.render_template("welcome.html")
+
         # if the user has not completed the test, then render main welcome message
         elif searchResults["completed"] == False:
             # Close connection
