@@ -499,8 +499,9 @@ def bye():
 
 @Front.route("/errorTest", methods = ["GET"])
 def testError():
-
-    raise FrontEndException("User requested a test error page. Everything is fine :)")
+    error_msg = "User requested a test error page. Everything is fine :)"
+    logger.error(error_msg)
+    raise FrontEndException(error_msg)
 
 @Front.route("/errorCustom", methods = ["GET"])
 def customError():
@@ -508,8 +509,12 @@ def customError():
     # Check message
     msg = request.args.get("msg", None)
     if msg is None or msg == "":
+        error_msg = "User requested a custom error page without message"
+        logger.error(error_msg)
         raise FrontEndException()
-
+    
+    error_msg = "User requested a custom error page with message: {0}".format(msg)
+    logger.error(error_msg)
     raise FrontEndException(msg)
 
 @Front.errorhandler(FrontEndException)
