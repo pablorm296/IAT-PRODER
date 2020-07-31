@@ -1,8 +1,14 @@
 import pymongo
 import os
 import datetime
+import logging
+import uuid
 
 from IAT.Config import Reader
+from IAT.Common.Exceptions import FrontEndException
+
+# Set up logger
+logger = logging.getLogger(__name__)
 
 # Read config
 # Check if we are in a test env
@@ -55,6 +61,42 @@ class MongoConnector:
 
 class DBShortcuts:
 
+    @staticmethod
+    # Function that registers a new user
+    def registerNewUser(session, request):
+
+        # Create a new user_id
+        session["user_id"] = uuid.uuid1().hex
+
+        # Register user in database
+        # Open new DB connection
+        MongoConnection = MongoConnector(MONGO_DB, MONGO_USERS_COLLECTION, MONGO_URI)
+
+        # insert new user id
+        user_id = session.get("user_id")
+
+        insertResults = MongoConnection.collection.insert_one(
+            {
+                "user_id": user_id,
+                "created": datetime.datetime.utcnow(),
+                "remote_address": request.remote_addr,
+                "last_timestamp": datetime.datetime.utcnow(),
+                "hits": 1,
+                "completed": False,
+                "last_view": "welcome",
+                "mobile": session["mobile"]
+            }
+        )
+
+        # Check insert result
+        if not insertResults.acknowledged:
+            error_msg = "Something went wrong while registering a new user in the database. The insert operation was not acknowledged."
+            logger.error(error_msg)
+            raise FrontEndException(error_msg)
+        
+        # Close mongo connection
+        MongoConnection.close()
+ 
     @staticmethod
     def updateLastUserView(view: str, user_id: str):
         # Open new connection
