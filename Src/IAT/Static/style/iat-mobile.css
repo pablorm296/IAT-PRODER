@@ -58,12 +58,12 @@ p {
   margin-bottom: 10px; }
 
 #page {
-  padding: 5% 15%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  align-items: stretch; }
+  align-items: stretch;
+  height: 100vh; }
 
 #errorMrk {
   font-size: 60pt;
@@ -77,12 +77,10 @@ p {
   color: red;
   margin: 40px 0; }
 
-.col {
-  margin: 0; }
-
 .left {
   order: 0;
-  height: 100%; }
+  padding: 5% 2%;
+  background-color: #b2ffb2; }
 
 .stimuli {
   order: 1;
@@ -99,77 +97,79 @@ p {
     flex: 0 1 25vh; }
   .stimuli .blank_bigger {
     order: 0;
-    flex: 0 1 40vh; }
+    flex: 0 1 20vh; }
   .stimuli .holders {
     order: 1;
     font-weight: normal;
     font-family: "Montserrat", sans-serif;
-    font-size: 4vmin;
+    font-size: 12pt;
     flex: 0 1 auto;
     margin-bottom: 25px; }
     .stimuli .holders img {
-      height: 170px; }
+      height: 20vh; }
     .stimuli .holders .instructions {
       text-align: justify;
       font-weight: normal;
-      font-size: 2.5vmin;
-      line-height: 3.75vmin;
-      margin: 0 0 10% 0; }
-      .stimuli .holders .instructions span {
-        color: #9d9dff; }
+      font-size: 12pt;
+      line-height: 18pt;
+      margin: 0 0 10% 0;
+      overflow-y: scroll;
+      height: 40vh; }
       .stimuli .holders .instructions h1 {
-        font-size: 3.75vmin;
+        font-size: 18pt;
         font-family: "KC", sans-serif;
         font-weight: normal;
         color: #ffffff; }
       .stimuli .holders .instructions h2 {
-        font-size: 1.25vmin;
+        font-size: 6pt;
         font-family: "KC", sans-serif;
         font-weight: normal;
         color: #ffffff; }
       .stimuli .holders .instructions h3 {
-        font-size: -1.25vmin;
+        font-size: -6pt;
         font-family: "KC", sans-serif;
         font-weight: normal;
         color: #ffffff; }
       .stimuli .holders .instructions h4 {
-        font-size: -3.75vmin;
+        font-size: -18pt;
         font-family: "KC", sans-serif;
         font-weight: normal;
         color: #ffffff; }
       .stimuli .holders .instructions h5 {
-        font-size: -6.25vmin;
+        font-size: -30pt;
         font-family: "KC", sans-serif;
         font-weight: normal;
         color: #ffffff; }
       .stimuli .holders .instructions h6 {
-        font-size: -8.75vmin;
+        font-size: -42pt;
         font-family: "KC", sans-serif;
         font-weight: normal;
         color: #ffffff; }
     .stimuli .holders .space_bar {
       font-weight: normal;
-      font-size: 3vmin;
+      font-size: 12pt;
       font-family: "KC", sans-serif; }
   .stimuli .messages {
     order: 2;
-    font-size: 3vmin;
+    font-size: 12pt;
     flex: 0 1 auto; }
 
 .right {
   order: 2;
-  height: 100%; }
+  padding: 5% 2%;
+  background: #b2ffb2; }
 
 .txt {
-  grid-column: 1/2;
-  grid-row: 1/2;
-  font-size: 4vmin;
+  width: 20vw;
+  color: #404040;
+  margin: auto;
+  font-size: 14pt;
   font-weight: bold;
-  line-height: 6vmin;
+  line-height: 18pt;
   white-space: nowrap; }
 
 .wrd {
-  color: #66FF66; }
+  color: #3425ff; }
 
 .or {
   margin: 20px 0px;

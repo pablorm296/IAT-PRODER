@@ -34,12 +34,12 @@ p {
 }
 
 #page {
-    padding: 5% 15%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: stretch;
+    height: 100vh;
 }
 
 #errorMrk {
@@ -57,12 +57,13 @@ p {
 }
 
 .col {
-    margin: 0;
+
 }
 
 .left {
     order: 0;
-    height: 100%;
+    padding: 5% 2%;
+    background-color: #b2ffb2
 }
 
 .stimuli {
@@ -85,35 +86,34 @@ p {
 
     .blank_bigger {
         order: 0;
-        flex: 0 1 40vh;
+        flex: 0 1 20vh;
     }
 
     .holders {
         order: 1;
         font-weight: normal;
         font-family: $bodyFont;
-        font-size: 4vmin;
+        font-size: 12pt;
         flex: 0 1 auto;
         margin-bottom: 25px;
 
         img {
-            height: 170px;
+            height: 20vh;
         }
 
         .instructions {
             text-align: justify;
             font-weight: normal;
-            font-size: 2.5vmin;
-            line-height: 2.5vmin * 1.5;
+            font-size: 12pt;
+            line-height: 12pt * 1.5;
             margin: 0 0 10% 0;
-            span {
-                color: #9d9dff;
-            }
+            overflow-y: scroll;
+            height: 40vh;
 
             //Encabezados
             @for $i from 1 through 6 {
                 h#{$i} {
-                    font-size: 2.5vmin * (2.5 - $i);
+                    font-size: 12pt * (2.5 - $i);
                     font-family: $headerFont;
                     font-weight: normal;
                     color: #ffffff;
@@ -124,7 +124,7 @@ p {
 
         .space_bar {
             font-weight: normal;
-            font-size: 3vmin;
+            font-size: 12pt;
             font-family: $headerFont;
         }
 
@@ -132,27 +132,29 @@ p {
 
     .messages {
         order: 2;
-        font-size: 3vmin;
+        font-size: 12pt;
         flex: 0 1 auto;
     }
 }
 
 .right {
     order: 2;
-    height: 100%;
+    padding: 5% 2%;
+    background: #b2ffb2;
 }
 
 .txt {
-    grid-column: 1/2;
-    grid-row: 1/2;
-    font-size: 4vmin;
+    width: 20vw;
+    color: #404040;
+    margin: auto;
+    font-size: 14pt;
     font-weight: bold;
-    line-height: 4vmin * 1.5;
+    line-height: 12pt * 1.5;
     white-space: nowrap;
 }
 
 .wrd {
-    color: #66FF66;
+    color: #3425ff;
 }
 
 .or {
