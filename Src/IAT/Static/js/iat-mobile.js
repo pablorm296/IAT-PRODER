@@ -60,6 +60,22 @@ function keyCallBack(keyName) {
     }
 }
 
+// Function that handles user click
+function setBtns() {
+    // Left col
+    $("#leftCol").on("click", function () {
+        keyCallBack("e");
+    });
+    // Right col
+    $("#rightCol").on("click", function () {
+        keyCallBack("i");
+    });
+    // Space bar
+    $("#space_bar").on("click", function () {
+        keyCallBack("space");
+    });
+}
+
 //Función que se activa cuando el usuario responde un estímulo
 function iatAnswer(key) {
     const humanIndex = __trialCount + 1;
@@ -262,7 +278,7 @@ function hideText(which) {
 function showInstructions() {
     __instructions = true;
     //Colocar instrucción de barra espaciadora
-    $("#space_bar").text("Presiona la barra espaciadora para comenzar");
+    $("#space_bar").text("Toca este texto para continuar");
     //Colocar títulos 
     switch (__stage) {
         case 1:
@@ -421,6 +437,8 @@ function IATloop() {
 
 //Cuando el documento se carga
 $(document).ready(function () {
+    // Asignar botones
+    setBtns();
     //Ir al inicio de la página
     $('html,body').scrollTop(0);
     //Iniciar IAT
