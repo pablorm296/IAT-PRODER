@@ -315,14 +315,14 @@ function showInstructions() {
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("word&img", "<p>Observa la parte de arriba, ahora aparecen categorías dobles nuevamente.</p><p>Cuando una imagen o palabra aparezca, toca el rectángulo de color verde que contenga la categoría a la que pertenece.</p>", true);
+            assignLabelsAndText("word&img", "<p>Observa la parte de arriba, ahora aparecen categorías dobles nuevamente.</p><p>Recuerda que cuando una imagen o palabra aparezca, toca el rectángulo de color verde que contenga la categoría a la que pertenece.</p>", true);
             break;
         case 7:
             //Definir tamaño del placeholder
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("word&img", "<p>Ordena, nuevamente, las mismas categorías.</p><p>Recuerda que tienes que presionar la tecla <b>E</b> cuando la imagen o palabra pertenezca a la categoría del lado izquierdo. Cuando la palabra o la imagen pertenezca a la categoría de la derecha, presiona la tecla <b>I</>.</p>", false);
+            assignLabelsAndText("word&img", "<p>Ordena, nuevamente, las mismas categorías.</p><p>Recuerda que cuando una imagen o palabra aparezca, toca el rectángulo de color verde que contenga la categoría a la que pertenece.</p>", false);
             break;
     }
     //Mostrar contador de rondas, instrucciones e indicación de proceder
