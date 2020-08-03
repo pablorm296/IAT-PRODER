@@ -31,9 +31,7 @@ function keyCallBack(keyName) {
             myAPI.endPoints.GET_stimuli(__stage, placeStimuli);
             __instructions = false;
             //Ocultamos instrucciones e indicación de proceder
-            if (screenfull.isFullscreen) {
-                console.log("La pantalla ya está maximizada");
-            } else {
+            if (!screenfull.isFullscreen) {
                 screenfull.request();
             }
             // Hide space bar indication
@@ -85,12 +83,10 @@ function iatAnswer(key) {
         if (__left.includes(currentLabel)) {
             const ellapsed = getLatency();
             saveTrial(ellapsed);
-            console.log(`correcto (${ellapsed} ms)`);
             hideText("info");
             __trialCount += 1;
             playIAT();
         } else {
-            console.log("incorrecto");
             __errorCnt += 1;
             showError();
         }
@@ -98,12 +94,10 @@ function iatAnswer(key) {
         if (__right.includes(currentLabel)) {
             const ellapsed = getLatency();
             saveTrial(ellapsed);
-            console.log(`correcto (${ellapsed} ms)`);
             hideText("info");
             __trialCount += 1;
             playIAT();
         } else {
-            console.log("incorrecto");
             __errorCnt += 1;
             showError();
         }
