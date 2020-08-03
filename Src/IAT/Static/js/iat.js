@@ -411,11 +411,11 @@ function playIAT() {
 function IATloop() {
     // Hide loaders
     $("#loader").hide();
-    $("#loader-dialog").hide();
+    $("#postDialog").hide();
     // Verificar en qué stage estamos
     if (__stage > 7) {
         // Show loader
-        $("#loader-dialog").show();
+        $("#postDialog").show();
         // Creamos un objeto con los resultados finales
         const finalResults = {
             results: __results,
