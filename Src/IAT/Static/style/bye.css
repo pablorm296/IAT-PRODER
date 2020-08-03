@@ -24,9 +24,9 @@
 .input_instructions {
   display: block;
   margin: 15px 0;
-  font-size: 14pt;
+  font-size: 12pt;
   color: #666;
-  line-height: 14pt; }
+  line-height: 12pt; }
 
 .main_results {
   background-color: wheat;
@@ -42,8 +42,8 @@
 
 .table_stats {
   margin: auto;
-  font-size: 13pt;
-  line-height: 15pt; }
+  font-size: 11pt;
+  line-height: 13pt; }
   .table_stats th,
   .table_stats td {
     width: 200px; }

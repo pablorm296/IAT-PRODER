@@ -20,8 +20,8 @@ img.example {
 
 .table_examples {
   margin: 40px auto;
-  font-size: 13pt;
-  line-height: 15pt; }
+  font-size: 11pt;
+  line-height: 13pt; }
   .table_examples td {
     padding: 12px 10px; }
   .table_examples th {
@@ -62,6 +62,6 @@ img.example {
     margin-bottom: 20px;
     margin-top: 20px;
     font-weight: bold;
-    font-size: 18pt; }
+    font-size: 16pt; }
 
 /*# sourceMappingURL=instructions.css.map */

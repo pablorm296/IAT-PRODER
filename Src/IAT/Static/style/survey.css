@@ -24,13 +24,13 @@
 .input_instructions {
   display: block;
   margin: 15px 0;
-  font-size: 14pt;
+  font-size: 12pt;
   color: #666;
-  line-height: 14pt; }
+  line-height: 12pt; }
 
 .required_mark, .required_mark_error {
   margin: 0px 5px;
-  font-size: 14pt;
+  font-size: 12pt;
   color: #808080; }
 
 .required_mark_error {
@@ -50,8 +50,8 @@
 
 .table_questions {
   margin: auto;
-  font-size: 13pt;
-  line-height: 15pt; }
+  font-size: 11pt;
+  line-height: 13pt; }
   .table_questions th,
   .table_questions td {
     width: 200px; }
