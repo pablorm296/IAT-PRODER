@@ -183,7 +183,7 @@ function assignLabelsAndText(stageType, msg, inverse) {
 
     //Dependiendo del orden que se le asigno a la persona, creamos un modifcador
     const modifier = (__order === 0) ? 1 : -1;
-    const modifier_imgs = (__order === 0) ? 1 : -1;
+    const modifier_imgs = (order === 0) ? 1 : -1;
 
     //Dependiendo del tipo de bloque, llenamos distintas variables
     //Un bloque con palabras e imágenes
