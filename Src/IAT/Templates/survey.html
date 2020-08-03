@@ -10,6 +10,12 @@
 <!-- JS -->
 <script src="Static/js/api/api.min.js"></script>
 <script src="Static/js/survey.min.js"></script>
+
+{# If mobile, use orientationCheck script #}
+{% if session["mobile"] %}
+    <script src="Static/js/orientationCheck.min.js"></script>
+{% endif %}
+
 {% endblock %}
 {% block title %} Encuesta de Salida {% endblock %}
 {% block body %}
