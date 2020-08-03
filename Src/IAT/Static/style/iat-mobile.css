@@ -113,7 +113,7 @@ p {
       font-size: 11pt;
       line-height: 16.5pt;
       margin: 0 2.5% 10% 2.5%;
-      overflow-y: scroll;
+      overflow-y: auto;
       height: 40vh; }
       .stimuli .holders .instructions h1 {
         font-size: 18pt;
