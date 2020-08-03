@@ -183,7 +183,7 @@ function assignLabelsAndText(stageType, msg, inverse) {
 
     //Dependiendo del orden que se le asigno a la persona, creamos un modifcador
     const modifier = (__order === 0) ? 1 : -1;
-    const modifier_imgs = (order === 0) ? 1 : -1;
+    const modifier_imgs = (__order === 0) ? 1 : -1;
 
     //Dependiendo del tipo de bloque, llenamos distintas variables
     //Un bloque con palabras e imágenes
@@ -336,7 +336,7 @@ function showInstructions() {
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("word&img", "<p>Ordena, nuevamente, las mismas categorías.</p><p>Recuerda que tienes que presionar la tecla <b>E</b> cuando la imagen o palabra pertenezca a la categoría del lado izquierdo. Cuando la palabra o la imagen pertenezca a la categoría de la derecha, presiona la tecla <b>I</b>.</p>", false);
+            assignLabelsAndText("word&img", "<p>Ordena, nuevamente, las mismas categorías.</p><p>Recuerda que tienes que presionar la tecla <b>E</b> cuando la imagen o palabra pertenezca a la categoría del lado izquierdo. Cuando la palabra o la imagen pertenezca a la categoría de la derecha, presiona la tecla <b>I</b>.</p>", true);
             break;
     }
     //Mostrar contador de rondas, instrucciones e indicación de proceder
