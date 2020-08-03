@@ -409,10 +409,14 @@ function playIAT() {
 
 //Función principal del IAT
 function IATloop() {
+    // Hide loaders
     $("#loader").hide();
+    $("#loader-dialog").hide();
     // Verificar en qué stage estamos
     if (__stage > 7) {
-        //Creamos un objeto con los resultados finales
+        // Show loader
+        $("#loader-dialog").show();
+        // Creamos un objeto con los resultados finales
         const finalResults = {
             results: __results,
             order: __order
