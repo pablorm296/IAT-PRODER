@@ -110,9 +110,9 @@ p {
     .stimuli .holders .instructions {
       text-align: justify;
       font-weight: normal;
-      font-size: 12pt;
-      line-height: 18pt;
-      margin: 0 0 10% 0;
+      font-size: 11pt;
+      line-height: 16.5pt;
+      margin: 0 2.5% 10% 2.5%;
       overflow-y: scroll;
       height: 40vh; }
       .stimuli .holders .instructions h1 {
