@@ -280,7 +280,7 @@ function showInstructions() {
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank");
-            assignLabelsAndText("img", "<h1>Instrucciones:</h1><ul><li>Orienta tu dispositivo en posición horizontal.</li><li>Observa las palabras que aparecen en la parte superior de la pantalla; éstas representan las categorías que tendrás que ordenar. Las palabras o imágenes que tienes que ordenar aparecerán una por una en el centro de la pantalla.</li><li>Cuando una imagen o palabra aparezca, toca el rectángulo de color verde que contenga la categoría a la que pertenece.</li><li> Ojo: las imágenes o palabras sólo pertenecen a una categoría. Si cometes un error, aparecerá una X, para corregir el error presiona la tecla correcta tan rápido como puedas.</li><ul>", false);
+            assignLabelsAndText("img", "<h1>Instrucciones:</h1><ul><li>Orienta tu dispositivo en posición horizontal.</li><li>Desliza tu dedo sobre este texto para ver todas las instrucciones.</li><li>Observa las palabras que aparecen en la parte superior de la pantalla; éstas representan las categorías que tendrás que ordenar. Las palabras o imágenes que tienes que ordenar aparecerán una por una en el centro de la pantalla.</li><li>Cuando una imagen o palabra aparezca, toca el rectángulo de color verde que contenga la categoría a la que pertenece.</li><li> Ojo: las imágenes o palabras sólo pertenecen a una categoría. Si cometes un error, aparecerá una X, para corregir el error presiona la tecla correcta tan rápido como puedas.</li><ul>", false);
             break;
         case 2:
             //Definir tamaño del placeholder
