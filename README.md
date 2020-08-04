@@ -2,7 +2,7 @@
 
 This is an Implicit Association Test (IAT) designed to measure the strength of stereotypes on skin tones. This test was created for the [Ethnoracial Discrimination in Mexico Research Project](https://discriminacion.colmex.mx/) at [El Colegio de México](https://www.colmex.mx/en).
 
-### Tabla de contenidos
+### Table of Contents
 
 <!-- TOC -->
 
