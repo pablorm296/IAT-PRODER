@@ -49,13 +49,13 @@ Please, **use a strong secret app key**. The key defined in `secret_key` will be
 
 ##### 2.2. Mongo Container Configuration
 
-Move to the `Docker/Mongo/Config` directory in the cloned repository. Inside, you'll see two file: `db_secrets-example` and `root_secret-example`. Both are examples of the configurations files that define Mongo credentials and the container root password, respectively.
+Move to the `Docker/Mongo/Config` directory in the cloned repository. Inside, you'll see two files: `db_secrets-example` and `root_secret-example`. Both are examples of the configurations files that define Mongo credentials and the container's root password, respectively.
 
 Edit `db_secrets-example`. You'll need to define an username and password for the DB admin and the App reader/writer. You'll also need to specify the name of the DB for the app. Please, make sure that the Mongo fields in `app.config.json` (see above) match the credentials and DB name defined in this file. After editing, save it as `db_secrets`.
 
 Edit `root_secret-example` and save it as `root_secret`. In this file you need to define the container's root password.
 
-Please, **use strong passwords**.
+Please, **use strong passwords**. The Mongo container was configured to allow only authenticated users to perform read/write operations. However, **if you use weak passwords, DB info can be easily compromised**.
 
 ### Native Installation
 
