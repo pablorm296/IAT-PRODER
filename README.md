@@ -42,9 +42,7 @@ To compute the IAT effect, we implemented the scoring algorithm proposed by A. G
 
 ## Deployment and Configuration Instructions :package:
 
-First of all, if you're deploying this IAT on a remote server, make sure that you have ssh access to it and that your user is in the _sudoers_ group.
-
-You can deploy the IAT using [Docker](https://www.docker.com/) (recommended) or by directly installing it on your server (only advanced users). Please, keep it mind that **this application was designed to be deployed in GNU/Linux systems**. We have not tested it on Windows Servers.
+First of all, if you're deploying this IAT on a remote server, make sure that you have ssh access to it and that your user is in the _sudoers_ group. You can deploy the IAT using [Docker](https://www.docker.com/) (recommended) or by directly installing it on your server (only advanced users).
 
 ### Deploy with Docker :whale:
 
