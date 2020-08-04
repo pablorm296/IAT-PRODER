@@ -2,6 +2,27 @@
 
 This is an Implicit Association Test (IAT) designed to measure the strength of stereotypes on skin tones. This test was created for the [Ethnoracial Discrimination in Mexico Research Project](https://discriminacion.colmex.mx/) at [El Colegio de México](https://www.colmex.mx/en).
 
+<!-- TOC -->
+
+- [IAT (Proyecto sobre Discriminación Étnico-Racial en México)](#iat-proyecto-sobre-discriminación-étnico-racial-en-méxico)
+    - [Overview :mag:](#overview-mag)
+        - [Collaborators](#collaborators)
+    - [Deployment and Configuration Instructions :package:](#deployment-and-configuration-instructions-package)
+        - [Deploy with Docker :whale:](#deploy-with-docker-whale)
+            - [1. Clone the Repository](#1-clone-the-repository)
+            - [2. Set Up](#2-set-up)
+                - [2.1. Main App Configuration](#21-main-app-configuration)
+                - [2.2. Mongo Container Configuration](#22-mongo-container-configuration)
+        - [Native Installation](#native-installation)
+            - [Configuration](#configuration)
+            - [Testing & Debugging](#testing--debugging)
+    - [IAT Results :bar_chart:](#iat-results-bar_chart)
+    - [Build Info :construction_worker:](#build-info-construction_worker)
+    - [Security :police_car:](#security-police_car)
+    - [License :page_with_curl:](#license-page_with_curl)
+
+<!-- /TOC -->
+
 ## Overview :mag:
 
 This IAT is based on the [Stereotype Content Model](https://en.wikipedia.org/wiki/Stereotype_content_model) (SCM). It measures the strength of associations between two target categories (dark skin, white skin) and implicit stereotypes.
