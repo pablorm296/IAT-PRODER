@@ -8,7 +8,7 @@ This IAT is based on the [Stereotype Content Model](https://en.wikipedia.org/wik
 
 The server side implementation uses Python (mainly [Flask](https://flask.palletsprojects.com/en/1.1.x/)), to process user interaction, serve dynamic pages, and manage sessions. It also uses [MongoDB](https://www.mongodb.com/) as the main storage service. The Python application exposes a [Public REST API](https://en.wikipedia.org/wiki/Representational_state_transfer) as the main way of communication with the client side (a basic mix of plain JS, SASS, and HTML) and other software.
 
-To compute the IAT effect, we implemented the scoring algorithm proposed by A. G. Greenwald and B. A. Nosek in ["Understanding and Using the Implicit Association Test: I. An ImprovedScoring Algorithm"](https://psycnet.apa.org/record/2003-05897-003), which at its core uses a 
+To compute the IAT effect, we implemented the scoring algorithm proposed by A. G. Greenwald and B. A. Nosek in ["Understanding and Using the Implicit Association Test: I. An ImprovedScoring Algorithm"](https://psycnet.apa.org/record/2003-05897-003), which at its core uses [Cohen's d](https://en.wikipedia.org/wiki/Effect_size#Cohen's_d) to compare the user latency.
 
 ### Collaborators
 
@@ -26,21 +26,34 @@ You can deploy the IAT using [Docker](https://www.docker.com/) (recommended) or 
 
 ### Deploy with Docker :whale:
 
-To deploy this app using Docker, you need to have Docker installed in your system. If you don't have it, please follow the instructions provided in [this link](https://docs.docker.com/engine/install/). 
+To deploy this app using Docker, you need to have Docker installed in your system. If you don't have it, please follow the instructions provided [here](https://docs.docker.com/engine/install/). 
 
-#### 1. Clone the repository
+#### 1. Clone the Repository
 
 Start by cloning this repository.
 
 ```bash
 git clone https://github.com/pablorm296/IAT-PRODER.git
 ```
+#### 2. Set Up
 
-This will create a new directory with a copy of the repository inside it. Next, we just simply move to the cloned repository folder.
+##### 2.1. Main App Configuration
+
+Move to the Config directory inside the cloned repository.
 
 ```bash
-cd IAT-PRODER
+cd IAT-PRODER/Config
 ```
+
+Inside, you'll see two configuration files: `app-sample.config.json` and  `stimuli.config.json`. The first is an example of how the main configuration file should look like. The second file contains the stimuli to be used during the IAT. 
+
+Edit `app-sample.config.json` as required and save it as `app.config.json`. 
+
+Make sure that the Mongo database name, username, and passwords match your Mongo container configuration (see below). You will also need Google reCaptcha keys. You can sign up and get them [here](https://www.google.com/recaptcha)
+
+Please, **use a safe secret app key**. The key defined in `secret_key` will be used to sign the session cookies used by the web app. **A weak key can be cracked, allowing users to freely modify the session cookie**.
+
+##### 2.2. Mongo Container Configuration
 
 ### Native Installation
 
