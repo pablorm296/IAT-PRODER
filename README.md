@@ -39,21 +39,23 @@ git clone https://github.com/pablorm296/IAT-PRODER.git
 
 ##### 2.1. Main App Configuration
 
-Move to the Config directory inside the cloned repository.
-
-```bash
-cd IAT-PRODER/Config
-```
-
-Inside, you'll see two configuration files: `app-sample.config.json` and  `stimuli.config.json`. The first is an example of how the main configuration file should look like. The second file contains the stimuli to be used during the IAT. 
+Move to the `Config/` directory in the cloned repository. Inside, you'll see two configuration files: `app-sample.config.json` and  `stimuli.config.json`. The first is an example of how the main configuration file should look like. The second file contains the stimuli to be used during the IAT. 
 
 Edit `app-sample.config.json` as required and save it as `app.config.json`. 
 
-Make sure that the Mongo database name, username, and passwords match your Mongo container configuration (see below). You will also need Google reCaptcha keys. You can sign up and get them [here](https://www.google.com/recaptcha)
+Make sure that the Mongo database name, username, and passwords match your Mongo container configuration (see below). You will also need Google reCaptcha keys. You can sign up to Google reCaptcha and get them [here](https://www.google.com/recaptcha).
 
-Please, **use a safe secret app key**. The key defined in `secret_key` will be used to sign the session cookies used by the web app. **A weak key can be cracked, allowing users to freely modify the session cookie**.
+Please, **use a strong secret app key**. The key defined in `secret_key` will be used to sign the session cookies used by the web app. **A weak key can be cracked, allowing users to freely modify the session cookie**.
 
 ##### 2.2. Mongo Container Configuration
+
+Move to the `Docker/Mongo/Config` directory in the cloned repository. Inside, you'll see two file: `db_secrets-example` and `root_secret-example`. Both are examples of the configurations files that define Mongo credentials and the container root password, respectively.
+
+Edit `db_secrets-example`. You'll need to define an username and password for the DB admin and the App reader/writer. You'll also need to specify the name of the DB for the app. Please, make sure that the Mongo fields in `app.config.json` (see above) match the credentials and DB name defined in this file. After editing, save it as `db_secrets`.
+
+Edit `root_secret-example` and save it as `root_secret`. In this file you need to define the container's root password.
+
+Please, **use strong passwords**.
 
 ### Native Installation
 
