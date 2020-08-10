@@ -130,11 +130,14 @@ def welcome():
             DBShortcuts.updateLastUserView("welcome", searchResults["user_id"])
             # Render welcome page
             return flask.render_template("welcome.html")
+
         elif searchResults["completed"]:
             # Close connection
             MongoConnection.close()
             # Render message saying that the user already answered the test
-            return flask.render_template("sorry.html")
+            # return flask.render_template("sorry.html") # WARNING: Temporally disabled sorry page for debugging
+
+            return flask.render_template("welcome.html")
 
 @Front.route("/instructions", methods = ["GET"])
 def instructions():
