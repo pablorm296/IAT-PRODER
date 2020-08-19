@@ -69,7 +69,7 @@ function saveResults() {
     const all_inputs = $("textarea").toArray();
 
     for (let index = 0; index < all_inputs.length; index++) {
-        const element = all_fields[index];
+        const element = all_inputs[index];
         const element_id = element.id;
         var element_value = element.value;
         // Add to answers obj
