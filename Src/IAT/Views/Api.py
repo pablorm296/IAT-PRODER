@@ -40,6 +40,7 @@ MONGO_USERS_COLLECTION = CONFIG["app"]["mongo_users_collection"]
 MONGO_RESULTS_COLLECTION = CONFIG["app"]["mongo_results_collection"] 
 MONGO_COUNTER_COLLECTION = CONFIG["app"]["mongo_counter_collection"]
 MONGO_SURVEY_COLLECTION = CONFIG["app"]["mongo_survey_collection"]
+MONGO_DEBUG_SURVEY_COLLECTION = CONFIG["app"]["mongo_debug_survey_collection"]
 RECAPTCHA_PUBLIC = CONFIG["app"]["google_reCaptcha_public"]
 RECAPTCHA_PRIVATE = CONFIG["app"]["google_reCaptcha_private"]
 ADMIN_USER = CONFIG["app"]["admin_user"]
@@ -361,6 +362,86 @@ def postSurvey():
         "table_q2": jsonPayload["srvy_table_quest_2"],
         "table_q3": jsonPayload["srvy_table_quest_3"],
         "table_q4": jsonPayload["srvy_table_quest_4"]     
+    })
+
+    # Close connection
+    MongoConnection.close()
+
+    # Check insert
+    if not insertResults.acknowledged:
+        raise ApiException("Something went while updating the Survey table!")
+
+    newResponse = ApiResponse("Ok!")
+    return newResponse.response 
+
+# Debug survey
+@Api.route("/debugSurvey", methods = ["POST"])
+def postDebugSurvey():
+    # Try to get json content
+    jsonPayload = flask.request.get_json()
+    if jsonPayload is None:
+        raise BadRequest("It seems that you're sending me some unexpected data format!")
+
+    # Check session
+    if session.get("user_id", None) is None:
+        raise ApiException("There is not a valid session cookie in this request!")
+
+    # Before anything, let's check the Captcha
+    # Get captcha response
+    googleCapthca = jsonPayload.get("g", None)
+    if googleCapthca is None or googleCapthca == "":
+        logger.warning("Captcha validation failed. Empty captcha response")
+        raise ApiException("Well, if you don't send a valid reCaptcha, I'll think you're a robot!")
+
+    # Ask Google if we have a valid captcha
+    logger.info("Validating captcha with Google service...")
+    response = requests.post("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}".format(RECAPTCHA_PRIVATE, googleCapthca))
+
+    # Parse response as JSON
+    try:
+        responseAsJson = response.json()
+    except Exception:
+        logger.warning("Captcha validation failed. Received an invalid response format from Google")
+        raise ApiException("This is embarrasing. I could not ask Google if you're indeed a human!")
+    
+    # Is the user a human?
+    human = responseAsJson.get("success", None)
+
+    if human is None or not human:
+        logger.warning("Captcha validation failed. Google didn't acknowledged the captcha value")
+        raise ApiException("Get out of here, you filthy robot!")
+
+    # Clean request payload
+    for key in jsonPayload:
+        if jsonPayload[key] == "" or jsonPayload[key] == "NONE":
+            jsonPayload[key] = None
+
+    # Get user id
+    user_id = session.get("user_id")
+
+    # Open DB connection
+    MongoConnection = MongoConnector(MONGO_DB, MONGO_DEBUG_SURVEY_COLLECTION, MONGO_URI)
+
+    # Check if user_id is already registered in survey
+    searchResults = MongoConnection.collection.count_documents({
+        "user_id": user_id
+    })
+
+    if searchResults > 0:
+        # Log warning
+        logger.warning("User {0} from {1} tried to re submit survey answers.".format(user_id, request.remote_addr))
+        
+        # Return API
+        newResponse = ApiResponse("User already answered the survey! POST payload will be ignored.")
+        return newResponse.response
+
+    # Insert user survey responses
+    insertResults = MongoConnection.collection.insert_one({
+        "user_id": user_id,
+        "timestamp": datetime.datetime.utcnow(),
+        "suggestions": jsonPayload["srvy_suggestions"],
+        "felt": jsonPayload["rvy_felt"],
+        "result": jsonPayload["srvy_result"]
     })
 
     # Close connection
