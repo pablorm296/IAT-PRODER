@@ -440,7 +440,7 @@ def postDebugSurvey():
         "user_id": user_id,
         "timestamp": datetime.datetime.utcnow(),
         "suggestions": jsonPayload["srvy_suggestions"],
-        "felt": jsonPayload["rvy_felt"],
+        "felt": jsonPayload["srvy_felt"],
         "result": jsonPayload["srvy_result"]
     })
 
