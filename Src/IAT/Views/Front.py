@@ -469,7 +469,10 @@ def bye():
 
     # Check debug mode
     if DEBUG_MODE:
-        return flask.render_template("debug_survey.html")
+        response_env = {
+            "reCaptcha_public": RECAPTCHA_PUBLIC
+        }
+        return flask.render_template("debug_survey.html", **response_env)
     else:
         return flask.render_template("bye.html")
 
