@@ -92,10 +92,10 @@
     background-color: #1D8047;
     border: 2px #1D8047 solid; }
 
-input {
+input, select, textarea {
   display: block; }
 
-select {
+textarea {
   display: block; }
 
 input[type=tel] {
