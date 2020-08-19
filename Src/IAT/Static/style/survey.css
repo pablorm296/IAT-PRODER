@@ -92,6 +92,12 @@
     background-color: #1D8047;
     border: 2px #1D8047 solid; }
 
+input {
+  display: block; }
+
+select {
+  display: block; }
+
 input[type=tel] {
   text-align: center;
   -webkit-appearance: none;
