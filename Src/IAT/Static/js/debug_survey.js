@@ -150,8 +150,9 @@ function saveResults() {
     answers["g"] = gResponse;
     // Post answers
     console.log(answers);
-    myAPI.endPoints.POST_survey(answers, function () {
-        window.location.href = "/results";
+    myAPI.endPoints.POST_debugSurvey(answers, function () {
+        alert("Muchas gracias por haber participado en esta prueba piloto. Tus respuestas nos ayudarán a mejorar el IAT.")
+        window.location.href = "https://discriminacion.colmex.mx/";
     });
 }
 
