@@ -467,7 +467,11 @@ def bye():
     if not checkReferer("results", request.headers) or not checkSession(session):
         return flask.redirect("/", 302)
 
-    return flask.render_template("bye.html")
+    # Check debug mode
+    if DEBUG_MODE:
+        return flask.render_template("debug_survey.html")
+    else:
+        return flask.render_template("bye.html")
 
 @Front.route("/errorTest", methods = ["GET"])
 def testError():
