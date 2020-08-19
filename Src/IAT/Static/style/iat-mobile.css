@@ -14,8 +14,8 @@ body {
   font-size: 14pt;
   line-height: 21pt;
   text-align: center;
-  overflow: scroll;
-  height: 100vh; }
+  overflow-y: scroll;
+  height: 100%; }
 
 h1 {
   font-size: 34pt;

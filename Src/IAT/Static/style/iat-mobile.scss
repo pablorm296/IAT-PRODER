@@ -14,8 +14,10 @@ body {
     font-size: $baseFontSize;
     line-height: $baseFontSize * 1.5;
     text-align: center;
-    overflow: scroll;
-    height: 100vh;
+    // Allow only vertical scroll
+    overflow-y: scroll;
+    // Test: change 100 vh for 100%
+    height: 100%;
 }
 
 //Encabezados
