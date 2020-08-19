@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="Static/style/iat.css">
 {% endif %}
 
+{# Conditional meta (apple full screen) #}
+{% if session["mobile"] %}
+    <meta name="apple-mobile-web-app-capable" content="yes">
+{% endif %}
+
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- JS -->
