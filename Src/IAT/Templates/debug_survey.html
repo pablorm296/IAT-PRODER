@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block head %}
+<!-- Estilos -->
+<link rel="stylesheet" href="Static/style/main.css">
+<link rel="stylesheet" href="Static/style/survey.css">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--reCaptcha-->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!-- JS -->
+<script src="Static/js/api/api.min.js"></script>
+<script src="Static/js/debug_survey.min.js"></script>
+
+{# If mobile, use orientationCheck script #}
+{% if session["mobile"] %}
+<script src="Static/js/orientationCheck.min.js"></script>
+{% endif %}
+
+{% endblock %}
+{% block title %} Encuesta de depuración {% endblock %}
+{% block body %}
+<div id="page">
+    <div id="content">
+        <div id="gridContainer">
+            <div class="item messageContainer">
+                <h1>Antes de que te vayas...</h1>
+                <p>
+                    Por favor, ayúdanos contestando las siguientes preguntas, tus respuestas nos servirán para mejorar
+                    la prueba.
+                </p>
+                <hr>
+            </div>
+            <div class="item questionsContainer">
+                <span id="srvy_suggestions_label" class="input_label">¿Cuáles son tus sugerencias para mejorar la prueba
+                    IAT?<span id="srvy_suggestions_label_rm" class="required_mark">*</span>
+                <textarea id="srvy_suggestions" maxlength="500">
+                <br class="spacer_small">
+                <span id="srvy_felt_label" class="input_label">¿Cómo te sentiste al llenarla?<span
+                    id="srvy_felt_label_rm" class="required_mark">*</span>
+                <textarea id="srvy_felt" maxlength="500">
+                <br class="spacer_small">
+                <span id="srvy_result_label" class="input_label">¿Qué piensas del resultado que obtuviste?<span
+                    id="srvy_result_label_rm" class="required_mark">*</span>
+                <textarea id="srvy_result" maxlength="500">
+                <br class="spacer_small">
+                <span id="srvy_captcha_label" class="input_label">¿Eres un robot?<span id="srvy_captcha_label_rm" class="required_mark">*</span>
+                <div class="g-recaptcha" data-sitekey="{{ reCaptcha_public }}"></div>
+                <hr>
+            </div>
+            <div class="item buttonsContainer">
+                <button id="OkButton" class="okBtn">Enviar y terminar</button>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="logos">
+            <img id="projectLogo" src="Static/imgs/theme/logo_disc_white.png" alt="Logo PRODER (Blanco)">
+            <img id="colmexLogo" src="Static/imgs/theme/logo_colmex_white.svg"
+                alt="Logo del Colegio de México (Blanco)">
+        </div>
+        <div class="text">
+            <p>
+                Todos los derechos reservados. Proyecto sobre Discriminación Étnico-Racial en México, El Colegio de
+                México
+                A.C. © 2020
+            </p>
+            <p>
+                Carretera Picacho Ajusco 20, Col. Ampliación Fuentes del Pedregal, C.P. 14110, Tlalpan, Ciudad de
+                México
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+    myAPI = new iatAPI();
+</script>
+{% endblock %}
