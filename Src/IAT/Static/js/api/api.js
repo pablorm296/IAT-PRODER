@@ -24,6 +24,17 @@ class iatAPI {
                     error: function() {window.location.href = "/errorCustom?msg=An unexpected error occurred when posting the survey results! Please contact server admin.";}
                 });
             },
+            POST_debugSurvey: function (payload, success) {
+                $.ajax({
+                    type: "POST",
+                    url: "api/debugSurvey",
+                    contentType: 'application/json',
+                    dataType: "json",
+                    data: JSON.stringify(payload),
+                    success: success,
+                    error: function() {window.location.href = "/errorCustom?msg=An unexpected error occurred when posting the survey results! Please contact server admin.";}
+                });
+            },
             GET_stimuli: function (stage, success) {
                 $.ajax({
                     type: "GET",
