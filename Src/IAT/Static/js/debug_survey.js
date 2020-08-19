@@ -66,7 +66,7 @@ function saveResults() {
     // Create answers object
     var answers = {};
     // Get all input fields
-    const all_inputs = $("input").toArray();
+    const all_inputs = $("textarea").toArray();
     // Get all select fields
     const all_selects = $("select").toArray();
     // Merge
