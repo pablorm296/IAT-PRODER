@@ -67,78 +67,14 @@ function saveResults() {
     var answers = {};
     // Get all input fields
     const all_inputs = $("textarea").toArray();
-    // Get all select fields
-    const all_selects = $("select").toArray();
-    // Merge
-    const all_fields = [].concat(all_inputs, all_selects);
-    // Loop through fields
-    for (let index = 0; index < all_fields.length; index++) {
+
+    for (let index = 0; index < all_inputs.length; index++) {
         const element = all_fields[index];
         const element_id = element.id;
         var element_value = element.value;
-        // Checks for select
-        if (element.tagName == "SELECT") {
-            // Check if value is valid
-            if ( (element_value > 100 || element_value < 1) && element_value != "NONE" ) {
-                alert("Algunos campos tienen valores inesperados. ¿Estás modificándo los campos con la consola de desarrollador? Si no es así, reporta este error al administrador, por favor");
-                throw {name: "spoofedValueError", message: "Unexpected field value. Please, stop using dev console to change user input values."};
-            }
-            // Add to answers obj
-            answers[element_id] = element_value;
-        }
-        // Checks for inputs
-        if (element.tagName == "INPUT") {
-            // Numeric inputs
-            if (element.type == "tel") {
-                // Check that the value is only numeric chars
-                const re = new RegExp(/(\D+)/gi);
-                const match = re.exec(element_value);
-                // Check match
-                if (match != null) {
-                    alert("Algunos campos tienen valores inesperados. ¿Estás modificándo los campos con la consola de desarrollador? Si no es así, reporta este error al administrador, por favor");
-                    throw {name: "spoofedValueError", message: "Unexpected field value. Please, stop using dev console to change user input values."};
-                }
-                // Check if empty string
-                if (element_value === "") {
-                    element_value = "NONE";
-                }
-            }
-            // Text inputs
-            if (element.type == "text") {
-                // Check that the value is only numeric chars
-                const re = new RegExp(/[\{\}\*\_\$\%\<\>\#\|\&\?\!\¡\¿\[\]]+/gi);
-                const match = re.exec(element_value);
-                // Check match
-                if (match != null) {
-                    alert("Algunos campos tienen valores inesperados. ¿Estás modificándo los campos con la consola de desarrollador? Si no es así, reporta este error al administrador, por favor");
-                    throw {name: "spoofedValueError", message: "Unexpected field value. Please, stop using dev console to change user input values."};
-                }
-                // Check if empty string
-                if (element_value === "") {
-                    element_value = "NONE";
-                }
-            }
-            if (element.type == "radio") {
-                // Get row name
-                const row_name = element.name;
-                // If row name is already in object, jump to next iteration
-                if (answers.hasOwnProperty(row_name)) {
-                    continue;
-                }
-                // Get name value
-                var row_value = $(`input[name=${row_name}]:checked`).val();
-                // Check undefined values
-                if (typeof row_value === "undefined") {
-                    row_value = "NONE";
-                }
-                // Add to answers_obj
-                answers[row_name] = row_value;
-                // Jump to next iteration
-                continue;
-            }
-            // Add to answers obj
-            answers[element_id] = element_value;
-        }
+        // Add to answers obj
+        answers[element_id] = element_value;
+
     }
     // Get google captcha
     const gResponse = grecaptcha.getResponse();
