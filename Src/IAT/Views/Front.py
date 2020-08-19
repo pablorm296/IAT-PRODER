@@ -20,8 +20,10 @@ logger = logging.getLogger(__name__)
 # Read config
 # Check if we are in a test env
 if os.environ["FLASK_DEBUG_IAT"] == "True":
+    DEBUG_MODE = True
     ConfigReader = Reader(path = "./Debug", load = "all")
 else:
+    DEBUG_MODE = False
     ConfigReader = Reader(path = None, load = "all")
 
 # Define global config variables
@@ -134,10 +136,12 @@ def welcome():
         elif searchResults["completed"]:
             # Close connection
             MongoConnection.close()
-            # Render message saying that the user already answered the test
-            # return flask.render_template("sorry.html") # WARNING: Temporally disabled sorry page for debugging
 
-            return flask.render_template("welcome.html")
+            if DEBUG_MODE:
+                return flask.render_template("welcome.html")
+            else:
+                # Render message saying that the user already answered the test
+                return flask.render_template("sorry.html")
 
 @Front.route("/instructions", methods = ["GET"])
 def instructions():
