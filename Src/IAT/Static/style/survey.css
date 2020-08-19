@@ -96,7 +96,12 @@ input, select, textarea {
   display: block; }
 
 textarea {
-  display: block; }
+  width: 90%;
+  margin: 15px auto 0px;
+  font-family: "Montserrat", sans-serif;
+  color: #404040;
+  font-size: 12pt;
+  resize: none; }
 
 input[type=tel] {
   text-align: center;
