@@ -456,6 +456,7 @@ def results():
 
         # Loop through rounds
         for roundDocument in rounds:
+            print(roundDocument)
             roundDf = pd.DataFrame(roundDocument)
             rounds_dataframes.append(roundDf)
 
