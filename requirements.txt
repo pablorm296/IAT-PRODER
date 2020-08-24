@@ -12,7 +12,6 @@ distlib==0.3.0
 distro==1.4.0
 Flask==1.1.2
 html5lib==1.0.1
--e git+git@github.com:pablorm296/IAT-PRODER.git@8e10f1d3636a4ca98f5c8f19efd6007c86eac97d#egg=IAT&subdirectory=Src
 idna==2.8
 ipaddr==2.2.0
 isort==4.3.21
