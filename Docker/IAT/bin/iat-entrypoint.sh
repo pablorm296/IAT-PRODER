@@ -1,10 +1,11 @@
 #!/bin/bash
 
+# Update repo
+cd /srv/IAT
+git pull
+
 # Start python server
 python /srv/IAT/Src/IAT/server.py
-
-# Stop nginx
-service nginx restart
 
 # Start ngninx
 if [ "$1" = 'nginx' ]; then
