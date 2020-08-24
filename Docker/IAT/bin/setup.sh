@@ -1,7 +1,7 @@
 # Install nginx and python
 apt-get update -q && \
     DEBIAN_FRONTEND=noninteractive \
-    apt-get install -yq nginx systemd
+    apt-get install -yq nginx systemd python3.6
 
 # Set time zone
 echo "America/Mexico_City" > /etc/timezone
