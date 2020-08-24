@@ -1,6 +1,3 @@
-# Restart nginx
-service nginx restart
-
 # Copy repo
 git clone https://github.com/pablorm296/IAT-PRODER.git /srv/IAT
 
