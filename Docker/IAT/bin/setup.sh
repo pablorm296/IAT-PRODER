@@ -1,10 +1,7 @@
 # Install nginx and python
 apt-get update -q && \
     DEBIAN_FRONTEND=noninteractive \
-    apt-get install -yq python-dev nginx python3-pip
-
-# Install virtualenv
-pip install virtualenv
+    apt-get install -yq python-dev nginx systemd
 
 # Set time zone
 echo "America/Mexico_City" > /etc/timezone
