@@ -110,19 +110,22 @@ input[type=tel] {
   border: none;
   border-radius: 0px;
   border-bottom: 2px solid #9BCEF5;
-  transition: border-color 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   margin-bottom: 10px;
   background: transparent;
   width: 200px; }
-
-input[type=tel]:focus,
-input[type=tel]:hover {
-  outline: none;
-  -webkit-appearance: none;
-  border-width: 3px;
-  border-image: linear-gradient(to right, #5EB2F2, #0288F0);
-  border-image-slice: 1;
-  color: #0288F0; }
+  input[type=tel]:hover {
+    outline: none;
+    -webkit-appearance: none;
+    color: #0288F0; }
+  input[type=tel]:focus {
+    outline: none;
+    -webkit-appearance: none;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #5EB2F2, #0288F0);
+    border-image-slice: 1;
+    color: #0288F0;
+    font-weight: bold; }
 
 input[type=text] {
   color: #555555;
@@ -134,19 +137,22 @@ input[type=text] {
   border: none;
   border-radius: 0px;
   border-bottom: 2px solid #9BCEF5;
-  transition: border-color 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   margin-bottom: 10px;
   background: transparent;
   width: 600px; }
-
-input[type=text]:focus,
-input[type=text]:hover {
-  outline: none;
-  -webkit-appearance: none;
-  border-width: 3px;
-  border-image: linear-gradient(to right, #5EB2F2, #0288F0);
-  border-image-slice: 1;
-  color: #0288F0; }
+  input[type=text]:hover {
+    outline: none;
+    -webkit-appearance: none;
+    color: #0288F0; }
+  input[type=text]:focus {
+    outline: none;
+    -webkit-appearance: none;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #5EB2F2, #0288F0);
+    border-image-slice: 1;
+    color: #0288F0;
+    font-weight: bold; }
 
 select {
   color: #555555;
@@ -159,26 +165,20 @@ select {
   border: none;
   border-radius: 0px;
   border-bottom: 2px solid #9BCEF5;
-  transition: border-color 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   margin-bottom: 10px;
   width: 600px; }
-
-select:focus,
-select:hover {
-  border-width: 3px;
-  border-image: linear-gradient(to right, #5EB2F2, #0288F0);
-  border-image-slice: 1;
-  color: #0288F0;
-  outline: none;
-  -webkit-appearance: none; }
-
-select:active {
-  color: #0288F0;
-  border-width: 3px;
-  border-image: linear-gradient(to right, #5EB2F2, #0288F0);
-  border-image-slice: 1;
-  outline: none;
-  -webkit-appearance: none; }
+  select:hover {
+    outline: none;
+    -webkit-appearance: none;
+    color: #0288F0; }
+  select:focus, select:active {
+    border-width: 3px;
+    border-image: linear-gradient(to right, #5EB2F2, #0288F0);
+    border-image-slice: 1;
+    color: #0288F0;
+    outline: none;
+    -webkit-appearance: none; }
 
 hr {
   margin: 20px 0;
