@@ -6,10 +6,6 @@ services:
     Iat_App:
         image: iat/server:test
         restart: "no"
-        volumes:
-            - type: bind
-              source: ${IAT_ROOT_FOLDER}
-              target: /srv/IAT/
         ports: 
             - "5000:80"
 

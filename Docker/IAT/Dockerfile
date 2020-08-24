@@ -32,6 +32,4 @@ ENV FLASK_DEBUG_IAT="True"
 ENV VIRTUAL_ENV /srv/IAT/Env
 ENV PATH /srv/IAT/Env/bin:$PATH
 
-RUN which python 
-
-CMD ["python", "/srv/IAT/Src/IAT/server.py"]
+CMD ["/srv/IAT/Env/bin/python", "/srv/IAT/Src/IAT/server.py"]
