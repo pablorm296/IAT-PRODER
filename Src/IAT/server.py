@@ -1,6 +1,6 @@
 import cherrypy
 
-from .main import create_app
+from IAT.main import create_app
 
 if __name__ == '__main__':
     # Create app
