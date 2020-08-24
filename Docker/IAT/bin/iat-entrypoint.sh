@@ -7,4 +7,8 @@ python /srv/IAT/Src/IAT/server.py
 service nginx stop
 
 # Start ngninx
-ngninx
+if [ "$1" = 'nginx' ]; then
+    exec "$0"
+else
+    echo "Invalid entrypoint"
+fi
