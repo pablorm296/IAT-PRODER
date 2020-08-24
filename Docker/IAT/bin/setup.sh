@@ -13,5 +13,5 @@ ln -s -f /usr/share/zoneinfo/America/Mexico_City  /etc/localtime
 dpkg-reconfigure --frontend noninteractive tzdata
 
 # Restart apache
-service nginx enable
+systemctl enable nginx
 service nginx restart
