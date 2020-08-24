@@ -1,7 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-@font-face {
-  font-family: "KC";
-  src: url("./fonts/keepCalm.ttf"); }
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
 @media only screen and (max-width: 1100px) {
   #message {
     text-align: center; } }
@@ -21,7 +18,7 @@ img.example {
 .table_examples {
   margin: 40px auto;
   font-size: 11pt;
-  line-height: 13pt; }
+  line-height: 11pt; }
   .table_examples td {
     padding: 12px 10px; }
   .table_examples th {

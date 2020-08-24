@@ -1,56 +1,47 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-@font-face {
-  font-family: "KC";
-  src: url("./fonts/keepCalm.ttf"); }
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
 body {
   color: #3b3e44;
   margin: 0pt;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 14pt;
   line-height: 21pt; }
 
 h1 {
   font-size: baseFontSize20;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
-  font-variant: small-caps;
-  color: #de6449; }
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #0288F0; }
 
 h2 {
   font-size: baseFontSize16;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
-  font-variant: small-caps;
-  color: #de6449; }
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #0288F0; }
 
 h3 {
   font-size: baseFontSize12;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
-  font-variant: small-caps;
-  color: #de6449; }
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #0288F0; }
 
 h4 {
   font-size: baseFontSize8;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
-  font-variant: small-caps;
-  color: #de6449; }
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #0288F0; }
 
 h5 {
   font-size: baseFontSize4;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
-  font-variant: small-caps;
-  color: #de6449; }
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #0288F0; }
 
 h6 {
   font-size: baseFontSize0;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
-  font-variant: small-caps;
-  color: #de6449; }
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #0288F0; }
 
 p {
   margin-top: 10px;
@@ -76,7 +67,7 @@ button {
   -o-transition: .3s; }
 
 .énfasis {
-  color: #de6449; }
+  color: #0288F0; }
 
 table {
   text-align: left;
@@ -107,7 +98,7 @@ table {
   padding: 2.5% 5%;
   font-size: 10pt;
   color: white;
-  background-color: #791e94;
+  background-color: #5EB2F2;
   line-height: 12pt; }
   #footer #projectLogo {
     margin-bottom: 20px; }

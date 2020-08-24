@@ -1,7 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-@font-face {
-  font-family: "KC";
-  src: url("./fonts/keepCalm.ttf"); }
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
 html {
   min-height: 100%;
   position: relative; }
@@ -10,7 +7,7 @@ body {
   background-color: #000000;
   color: #ffffff;
   margin: 0pt;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 14pt;
   line-height: 21pt;
   text-align: center;
@@ -19,38 +16,38 @@ body {
 
 h1 {
   font-size: 34pt;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   color: #ffffff; }
 
 h2 {
   font-size: 30pt;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   color: #ffffff; }
 
 h3 {
   font-size: 26pt;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   color: #ffffff; }
 
 h4 {
   font-size: 22pt;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   color: #ffffff; }
 
 h5 {
   font-size: 18pt;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   color: #ffffff; }
 
 h6 {
   font-size: 14pt;
-  font-family: "KC", sans-serif;
-  font-weight: normal;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   color: #ffffff; }
 
 p {
@@ -112,7 +109,7 @@ p {
   .stimuli .holders {
     order: 1;
     font-weight: normal;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 4vmin;
     flex: 0 1 auto;
     margin-bottom: 25px; }
@@ -128,38 +125,38 @@ p {
         color: #9d9dff; }
       .stimuli .holders .instructions h1 {
         font-size: 3.75vmin;
-        font-family: "KC", sans-serif;
-        font-weight: normal;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
         color: #ffffff; }
       .stimuli .holders .instructions h2 {
         font-size: 1.25vmin;
-        font-family: "KC", sans-serif;
-        font-weight: normal;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
         color: #ffffff; }
       .stimuli .holders .instructions h3 {
         font-size: -1.25vmin;
-        font-family: "KC", sans-serif;
-        font-weight: normal;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
         color: #ffffff; }
       .stimuli .holders .instructions h4 {
         font-size: -3.75vmin;
-        font-family: "KC", sans-serif;
-        font-weight: normal;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
         color: #ffffff; }
       .stimuli .holders .instructions h5 {
         font-size: -6.25vmin;
-        font-family: "KC", sans-serif;
-        font-weight: normal;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
         color: #ffffff; }
       .stimuli .holders .instructions h6 {
         font-size: -8.75vmin;
-        font-family: "KC", sans-serif;
-        font-weight: normal;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
         color: #ffffff; }
     .stimuli .holders .space_bar {
       font-weight: normal;
       font-size: 3vmin;
-      font-family: "KC", sans-serif; }
+      font-family: "Roboto", sans-serif; }
   .stimuli .messages {
     order: 2;
     font-size: 3vmin;
@@ -185,27 +182,6 @@ p {
   font-weight: normal; }
 
 .loader {
-  border: 12px solid #f3f3f3;
-  border-top: 12px solid #de6449;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
   margin: auto; }
-
-.loader-dialog {
-  border: 12px solid #f3f3f3;
-  border-top: 12px solid #de6449;
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  animation: spin 1s linear infinite;
-  margin: auto; }
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg); }
-  100% {
-    transform: rotate(360deg); } }
 
 /*# sourceMappingURL=iat.css.map */

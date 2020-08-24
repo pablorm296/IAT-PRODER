@@ -1,7 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-@font-face {
-  font-family: "KC";
-  src: url("./fonts/keepCalm.ttf"); }
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
 html {
   min-height: 100%;
   position: relative; }
@@ -10,7 +7,7 @@ body {
   background-color: #000000;
   color: #ffffff;
   margin: 0pt;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 14pt;
   line-height: 21pt;
   text-align: center;
@@ -19,37 +16,37 @@ body {
 
 h1 {
   font-size: 34pt;
-  font-family: "KC", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: normal;
   color: #ffffff; }
 
 h2 {
   font-size: 30pt;
-  font-family: "KC", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: normal;
   color: #ffffff; }
 
 h3 {
   font-size: 26pt;
-  font-family: "KC", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: normal;
   color: #ffffff; }
 
 h4 {
   font-size: 22pt;
-  font-family: "KC", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: normal;
   color: #ffffff; }
 
 h5 {
   font-size: 18pt;
-  font-family: "KC", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: normal;
   color: #ffffff; }
 
 h6 {
   font-size: 14pt;
-  font-family: "KC", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: normal;
   color: #ffffff; }
 
@@ -110,7 +107,7 @@ p {
   .stimuli .holders {
     order: 1;
     font-weight: normal;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 12pt;
     flex: 0 1 auto;
     margin-bottom: 25px; }
@@ -126,38 +123,38 @@ p {
       height: 40vh; }
       .stimuli .holders .instructions h1 {
         font-size: 18pt;
-        font-family: "KC", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-weight: normal;
         color: #ffffff; }
       .stimuli .holders .instructions h2 {
         font-size: 6pt;
-        font-family: "KC", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-weight: normal;
         color: #ffffff; }
       .stimuli .holders .instructions h3 {
         font-size: -6pt;
-        font-family: "KC", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-weight: normal;
         color: #ffffff; }
       .stimuli .holders .instructions h4 {
         font-size: -18pt;
-        font-family: "KC", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-weight: normal;
         color: #ffffff; }
       .stimuli .holders .instructions h5 {
         font-size: -30pt;
-        font-family: "KC", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-weight: normal;
         color: #ffffff; }
       .stimuli .holders .instructions h6 {
         font-size: -42pt;
-        font-family: "KC", sans-serif;
+        font-family: "Roboto", sans-serif;
         font-weight: normal;
         color: #ffffff; }
     .stimuli .holders .space_bar {
       font-weight: normal;
       font-size: 12pt;
-      font-family: "KC", sans-serif; }
+      font-family: "Roboto", sans-serif; }
   .stimuli .messages {
     order: 2;
     font-size: 12pt;

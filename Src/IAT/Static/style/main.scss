@@ -12,9 +12,8 @@ body {
     h#{$i} {
       font-size: baseFontSize + $headingScale * (6 - $i);
       font-family: $headerFont;
-      font-weight: normal;
-      font-variant: small-caps;
-      color: #de6449
+      font-weight: 500;
+      color: #0288F0
     }
 }
 
@@ -45,7 +44,7 @@ button {
 }
 
 .énfasis {
-    color: #de6449;
+    color: #0288F0;
 }
 
 table {
@@ -83,7 +82,7 @@ table {
     padding: 2.5% 5%;
     font-size: 10pt;
     color: white;
-    background-color: #791e94;
+    background-color: #5EB2F2;
     line-height: 12pt;
 
     #projectLogo {

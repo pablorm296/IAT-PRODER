@@ -33,7 +33,7 @@
 }
 
 .main_results {
-    background-color: wheat;
+    background-color: #FFE69A;
     padding: 20px;
     margin: 60px auto;
     border-radius: 0.4%;
@@ -46,7 +46,7 @@
 }
 
 .result {
-    color: #de6449;
+    color: #FF8758;
     font-weight: bold;
 }
 
@@ -65,7 +65,7 @@
     }
 
     .stat {
-        background-color: #8e6e97;
+        background-color: #9BCEF5;
         color: white;
         padding: 5px;
     }
@@ -98,7 +98,7 @@
 hr {
     margin: 20px 0;
     border-width: 0 0 1px;
-    $color: #de6449;
+    $color: #FF8758;
     color: $color;
     border-image: linear-gradient(90deg,
             rgba($color, 0),

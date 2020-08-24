@@ -23,7 +23,7 @@ body {
     h#{$i} {
         font-size: $baseFontSize + $headingScale * (6 - $i);
         font-family: $headerFont;
-        font-weight: normal;
+        font-weight: 500;
         color: #ffffff;
     }
 }
@@ -125,7 +125,7 @@ p {
                 h#{$i} {
                     font-size: 2.5vmin * (2.5 - $i);
                     font-family: $headerFont;
-                    font-weight: normal;
+                    font-weight: 500;
                     color: #ffffff;
                 }
             }
@@ -171,31 +171,5 @@ p {
 }
 
 .loader {
-    border: 12px solid #f3f3f3;
-    border-top: 12px solid #de6449;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
     margin: auto;
-}
-
-.loader-dialog {
-    border: 12px solid #f3f3f3;
-    border-top: 12px solid #de6449;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    animation: spin 1s linear infinite;
-    margin: auto;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
 }

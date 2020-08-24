@@ -1,11 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+//Import fonts (google fonts)
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
 
-@font-face {
-    font-family: "KC";
-    src: url('./fonts/keepCalm.ttf');
-}
-
-$bodyFont: 'Montserrat', sans-serif;
-$headerFont: "KC", sans-serif;
+// Some fonts-related global variables
+$bodyFont: 'Open Sans', sans-serif;
+$headerFont: "Roboto", sans-serif;
 $baseFontSize: 14pt;
 $headingScale: 4;

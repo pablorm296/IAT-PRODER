@@ -80,7 +80,7 @@
     }
 
     th {
-        background-color: #8e6e97;
+        background-color: #9BCEF5;
         color: white;
         padding: 5px;
         text-align: center;
@@ -88,7 +88,7 @@
 
         span {
             display: block;
-            color: #dd9585;
+            color: #FFB79A;
             text-align: center;
             padding-top: 5px;
             font-weight: bold;
@@ -144,7 +144,7 @@ input[type=tel] {
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #791e94;
+    border-bottom: 2px solid #0288F0;
     transition: all 0.5s ease-in-out;
     margin-bottom: 10px;
     background: #f7f7f7;
@@ -155,7 +155,7 @@ input[type=tel]:focus,
 input[type=tel]:hover {
     outline: none;
     -webkit-appearance: none;
-    background: #77398a;
+    background: #0288F0;
     color: #ffffff;
 }
 
@@ -167,7 +167,7 @@ input[type=text] {
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #791e94;
+    border-bottom: 2px solid #0288F0;
     transition: all 0.5s ease-in-out;
     margin-bottom: 10px;
     background: #f7f7f7;
@@ -178,7 +178,7 @@ input[type=text]:focus,
 input[type=text]:hover {
     outline: none;
     -webkit-appearance: none;
-    background: #77398a;
+    background: #0288F0;
     color: #ffffff;
 }
 
@@ -192,7 +192,7 @@ select {
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #791e94;
+    border-bottom: 2px solid #0288F0;
     transition: all 0.5s ease-in-out;
     margin-bottom: 10px;
     width: 600px;
@@ -200,14 +200,14 @@ select {
 
 select:focus,
 select:hover {
-    background: #77398a;
+    background: #0288F0;
     color: #ffffff;
     outline: none;
     -webkit-appearance: none;
 }
 
 select:active {
-    background: #77398a;
+    background: #0288F0;
     color: #ffffff;
     outline: none;
     -webkit-appearance: none;
@@ -216,7 +216,7 @@ select:active {
 hr {
     margin: 20px 0;
     border-width: 0 0 1px;
-    $color: #de6449;
+    $color: #FF8758;
     color: $color;
     border-image: linear-gradient(90deg,
             rgba($color, 0),
