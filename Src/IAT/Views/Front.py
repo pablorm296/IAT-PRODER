@@ -480,6 +480,9 @@ def results():
     slowestLatency = int(slowestLatency)
     meanLatency = float(meanLatency)
     totalErrors = int(totalErrors)
+    fastestLatency_group = int(fastestLatency_group)
+    slowestLatency_group = int(slowestLatency_group)
+    meanLatency_group = float(meanLatency_group)
     # Round to 4 decimal places
     meanLatency = round(meanLatency, 3)
     IAT = round(IAT, 3)
