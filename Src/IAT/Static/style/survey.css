@@ -118,8 +118,9 @@ input[type=tel]:focus,
 input[type=tel]:hover {
   outline: none;
   -webkit-appearance: none;
-  border-bottom: 2ppx;
+  border-width: 2px;
   border-image: linear-gradient(to right, #5EB2F2, #FF8758);
+  border-image-slice: 1;
   color: #404040; }
 
 input[type=text] {
@@ -140,8 +141,9 @@ input[type=text]:focus,
 input[type=text]:hover {
   outline: none;
   -webkit-appearance: none;
-  border-bottom: 2px;
+  border-width: 2px;
   border-image: linear-gradient(to right, #5EB2F2, #FF8758);
+  border-image-slice: 1;
   color: #ffffff; }
 
 select {
@@ -168,8 +170,9 @@ select:hover {
 
 select:active {
   color: #404040;
-  border-bottom: 2px;
+  border-width: 2px;
   border-image: linear-gradient(to right, #5EB2F2, #FF8758);
+  border-image-slice: 1;
   outline: none;
   -webkit-appearance: none; }
 
