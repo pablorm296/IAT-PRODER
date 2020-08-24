@@ -6,7 +6,7 @@ if __name__ == '__main__':
     # Create app
     app = create_app()
 
-    # Mount application
+    # Mount applicationn
     cherrypy.tree.graft(app, "/")
 
     #Unsubscribe the default server
