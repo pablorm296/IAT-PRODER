@@ -61,6 +61,14 @@
     td {
         width: 200px;
     }
+    
+    th {
+        background-color: #9BCEF5;
+        color: white;
+        padding: 12px;
+        text-align: center;
+        font-weight: bold;
+    }
 
     td {
         padding: 10px;
@@ -77,6 +85,10 @@
         padding: 0;
     }
 
+}
+
+.spacer_small {
+    margin: 15px 0;
 }
 
 .infoButton {

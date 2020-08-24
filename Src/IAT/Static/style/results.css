@@ -48,6 +48,12 @@
   .table_stats th,
   .table_stats td {
     width: 200px; }
+  .table_stats th {
+    background-color: #9BCEF5;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold; }
   .table_stats td {
     padding: 10px; }
   .table_stats .stat {
@@ -57,6 +63,9 @@
   .table_stats .option {
     text-align: center;
     padding: 0; }
+
+.spacer_small {
+  margin: 15px 0; }
 
 .infoButton {
   width: 100%;
