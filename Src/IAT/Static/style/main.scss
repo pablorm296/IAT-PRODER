@@ -72,14 +72,14 @@ table {
 #gridContainer {
     display: grid;
     margin: 5vh 0;
-    grid-template-columns: 10vh 80vh 10vh;
+    grid-template-columns: 10vw 80vw 10vw;
     grid-template-rows: auto auto;
     justify-items: center;
 }
 
 @media only screen and (max-width: 700px) {
     #gridContainer {
-        grid-template-columns: 5vh 90vh 5vh;
+        grid-template-columns: 5vw 90vw 5vw;
     }
 }
 
