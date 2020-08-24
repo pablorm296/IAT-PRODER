@@ -30,4 +30,4 @@ EXPOSE 80
 ENV FLASK_DEBUG_IAT="True"
 
 # Run apache
-CMD ["/srv/IAT/Env/bin/python", "/Srv/IAT/Src/IAT/server.py"]
+CMD ["/srv/IAT/Env/bin/python", "/srv/IAT/Src/IAT/server.py"]
