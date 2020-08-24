@@ -37,6 +37,7 @@ MONGO_RESULTS_COLLECTION = CONFIG["app"]["mongo_results_collection"]
 MONGO_COUNTER_COLLECTION = CONFIG["app"]["mongo_counter_collection"]
 RECAPTCHA_PUBLIC = CONFIG["app"]["google_reCaptcha_public"]
 RECAPTCHA_PRIVATE = CONFIG["app"]["google_reCaptcha_private"]
+D_SCORES_PATH = CONFIG["app"]["d_scores_file"]
 
 # Define front-end (client-side) blueprint
 Front = Blueprint('front', __name__, static_folder = "Static", static_url_path = "/Static", template_folder = "Templates", url_prefix = "/")
@@ -292,7 +293,7 @@ def results():
     if readResults["counter_value"] < 41:
         # Open json file with Harvard results
         try:
-            with open("Data/d_scores.json") as jsonFile:
+            with open(D_SCORES_PATH) as jsonFile:
                 dScores = json.load(jsonFile)
         except Exception:
             error_msg = "Something went wrong while loading other users' results."
