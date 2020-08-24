@@ -108,7 +108,7 @@ input[type=tel] {
   padding: 10px;
   border: none;
   border-radius: 0px;
-  border-bottom: 1px solid #9BCEF5;
+  border-bottom: 2px solid #9BCEF5;
   transition: all 0.3s ease-in-out;
   margin-bottom: 10px;
   background: transparent;
@@ -118,7 +118,8 @@ input[type=tel]:focus,
 input[type=tel]:hover {
   outline: none;
   -webkit-appearance: none;
-  border-bottom: 2px solid #0288F0;
+  border-bottom: 2ppx;
+  border-image: linear-gradient(to right, #5EB2F2, #FF8758);
   color: #404040; }
 
 input[type=text] {
@@ -129,7 +130,7 @@ input[type=text] {
   padding: 10px;
   border: none;
   border-radius: 0px;
-  border-bottom: 1px solid #9BCEF5;
+  border-bottom: 2px solid #9BCEF5;
   transition: all 0.3s ease-in-out;
   margin-bottom: 10px;
   background: transparent;
@@ -139,11 +140,12 @@ input[type=text]:focus,
 input[type=text]:hover {
   outline: none;
   -webkit-appearance: none;
-  border-bottom: 2px solid #0288F0;
+  border-bottom: 2px;
+  border-image: linear-gradient(to right, #5EB2F2, #FF8758);
   color: #ffffff; }
 
 select {
-  background: #f7f7f7;
+  background: transparent;
   text-align: center;
   -webkit-appearance: none;
   font-family: 'Montserrat', sans-serif;
@@ -151,21 +153,23 @@ select {
   padding: 10px;
   border: none;
   border-radius: 0px;
-  border-bottom: 1px solid #9BCEF5;
+  border-bottom: 2px solid #9BCEF5;
   transition: all 0.3s ease-in-out;
   margin-bottom: 10px;
   width: 600px; }
 
 select:focus,
 select:hover {
-  border-bottom: 2px solid #0288F0;
+  border-bottom: 2px;
+  border-image: linear-gradient(to right, #5EB2F2, #FF8758);
   color: #404040;
   outline: none;
   -webkit-appearance: none; }
 
 select:active {
-  background: #0288F0;
   color: #404040;
+  border-bottom: 2px;
+  border-image: linear-gradient(to right, #5EB2F2, #FF8758);
   outline: none;
   -webkit-appearance: none; }
 
