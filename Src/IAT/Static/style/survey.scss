@@ -144,10 +144,10 @@ input[type=tel] {
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #0288F0;
-    transition: all 0.5s ease-in-out;
+    border-bottom: 1px solid #9BCEF5;
+    transition: all 0.3s ease-in-out;
     margin-bottom: 10px;
-    background: #f7f7f7;
+    background: transparent;
     width: 200px;
 }
 
@@ -155,8 +155,8 @@ input[type=tel]:focus,
 input[type=tel]:hover {
     outline: none;
     -webkit-appearance: none;
-    background: #0288F0;
-    color: #ffffff;
+    border-bottom: 2px solid #0288F0;
+    color: #404040;
 }
 
 input[type=text] {
@@ -167,10 +167,10 @@ input[type=text] {
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #0288F0;
-    transition: all 0.5s ease-in-out;
+    border-bottom: 1px solid #9BCEF5;
+    transition: all 0.3s ease-in-out;
     margin-bottom: 10px;
-    background: #f7f7f7;
+    background: transparent;
     width: 600px;
 }
 
@@ -178,7 +178,7 @@ input[type=text]:focus,
 input[type=text]:hover {
     outline: none;
     -webkit-appearance: none;
-    background: #0288F0;
+    border-bottom: 2px solid #0288F0;
     color: #ffffff;
 }
 
@@ -192,23 +192,23 @@ select {
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #0288F0;
-    transition: all 0.5s ease-in-out;
+    border-bottom: 1px solid #9BCEF5;
+    transition: all 0.3s ease-in-out;
     margin-bottom: 10px;
     width: 600px;
 }
 
 select:focus,
 select:hover {
-    background: #0288F0;
-    color: #ffffff;
+    border-bottom: 2px solid #0288F0;
+    color: #404040;
     outline: none;
     -webkit-appearance: none;
 }
 
 select:active {
     background: #0288F0;
-    color: #ffffff;
+    color: #404040;
     outline: none;
     -webkit-appearance: none;
 }
