@@ -18,6 +18,9 @@ RUN ./setup.sh
 # Copy nginx config file
 RUN ["cp", "./nginx.conf", "/etc/nginx/nginx.conf"]
 
+RUN ["mkdir", "-p", "/etc/Iat/"]
+RUN ["cp", "./app.config.json", "/etc/Iat/app.config.json"]
+
 # Create server directories
 RUN ["mkdir", "-p", "/srv/IAT/"]
 

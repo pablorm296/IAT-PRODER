@@ -1,0 +1,17 @@
+{
+    "secret_key": "*G-KaPdSgVkYp3s6v9y/B?E(H+MbQeTh",
+    "mongo_host": "Iat_MongoDB",
+    "mongo_port": 27017,
+    "mongo_db_name": "IAT_PRODER",
+    "mongo_users_collection": "Users",
+    "mongo_results_collection": "Results",
+    "mongo_counter_collection": "Counter",
+    "mongo_survey_collection": "Survey",
+    "mongo_debug_survey_collection": "Survey_debug",
+    "mongo_user": "iat_app",
+    "mongo_password": "xbkhWj43PaG43rb96uQT",
+    "google_reCaptcha_public": "6LcRV7QZAAAAAIFPUmb0HnNkKJD0oU9uaYObRMIp",
+    "google_reCaptcha_private": "6LcRV7QZAAAAAEgwilgr7rHr_etTSqskzB4jybc1",
+    "admin_user": "administrador",
+    "admin_password": "1234!"
+}
