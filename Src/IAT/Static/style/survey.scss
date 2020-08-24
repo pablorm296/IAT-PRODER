@@ -17,7 +17,7 @@
 }
 
 .input_label {
-    display: block;
+    display: inline;
     margin: 15px 0;
 }
 
@@ -137,14 +137,14 @@ textarea {
 }
 
 input[type=tel] {
-    text-align: center;
+    text-align: left;
     -webkit-appearance: none;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #313131;
+    border-bottom: 2px solid #9BCEF5;
     transition: all 0.3s ease-in-out;
     margin-bottom: 10px;
     background: transparent;
@@ -162,14 +162,14 @@ input[type=tel]:hover {
 }
 
 input[type=text] {
-    text-align: center;
+    text-align: left;
     -webkit-appearance: none;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #313131;
+    border-bottom: 2px solid #9BCEF5;
     transition: all 0.3s ease-in-out;
     margin-bottom: 10px;
     background: transparent;
@@ -189,14 +189,14 @@ input[type=text]:hover {
 
 select {
     background: transparent;
-    text-align: center;
+    text-align: left;
     -webkit-appearance: none;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #313131;
+    border-bottom: 2px solid #9BCEF5;
     transition: all 0.3s ease-in-out;
     margin-bottom: 10px;
     width: 600px;
