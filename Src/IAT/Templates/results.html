@@ -14,7 +14,7 @@
 
 {# If mobile, use orientationCheck script #}
 {% if session["mobile"] %}
-    <script src="Static/js/orientationCheck.min.js"></script>
+<script src="Static/js/orientationCheck.min.js"></script>
 {% endif %}
 
 <!-- Results (from Flask) -->
@@ -54,9 +54,19 @@
                             En la gráfica de arriba hemos marcado con una línea roja tu puntuación para que puedas
                             darte una idea de cómo se compara tu resultado con el de otras personas.
                         </p>
+                        <p>
+                            Recuerda que <span class="énfasis"> el resultado de esta prueba no sólo captura tus estereotipos hacia
+                            las personas de piel clara o morena, sino que además es el reflejo de la sociedad en la
+                            vivimos</span>. Nuestra intención es invitarte a reflexionar entorno al problema de la discriminación 
+                            étnico-racial y no que te sientas eñalado de alguna forma.
+                        </p>
                         <h3>Más información sobre tu desempeño</h3>
                         <div class="stats">
                             <table class="table_stats">
+                                <tr>
+                                    <th>Yo</th>
+                                    <th>Otros participantes</th>
+                                </tr>
                                 <tr>
                                     <td class="stat">Tiempo promedio de respuesta:</td>
                                     <td id="stat_mean_latency"></td>
@@ -86,7 +96,8 @@
     <div id="footer">
         <div class="logos">
             <img id="projectLogo" src="Static/imgs/theme/logo_disc_white.png" alt="Logo PRODER (Blanco)">
-            <img id="colmexLogo" src="Static/imgs/theme/logo_colmex_white.svg" alt="Logo del Colegio de México (Blanco)">
+            <img id="colmexLogo" src="Static/imgs/theme/logo_colmex_white.svg"
+                alt="Logo del Colegio de México (Blanco)">
         </div>
         <div class="text">
             <p>
