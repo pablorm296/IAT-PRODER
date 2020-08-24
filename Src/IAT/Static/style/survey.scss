@@ -131,12 +131,13 @@ textarea {
     width: 100%;
     margin: 15px auto 0px;
     font-family: "Montserrat", sans-serif;
-    color: #404040;
+    color: #555555;
     font-size: 12pt;
     resize: none;
 }
 
 input[type=tel] {
+    color: #555555;
     text-align: left;
     -webkit-appearance: none;
     font-family: 'Montserrat', sans-serif;
@@ -145,7 +146,7 @@ input[type=tel] {
     border: none;
     border-radius: 0px;
     border-bottom: 2px solid #9BCEF5;
-    transition: all 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
     margin-bottom: 10px;
     background: transparent;
     width: 200px;
@@ -155,13 +156,14 @@ input[type=tel]:focus,
 input[type=tel]:hover {
     outline: none;
     -webkit-appearance: none;
-    border-width: 2px;
+    border-width: 3px;
     border-image: linear-gradient(to right, #5EB2F2 , #0288F0);
     border-image-slice: 1;
     color: #0288F0;
 }
 
 input[type=text] {
+    color: #555555;
     text-align: left;
     -webkit-appearance: none;
     font-family: 'Montserrat', sans-serif;
@@ -170,7 +172,7 @@ input[type=text] {
     border: none;
     border-radius: 0px;
     border-bottom: 2px solid #9BCEF5;
-    transition: all 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
     margin-bottom: 10px;
     background: transparent;
     width: 600px;
@@ -180,7 +182,7 @@ input[type=text]:focus,
 input[type=text]:hover {
     outline: none;
     -webkit-appearance: none;
-    border-width: 2px;
+    border-width: 3px;
     border-image: linear-gradient(to right, #5EB2F2 , #0288F0);
     border-image-slice: 1;
     color: #0288F0;
@@ -188,6 +190,7 @@ input[type=text]:hover {
 
 
 select {
+    color: #555555;
     background: transparent;
     text-align: left;
     -webkit-appearance: none;
@@ -197,14 +200,14 @@ select {
     border: none;
     border-radius: 0px;
     border-bottom: 2px solid #9BCEF5;
-    transition: all 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
     margin-bottom: 10px;
     width: 600px;
 }
 
 select:focus,
 select:hover {
-    border-width: 2px;
+    border-width: 3px;
     border-image: linear-gradient(to right, #5EB2F2 , #0288F0);
     border-image-slice: 1;
     color: #0288F0;
@@ -214,7 +217,7 @@ select:hover {
 
 select:active {
     color: #0288F0;
-    border-width: 2px;
+    border-width: 3px;
     border-image: linear-gradient(to right, #5EB2F2 , #0288F0);
     border-image-slice: 1;
     outline: none;
