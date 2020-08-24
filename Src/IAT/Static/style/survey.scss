@@ -128,7 +128,7 @@ input, select, textarea {
 }
 
 textarea {
-    width: 90%;
+    width: 100%;
     margin: 15px auto 0px;
     font-family: "Montserrat", sans-serif;
     color: #404040;
@@ -144,7 +144,7 @@ input[type=tel] {
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #9BCEF5;
+    border-bottom: 2px solid #313131;
     transition: all 0.3s ease-in-out;
     margin-bottom: 10px;
     background: transparent;
@@ -156,9 +156,9 @@ input[type=tel]:hover {
     outline: none;
     -webkit-appearance: none;
     border-width: 2px;
-    border-image: linear-gradient(to right, #5EB2F2 , #FF8758);
+    border-image: linear-gradient(to right, #5EB2F2 , #0288F0);
     border-image-slice: 1;
-    color: #404040;
+    color: #0288F0;
 }
 
 input[type=text] {
@@ -169,7 +169,7 @@ input[type=text] {
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #9BCEF5;
+    border-bottom: 2px solid #313131;
     transition: all 0.3s ease-in-out;
     margin-bottom: 10px;
     background: transparent;
@@ -181,9 +181,9 @@ input[type=text]:hover {
     outline: none;
     -webkit-appearance: none;
     border-width: 2px;
-    border-image: linear-gradient(to right, #5EB2F2 , #FF8758);
+    border-image: linear-gradient(to right, #5EB2F2 , #0288F0);
     border-image-slice: 1;
-    color: #ffffff;
+    color: #0288F0;
 }
 
 
@@ -196,7 +196,7 @@ select {
     padding: 10px;
     border: none;
     border-radius: 0px;
-    border-bottom: 2px solid #9BCEF5;
+    border-bottom: 2px solid #313131;
     transition: all 0.3s ease-in-out;
     margin-bottom: 10px;
     width: 600px;
@@ -204,17 +204,18 @@ select {
 
 select:focus,
 select:hover {
-    border-bottom: 2px;
-    border-image: linear-gradient(to right, #5EB2F2 , #FF8758);
-    color: #404040;
+    border-width: 2px;
+    border-image: linear-gradient(to right, #5EB2F2 , #0288F0);
+    border-image-slice: 1;
+    color: #0288F0;
     outline: none;
     -webkit-appearance: none;
 }
 
 select:active {
-    color: #404040;
+    color: #0288F0;
     border-width: 2px;
-    border-image: linear-gradient(to right, #5EB2F2 , #FF8758);
+    border-image: linear-gradient(to right, #5EB2F2 , #0288F0);
     border-image-slice: 1;
     outline: none;
     -webkit-appearance: none;
