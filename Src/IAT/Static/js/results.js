@@ -136,7 +136,6 @@ function loadResults(responseContent) {
     const fastestLatency_group = responseContent.fastestLatency_g;
     const slowestLatency_group = responseContent.slowestLatency_g;
     const meanLatency_group = responseContent.meanLatency_g;
-    const errorCount_group = responseContent.errorCount_g;
 
     const series = responseContent.dScores;
 
@@ -160,7 +159,7 @@ function loadResults(responseContent) {
     $("#stat_mean_latency_group").text(meanLatency_group + " ms");
     $("#stat_min_latency_group").text(fastestLatency_group + " ms");
     $("#stat_max_latency_group").text(slowestLatency_group + " ms");
-    $("#stat_errors_group").text(errorCount_group + " errores");
+    $("#stat_errors_group").text("-");
 
     //Dependiendo de la fortaleza de los resultados
     if (iatScore < 0.2 && iatScore > -0.2) {
