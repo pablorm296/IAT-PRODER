@@ -49,10 +49,10 @@ function keyCallBack(keyName) {
         if (keyName == "space") {
             return false;
         }
-        if (keyName == "e") {
+        if (keyName == "q") {
             iatAnswer(keyName);
         }
-        if (keyName == "i") {
+        if (keyName == "p") {
             iatAnswer(keyName);
         }
     }
@@ -62,11 +62,11 @@ function keyCallBack(keyName) {
 function setBtns() {
     // Left col
     $("#leftCol").on("click", function () {
-        keyCallBack("e");
+        keyCallBack("q");
     });
     // Right col
     $("#rightCol").on("click", function () {
-        keyCallBack("i");
+        keyCallBack("p");
     });
     // Space bar
     $("#space_bar").on("click", function () {
