@@ -438,6 +438,42 @@ def results():
     # Get total number of errors
     totalErrors = roundResults_pooled["error"].sum()
 
+    # Get group stats
+    MongoConnection = MongoConnector(MONGO_DB, MONGO_RESULTS_COLLECTION, MONGO_URI)
+    readResults = MongoConnection.collection.find(
+        None, # All documents
+        {
+            "results": True
+        }
+    )
+
+    # List of rounds data frames
+    rounds_dataframes = list()
+
+    for document in readResults:
+        # Get results subdocument
+        rounds = document["results"]
+
+        # Loop through rounds
+        for roundDocument in rounds:
+            roundDf = pd.DataFrame(roundDocument)
+            rounds_dataframes.append(roundDf)
+
+    # Concatenate dataframes
+    rounds_concatenated = pd.concat(rounds_dataframes)
+
+     # Get fastest latency
+    fastestLatency_group = rounds_concatenated["latency"].min()
+
+    # Get slowest latency
+    slowestLatency_group = rounds_concatenated["latency"].max()
+
+    # Get mean pooled latency
+    meanLatency_group = rounds_concatenated["latency"].mean()
+
+    # Close connection
+    MongoConnection.close()
+
     # Coerce data types
     fastestLatency = int(fastestLatency)
     slowestLatency = int(slowestLatency)
@@ -448,9 +484,18 @@ def results():
     IAT = round(IAT, 3)
 
     # Prepare results data
-    resultData = {"code": "s", "iatScore": IAT, "fastestLatency": fastestLatency,
-    "slowestLatency": slowestLatency, "meanLatency": meanLatency, "errorCount": totalErrors,
-    "dScores": dScores}
+    resultData = {
+        "code": "s", 
+        "iatScore": IAT, 
+        "fastestLatency": fastestLatency,
+        "slowestLatency": slowestLatency, 
+        "meanLatency": meanLatency, 
+        "errorCount": totalErrors,
+        "fastestLatency_g": fastestLatency_group,
+        "slowestLatency_g": slowestLatency_group, 
+        "meanLatency_g": meanLatency_group, 
+        "dScores": dScores
+    }
 
     # Put data in response env
     responseEnv = {
