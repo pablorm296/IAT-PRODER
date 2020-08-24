@@ -1,0 +1,18 @@
+# Please make sure to define the following variables via Export or Compose CLI:
+# DOCKER_ROOT_FOLDER
+# DATAINT_ROOT_FOLDER
+version: "3.8"
+services:
+    App:
+        image: iat/server:test
+        restart: "no"
+        volumes:
+            - type: bind
+              source: ${IAT_ROOT_FOLDER}/Src/IAT/
+              target: /srv/IAT/
+        ports: 
+            - "5000:80"
+
+    MongoDB:
+        image: iat/mongo:test
+        restart: "no"
