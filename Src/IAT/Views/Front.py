@@ -267,7 +267,7 @@ def results():
         }
     )
 
-    if updateResults.modified_count < 1:
+    if not updateResults.acknowledged:
         error_msg = "Something went wrong while setting the 'completed' status. The database couldn't update the document."
         logger.error(error_msg)
         raise FrontEndException(error_msg)
