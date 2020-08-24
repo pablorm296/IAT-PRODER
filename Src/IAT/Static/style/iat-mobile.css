@@ -176,7 +176,9 @@ p {
   white-space: nowrap; }
 
 .wrd {
-  color: #3425ff; }
+  color: #df50df;
+  font-weight: bold;
+  font-size: 16pt; }
 
 .or {
   margin: 20px 0px;
