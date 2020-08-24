@@ -9,4 +9,4 @@ pip3 install virtualenv
 virtualenv /srv/IAT/env
 
 # Install requirements
- /bin/bash -c "source srv/IAT/env/bin/activate && pip install -r /srv/IAT/requirements.txt"
+ /bin/bash -c "source /srv/IAT/env/bin/activate && pip install -r /srv/IAT/requirements.txt"
