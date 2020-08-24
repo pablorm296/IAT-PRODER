@@ -24,7 +24,7 @@ RUN ["mkdir", "-p", "/srv/IAT/"]
 # Run restart script
 RUN ./restartServices.sh
 
-# Expose port 80 (Apache)
+# Expose port 80 (Nginx)
 EXPOSE 80
 
 # Define environment variables
@@ -32,5 +32,6 @@ ENV FLASK_DEBUG_IAT="True"
 ENV VIRTUAL_ENV /srv/IAT/Env
 ENV PATH /srv/IAT/Env/bin:$PATH
 
-# Run apache
-CMD ["/srv/IAT/Env/bin/python", "/srv/IAT/Src/IAT/server.py"]
+RUN which python 
+
+CMD ["python", "/srv/IAT/Src/IAT/server.py"]
