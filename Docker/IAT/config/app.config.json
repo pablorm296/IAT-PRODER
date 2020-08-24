@@ -1,5 +1,6 @@
 {
     "secret_key": "*G-KaPdSgVkYp3s6v9y/B?E(H+MbQeTh",
+    "d_scores_file": "/srv/IAT/Src/IAT/Data/d_scores.json",
     "mongo_host": "Iat_MongoDB",
     "mongo_port": 27017,
     "mongo_db_name": "IAT_PRODER",
