@@ -79,7 +79,7 @@ function iatAnswer(key) {
     const humanIndex = __trialCount + 1;
     const holder = `#stimHolder_${humanIndex}`;
     const currentLabel = $(holder).attr("label");
-    if (key == "e") {
+    if (key == "q") {
         if (__left.includes(currentLabel)) {
             const ellapsed = getLatency();
             saveTrial(ellapsed);
