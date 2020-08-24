@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Make a temp copy of apache config
+# cp /etc/apache2/apache2.conf ./config/apache2.conf
+
+# Build docker
+sudo docker build -t iat/server:test . -f Dockerfile
+
+# Remove copy of apache config
+# Now, keep the apache config file, better debugging
+# rm ./config/apache2.conf
