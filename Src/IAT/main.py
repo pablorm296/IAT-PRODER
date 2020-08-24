@@ -9,8 +9,10 @@ from IAT.Views import Front, Api
 
 def create_app(debug = None):
     # Are we in a debug env
-    if os.environ["FLASK_DEBUG_IAT"] == "True" and debug is None:
+    if os.environ["FLASK_DEBUG_IAT"] == "True":
         debug = True
+    else:
+        debug = False
 
     # Read configuration
     if debug:
