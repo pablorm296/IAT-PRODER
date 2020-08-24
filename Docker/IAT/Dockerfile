@@ -20,6 +20,7 @@ RUN ["cp", "./nginx.conf", "/etc/nginx/nginx.conf"]
 
 RUN ["mkdir", "-p", "/etc/Iat/"]
 RUN ["cp", "./app.config.json", "/etc/Iat/app.config.json"]
+RUN ["cp", "./stimuli.config.json", "/etc/Iat/stimuli.config.json"]
 
 # Create server directories
 RUN ["mkdir", "-p", "/srv/IAT/"]
