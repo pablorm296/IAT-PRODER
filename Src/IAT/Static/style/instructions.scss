@@ -9,6 +9,7 @@
 .messageContainer {
     p, ul, li {
         text-align: justify;
+        hyphens: auto;
     }
     grid-column: 2/3;
     grid-row: 1/2;

@@ -115,6 +115,7 @@ p {
       height: 20vh; }
     .stimuli .holders .instructions {
       text-align: justify;
+      hyphens: auto;
       font-weight: normal;
       font-size: 11pt;
       line-height: 16.5pt;

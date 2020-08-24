@@ -5,7 +5,8 @@
 .messageContainer {
   grid-column: 2/3;
   grid-row: 1/2;
-  text-align: justify; }
+  text-align: justify;
+  hyphens: auto; }
 
 .buttonsContainer {
   display: flex;
