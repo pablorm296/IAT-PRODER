@@ -146,7 +146,7 @@ input[type=tel] {
     border: none;
     border-radius: 0px;
     border-bottom: 2px solid #9BCEF5;
-    transition: all 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
     margin-bottom: 10px;
     background: transparent;
     width: 200px;
@@ -164,7 +164,6 @@ input[type=tel] {
         border-image: linear-gradient(to right, #5EB2F2 , #0288F0);
         border-image-slice: 1;
         color: #0288F0;
-        font-weight: bold;
     }
 }
 
@@ -178,7 +177,7 @@ input[type=text] {
     border: none;
     border-radius: 0px;
     border-bottom: 2px solid #9BCEF5;
-    transition: all 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
     margin-bottom: 10px;
     background: transparent;
     width: 600px;
@@ -196,7 +195,6 @@ input[type=text] {
         border-image: linear-gradient(to right, #5EB2F2 , #0288F0);
         border-image-slice: 1;
         color: #0288F0;
-        font-weight: bold;
     }
 }
 
@@ -211,7 +209,7 @@ select {
     border: none;
     border-radius: 0px;
     border-bottom: 2px solid #9BCEF5;
-    transition: all 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
     margin-bottom: 10px;
     width: 600px;
 

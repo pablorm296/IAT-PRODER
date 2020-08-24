@@ -110,7 +110,7 @@ input[type=tel] {
   border: none;
   border-radius: 0px;
   border-bottom: 2px solid #9BCEF5;
-  transition: all 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
   margin-bottom: 10px;
   background: transparent;
   width: 200px; }
@@ -124,8 +124,7 @@ input[type=tel] {
     border-width: 3px;
     border-image: linear-gradient(to right, #5EB2F2, #0288F0);
     border-image-slice: 1;
-    color: #0288F0;
-    font-weight: bold; }
+    color: #0288F0; }
 
 input[type=text] {
   color: #555555;
@@ -137,7 +136,7 @@ input[type=text] {
   border: none;
   border-radius: 0px;
   border-bottom: 2px solid #9BCEF5;
-  transition: all 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
   margin-bottom: 10px;
   background: transparent;
   width: 600px; }
@@ -151,8 +150,7 @@ input[type=text] {
     border-width: 3px;
     border-image: linear-gradient(to right, #5EB2F2, #0288F0);
     border-image-slice: 1;
-    color: #0288F0;
-    font-weight: bold; }
+    color: #0288F0; }
 
 select {
   color: #555555;
@@ -165,7 +163,7 @@ select {
   border: none;
   border-radius: 0px;
   border-bottom: 2px solid #9BCEF5;
-  transition: all 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
   margin-bottom: 10px;
   width: 600px; }
   select:hover {
