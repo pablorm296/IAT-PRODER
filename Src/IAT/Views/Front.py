@@ -243,7 +243,7 @@ def results():
     MongoConnection = MongoConnector(MONGO_DB, MONGO_RESULTS_COLLECTION, MONGO_URI)
     readResults = MongoConnection.collection.find_one(
         filter = {"user_id": user_id},
-        sort = {"timestamp": -1}
+        sort = [("timestamp", -1)]
     )
 
     # Check if there's at least one user with results
