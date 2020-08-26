@@ -190,21 +190,48 @@ def getStimuli():
     # Define data
     if stage == 1:
         # Choose random images
-        imageList = random.choices(STIMULI_IMAGES, k = 16)
+        imageList = list()
+
+        # Create two permutations of imagelist
+        imageList_1 = STIMULI_IMAGES
+        imageList_2 = STIMULI_IMAGES
+
+        random.shuffle(imageList_1)
+        random.shuffle(imageList_2)
+
+        imageList.extend(imageList_1)
+        imageList.extend(imageList_2)
+
         finalList = imageList
 
     elif stage == 2:
         # Choose random words
-        wordList = random.choices(STIMULI_WORDS, k = 16)
+        wordList = STIMULI_WORDS
+
+        random.shuffle(wordList)
+
         finalList = wordList
         
     elif stage >= 3 and stage < 5:
         # Choose training words
         trainWords = random.sample(STIMULI_WORDS, 4)
         # Choose random words
-        wordList = random.choices(STIMULI_WORDS, k = 18)
+        wordList = STIMULI_WORDS
+
+        random.shuffle(wordList)
+
         # Choose random images
-        imageList = random.choices(STIMULI_IMAGES, k = 18)
+        imageList = list()
+        # Create two permutations of imagelist
+        imageList_1 = STIMULI_IMAGES
+        imageList_2 = STIMULI_IMAGES
+
+        random.shuffle(imageList_1)
+        random.shuffle(imageList_2)
+
+        imageList.extend(imageList_1)
+        imageList.extend(imageList_2)
+
         # Create an empty list
         mergedList = [None] * ( len(wordList) + len(imageList) )
         # Fill every other element with a word
@@ -216,16 +243,40 @@ def getStimuli():
 
     elif stage == 5:
         # Choose random images
-        imageList = random.choices(STIMULI_IMAGES, k = 16)
+        imageList = list()
+
+        # Create two permutations of imagelist
+        imageList_1 = STIMULI_IMAGES
+        imageList_2 = STIMULI_IMAGES
+
+        random.shuffle(imageList_1)
+        random.shuffle(imageList_2)
+
+        imageList.extend(imageList_1)
+        imageList.extend(imageList_2)
+
         finalList = imageList
 
     elif stage >= 6 and stage < 8:
         # Choose training words
         trainWords = random.sample(STIMULI_WORDS, 4)
         # Choose random words
-        wordList = random.choices(STIMULI_WORDS, k = 18)
+        wordList = STIMULI_WORDS
+
+        random.shuffle(wordList)
+
         # Choose random images
-        imageList = random.choices(STIMULI_IMAGES, k = 18)
+        imageList = list()
+        # Create two permutations of imagelist
+        imageList_1 = STIMULI_IMAGES
+        imageList_2 = STIMULI_IMAGES
+
+        random.shuffle(imageList_1)
+        random.shuffle(imageList_2)
+
+        imageList.extend(imageList_1)
+        imageList.extend(imageList_2)
+        
         # Create an empty list
         mergedList = [None] * ( len(wordList) + len(imageList) )
         # Fill every other element with a word
