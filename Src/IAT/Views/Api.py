@@ -213,8 +213,6 @@ def getStimuli():
         finalList = wordList
         
     elif stage >= 3 and stage < 5:
-        # Choose training words
-        trainWords = random.sample(STIMULI_WORDS, 4)
         # Choose random words
         wordList = STIMULI_WORDS
 
@@ -239,7 +237,7 @@ def getStimuli():
         # Fill every other element with an image
         mergedList[1::2] = imageList
         # Concatenate train words with merged list
-        finalList = trainWords + mergedList
+        finalList = mergedList
 
     elif stage == 5:
         # Choose random images
@@ -258,8 +256,6 @@ def getStimuli():
         finalList = imageList
 
     elif stage >= 6 and stage < 8:
-        # Choose training words
-        trainWords = random.sample(STIMULI_WORDS, 4)
         # Choose random words
         wordList = STIMULI_WORDS
 
@@ -284,7 +280,7 @@ def getStimuli():
         # Fill every other element with an image
         mergedList[1::2] = imageList
         # Concatenate train words with merged list
-        finalList = trainWords + mergedList
+        finalList = mergedList
     else:
         raise BadRequest("Well... I don't know what are you expecting me to send in that stage!")
 
