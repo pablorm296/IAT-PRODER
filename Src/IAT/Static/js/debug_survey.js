@@ -88,7 +88,7 @@ function saveResults() {
     console.log(answers);
     myAPI.endPoints.POST_debugSurvey(answers, function () {
         alert("Muchas gracias por haber participado en esta prueba piloto. Tus respuestas nos ayudarán a mejorar el IAT.")
-        window.location.href = "https://discriminacion.colmex.mx/";
+        window.location.href = __actionCLick;
     });
 }
 
