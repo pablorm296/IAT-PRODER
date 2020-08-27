@@ -520,11 +520,18 @@ def bye():
     # Check debug mode
     if DEBUG_MODE:
         response_env = {
-            "reCaptcha_public": RECAPTCHA_PUBLIC
+            "reCaptcha_public": RECAPTCHA_PUBLIC,
+            "clickAction": "/forceBye"
         }
         return flask.render_template("debug_survey.html", **response_env)
     else:
         return flask.render_template("bye.html")
+
+@Front.route("/forceBye", methods = ["GET"])
+def forceBye():
+
+    # Check referer and session
+    return flask.render_template("bye.html")
 
 @Front.route("/errorTest", methods = ["GET"])
 def testError():

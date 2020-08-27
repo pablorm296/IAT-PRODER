@@ -1,7 +1,7 @@
 // More info button
 function infoBtn() {
     // Go to project page
-    window.location.href = "https://discriminacion.colmex.mx/";
+    window.location.href = __actionCLick;
 }
 
 // Set Buttons actions
