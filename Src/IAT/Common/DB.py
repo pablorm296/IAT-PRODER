@@ -79,7 +79,7 @@ class DBShortcuts:
             {
                 "user_id": user_id,
                 "created": datetime.datetime.utcnow(),
-                "remote_address": request.remote_addr,
+                "remote_address": request.headers.get('X-Real-IP', None),
                 "last_timestamp": datetime.datetime.utcnow(),
                 "hits": 1,
                 "completed": False,
