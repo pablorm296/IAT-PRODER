@@ -150,9 +150,8 @@ def getResults(collection = None):
     elif collection == "iatScores":
         pass
 
-    logger.warning(os.getcwd())
     # Write document
-    with open("Tmp/{0}.csv".format(fileName), "w") as csvFile:
+    with open("/srv/IAT/Src/IAT/Tmp/{0}.csv".format(fileName), "w") as csvFile:
         # Get fieldnames from first item. This is not very fail proof, since the first element can be "incomplete"
         # To prevent errors, a DB drop must be executed before running this app commit
         try:
@@ -171,7 +170,7 @@ def getResults(collection = None):
             writer.writerow(document)
     
     # Send file
-    return flask.send_file("Tmp/{0}.csv".format(fileName))
+    return flask.send_file("/srv/IAT/Src/IAT/Tmp/{0}.csv".format(fileName))
 
 @Api.route("/iat/stimuli", methods = ["GET"])
 def getStimuli():
