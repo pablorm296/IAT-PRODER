@@ -93,7 +93,7 @@ def getResults(collection = None):
         raise Forbidden("Wrong user and/or password")
 
     # Check collection parameter
-    if collection not in ["users", "survey", "iat", "iatScores"] or collection is None:
+    if collection not in ["users", "survey", "iat", "iatScores", "surveyDebug"] or collection is None:
         raise BadRequest("Please, enter the name of a valid DB collection.")
 
     # Random file name
