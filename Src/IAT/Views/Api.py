@@ -114,6 +114,12 @@ def getResults(collection = None):
         # Get survey results
         targetCollection = MongoConnection.collection.find()
 
+    elif collection == "surveyDebug":
+        # Open Connection
+        MongoConnection = MongoConnector(MONGO_DB, MONGO_DEBUG_SURVEY_COLLECTION, MONGO_URI)
+        # Get survey results
+        targetCollection = MongoConnection.collection.find()
+
     elif collection == "iat":
         # Open Connection
         MongoConnection = MongoConnector(MONGO_DB, MONGO_RESULTS_COLLECTION, MONGO_URI)
