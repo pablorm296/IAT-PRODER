@@ -24,3 +24,7 @@ root_secret
 Tmp/
 # Ignore .env files
 .env
+# Ignore r files
+R/
+.Rproj.user
+.Rhistory
