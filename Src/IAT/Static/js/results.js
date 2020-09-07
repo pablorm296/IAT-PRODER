@@ -9,6 +9,7 @@ function binData(data) {
         size = data.length, //how many data points
         bins = Math.round(Math.sqrt(size)); //determine how many bins we need
     bins = bins > 50 ? 50 : bins; //adjust if more than 50 cells
+    bins = bins <= 20 ? 20 : bins; //Adjust if less than 20 cells
     var max = Math.max.apply(null, data), //lowest data value
         min = Math.min.apply(null, data), //highest data value
         range = max - min, //total range of the data
