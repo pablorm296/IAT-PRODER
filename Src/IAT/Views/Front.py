@@ -302,7 +302,18 @@ def results():
             raise FrontEndException(error_msg)
     # Else, just load our own dScores
     else:
+        # Read dScores from database
         dScores = readResults["scores_array"]
+        # Send dscores as an array
+        dScoresArray = list()
+        for entry in dScores:
+            # Get score
+            score = entry.get("score", None)
+            # Append to array
+            dScoresArray.append(score)
+            
+        # Replace dscores object
+        dScores = dScoresArray
 
     # Get round latency results. Depending on user order (1 or 0, randomly assigned), we flip round results order
     # If round is 0
