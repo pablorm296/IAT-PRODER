@@ -301,7 +301,7 @@ function showInstructions() {
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            ssignLabelsAndText("word&img", "<p>Ordena, nuevamente, las mismas categorías.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", false);
+            assignLabelsAndText("word&img", "<p>Ordena, nuevamente, las mismas categorías.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", false);
             break;
         case 5:
             //Definir tamaño del placeholder
