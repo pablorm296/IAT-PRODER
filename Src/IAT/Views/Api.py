@@ -154,7 +154,10 @@ def getResults(collection = None):
                     targetCollection.append(targetCollection)
 
     elif collection == "iatScores":
-        pass
+        # Open Connection
+        MongoConnection = MongoConnector(MONGO_DB, MONGO_COUNTER_COLLECTION, MONGO_URI)
+        # Get survey results
+        targetCollection = MongoConnection.collection.find({}, projection = {"scores_array": 1})
 
     # Write document
     with open("/srv/IAT/Src/IAT/Tmp/{0}.csv".format(fileName), "w") as csvFile:
