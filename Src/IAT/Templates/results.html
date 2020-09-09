@@ -12,11 +12,6 @@
 <script src="Static/js/api/api.min.js"></script>
 <script src="Static/js/results.min.js"></script>
 
-{# If mobile, use orientationCheck script #}
-{% if session["mobile"] %}
-<script src="Static/js/orientationCheck.min.js"></script>
-{% endif %}
-
 <!-- Results (from Flask) -->
 {% autoescape off %}
 <script>
