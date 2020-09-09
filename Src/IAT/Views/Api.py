@@ -118,10 +118,7 @@ def getResults(collection = None):
         # Open Connection
         MongoConnection = MongoConnector(MONGO_DB, MONGO_DEBUG_SURVEY_COLLECTION, MONGO_URI)
         # Get survey results
-        tmpCollection = MongoConnection.collection.find()
-
-        # Get scores array
-        targetCollection = list(tmpCollection)[0]["scores_array"]
+        targetCollection = MongoConnection.collection.find()
 
     elif collection == "iat":
         # Open Connection
@@ -160,7 +157,10 @@ def getResults(collection = None):
         # Open Connection
         MongoConnection = MongoConnector(MONGO_DB, MONGO_COUNTER_COLLECTION, MONGO_URI)
         # Get survey results
-        targetCollection = MongoConnection.collection.find({}, projection = {"scores_array": 1})
+        tmpCollection = MongoConnection.collection.find({}, projection = {"scores_array": 1})
+
+        # Get scores array
+        targetCollection = list(tmpCollection)[0]["scores_array"]
 
     # Write document
     with open("/srv/IAT/Src/IAT/Tmp/{0}.csv".format(fileName), "w") as csvFile:
