@@ -294,7 +294,7 @@ function showInstructions() {
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("word&img", "<p>En esta sección tendrás que categorizar imágenes y palabras.</p><p>Las etiquetas verdes corresponden a las palabras y las blancas a las imágenes.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", false);
+            assignLabelsAndText("word&img", "<p>En esta sección tendrás que categorizar imágenes y palabras.</p><p>Las etiquetas moradas corresponden a las palabras y las blancas a las imágenes.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", false);
             break;
         case 4:
             //Definir tamaño del placeholder
