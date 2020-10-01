@@ -56,6 +56,7 @@
 }
 
 .table_questions {
+    width: 90%;
     margin: auto;
     font-size: $baseFontSize - 3;
     line-height: $baseFontSize - 1;
@@ -74,7 +75,11 @@
         padding: 0;
     }
 
-    th {
+    input {
+        display: inline;
+    }
+
+    th, .question {
         background-color: #9BCEF5;
         color: white;
         padding: 5px;

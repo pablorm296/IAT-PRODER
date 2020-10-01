@@ -44,6 +44,7 @@
   margin-bottom: 0px; }
 
 .table_questions {
+  width: 90%;
   margin: auto;
   font-size: 11pt;
   line-height: 13pt; }
@@ -55,13 +56,15 @@
   .table_questions .option {
     text-align: center;
     padding: 0; }
-  .table_questions th {
+  .table_questions input {
+    display: inline; }
+  .table_questions th, .table_questions .question {
     background-color: #9BCEF5;
     color: white;
     padding: 5px;
     text-align: center;
     font-weight: normal; }
-    .table_questions th span {
+    .table_questions th span, .table_questions .question span {
       display: block;
       color: #0288F0;
       text-align: center;
