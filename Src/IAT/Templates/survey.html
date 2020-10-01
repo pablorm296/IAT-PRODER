@@ -21,19 +21,20 @@
                 <h1>Ya casi terminamos...</h1>
                 <p>
                     Por favor, ayúdanos contestando las siguientes preguntas. Tus respuestas nos servirán para calibrar
-                    tus resultados en la prueba. <span class="énfasis">Las preguntas marcadas con un asterisco son obligatorias para poder
-                    continuar</span>.
+                    tus resultados en la prueba. <span class="énfasis">Las preguntas marcadas con un asterisco son
+                        obligatorias para poder
+                        continuar</span>.
                 </p>
                 <hr>
             </div>
             <div class="item questionsContainer">
                 <span id="srvy_age_label" class="input_label">¿Cuántos años cumplidos tienes?</span><span
-                        id="srvy_age_label_rm" class="required_mark">*</span>
+                    id="srvy_age_label_rm" class="required_mark">*</span>
                 <input type="tel" id="srvy_age">
                 <div id="srvy_age_wi" class="wrong_input" style="display: none;"></div>
                 <br class="spacer_small">
-                <span id="srvy_sex_label" class="input_label">¿Con qué género te identificas?</span><span id="srvy_sex_label_rm"
-                        class="required_mark">*</span>
+                <span id="srvy_sex_label" class="input_label">¿Con qué género te identificas?</span><span
+                    id="srvy_sex_label_rm" class="required_mark">*</span>
                 <select id="srvy_sex">
                     <option value="NONE" selected></option>
                     <option value="1">Hombre</option>
@@ -42,25 +43,55 @@
                     <option value="99">Prefiero no decir</option>
                 </select>
                 <br class="spacer_small">
-                <span class="input_label">¿Ocupación?</span>
-                <select id="srvy_lab">
-                    <option value="NONE" selected></option>
-                    <option value="1">No trabajo</option>
-                    <option value="2">No trabajo, pero busco empleo</option>
-                    <option value="3">Tengo una condición física o mental que me impide trabajar</option>
-                    <option value="4">Me dedico a los quehaceres del hogar</option>
-                    <option value="5">Estoy jubilado/pensionado y dejé de trabajar</option>
-                    <option value="6">Soy estudiante</option>
-                    <option value="7">Soy empleado asalariado en el gobierno (Federal, Estatal o Municipal)</option>
-                    <option value="8">Soy empleado asalariado en una institución pública (Universidad o Centro de
-                        Investigación)</option>
-                    <option value="9">Soy militar (SEDENA o SEMAR)</option>
-                    <option value="10">Soy empleado asalariado en el sector privado</option>
-                    <option value="11">Soy patrono/socio de una empresa</option>
-                    <option value="12">Trabajo por mi propia cuenta o bajo un régimen de honorarios</option>
-                    <option value="88">Ninguna de las opciones describe mi situación</option>
-                    <option value="99">Prefiero no decir</option>
-                </select>
+                <span class="input_label" id="srvy_household_label">Por favor, indica si en tu vivienda cuentas con...</span><span
+                    id="srvy_household_rm" class="required_mark">*</span>
+                <table class="table_questions">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Estufa de gas o estufa eléctrica</td>
+                        <td class="option">Sí<input type="radio" name="srvy_household_stove" value="0"></td>
+                        <td class="option">No<input type="radio" name="srvy_household_stove" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Refrigerador</td>
+                        <td class="option">Sí<input type="radio" name="srvy_household_frigo" value="0"></td>
+                        <td class="option">No<input type="radio" name="srvy_household_frigo" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Acceso a internet</td>
+                        <td class="option">Sí<input type="radio" name="srvy_household_internet" value="0"></td>
+                        <td class="option">No<input type="radio" name="srvy_household_internet" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Lavadora</td>
+                        <td class="option">Sí<input type="radio" name="srvy_household_washer" value="0"></td>
+                        <td class="option">No<input type="radio" name="srvy_household_washer" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Consola de videojuego (Nintendo Wii, Playstation, XBox...)</td>
+                        <td class="option">Sí<input type="radio" name="srvy_household_console" value="0"></td>
+                        <td class="option">No<input type="radio" name="srvy_household_console" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Horno de microondas</td>
+                        <td class="option">Sí<input type="radio" name="srvy_household_microwave" value="0"></td>
+                        <td class="option">No<input type="radio" name="srvy_household_microwave" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Tostador de pan</td>
+                        <td class="option">Sí<input type="radio" name="srvy_household_toster" value="0"></td>
+                        <td class="option">No<input type="radio" name="srvy_household_toster" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>Licuadora</td>
+                        <td class="option">Sí<input type="radio" name="srvy_household_blender" value="0"></td>
+                        <td class="option">No<input type="radio" name="srvy_household_blender" value="1"></td>
+                    </tr>
+                </table>
                 <br class="spacer_small">
                 <span class="input_label">¿Escolaridad?</span>
                 <select id="srvy_esc">
@@ -394,8 +425,8 @@
                     <option value="2">No</option>
                 </select>
                 <br class="spacer_small">
-                <span id="srvy_hand_label" class="input_label">¿Con qué mano escribes?</span><span id="srvy_hand_label_rm"
-                        class="required_mark">*</span>
+                <span id="srvy_hand_label" class="input_label">¿Con qué mano escribes?</span><span
+                    id="srvy_hand_label_rm" class="required_mark">*</span>
                 <select id="srvy_hand" style="width: 600px;">
                     <option value="NONE" selected></option>
                     <option value="1">Izquierda</option>
@@ -453,7 +484,8 @@
                     </tr>
                 </table>
                 <br class="spacer_small">
-                <span id="srvy_captcha_label" class="input_label">¿Eres un robot?</span><span id="srvy_captcha_label_rm" class="required_mark">*</span>
+                <span id="srvy_captcha_label" class="input_label">¿Eres un robot?</span><span id="srvy_captcha_label_rm"
+                    class="required_mark">*</span>
                 <div class="g-recaptcha" data-sitekey="{{ reCaptcha_public }}"></div>
                 <hr>
             </div>
