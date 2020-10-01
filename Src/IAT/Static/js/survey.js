@@ -2,9 +2,11 @@ var myAPI;
 
 //Función para validar respuestas del usuario
 function checkInput() {
-    const compulsoryIndex = [0, 1, 6, 7];
+    const compulsoryIndex = [0, 1, 7, 8];
     //Lista de ids
-    const idArrays = ["srvy_age", "srvy_sex", "srvy_lab", "srvy_contry", "srvy_state", "srvy_zip", "srvy_iat", "srvy_hand"];
+    const idArrays = ["srvy_age", "srvy_sex", "srvy_household", "srvy_contry", "srvy_state", "srvy_zip", "srvy_col", "srvy_iat", "srvy_hand"];
+    // Id's de items en el hogar
+    const idHouseHold = ["srvy_household_stove", "srvy_household_frigo", "srvy_household_internet", "srvy_household_washer", "srvy_household_console", "srvy_household_microwave", "srvy_household_toster", "srvy_household_blender"];
     //Lista de inputs
     var elemArray = [];
     //Creamos un contador de errores
@@ -38,6 +40,24 @@ function checkInput() {
         } else {
             $(`#${idStr}_label`).removeClass("input_label_error");
             $(`#${idStr}_label_rm`).removeClass("required_mark_error");
+        }
+    }
+    // Verificamos pregunta sobre items en el hogar
+    for (let index = 0; index < idHouseHold.length; index++) {
+        const itemId = idHouseHold[index];
+        // Get value
+        const currentVal = $(`input[name=${itemId}]:checked`).val();
+        // If none
+        if (!currentVal) {
+            $("#srvy_household_label").removeClass("input_label");
+            $("#srvy_household_label").addClass("input_label_error");
+            $("#srvy_household_label_rm").removeClass("required_mark");
+            $("#srvy_household_label_rm").addClass("required_mark_error");
+        } else {
+            $("#srvy_household_label").removeClass("input_label_error");
+            $("#srvy_household_label").addClass("input_label");
+            $("#srvy_household_label_rm").removeClass("required_mark_error");
+            $("#srvy_household_label_rm").addClass("required_mark");
         }
     }
     // Verificamos reCaptcha
