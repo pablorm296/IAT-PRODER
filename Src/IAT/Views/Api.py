@@ -408,7 +408,7 @@ def postSurvey():
         "timestamp": datetime.datetime.utcnow(),
         "age": jsonPayload["srvy_age"],
         "gender": jsonPayload["srvy_sex"],
-        "employment": jsonPayload["srvy_lab"],
+        #"employment": jsonPayload["srvy_lab"],
         "education": jsonPayload["srvy_esc"],
         "nationality": jsonPayload["srvy_country"],
         "state": jsonPayload["srvy_state"],
