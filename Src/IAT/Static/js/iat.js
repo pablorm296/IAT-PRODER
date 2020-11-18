@@ -294,7 +294,7 @@ function showInstructions() {
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank");
-            assignLabelsAndText("img", "<h1>Instrucciones:</h1><ul><li>Coloca tus dedos índices en las <b>letras Q y P de tu teclado</b>.</li><li>Observa las palabras que aparecen en la parte superior de la pantalla; éstas representan las categorías que tendrás que ordenar. Las palabras o imágenes que tienes que ordenar aparecerán una por una en el centro de la pantalla.</li><li>Tu tarea será presionar <b>la tecla Q cuando la imagen o palabra pertenezca a la categoría del lado izquierdo</b>. <b>Cuando la palabra o la imagen pertenezca a la categoría de la derecha, presiona la tecla P</b>.</li><li> Atención: <b>las imágenes o palabras sólo pueden pertenecer a una categoría</b>. Si cometes un error al clasificarlas, aparecerá una X. Para corregir el error, presiona la tecla correcta tan rápido como puedas.</li><ul>", false);
+            assignLabelsAndText("img", "<h1>Instrucciones:</h1><p>Coloca tus dedos índices en las letras Q y P de tu teclado.</p><p>Identifica en la parte superior de la pantalla, las categorías que deberás utilizar para clasificar las imágenes o palabras que aparecerán en el centro de la pantalla.</p><p>Tu tarea</p><ul><li>Presiona la tecla Q cuando la imagen o palabra pertenezca a la categoría del lado izquierdo.</li><li>Presiona la tecla P cuando la imagen o palabra pertenezca a la categoría de la derecha.</li></ul><p>Si cometes un error al clasificar, aparecerá una X. Para corregir el error, presiona la tecla correcta tan rápido como puedas.</p>", false);
             break;
         case 2:
             //Definir tamaño del placeholder
@@ -308,21 +308,21 @@ function showInstructions() {
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("word&img", "<p>En esta sección tendrás que categorizar imágenes y palabras.</p><p>El texto en negro corresponde a las imágenes y el texto en color a las palabras.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", false);
+            assignLabelsAndText("word&img", "<p>En esta sección tendrás que categorizar imágenes y palabras.</p><p>El texto en blanco corresponde a las imágenes y el texto en color a las palabras.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", false);
             break;
         case 4:
             //Definir tamaño del placeholder
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("word&img", "<p>Ordena, nuevamente, las mismas categorías.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", false);
+            assignLabelsAndText("word&img", "<p>Clasifica nuevamente las mismas categorías.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", false);
             break;
         case 5:
             //Definir tamaño del placeholder
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("img", "<p>Atención: observa la parte dearriba y nota que sólo hay dos categoría y han cambiado de posición. Practica en esta nueva configuración.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", true);
+            assignLabelsAndText("img", "<p>Atención: observa la parte de arriba: sólo hay dos categoría y han cambiado de posición. Practica en esta nueva configuración.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", true);
             break;
         case 6:
             //Definir tamaño del placeholder
@@ -336,7 +336,7 @@ function showInstructions() {
             // Set blank div class
             $("#blank").removeClass("blank_bigger");
             $("#blank").addClass("blank_medium");
-            assignLabelsAndText("word&img", "<p>Ordena, nuevamente, las mismas categorías.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", true);
+            assignLabelsAndText("word&img", "<p>Clasifica, nuevamente, las mismas categorías.</p><p>Recuerda:</p><p>Tecla Q = La categoría del lado izquierdo.</p><p>Tecla P = La categoría del lado derecho.</p>", true);
             break;
     }
     //Mostrar contador de rondas, instrucciones e indicación de proceder
