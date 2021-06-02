@@ -45,7 +45,7 @@ rope==0.17.0
 six==1.14.0
 tempora==4.0.0
 toml==0.10.1
-urllib3==1.25.8
+urllib3==1.26.5
 webencodings==0.5.1
 Werkzeug==1.0.1
 wrapt==1.12.1
