@@ -1,7 +1,7 @@
 appdirs==1.4.3
 astroid==2.4.2
 CacheControl==0.12.6
-certifi==2019.11.28
+certifi==2022.12.7
 chardet==3.0.4
 cheroot==8.4.4
 CherryPy==18.6.0
